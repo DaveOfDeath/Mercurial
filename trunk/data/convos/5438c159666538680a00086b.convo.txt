@@ -1,0 +1,187 @@
+idRef {
+  id: "5438c159666538680a00086b"
+}
+ui_name: "SCRIPT_WeaponsClerk"
+nodes {
+  idRef {
+    id: "5438c164666538680a000871"
+  }
+  index: 0
+  text: "Welcome to Underground 93, $+(l.sir).   Please check any and all weapons here.   You\'ll be able to pick them up on your way out."
+  branches {
+    responseText: "Check weapons?   Not going to happen.   Your security is a joke.   You could use the extra trained gun if things get rough in here... in fact, I think if you need my skills, I\'ll be picking up a bonus on my way out instead."
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "Yeah, alright.   I get it.   Maria Mecurial\'s here tonight... guess you guy got to pretend to follow some rules while your VIP\'s in town."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_Disarmed"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "event_DisarmPlayer"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "Give me just a moment... I\'ll be right back."
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b20e666538840b004046"
+  }
+}
+nodes {
+  idRef {
+    id: "5438c2c0666538680a00087d"
+  }
+  index: 1
+  text: "$+(l.sir), you know very well that our security is top-notch.   Mostly ex-star and soldier types.  We don\'t need another loose cannon around here, trained or not.   If you\'re not willing to check your firearms, then I\'m afraid I\'ll have to deny you entry."
+  branches {
+    responseText: "Fine... But it\'d better be here when I get back."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_Disarmed"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "event_DisarmPlayer"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "Give me a minute... let me think about it."
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b20e666538840b004046"
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "flo_LocalHeat"
+          }
+        }
+      }
+      args {
+        float_value: 1.25
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "event_UpdateHeatBar"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5438d887666538680a000953"
+  }
+  index: 2
+  text: "Of course, $+(l.sir)."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b20e666538840b004046"
+  }
+}
+nodes {
+  idRef {
+    id: "5438c39f666538680a000881"
+  }
+  index: 3
+  text: "Certainly $+(l.sir)."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b20e666538840b004046"
+  }
+}
+nodes {
+  idRef {
+    id: "5438d8a2666538680a000955"
+  }
+  index: 4
+  text: "Actually $+(L.sir), we have always had these guidelines in place, for the safety of all our guests.   Ms. Mecurial\'s visit has no affect on our policies.  Your checked items will be available to you on your way out.   Please enjoy the show."
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5438c2ab666538680a00087b"
+  }
+  index: 5
+  text: "Certainly $+(l.sir)."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b20e666538840b004046"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}

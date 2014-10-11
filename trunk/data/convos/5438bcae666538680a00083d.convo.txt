@@ -1,0 +1,448 @@
+idRef {
+  id: "5438bcae666538680a00083d"
+}
+ui_name: "SCRIPT_SecurityCheck"
+nodes {
+  idRef {
+    id: "5438bcbb666538680a000843"
+  }
+  index: 0
+  text: "And just where do you think you\'re going with that piece?"
+  branches {
+    responseText: "{{CC}}[Bribe 500\302\245]{{/CC}}  Piece?  All I see is this stack of credits that you clearly dropped.  Just seemed like the right thing to do to return them... you know?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 500
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+    }
+    nextNodeIndex: 1
+    onlyOnce: true
+    idRef {
+      id: "5438bf6c666538680a000853"
+    }
+  }
+  branches {
+    responseText: "{{CC}}[Quickness - 4]{{/CC}} What piece?   I\'m not carrying, pal.   I thought that\'s what the security guys like you were for."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_SecBypassed"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Goal Status"
+        args {
+          call_value {
+            functionName: "Get Map Item (Goal)"
+            args {
+              string_value: "Bypass the weapons check"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "GoalStatus"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    onlyOnce: true
+    idRef {
+      id: "5438bf6e666538680a000854"
+    }
+  }
+  branches {
+    responseText: "{{CC}}[Charisma - 4]{{/CC}}  Come on pal... what\'s the harm in a little piece of mind?   Clearly with top shelf security like you and your team you can handle anything... it\'s just like my security blanket..."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    nextNodeIndex: 3
+    onlyOnce: true
+    idRef {
+      id: "5438bf71666538680a000855"
+    }
+  }
+  branches {
+    responseText: "Uh... back to the weapons checking booth?  "
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b1a7666538840b004045"
+  }
+}
+nodes {
+  idRef {
+    id: "5438bdf3666538680a000849"
+  }
+  index: 1
+  text: "You know... I appreciate an upstanding citizen like yourself.   Please, have a good night."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b1a7666538840b004045"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_SecBypassed"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Bypass the weapons check"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "event_GuardBypassed"
+          }
+        }
+      }
+      args {
+        float_value: 5
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5438beac666538680a00084b"
+  }
+  index: 2
+  text: "Oh... my mistake.   Thought I saw something.  Have a good night, friend."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b1a7666538840b004045"
+  }
+  actions {
+    ops {
+      functionName: "No Effect"
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "event_GuardBypassed"
+          }
+        }
+      }
+      args {
+        float_value: 5
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5438bef1666538680a00084d"
+  }
+  index: 3
+  text: "Well... I\'m not so sure about that... But I\'m gonna go with my gut on this one.   I\'m gonna let it slide, but you\'d better keep it holstered.   If I see you reach for it, I\'m gonna ventilate you.   Got it?"
+  branches {
+    responseText: "Got it.   Thanks man."
+    actions {
+      ops {
+        functionName: "Set Goal Status"
+        args {
+          call_value {
+            functionName: "Get Map Item (Goal)"
+            args {
+              string_value: "Bypass the weapons check"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "GoalStatus"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_SecBypassed"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event After Delay"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "event_GuardBypassed"
+            }
+          }
+        }
+        args {
+          float_value: 5
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "On second thought, I think you\'ve got this place covered.   I\'ll check it."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_SecBypassed"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5438b1a7666538840b004045"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
