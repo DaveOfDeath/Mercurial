@@ -1,3 +1,98 @@
+triggers {
+  name: "InteractWithDave"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Thanks for playing Mecurial."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54583dbe666538b00a00323d"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
 regions {
   name: "Camera Region"
   position {
@@ -76,6 +171,12 @@ characters {
   displayName: "SRI_Cameo"
   idRef {
     id: "545825a46665382c0f0018f9"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    interactionIcon: InteractionIcon_Generic
+    interaction_info_text: "Dave"
   }
   lod: 0
   character_instance {
