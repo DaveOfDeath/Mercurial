@@ -1,3 +1,175 @@
+triggers {
+  name: "U93.InteriorMapLoad"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Animation State Of Actor To Animation Modifier"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "AnimationState"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54692cff666538980e0013ad"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (AnimationModifiers)"
+          args {
+            string_value: "bouncer"
+          }
+          args {
+            string_value: "bouncer"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54692c60666538980e0013ac"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_flirty"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5469329d666538980e0013b1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Berlin:General/standing_idle_leaning"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54693e95666538980e0013c1"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "U93.SecurityScanFailure"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5469346f666538980e0013bb"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Light Transition"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54693552666538980e0013be"
+          }
+        }
+      }
+      args {
+        string_value: "hard:1:FF0000"
+      }
+    }
+    ops {
+      functionName: "Light Transition"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54693426666538980e0013ba"
+          }
+        }
+      }
+      args {
+        string_value: "hard:1:FF0000"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "546934d2666538980e0013bc"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Lobby camregion"
   position {
@@ -178,126 +350,349 @@ regions {
   loop_combat_music: true
   loop_default_music: false
 }
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 52
-    y: 0
-    z: -73
+regions {
+  name: "rSecurityScan"
+  position {
+    x: -2
+    y: -117
+    width: 2
+    height: 4
   }
-  orientation: ORIENTATION_N
+  enabledAtStart: true
+  is_camera_region: false
   idRef {
-    id: "5466d1bb613131f810005d61"
+    id: "5469346f666538980e0013bb"
+  }
+  highlight_color {
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: true
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -1.9
+    y: 0
+    z: -125.1
+  }
+  orientation: ORIENTATION_S
+  displayName: "U93Staff"
+  idRef {
+    id: "54692c60666538980e0013ac"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 3
+    interactionIcon: InteractionIcon_Conversation
+    interaction_info_text: "Weapons Check Clerk"
   }
   lod: 0
   character_instance {
+    prefab_name: "Seattle:Security/HumanFemaleSecurity"
+    character_sheet_id: "BaseCivilian"
     character_mod {
-      archetypeName: "Player"
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
     }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 5
+    team_id: "Civilians"
+    char_name: "Weapons Clerk"
+    pc_spawn_number: -1
+    portrait {
+      filename: "pc_humanfemale_06d_pixie"
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -3
+    y: 0
+    z: -114
+  }
+  orientation: ORIENTATION_S
+  displayName: "U93Staff"
+  idRef {
+    id: "54692cff666538980e0013ad"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 5
+    interactionIcon: InteractionIcon_Conversation
+    interaction_info_text: "Troll Bouncer"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Security/TrollMalesSecurity"
+    character_sheet_id: "Lonestar_Lv4_Ork_Shotgun"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 2
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 1
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: -4
+        close_combat: 5
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: -2
+        smg: 0
+        edged: 0
+        unarmed: 5
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "AdeptCombatvest"
+    }
+    team_id: "Civilians"
+    char_name: "Troll Bouncer"
+    pc_spawn_number: -1
+    cyberware_jack: "Berlin_Obvious Cyberskull"
+    cyberware_left_arm: "Obvious Cyberarm"
+    cyberware_right_arm: "Obvious Cyberarm"
+    portrait {
+      filename: "NPC_TrollMale_CyberZombie"
+    }
+    karma: 88
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 0
+    y: 0
+    z: -120.4
+  }
+  orientation: ORIENTATION_S
+  displayName: "U93Staff"
+  idRef {
+    id: "5469329d666538980e0013b1"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Security/ElfMaleSecurity"
+    character_sheet_id: "Lonestar_Lv3_Human_Pistol"
+    equipment_sheet_id: "Lonestar_Lv3_Pistol_Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Elf Security Guard"
+    pc_spawn_number: -1
+    cyberware_body: "Dermal Plating Mk 2"
+    portrait {
+      filename: "pc_elfmale_12a"
+    }
+    karma: 52
+    is_prop_character: true
   }
 }
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 51
+    x: 3
     y: 0
-    z: -73
+    z: -119
   }
   orientation: ORIENTATION_N
   idRef {
-    id: "5466d1bb613131f810005d63"
-  }
-  lod: 0
-  character_instance {
-    character_mod {
-      archetypeName: "Player"
-    }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 3
-  }
-}
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 52
-    y: 0
-    z: -74
-  }
-  orientation: ORIENTATION_N
-  idRef {
-    id: "5466d1bb613131f810005d64"
-  }
-  lod: 0
-  character_instance {
-    character_mod {
-      archetypeName: "Player"
-    }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 4
-  }
-}
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 50
-    y: 0
-    z: -73
-  }
-  orientation: ORIENTATION_N
-  idRef {
-    id: "5466d1bb613131f810005d65"
-  }
-  lod: 0
-  character_instance {
-    character_mod {
-      archetypeName: "Player"
-    }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 1
-  }
-}
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 51
-    y: 0
-    z: -74
-  }
-  orientation: ORIENTATION_N
-  idRef {
-    id: "5466d1bb613131f810005d66"
-  }
-  lod: 0
-  character_instance {
-    character_mod {
-      archetypeName: "Player"
-    }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 2
-  }
-}
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 50
-    y: 0
-    z: -74
-  }
-  orientation: ORIENTATION_N
-  idRef {
-    id: "5466d1bb613131f810005d6a"
+    id: "54693622666538980e0013c0"
   }
   lod: 0
   character_instance {
@@ -319,12 +714,12 @@ worldMapLocation {
 }
 mapName: "A01 - S02 - Underworld 93"
 parentStory: ""
-scene_title: "New Scene"
+scene_title: "$(story.str_SceneTitle)"
 scene_subtitle: ""
-scene_synopsis: ""
-scene_image: ""
+scene_synopsis: "$(story.str_SceneDetails)"
+scene_image: "marialoading"
 scene_continue_button_skip: false
-scene_restore_runner_health: false
+scene_restore_runner_health: true
 directional_light_dir {
   x: -0.5
   y: -1
@@ -377,8 +772,6 @@ scene_dimensions {
   initial_alarm_state: 0
   turns_per_round: 3
 }
-character_roster {
-}
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
@@ -387,7 +780,7 @@ scene_hiring_prerequisites {
 }
 hiring_slot_count: 0
 hiring_minimum_karma: 0
-hiring_maximum_karma: 25
+hiring_maximum_karma: 0
 roster_overrides {
 }
 use_hiring_cost_warning: false
@@ -396,6 +789,6 @@ override_hiring_average_cost: false
 show_equip_screen_on_scene_load: false
 is_persistant: false
 is_persistant_has_value: false
-can_move_outside_camera_regions: true
+can_move_outside_camera_regions: false
 can_start_before_triggers: true
 can_use_team_advancement: false
