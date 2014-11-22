@@ -14,11 +14,82 @@ nodes {
   }
   branches {
     responseText: "Oh, yeah.   Caught a few of her shows before."
-    nextNodeIndex: -1
+    nextNodeIndex: 2
+    auxiliaryLink: true
   }
   branches {
-    responseText: ""
-    nextNodeIndex: -1
+    responseText: "Hold that thought, darling.  I\'ll be right back."
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Excuse me for a moment."
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -33,12 +104,210 @@ nodes {
   text: "Certainly you know who she is... The hottest star in the pop music world?  Her debut was here on this very stage... and after so much fame and success, she still remembers where she started.   Her show here tonight is just that."
   branches {
     responseText: "Ooohh... Mecurial... yeah... everyone knows about her."
-    nextNodeIndex: -1
+    nextNodeIndex: 2
   }
   branches {
     responseText: "Actually, I\'m here on business.   Catching a free show is just a perk."
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fe8b366653884080008db"
+  }
+  index: 2
+  text: "She\'s the best.   You\'re in for a real good show tonight.   You know she got her first gig here?"
+  branches {
+    responseText: ""
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fe8cd66653884080008de"
+  }
+  index: 3
+  text: "I\'ll take your coat, and firearm and store them here for you."
+  branches {
+    responseText: "{{CC}}[Surrender weapon]{{/CC}}\nI\'ll keep my coat, but you can hold this for me."
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eWeaponSurrender"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
   }
+  branches {
+    responseText: "I don\'t remember a weapon check here before.   What\'s with the heightened security?"
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "Actually... I think I see a friend of mine... excuse me for a moment."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fe96366653884080008e3"
+  }
+  index: 4
+  text: "Well, $(l.sir) we have actually had a no-weapons policy for quite some time.   Ms. Mecurials visit has no affect on our policies."
+  branches {
+    responseText: "Certainly you don\'t think I\'m a trouble causer... I\'ll just catch the show quietly and leave."
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "Actually, I\'m meeting someone here.   It\'d be bad form for me to show up unprepared."
+    nextNodeIndex: 9
+  }
+  branches {
+    responseText: "Security?  Are you joking?   If something were to happen here you\'d need a level headed responder like me in here."
+    nextNodeIndex: 10
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fea8e66653884080008ea"
+  }
+  index: 5
+  text: "$+(l.sir) I think everyone is a trouble causer.  That\'s how I ended up as a security officer here.  And I know your type.   Believe me... we have quite a bit in common... but that doesn\'t change the fact that I\'ve got a job to do.   Now, please surrender any arms your carrying."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546feb3766653884080008f0"
+  }
+  index: 6
+  text: "So,  what will it be?"
+  branches {
+    responseText: "{{CC}}[Surrender weapon]{{/CC}}\n\nAlright here.   But it\'d better be in the same shape when I get it back."
+    nextNodeIndex: 7
+  }
+  branches {
+    responseText: "Give me a minute... I\'ll be right back."
+    nextNodeIndex: 8
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546ff30a666538840800095b"
+  }
+  index: 7
+  text: "{{CC}}[She takes your weapon, and hands you a claims ticket]{{/CC}}\n\nOf course, $(l.sir).   We haven\'t lost an item yet."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eWeaponSurrender"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "546ff36f666538840800095d"
+  }
+  index: 8
+  text: "Certainly.  I\'ll be here when ever you\'re ready."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546feae566653884080008ec"
+  }
+  index: 9
+  text: "I don\'t have you on my VIP lists.   And all guests are subject to a entry search.  If you\'d like to take it up with my officer here, I\'m sure he\'ll be happy to remove you from the premise..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fea3b66653884080008e8"
+  }
+  index: 10
+  text: "Our security staff is top-notch.   We haven\'t had an incident here in years.  We don\'t need, or want a loose cannon running around our club.   So you\'ll either need to surrender any arms your carrying, or remove yourself from the premise."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fe86f66653884080008d7"
+  }
+  index: 11
+  text: "{{CC}}[She smiles at you brightly]{{/CC}}\n\nOf course."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692c60666538980e0013ac"
+  }
+}
+nodes {
+  idRef {
+    id: "546fe88f66653884080008d9"
+  }
+  index: 12
+  text: "Certainly."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54692c60666538980e0013ac"

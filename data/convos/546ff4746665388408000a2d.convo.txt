@@ -1,0 +1,408 @@
+idRef {
+  id: "546ff4746665388408000a2d"
+}
+ui_name: "Underworld93-DoorGuardBypass"
+nodes {
+  idRef {
+    id: "546ff48c6665388408000a33"
+  }
+  index: 0
+  text: "{{GM}}[The gruff troll looks at you for a moment, sizing you up.   You\'re left with the impression that he\'s unimpressed]{{/GM}}\nWhat?   You got a problem?"
+  branches {
+    responseText: "{{CC}}[Bribe - 500\302\245]{{/CC}}\nDid you drop this?  I think I saw it fall out of your pocket while you patted me down and found no concealed weapons.\n"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 500
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eSecurityBypassed"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}[Charisma - 4]{{/CC}}\nActually, i wanted to have a moment of your time... "
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}[Quickness - 4]{{/CC}}\n[Conceal the weapon from the bouncer]  I\'m clean, pal."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}[Security]]{{/CC}}\n I saw that elf over there in the black trousers stuff a silver gun into the purse of that VIP.   I bet he\'s going to recover it from inside.  "
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 14
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}[Flirt]{{/CC}}\n[Some random flirty line... I don\'t hear many, so I don\'t have one]"
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}[Back Away]{{/CC}}\nUh, no."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692cff666538980e0013ad"
+  }
+}
+nodes {
+  idRef {
+    id: "546ff74a6665388408000a59"
+  }
+  index: 1
+  text: "{{GM}}[The huge troll raises an eyebrow, but otherwise doesn\'t respond...]{{/GM}}"
+  branches {
+    responseText: "I\'m actually here as a recruiter for the Combat Biking team BurnOut.  We got wind of an impressive troll here, who just might be our new starting center... But I need to shadow you for the evening.   Think that\'ll be a problem?"
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "{{CC}}[Flirt]{{/CC}}\nHow about you let me slide in here tonight, and I\'ll find you on my way back home?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692cff666538980e0013ad"
+  }
+}
+nodes {
+  idRef {
+    id: "546ff9cd6665388408000a78"
+  }
+  index: 2
+  text: "Sure... You\'ll know where to find me."
+  branches {
+    responseText: "That I will, friend.   "
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eSecurityBypassed"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692cff666538980e0013ad"
+  }
+}
+nodes {
+  idRef {
+    id: "546ffa056665388408000a80"
+  }
+  index: 3
+  text: "{{CC}}[The troll stare at you hard, you can almost hear the electronics in his cybereyes trying to locate your ever shifting weapon]{{/CC}}\n\nYeah, I guess you are clean.   You\'re a fool to walk around out there unstrapped, but who am I to judge... "
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692cff666538980e0013ad"
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSecurityBypassed"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "546ffabd6665388408000a83"
+  }
+  index: 4
+  text: "Drek.   When I get my hands on that skinny knife-eared bastard... "
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692cff666538980e0013ad"
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSecurityBypassed"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "547015266665388408000b52"
+  }
+  index: 5
+  text: "Sure babe.  Come on in.   Meet me by the bar around 2:30, and I\'ll give ya the after hours tour..."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54692cff666538980e0013ad"
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSecurityBypassed"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
