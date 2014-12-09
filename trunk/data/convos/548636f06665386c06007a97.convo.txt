@@ -1,0 +1,202 @@
+idRef {
+  id: "548636f06665386c06007a97"
+}
+ui_name: "Underworld93-BackStageGuardAccess"
+nodes {
+  idRef {
+    id: "548637046665386c06007a9d"
+  }
+  index: 0
+  text: "Hoi pal... where do you think you\'re going?"
+  branches {
+    responseText: "Backstage.   I have a meeting with Mr. Folley."
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "What\'s back there?"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "Restrooms?"
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+}
+nodes {
+  idRef {
+    id: "548637996665386c06007aa7"
+  }
+  index: 1
+  text: "Is that so..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "548635c56665386c06007a85"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_interact"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBackstageAccess"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "548635c56665386c06007a85"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54863b376665386c06007ac9"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "548638286665386c06007aab"
+  }
+  index: 2
+  text: "Head on back.  End of the hall.  Maria\'s room."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+}
+nodes {
+  idRef {
+    id: "548637876665386c06007aa5"
+  }
+  index: 3
+  text: "If you have to ask, Chummer... you don\'t belong back there."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+}
+nodes {
+  idRef {
+    id: "5486373f6665386c06007aa2"
+  }
+  index: 4
+  text: "{{GM}}He hooks a thumb over his shoulder, indicating the long hallway behind him.{{/GM}}\n\nBack over there past the bar.  Down the hallway on your left."
+  branches {
+    responseText: "Thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
