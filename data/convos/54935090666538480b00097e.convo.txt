@@ -1,0 +1,330 @@
+idRef {
+  id: "54935090666538480b00097e"
+}
+ui_name: "Yoshiros-MemphisMotorsDoor"
+nodes {
+  idRef {
+    id: "5493509b666538480b000984"
+  }
+  index: 0
+  text: "$(scene.str_MemphisOpener)"
+  branches {
+    responseText: "I\'m looking for Johnny Memphis.  He\'s holding a car for me."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_MemphisMotorsContact"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "549353d6666538480b0009e3"
+    }
+  }
+  branches {
+    responseText: "What sorts of services do you provide?"
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_MemphisMotorsContact"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "549353db666538480b0009e4"
+    }
+  }
+  branches {
+    responseText: "Sorry, my mistake."
+    conditions {
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "str_MemphisOpener"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "Will there be anything else?"
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Nope.  That\'ll do it."
+    conditions {
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "str_MemphisOpener"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "Will there be anything else?"
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "549350de666538480b000989"
+  }
+  index: 1
+  text: "Mr. Memphis isn\'t in at the moment... perhaps you can leave your contact information, and he\'ll return your call at his earliest convience?"
+  branches {
+    responseText: "{{CC}}[Leave contact info]{{/CC}} See that he does.  It\'s important."
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'ll try again later... Thanks."
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "549350fb666538480b00098b"
+  }
+  index: 2
+  text: "We\'re a body shop.   We provide paint and body work, as well as some collision repair.  We can also modifiy drones, and vehicles to a degree, depending on shop time availability."
+  branches {
+    responseText: "{{CC}}[Etiquitte - ShadowRun]{{/CC}} Everyone knows Memphis Motors is a shadows driven chop shop... I may need your services at another time."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 17
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}[Drone Control - 3]{{/CC}} Memphis Motors?  You\'re name is stamped into the flight stabilizer circuits on my eye-spy drone.  I may need you to do a little more tinkering when I get some time."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 10
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Huh... Well as I\'m without my wheels... I guess I may not need your services at the moment... Send me your contact info, just in case though."
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5493528c666538480b000995"
+  }
+  index: 3
+  text: "Certainly, $(l.sir)...  We always appreciate another discerning customer."
+  branches {
+    responseText: "I\'ll bet..."
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_MemphisOpener"
+          }
+        }
+      }
+      args {
+        string_value: "Will there be anything else?"
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "54935147666538480b00098d"
+  }
+  index: 4
+  text: "No problem, $(l.sir).   Have a pleasant day."
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "549353a6666538480b0009c9"
+  }
+  index: 5
+  text: "Very well, $(l.sir)... Have a pleasant day."
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  nextNodeIndex: 0
+}

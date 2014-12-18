@@ -1,5 +1,98 @@
 triggers {
-  name: "InteractWithDave"
+  name: "--=== Exterior Triggers ===--"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "54931948666538480b000826"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Exterior.MapLoad"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Location"
+      }
+      args {
+        string_value: "Barrens - Yoshiros"
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "549319b6666538480b000828"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "549311956665387404005995"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Berlin:General/standing_idle_smoking"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5493196f666538480b000827"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Exterior.InteractWithDave"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -38,7 +131,7 @@ triggers {
         }
       }
       args {
-        string_value: "What\'s your damage, buddy?"
+        string_value: "Hey.   Whats up?"
       }
       args {
         float_value: 0
@@ -93,6 +186,442 @@ triggers {
   }
   is_oneshot: true
 }
+triggers {
+  name: "Exterior.MemphisMotorsCallButton"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54934d6b666538480b00096f"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_MemphisGirl"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54934f92666538480b000978"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54934f4f666538480b000977"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "  Girl-1"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_MemphisGirl"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_MemphisOpener"
+          }
+        }
+      }
+      args {
+        string_value: "Hello? Can I help you?"
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "54935090666538480b00097e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54934ede666538480b000974"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54934f92666538480b000978"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5493502f666538480b00097c"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "  Girl-2"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_MemphisGirl"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_MemphisOpener"
+          }
+        }
+      }
+      args {
+        string_value: "Memphis Motors...   May I ask the nature of your visit today?"
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "54935090666538480b00097e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54934d88666538480b000970"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5493502f666538480b00097c"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54935031666538480b00097d"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "  Girl-3"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_MemphisGirl"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_MemphisOpener"
+          }
+        }
+      }
+      args {
+        string_value: "Thank you for chosing Memphis Motors.   How can I help you?"
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "54935090666538480b00097e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54934d8d666538480b000972"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54935031666538480b00097d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Camera Region"
   position {
@@ -121,9 +650,9 @@ regions {
     z: -0.75
   }
   directional_light_color {
-    r: 0.35294119
-    g: 0.35294119
-    b: 0.35294119
+    r: 0.13725491
+    g: 0.13725491
+    b: 0.13725491
     a: 0
   }
   ambient_light_color {
@@ -137,28 +666,53 @@ regions {
   default_music: "Seattle-Bar07"
   loop_combat_music: true
   loop_default_music: true
+  no_fow_in_region: false
 }
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 49
-    y: 0
-    z: -12
+regions {
+  name: "rActorSpawner"
+  position {
+    x: -15
+    y: -45
+    width: 11
+    height: 11
   }
-  orientation: ORIENTATION_S
+  enabledAtStart: true
+  is_camera_region: false
   idRef {
-    id: "522091f8373361f40d006df2"
+    id: "54934f30666538480b000976"
   }
-  lod: 0
-  character_instance {
-    character_mod {
-      archetypeName: "Player"
-    }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 0
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
   }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
 }
 characters {
   name: "chars_icon_playerIcon"
@@ -190,7 +744,7 @@ characters {
         charisma: 0
         intelligence: 0
         willpower: 0
-        essence: 0
+        essence: 4
         magic: 0
         hp: 0
         ap: 0
@@ -212,7 +766,7 @@ characters {
         close_combat: 0
         throwing_weapons: 0
         spellcasting: 0
-        decking: 0
+        decking: 9
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
@@ -238,19 +792,415 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
+    equipment {
+      prefab_name: "CyberdeckExcalibur"
+    }
     team_id: "Civilians"
     char_name: "Dave"
     pc_spawn_number: -1
+    cyberware_jack: "Datajack"
     portrait {
       filename: "npc_humanmale_altug"
     }
     portrait_code_override: "s3h2c1b10c1t0"
-    karma: 6
+    karma: 51
     has_fist: false
+  }
+}
+characters {
+  name: "system_spawner_playerSpawner"
+  gridPoint {
+    x: 61
+    y: 0
+    z: 1
+  }
+  orientation: ORIENTATION_E
+  displayName: "Ego"
+  idRef {
+    id: "549311866665387404005994"
+  }
+  lod: 0
+  character_instance {
+    character_mod {
+      archetypeName: "Player"
+    }
+    team_id: "Shadowrunners"
+    char_name: "Player"
+    enabled_at_start: true
+    pc_spawn_number: 0
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 60
+    y: 0
+    z: 3
+  }
+  orientation: ORIENTATION_W
+  displayName: "Fixer"
+  idRef {
+    id: "549311956665387404005995"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Core/HumanMale"
+    character_sheet_id: "BaseCivilian"
+    character_mod {
+      stats {
+        body: 1
+        quickness: 2
+        strength: 1
+        charisma: 4
+        intelligence: 3
+        willpower: 4
+        essence: 1
+        hp: 0
+        ap: 0
+        morale: 24
+        discipline: 0
+        awareness: 24
+        perception: 20
+        authority: 0
+        protect_tether_range: 5
+        move_speed: 6
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 3
+        dodge: 3
+        etiquette_street: 4
+      }
+      specializations {
+        pistol: 1
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Pi 1 Fichetti Security 500"
+    }
+    equipment {
+      prefab_name: "RiggerTrenchcoat"
+    }
+    team_id: "Civilians"
+    char_name: "Max Foley"
+    pc_spawn_number: -1
+    hiring_type: HiringType_None
+    portrait {
+      filename: "backer_humanmale_chrisvangraas"
+    }
+    description_bio: "Foley is in his 50s, short, fat and balding, wears latest fashions, suited to teens. He smokes large cigarettes. He\'s a talker. His constant refrain is \"Am I right?\""
+    portrait_code_override: "s3h2c6b1c6t0"
+    karma: 65
+    hiring_cost_override: 1000
+    hiring_tag: "Max Foley"
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 58
+    y: 0
+    z: 2
+  }
+  orientation: ORIENTATION_S
+  displayName: "Team"
+  idRef {
+    id: "549311c06665387404005996"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Story/MariaMercurial"
+    character_sheet_id: "Lvl3_Merc_Human_CyberWarrior"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 1
+        charisma: 3
+        intelligence: 1
+        willpower: 1
+        essence: 0
+        magic: -6
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+        ranged_combat: 3
+        close_combat: 5
+        throwing_weapons: -2
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 3
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 1
+        rifle: -2
+        shotgun: 0
+        smg: -3
+        edged: 0
+        unarmed: 2
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Pi 2 Browning Max-Power"
+    }
+    team_id: "Shadowrunners"
+    char_name: "Maria Mercurial"
+    pc_spawn_number: -1
+    hiring_type: HiringType_Hireable
+    cyberware_jack: "Datajack"
+    cyberware_body: "Wired Reflexes"
+    cyberware_left_arm: "Obvious Cyberarm 2"
+    cyberware_right_arm: "Obvious Cyberarm 2"
+    cyberware_left_leg: "Obvious Cyberleg"
+    cyberware_right_leg: "Obvious Cyberleg"
+    portrait {
+      filename: "npc_humanmale_jessicawatts_redreddress"
+    }
+    description_bio: ""
+    karma: 3
+    hiring_cost_override: 1800
+    hiring_tag: "Cybered Warrior"
+    is_backer: true
+    id: "sc_mercurial"
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -4
+    y: 0
+    z: -42
+  }
+  orientation: ORIENTATION_N
+  displayName: "EyeCandy"
+  idRef {
+    id: "54934d88666538480b000970"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Dakota"
+    pc_spawn_number: -1
+    portrait {
+      filename: "pc_orkfemale_05b_blondedreads"
+    }
+    karma: 174
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -4
+    y: 0
+    z: -39
+  }
+  orientation: ORIENTATION_N
+  displayName: "EyeCandy"
+  idRef {
+    id: "54934d8d666538480b000972"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Raelee"
+    pc_spawn_number: -1
+    portrait {
+      filename: "pc_elffemale_07_isaacnagel"
+    }
+    karma: 174
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -4
+    y: 0
+    z: -40
+  }
+  orientation: ORIENTATION_N
+  displayName: "EyeCandy"
+  idRef {
+    id: "54934ede666538480b000974"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Candy"
+    pc_spawn_number: -1
+    portrait {
+      filename: "pc_dwarffemale_05a_sexy"
+    }
+    karma: 174
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_MemphisGirl"
+    typeName: "int"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "str_MemphisOpener"
+    typeName: "string"
   }
 }
 worldMapLocation {
@@ -262,12 +1212,12 @@ worldMapLocation {
 }
 mapName: "Yoshiros_interior_ok"
 parentStory: ""
-scene_title: "New Scene"
+scene_title: "Downtown - Yoshiros Resturant"
 scene_subtitle: ""
-scene_synopsis: ""
-scene_image: ""
+scene_synopsis: "Regrouping from the UnderWorld 93 encounter, and droping off Newt\'s van outside a upscale japanese resturant ... But what now? "
+scene_image: "marialoading"
 scene_continue_button_skip: false
-scene_restore_runner_health: false
+scene_restore_runner_health: true
 directional_light_dir {
   x: -0.5
   y: -1
@@ -315,8 +1265,6 @@ team_affiliations {
 scene_dimensions {
   dimension_name: "Default"
 }
-character_roster {
-}
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
@@ -325,7 +1273,7 @@ scene_hiring_prerequisites {
 }
 hiring_slot_count: 0
 hiring_minimum_karma: 0
-hiring_maximum_karma: 25
+hiring_maximum_karma: 0
 roster_overrides {
 }
 use_hiring_cost_warning: true
@@ -334,6 +1282,6 @@ override_hiring_average_cost: true
 show_equip_screen_on_scene_load: false
 is_persistant: false
 is_persistant_has_value: false
-can_move_outside_camera_regions: true
+can_move_outside_camera_regions: false
 can_start_before_triggers: true
 can_use_team_advancement: false
