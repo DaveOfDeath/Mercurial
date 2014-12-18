@@ -42,7 +42,7 @@ nodes {
     id: "54865053666538ec0e007a73"
   }
   index: 2
-  text: "{{GM}}Max looks at you first, and replies before responding to the bouncer.{{/GM}} He said \"You shouldn\'t have messed with Hernandez, Lady.\"  \n\n It\'s quite alright, Newt.  Fortunately my new friends seem to handle themselves extremely well."
+  text: "{{GM}}Max looks at you first, and replies before responding to the bouncer.{{/GM}} He said \"You shouldn\'t have messed with Hernandez, Lady.\"  \n\n It\'s quite alright, Newt.  Fortunately my new friends seem to handle themselves extremely well, am I right?"
   branches {
     responseText: ""
     nextNodeIndex: 3
@@ -284,7 +284,7 @@ nodes {
     id: "548653af666538ec0e007a9d"
   }
   index: 9
-  text: "Go, I\'ll delay the security team as long as I can, give you what headstart I can.  Maria, Darling, you need to get out of here with our new friends... You\'ll be safe with them."
+  text: "Newt, please go and try to delay the security response team.   Give us what headstart you can.  Maria, Darling, you and I need to get out of here with our new friends... "
   branches {
     responseText: ""
     nextNodeIndex: 10
@@ -300,6 +300,46 @@ nodes {
   }
   index: 10
   text: "{{GM}}Her starry eyed expression gives you the impression that she hasn\'t got a clue what\'s going on in the room.{{/GM}}\n\nOkay Max... "
+  branches {
+    responseText: "What\'s with her?   One second she\'s spraying lead all over the place... and now she\'s catatonic?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_SavedByMaria"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+  }
   branches {
     responseText: "C\'mon Princess... Lets go."
     conditions {
@@ -338,6 +378,28 @@ nodes {
       }
     }
     actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_NewtConversation"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
       ops {
         functionName: "Clear All Waypoints"
       }
@@ -389,46 +451,6 @@ nodes {
     nextNodeIndex: -1
     hideIfUnavailable: true
   }
-  branches {
-    responseText: "What\'s with her?   One second she\'s spraying lead all over the place... and now she\'s catatonic?"
-    conditions {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bol_SavedByMaria"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 11
-    hideIfUnavailable: true
-  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54701d67666538ac03001cef"
@@ -439,12 +461,34 @@ nodes {
     id: "5486560f666538ec0e007b29"
   }
   index: 11
-  text: "A story for another day, my friend.   We haven\'t got the time... Am I Right?  Please... Go before the security officers find you all here."
+  text: "A story for another day, my friend.   We haven\'t got the time... Am I Right?  Please... Lets go before the security officers find us all here."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54701bad666538ac03001cec"
   }
   actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_NewtConversation"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
     ops {
       functionName: "Clear All Waypoints"
     }

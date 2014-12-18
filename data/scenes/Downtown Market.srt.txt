@@ -9,6 +9,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "5492409d6665386c0400401f"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Suspend Team\'s Turn"
       args {
         call_value {
@@ -4588,6 +4610,67 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "*****Transition To U93 (Temp)*****"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5492409d6665386c0400401f"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneTitle"
+          }
+        }
+      }
+      args {
+        string_value: "Welcome to Underworld 93"
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneDetails"
+          }
+        }
+      }
+      args {
+        string_value: "With your invitation into UnderWorld 93 burning a hole in your pocket... you can\'t wait to get into the hotest nightclub on it\'s hotest night..."
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "549240c96665386c04004020"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 regions {
   name: "Camera - Downtown Market"
