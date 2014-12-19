@@ -1,0 +1,260 @@
+idRef {
+  id: "5493a236666538100a000385"
+}
+ui_name: "Yoshiros-TaxiStation"
+nodes {
+  idRef {
+    id: "5493a23f666538100a00038b"
+  }
+  index: 0
+  text: "Good Evening.   How can I assist you tonight?"
+  branches {
+    responseText: "I need a pickup.   I\'m at Yoshiros, downtown, and I\'m headed to The Cornot Hotel in the barrens."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Hideout"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "My associates and I require a ride.   We\'re headed up to Westgate Condo complex in Tacoma."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Hideout"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "{{CC}}[Hang Up]{{/CC}} I\'m good, thanks."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_TakingACab"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_TakingACab"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5493a357666538100a00039b"
+  }
+  index: 1
+  text: "Very well, $(l.sir).   We can have a cab there in... uh... 40 minutes."
+  branches {
+    responseText: "40 minutes?   I could walk there that slow..."
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "Fine.   But I\'m not paying a premium for sub-par service."
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "5493a3d2666538100a0003a3"
+  }
+  index: 2
+  text: "You\'re certainly welcome to that, if that\'s your choice $(l.sir)...  However I feel as though I should point out that quite a few disturbances are popping up across the police band scanner...  We couldn\'t recommend that..."
+  branches {
+    responseText: "Fine... Send the fraggin\' car."
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "Forget it, I\'ll hike."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_TakingACab"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "5493a484666538100a0003ad"
+  }
+  index: 3
+  text: "Sure.   It\'ll be there... eventually."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "5493a411666538100a0003a5"
+  }
+  index: 4
+  text: "We have no premium services... Our cars run on a flat rate."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "5493a374666538100a00039d"
+  }
+  index: 5
+  text: "Of course.   I\'ll have a car there in 10 minutes.  Will there be anything else?"
+  branches {
+    responseText: "Yeah.   This needs to be discreet.  Your driver will understand when they arrive."
+    nextNodeIndex: 6
+  }
+  branches {
+    responseText: "Nope.   That\'s it."
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "5493a43a666538100a0003a7"
+  }
+  index: 6
+  text: "I see.   I\'ll send you one of our best drivers."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "5493a44d666538100a0003a9"
+  }
+  index: 7
+  text: "Very well.  Have a pleasant evening."
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  nextNodeIndex: 0
+}
