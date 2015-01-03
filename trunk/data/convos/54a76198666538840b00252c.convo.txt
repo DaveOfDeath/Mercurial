@@ -7,9 +7,47 @@ nodes {
     id: "54a761aa666538840b002532"
   }
   index: 0
-  text: "So, $+(l.name)... what now?"
+  text: "$(scene.str_MariaIntro)"
   branches {
     responseText: "[Investigate Hernandez]"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_InvestigateHernandez"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -17,7 +55,7 @@ nodes {
           call_value {
             functionName: "Get Variable (string)"
             args {
-              string_value: "strMariaText"
+              string_value: "str_MariaText"
             }
           }
         }
@@ -34,7 +72,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_SubQuest"
+              string_value: "int_HubSubQuest"
             }
           }
         }
@@ -44,9 +82,48 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
   }
   branches {
     responseText: "[Investigate Bounty]"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_InvestigateBounty"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -54,7 +131,7 @@ nodes {
           call_value {
             functionName: "Get Variable (string)"
             args {
-              string_value: "strMariaText"
+              string_value: "str_MariaText"
             }
           }
         }
@@ -71,7 +148,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_SubQuest"
+              string_value: "int_HubSubQuest"
             }
           }
         }
@@ -81,16 +158,58 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
-    responseText: "[Hack Foley]"
+    responseText: "{{CC}}Decking{{/CC}} [Hack Foley]"
     conditions {
       ops {
-        functionName: "Compare Actor Skill"
+        functionName: "AND"
         args {
           call_value {
-            functionName: "Get Map Item (Player)"
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 5
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 2
+                }
+              }
+            }
             args {
               int_value: 0
             }
@@ -98,39 +217,41 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Preset Value (int)"
+            functionName: "Comparison (bool)"
             args {
-              string_value: "BaseOrCurrent"
+              call_value {
+                functionName: "Get Story Variable (bool)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "bool_HackFoley"
+                }
+              }
             }
             args {
-              int_value: 1
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "bool"
+                }
+                args {
+                  int_value: 0
+                }
+              }
             }
           }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "ActorSkills"
-            }
-            args {
-              int_value: 5
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 2
-            }
-          }
-        }
-        args {
-          int_value: 0
         }
       }
     }
@@ -141,7 +262,7 @@ nodes {
           call_value {
             functionName: "Get Variable (string)"
             args {
-              string_value: "strMariaText"
+              string_value: "str_MariaText"
             }
           }
         }
@@ -158,7 +279,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_SubQuest"
+              string_value: "int_HubSubQuest"
             }
           }
         }
@@ -168,16 +289,58 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
-    responseText: "[Hack Hernandez]"
+    responseText: "{{CC}}Decking{{/CC}} [Hack Hernandez]"
     conditions {
       ops {
-        functionName: "Compare Actor Skill"
+        functionName: "AND"
         args {
           call_value {
-            functionName: "Get Map Item (Player)"
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 5
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 2
+                }
+              }
+            }
             args {
               int_value: 0
             }
@@ -185,39 +348,41 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Preset Value (int)"
+            functionName: "Comparison (bool)"
             args {
-              string_value: "BaseOrCurrent"
+              call_value {
+                functionName: "Get Story Variable (bool)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "bool_HackHernandez"
+                }
+              }
             }
             args {
-              int_value: 1
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "bool"
+                }
+                args {
+                  int_value: 0
+                }
+              }
             }
           }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "ActorSkills"
-            }
-            args {
-              int_value: 5
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 2
-            }
-          }
-        }
-        args {
-          int_value: 0
         }
       }
     }
@@ -228,7 +393,7 @@ nodes {
           call_value {
             functionName: "Get Variable (string)"
             args {
-              string_value: "strMariaText"
+              string_value: "str_MariaText"
             }
           }
         }
@@ -245,7 +410,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_SubQuest"
+              string_value: "int_HubSubQuest"
             }
           }
         }
@@ -255,10 +420,92 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
     responseText: "[Harass Hernandez]"
+    conditions {
+      ops {
+        functionName: "AND"
+        args {
+          call_value {
+            functionName: "Comparison (bool)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (bool)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "bool_InvestigateHernandez"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "bool"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Comparison (bool)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (bool)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "bool_HarassHernandez"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "bool"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -266,12 +513,12 @@ nodes {
           call_value {
             functionName: "Get Variable (string)"
             args {
-              string_value: "strMariaText"
+              string_value: "str_MariaText"
             }
           }
         }
         args {
-          string_value: "You want to go down and visit Hernandez?"
+          string_value: "You want to go down and visit Hernandez\' office?"
         }
       }
       ops {
@@ -283,7 +530,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_SubQuest"
+              string_value: "int_HubSubQuest"
             }
           }
         }
@@ -293,6 +540,7 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
@@ -307,7 +555,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_SubQuest"
+              string_value: "int_HubSubQuest"
             }
           }
         }
@@ -322,46 +570,78 @@ nodes {
   sourceInSceneRef {
     id: "54369aab6334643c1b002352"
   }
-  actions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_CondoFirstVisit"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
 }
 nodes {
   idRef {
     id: "54a763b7666538840b002565"
   }
   index: 1
-  text: "$(scene.strMariaText)"
+  text: "$(scene.str_MariaText)"
   branches {
     responseText: "Yes... lets do it."
+    actions {
+      ops {
+        functionName: "Clear All Waypoints"
+      }
+      ops {
+        functionName: "Set Waypoint on Point"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Center of Region"
+            args {
+              call_value {
+                functionName: "Get Map Item (Region)"
+                args {
+                  string_value: "5436157f633464300900496c"
+                }
+              }
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eSendDirections"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
   }
   branches {
-    responseText: "No... Let me think..."
+    responseText: "Not yet... Let me think..."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "str_MariaIntro"
+            }
+          }
+        }
+        args {
+          string_value: "No problem... What seems best?"
+        }
+      }
+    }
     nextNodeIndex: 0
     auxiliaryLink: true
   }
