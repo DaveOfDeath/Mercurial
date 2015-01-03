@@ -215,12 +215,61 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Actor Unkillable"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Screen Label"
       args {
         string_value: "Location"
       }
       args {
-        string_value: "Barrens - Yoshiros"
+        string_value: "Yoshiros Restaurant"
       }
     }
     ops {
@@ -2009,6 +2058,9 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
       functionName: "Display Text over Prop"
       args {
         call_value {
@@ -2053,9 +2105,6 @@ triggers {
       args {
         float_value: 0
       }
-    }
-    ops {
-      functionName: "Clear All Waypoints"
     }
   }
   isActive: true
@@ -2354,10 +2403,10 @@ regions {
 regions {
   name: "rCallRunners"
   position {
-    x: 53
-    y: -3
-    width: 10
-    height: 10
+    x: 55
+    y: -1
+    width: 8
+    height: 8
   }
   enabledAtStart: true
   is_camera_region: false
@@ -2885,7 +2934,7 @@ characters {
   lod: 0
   character_instance {
     prefab_name: "Seattle:Objects/InvisibleActor"
-    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_sheet_id: "BaseCivilian"
     character_mod {
       stats {
         body: 0
@@ -2895,9 +2944,11 @@ characters {
         intelligence: 0
         willpower: 0
         essence: 0
+        magic: 0
         hp: 0
         ap: 0
         armor: 0
+        force: 0
         morale: 0
         discipline: 0
         awareness: 0
@@ -2912,14 +2963,36 @@ characters {
       skills {
         ranged_combat: 0
         close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
         dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
       }
       specializations {
+        pistol: 0
         rifle: 0
+        shotgun: 0
+        smg: 0
         edged: 0
         unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
@@ -2929,7 +3002,7 @@ characters {
     portrait {
       filename: "npc_dwarffemale_maliit"
     }
-    karma: 174
+    karma: 6
   }
 }
 characters {
@@ -3072,13 +3145,13 @@ characters {
         ranged_combat: 0
         close_combat: 0
         throwing_weapons: 0
-        spellcasting: 0
+        spellcasting: -1
         decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
         biotech: 0
-        dodge: 0
+        dodge: -1
         etiquette_corporate: 0
         etiquette_security: 0
         etiquette_gang: 0
@@ -3125,7 +3198,7 @@ characters {
     portrait {
       filename: "pc_humanfemale_10_combatmage"
     }
-    karma: 32
+    karma: 29
   }
 }
 characters {
@@ -3147,7 +3220,7 @@ characters {
     character_sheet_id: "Lvl1_Elf_Samurai"
     character_mod {
       stats {
-        body: 0
+        body: -1
         quickness: 0
         strength: 0
         charisma: 0
@@ -3155,7 +3228,7 @@ characters {
         willpower: 0
         essence: 0
         magic: 0
-        hp: 0
+        hp: -10
         ap: 0
         armor: 0
         force: 0
@@ -3216,7 +3289,7 @@ characters {
     portrait {
       filename: "npc_humanmale_alnur"
     }
-    karma: 47
+    karma: 44
   }
 }
 variables {
