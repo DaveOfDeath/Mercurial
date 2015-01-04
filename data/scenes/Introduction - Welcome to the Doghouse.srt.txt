@@ -4672,6 +4672,264 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "Dog Setup"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Actor In Passive Mode"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54a85007666632341d000e2b"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Wander Range"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54a85007666632341d000e2b"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54a85007666632341d000e2d"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Berlin:Creature/Dog/standing_sit"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54a85007666632341d000e2c"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Berlin:Creature/Dog/standing_idle"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54a85007666632341d000e2b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:Creature/Hellhound/standing_idle"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54a8572f666632341d000e2e"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "DogFight"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54a84ea2666632341d000e29"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isDog"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Hunt And Destroy (Team)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54a85007666632341d000e2b"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54a84ea2666632341d000e29"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54a84eff666632341d000e2a"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
 regions {
   name: "Camera - Downtown Market"
   position {
@@ -5604,6 +5862,52 @@ regions {
   is_camera_region: false
   idRef {
     id: "5438c62f6334647c100066cf"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "Dog Food"
+  position {
+    x: 106
+    y: -14
+    width: 5
+    height: 3
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "54a84ea2666632341d000e29"
   }
   highlight_color {
     r: 0
@@ -6839,6 +7143,160 @@ characters {
     karma: 174
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 96
+    y: 0
+    z: -11
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isDog"
+  displayName: "3"
+  idRef {
+    id: "54a85007666632341d000e2b"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Creatures/CreatureDogFriendly"
+    character_sheet_id: "Creature_Lv1_Hellhound"
+    character_mod {
+      stats {
+        hp: -20
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+      }
+      specializations {
+      }
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Dante Chomp"
+    }
+    equipment {
+      prefab_name: "Claw Swipe"
+    }
+    team_id: "Civilians"
+    char_name: "Dog"
+    GeneralTags: "isDog"
+    pc_spawn_number: -1
+    portrait {
+      filename: "npc_dog_dante"
+    }
+    karma: 52
+    persistent_body: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 97
+    y: 0
+    z: -1
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isDog"
+  displayName: "2"
+  idRef {
+    id: "54a85007666632341d000e2c"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Creatures/CreatureDogFriendly"
+    character_sheet_id: "Creature_Lv1_Hellhound"
+    character_mod {
+      stats {
+        hp: -20
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+      }
+      specializations {
+      }
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Dante Chomp"
+    }
+    equipment {
+      prefab_name: "Claw Swipe"
+    }
+    team_id: "Civilians"
+    char_name: "Dog"
+    GeneralTags: "isDog"
+    pc_spawn_number: -1
+    portrait {
+      filename: "npc_dog_dante"
+    }
+    karma: 52
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 96
+    y: 0
+    z: -1
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isDog"
+  displayName: "1"
+  idRef {
+    id: "54a85007666632341d000e2d"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Creatures/CreatureDogFriendly"
+    character_sheet_id: "Creature_Lv1_Hellhound"
+    character_mod {
+      stats {
+        hp: -20
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+      }
+      specializations {
+      }
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Dante Chomp"
+    }
+    equipment {
+      prefab_name: "Claw Swipe"
+    }
+    team_id: "Civilians"
+    char_name: "Dog"
+    GeneralTags: "isDog"
+    pc_spawn_number: -1
+    portrait {
+      filename: "npc_dog_dante"
+    }
+    karma: 52
+  }
+}
 variables {
   int_value: 0
   variableref_value {
@@ -6874,9 +7332,9 @@ worldMapLocation {
 }
 mapName: "Introduction - Welcome to the Doghouse"
 parentStory: ""
-scene_title: "New Scene"
+scene_title: "Welcome to the Doghouse"
 scene_subtitle: ""
-scene_synopsis: ""
+scene_synopsis: "\342\200\230Needs a little work,\342\200\231 is how the contact described the place when he told you about it, \342\200\230but perfect for a team.\342\200\231  The contact didn\342\200\231t mention the broken windows, the door that doesn\342\200\231t shut, that doesn\342\200\231t lock, the complete lack of a security system. The only thing that still works is the pirated trideo signal, which carries on blather about the Mercurial event at Underworld 93. You\342\200\231ll have to make basic repairs, and you should probably take some security precautions- maybe meet your neighbors.\n\nYou\342\200\231re an up-and-comer in the world of Seattle\342\200\231s shadows. There was that thing with the Stuffer Shack, and a few forgettable adventures, but now your name is out there, and people know that you are someone who can lead a team and get things done.\n\nYour contact said that Mister Johnson was looking for a team, and you should be expecting his call. You\342\200\231ll have to talk to him, and then recruit a team for whatever job he\342\200\231s looking to do.\nIt\342\200\231s going to be an interesting night."
 scene_image: "marialoading"
 scene_continue_button_skip: false
 scene_restore_runner_health: false
@@ -6926,8 +7384,6 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
-}
-character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
