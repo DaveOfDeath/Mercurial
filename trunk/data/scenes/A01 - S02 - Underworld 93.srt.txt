@@ -396,6 +396,106 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "Interior.ReturnToExterior"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54691b42666538980e001339"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "54926e986665386c04004156"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54b16c086665382009000fb9"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "Interior.SecurityScanFailure"
   events {
     ops {
@@ -3379,7 +3479,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Region Enabled"
+      functionName: "Enable/Disable Trigger"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -3393,15 +3493,12 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Get Map Item (Trigger)"
           args {
-            string_value: "54926e986665386c04004156"
+            string_value: "54926eca6665386c04004157"
           }
         }
       }
-    }
-    ops {
-      functionName: "No Effect"
     }
   }
   isActive: true
@@ -8677,7 +8774,7 @@ regions {
     x: 0
     y: 8
     width: 5
-    height: 5
+    height: 8
   }
   enabledAtStart: true
   is_camera_region: false
@@ -10251,6 +10348,14 @@ variables {
     scope: TsVariableScope_Scene
     name: "int_HecklerMessage"
     typeName: "int"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "str_WeaponsGirlIntro"
+    typeName: "string"
   }
 }
 mapEvents: "eBusArrival"
