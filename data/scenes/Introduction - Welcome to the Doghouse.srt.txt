@@ -4931,118 +4931,6 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Runner_Start"
-  events {
-    ops {
-      functionName: "On Map Start"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Evaluate If Actor is Inside Region"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "AreOrAreNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "5436ccc8633464b408003023"
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
-          functionName: "All Actors With Tag"
-          args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isUnhired"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Nothing Selected"
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Random Point Within Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "54b290a96131317007006120"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54b2904f613131700700611f"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
   name: "Hiring Runners"
   events {
     ops {
@@ -5358,6 +5246,12 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_Newsloop"
+      }
+    }
   }
   conditions {
   }
@@ -5638,10 +5532,244 @@ triggers {
         float_value: 50
       }
     }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_Newsloop"
+          }
+        }
+      }
+      args {
+        float_value: 60
+      }
+    }
   }
   isActive: true
   idRef {
     id: "54b2935a6131317007006126"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "SilverARO"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "54b2abaf61313190170050b0"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor In Passive Mode"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Prop)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54b2acc261313190170050b3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "You here, chummer?"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54b2abf361313190170050b1"
   }
   elseActions {
   }
@@ -6752,63 +6880,17 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "RunnerGen"
+  name: "DoghouseEntrance"
   position {
-    x: 72
-    y: -92
-    width: 6
-    height: 6
+    x: 106
+    y: -17
+    width: 3
+    height: 2
   }
   enabledAtStart: true
   is_camera_region: false
   idRef {
-    id: "54b289556131317007006113"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
-  name: "Shack_Interior"
-  position {
-    x: 94
-    y: -81
-    width: 10
-    height: 12
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "54b290a96131317007006120"
+    id: "54b2abaf61313190170050b0"
   }
   highlight_color {
     r: 0
@@ -8103,7 +8185,7 @@ characters {
     y: 0
     z: -1
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_N
   GeneralTags: "isDog"
   displayName: "2"
   idRef {
@@ -8150,9 +8232,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 96
+    x: 95
     y: 0
-    z: -1
+    z: -2
   }
   orientation: ORIENTATION_S
   GeneralTags: "isDog"
@@ -8201,15 +8283,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 96
     y: 0
-    z: -90
+    z: -81
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_E
   GeneralTags: "isUnhired"
   displayName: "Simon Grey"
   idRef {
     id: "54b2898d6131317007006114"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8224,15 +8315,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 94
     y: 0
-    z: -89
+    z: -74
   }
   orientation: ORIENTATION_S
   GeneralTags: "isUnhired"
   displayName: "Aro Simeon"
   idRef {
     id: "54b289eb6131317007006115"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: "537091876465657412003ce2"
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8247,9 +8347,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 94
     y: 0
-    z: -88
+    z: -77
   }
   orientation: ORIENTATION_S
   GeneralTags: "isUnhired"
@@ -8257,10 +8357,36 @@ characters {
   idRef {
     id: "54b28a656131317007006116"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
+  }
   lod: 0
   character_instance {
     prefab_name: "Berlin:HavenCivilians/HumanMaleHavenBlazer_1"
     character_sheet_id: "BerlinRunner_Alnur_Lv2"
+    character_mod {
+      stats {
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+      }
+      specializations {
+      }
+      vulnerabilities {
+      }
+    }
     team_id: "Civilians"
     char_name: "Traxx"
     GeneralTags: "isUnhired"
@@ -8270,15 +8396,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 101
     y: 0
-    z: -87
+    z: -70
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_W
   GeneralTags: "isUnhired"
   displayName: "Blue Night"
   idRef {
     id: "54b28aa66131317007006117"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8293,20 +8428,29 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 76
+    x: 102
     y: 0
-    z: -90
+    z: -73
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_N
   displayName: "Graceland Everclear"
   idRef {
     id: "54b28afa6131317007006118"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Security/ElfMaleSecurity"
     character_sheet_id: "Crew_Glory_Lv1"
-    team_id: "Shadowrunners"
+    team_id: "Civilians"
     char_name: "Shiver"
     pc_spawn_number: -1
   }
@@ -8314,15 +8458,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 76
+    x: 98
     y: 0
-    z: -89
+    z: -80
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_E
   GeneralTags: "isUnhired"
   displayName: "Marcus Paolo"
   idRef {
     id: "54b28b7c6131317007006119"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8337,9 +8490,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 76
+    x: 95
     y: 0
-    z: -88
+    z: -78
   }
   orientation: ORIENTATION_S
   GeneralTags: "isUnhired"
@@ -8347,11 +8500,20 @@ characters {
   idRef {
     id: "54b28bca613131700700611a"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
+  }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Story/WeaponsDealer"
     character_sheet_id: "Crew_Monika_Lv1"
-    team_id: "Shadowrunners"
+    team_id: "Civilians"
     char_name: "Nebel"
     GeneralTags: "isUnhired"
     pc_spawn_number: -1
@@ -8360,15 +8522,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 76
+    x: 102
     y: 0
-    z: -87
+    z: -77
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_N
   GeneralTags: "isUnhired"
   displayName: "Leonard Clark"
   idRef {
     id: "54b28c3f613131700700611b"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8383,21 +8554,30 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 76
+    x: 95
     y: 0
-    z: -90
+    z: -70
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_W
   GeneralTags: "isUnhired"
   displayName: "Justine Case"
   idRef {
     id: "54b28c87613131700700611c"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
+  }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Security/TrollFemaleSecurity"
     character_sheet_id: "Lvl1_Troll_Samurai"
-    team_id: "Shadowrunners"
+    team_id: "Civilians"
     char_name: "Gunner"
     GeneralTags: "isUnhired"
     pc_spawn_number: -1
@@ -8406,15 +8586,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 96
     y: 0
-    z: -90
+    z: -79
   }
   orientation: ORIENTATION_S
   GeneralTags: "isUnhired"
   displayName: "Roberto Sanchez"
   idRef {
     id: "54b28cc9613131700700611d"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8429,15 +8618,24 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 100
     y: 0
-    z: -89
+    z: -80
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_E
   GeneralTags: "isUnhired"
   displayName: "Moira Saka\'am"
   idRef {
     id: "54b28d2b613131700700611e"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -8515,6 +8713,7 @@ variables {
 }
 mapEvents: "eve_Big_Jim_Angry"
 mapEvents: "eve_GEEKED_Angry"
+mapEvents: "eve_Newsloop"
 senseTags: "isUnhired"
 worldMapLocation {
   filename: ""
@@ -8577,6 +8776,8 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
+}
+character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
