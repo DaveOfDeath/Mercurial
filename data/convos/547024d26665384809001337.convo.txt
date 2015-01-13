@@ -7,10 +7,62 @@ nodes {
     id: "547024dd666538480900133d"
   }
   index: 0
-  text: "{{GM}}A moderate grade maglock system prevents access into the store room.{{/GM}}\n\nEnter Code:"
+  text: "{{GM}}A moderate grade maglock system prevents access into the store room.{{/GM}}\n\n$(scene.str_BackRoomAccessCode)\nEnter Code:"
   branches {
     responseText: "5150"
     nextNodeIndex: 1
+  }
+  branches {
+    responseText: "{{CC}}[Decking - 2]{{/CC}}  Bypass MagLock"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 5
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 1
+    inputBypass: true
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_InputNumpad
   inputMaxLength: 4
@@ -69,6 +121,28 @@ nodes {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "5466d1bc613131f81000621d"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_BackRoomAccessed"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
           }
         }
       }
