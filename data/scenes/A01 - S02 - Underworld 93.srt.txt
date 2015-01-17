@@ -3217,7 +3217,26 @@ triggers {
       functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Get Random Actor on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
         }
       }
       args {
@@ -3232,7 +3251,7 @@ triggers {
         }
       }
       args {
-        string_value: "Sure is quite a bit of LoneStar roaming around here... better be careful."
+        string_value: "Sure is quite a bit of LoneStar roaming around here... Better be careful."
       }
       args {
         float_value: 0
@@ -6883,6 +6902,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "547260e6666538380900316d"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -6893,7 +6934,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.MecurialEnters"
+  name: "   MecurialEnters"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -7077,7 +7118,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.MecurialSpeaks"
+  name: "   MecurialSpeaks"
   events {
     ops {
       functionName: "On Region Enter"
@@ -7186,7 +7227,7 @@ triggers {
         }
       }
       args {
-        string_value: "Max darling... who are your friends?"
+        string_value: "Max... Darling... Who are your friends?"
       }
       args {
         float_value: 255
@@ -7260,7 +7301,7 @@ triggers {
         call_value {
           functionName: "Random (int)"
           args {
-            int_value: 10
+            int_value: 12
           }
           args {
             int_value: 17
@@ -7442,6 +7483,76 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Animation State Of Actor To Animation Modifier"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "AnimationState"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54701d67666538ac03001cef"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (AnimationModifiers)"
+          args {
+            string_value: "cower"
+          }
+          args {
+            string_value: "cower"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Region)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54701d67666538ac03001cef"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54b9dfc56665386407006835"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 8
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Suspend Team\'s Turn"
       args {
         call_value {
@@ -7490,7 +7601,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Backstage.ThugWarning"
+  name: "   StreetSamsSpeak (Warning)"
   events {
     ops {
       functionName: "On Region Enter"
@@ -7506,17 +7617,24 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "Evaluate Tag for Actor"
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
         }
       }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "HasOrHasNot"
           }
           args {
             int_value: 1
@@ -7525,9 +7643,9 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "5470165c6665388408000b7a"
+            string_value: "isBadGuy"
           }
         }
       }
@@ -7535,33 +7653,51 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Add Camera Point of Interest (Actors)"
+      functionName: "Add To Variable (int)"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Variable (int)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5470165c6665388408000b7a"
-              }
-            }
-          }
-          args {
+            string_value: "int_BadGuysReady"
           }
         }
       }
       args {
-        float_value: 7
+        int_value: 1
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "54bace4b6665381c06002df9"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "   StreetSamsSpeak (Issue Warning)"
+  events {
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "On Region Enter"
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Map Item (Region)"
           args {
-            string_value: "5470165c6665388408000b7a"
+            string_value: "54924e666665386c04004080"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_BadGuysReady"
           }
         }
       }
@@ -7569,7 +7705,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TextPopupStyle"
+            string_value: "Comparison Ops"
           }
           args {
             int_value: 0
@@ -7577,28 +7713,31 @@ triggers {
         }
       }
       args {
-        string_value: "No debiste de haber chingado a Hern\303\241ndez pinche perra."
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_CombatActive"
+          }
+        }
       }
       args {
-        float_value: 255
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 128
-      }
-      args {
-        float_value: 12
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
       }
     }
     ops {
@@ -7648,6 +7787,68 @@ triggers {
       }
     }
     ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Random Actor on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "No debiste de haber chingado a Hern\303\241ndez pinche perra."
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 12
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
       functionName: "Order Actor to Hunt And Destroy (Team)"
       args {
         call_value {
@@ -7694,56 +7895,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Enable/Disable Trigger"
       args {
         call_value {
@@ -7766,26 +7917,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54b99459666538c0000008ae"
-          }
-        }
-      }
+      functionName: "No Effect"
     }
   }
   isActive: true
@@ -7797,7 +7929,160 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.MariaIntervention"
+  name: "   MecurialFlees (After Warning)"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54b9dfc56665386407006835"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54701d67666538ac03001cef"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to become a Non-Combatant"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54701d67666538ac03001cef"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "AAAiiiiiieeee!!!"
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 108
+      }
+      args {
+        float_value: 253
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54b9dfc56665386407006835"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54bacd756665381c06002df8"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Backstage.Interventions"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "54babdcf6665381c06002df4"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mecurial"
   events {
     ops {
       functionName: "On Actor Damage"
@@ -7905,7 +8190,7 @@ triggers {
                         string_value: "BaseOrCurrent"
                       }
                       args {
-                        int_value: 1
+                        int_value: 0
                       }
                     }
                   }
@@ -7916,7 +8201,7 @@ triggers {
                         string_value: "ActorAttributes"
                       }
                       args {
-                        int_value: 14
+                        int_value: 8
                       }
                     }
                   }
@@ -7944,6 +8229,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_SavedByMaria"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Animation State Of Actor To Animation Modifier"
       args {
         call_value {
@@ -7968,115 +8275,29 @@ triggers {
         call_value {
           functionName: "Get Map Item (AnimationModifiers)"
           args {
-            string_value: "sexy"
+            string_value: "combat"
           }
           args {
-            string_value: "sexy"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bol_SavedByMaria"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
+            string_value: "alert"
           }
         }
       }
     }
     ops {
-      functionName: "Apply Condition Status Effect to Actor"
+      functionName: "Play Animation From Manifest"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Map Item (Actor)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54701d67666538ac03001cef"
-              }
-            }
-          }
-          args {
+            string_value: "54701d67666538ac03001cef"
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Animation)"
           args {
-            string_value: "StatusCondition"
-          }
-          args {
-            int_value: 30
-          }
-        }
-      }
-      args {
-        string_value: "Amazon Persona"
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "BuffDebuffType"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54701d67666538ac03001cef"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
+            string_value: "Seattle:General/standing_idle"
           }
         }
       }
@@ -8140,45 +8361,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "548659a5666538ec0e007b6f"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "548659a5666538ec0e007b6f"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "     Remove Mecurial\'s AP (Disabled)"
-  events {
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Apply Attribute Status Effect to Actor"
+      functionName: "Change Actor Control"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -8195,48 +8378,256 @@ triggers {
         }
       }
       args {
-        int_value: -3
-      }
-      args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "ActorAttributes"
+            string_value: "PlayerOrAI"
           }
           args {
-            int_value: 9
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54701d67666538ac03001cef"
+              }
+            }
+          }
+          args {
           }
         }
       }
       args {
-        string_value: " Paniced"
-      }
-      args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Preset Value (string)"
           args {
-            string_value: "BuffDebuffType"
+            string_value: "FactionList"
           }
           args {
-            int_value: 2
+            int_value: 0
           }
         }
       }
       args {
-        int_value: -1
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Hunt And Destroy (Team)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54701d67666538ac03001cef"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54babdf56665381c06002df5"
+          }
+        }
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
-    id: "54b9e0026665386407006836"
+    id: "54babdf56665381c06002df5"
   }
   elseActions {
   }
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.Newt&TellinIntervention"
+  name: "   Newt & Tellin (Team Downed 40%)"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        int_value: 40
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_HelpArrived"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eBackupArrives"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54b99824666538c0000008b2"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54babfb86665381c06002df6"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "54babfb86665381c06002df6"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "      Newt & Tellin (Summon Team)"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -8612,40 +9003,10 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.NewtsArrival"
+  name: "Backstage.CombatRoundCounter"
   events {
     ops {
-      functionName: "On Actor Death"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Evaluate Team Survival Percentage"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 100
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
+      functionName: "On New Round"
       args {
         call_value {
           functionName: "Get Map Item (SceneDimension)"
@@ -8654,429 +9015,6 @@ triggers {
           }
         }
       }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54925b666665386c040040de"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54701d67666538ac03001cef"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_idle_flirty"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Item from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "SMG 2 Ingram Smartgun"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54701d67666538ac03001cef"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Order Actor to Move To (Point)"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54701d67666538ac03001cef"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -93
-          }
-          args {
-            float_value: -111
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 4
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54701bad666538ac03001cec"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_idle"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54838b45666538ac0900674f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Center of Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "5470264a6665384809001364"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54864f99666538ec0e007a67"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "Backstage.NewtEnters"
-  events {
-    ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "5470264a6665384809001364"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54838b45666538ac0900674f"
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Order Actor to Move To (Region)"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54838b45666538ac0900674f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "54924e666665386c04004080"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 2
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Wait for Rounds"
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-  }
-  isActive: false
-  idRef {
-    id: "54925b666665386c040040de"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "Backstage.NewtsConversation"
-  events {
-    ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "54924e666665386c04004080"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "AND"
-      args {
-        call_value {
-          functionName: "Evaluate Turn Mode"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "TurnBasedOrFreeMove"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Comparison (Actor)"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54838b45666538ac0900674f"
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eCallNewt"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54924e836665386c04004081"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "Backstage.NewtCoversExit"
-  events {
-    ops {
-      functionName: "On Conversation Complete"
     }
   }
   conditions {
@@ -9086,7 +9024,7 @@ triggers {
         call_value {
           functionName: "Get Variable (bool)"
           args {
-            string_value: "bol_NewtConversation"
+            string_value: "bol_CombatActive"
           }
         }
       }
@@ -9116,12 +9054,71 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Add To Variable (int)"
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Variable (int)"
           args {
-            string_value: "54838b45666538ac0900674f"
+            string_value: "int_CombatRound"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RoundsUntilLoneStar"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateCounter"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54b99459666538c0000008ae"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "   Display Screen Label Countdown"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateCounter"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RoundsUntilLoneStar"
           }
         }
       }
@@ -9129,36 +9126,77 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TextPopupStyle"
+            string_value: "Comparison Ops"
           }
           args {
-            int_value: 0
+            int_value: 2
           }
         }
       }
       args {
-        string_value: "Go... better get out of here quick."
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "CombatCounter"
       }
       args {
-        float_value: 0
+        call_value {
+          functionName: "Append (string)"
+          args {
+            string_value: " rounds until LoneStar arrives."
+          }
+          args {
+            call_value {
+              functionName: "Convert (int) to (string)"
+              args {
+                call_value {
+                  functionName: "Get Variable (int)"
+                  args {
+                    string_value: "int_RoundsUntilLoneStar"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54bac1456665381c06002df7"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "CombatCounter"
       }
       args {
-        float_value: 255
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 128
-      }
-      args {
-        float_value: 7
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 2
+        call_value {
+          functionName: "Append (string)"
+          args {
+            string_value: " rounds until LoneStar arrives."
+          }
+          args {
+            call_value {
+              functionName: "Convert (int) to (string)"
+              args {
+                call_value {
+                  functionName: "Get Variable (int)"
+                  args {
+                    string_value: "int_RoundsUntilLoneStar"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
     ops {
@@ -9178,73 +9216,21 @@ triggers {
         call_value {
           functionName: "Get Map Item (Trigger)"
           args {
-            string_value: "549254d26665386c04004085"
+            string_value: "54bac1456665381c06002df7"
           }
         }
       }
     }
-  }
-  isActive: true
-  idRef {
-    id: "549254d26665386c04004085"
-  }
-  elseActions {
   }
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.CombatRoundCounter"
+  name: "   Round 2 - Too Noisy"
   events {
     ops {
-      functionName: "On New Round"
+      functionName: "Get Map Item (Event)"
       args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Add To Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "int_CombatRound"
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-    }
-  }
-  isActive: false
-  idRef {
-    id: "54b99459666538c0000008ae"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "Backstage.Combat (Noisey Beat It)"
-  events {
-    ops {
-      functionName: "On New Round"
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
+        string_value: "eUpdateCounter"
       }
     }
   }
@@ -9348,88 +9334,87 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.Combat (Backup Arrives)"
+  name: "   Round 5 - Backup Arrives"
   events {
     ops {
-      functionName: "On New Round"
+      functionName: "Get Map Item (Event)"
       args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
+        string_value: "eUpdateCounter"
       }
     }
   }
   conditions {
     ops {
-      functionName: "AND"
+      functionName: "Comparison (int)"
       args {
         call_value {
-          functionName: "Comparison (int)"
+          functionName: "Get Variable (int)"
           args {
-            call_value {
-              functionName: "Get Variable (int)"
-              args {
-                string_value: "int_CombatRound"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Comparison Ops"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            int_value: 5
+            string_value: "int_CombatRound"
           }
         }
       }
       args {
         call_value {
-          functionName: "Comparison (bool)"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Variable (bool)"
-              args {
-                string_value: "bol_HelpArrived"
-              }
-            }
+            string_value: "Comparison Ops"
           }
           args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "bool"
-              }
-              args {
-                int_value: 0
-              }
-            }
+            int_value: 0
           }
         }
+      }
+      args {
+        int_value: 5
       }
     }
   }
   actions {
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54babfb86665381c06002df6"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54b99824666538c0000008b2"
+          }
+        }
+      }
+    }
     ops {
       functionName: "Set Variable (bool)"
       args {
@@ -9473,17 +9458,12 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.Combat (Backup Bail Message)"
+  name: "   Round 6 - You Should Leave"
   events {
     ops {
-      functionName: "On New Round"
+      functionName: "Get Map Item (Event)"
       args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
+        string_value: "eUpdateCounter"
       }
     }
   }
@@ -9615,85 +9595,48 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Backstage.Combat (Backup DEBUGGER)"
+  name: "Backstage.NewtsArrival"
   events {
     ops {
-      functionName: "On Actor Death"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateCounter"
+      }
     }
   }
   conditions {
     ops {
-      functionName: "AND"
+      functionName: "Evaluate Team Survival Percentage"
       args {
         call_value {
-          functionName: "Evaluate Team Survival Percentage"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Comparison Ops"
-              }
-              args {
-                int_value: 2
-              }
-            }
+            string_value: "Comparison Ops"
           }
           args {
-            int_value: 40
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
           }
           args {
-            call_value {
-              functionName: "Get Preset Value (string)"
-              args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Default"
-              }
-            }
+            int_value: 1
           }
         }
       }
       args {
         call_value {
-          functionName: "Comparison (bool)"
+          functionName: "Get Map Item (SceneDimension)"
           args {
-            call_value {
-              functionName: "Get Variable (bool)"
-              args {
-                string_value: "bol_HelpArrived"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "bool"
-              }
-              args {
-                int_value: 0
-              }
-            }
+            string_value: "Default"
           }
         }
       }
@@ -9706,7 +9649,408 @@ triggers {
         call_value {
           functionName: "Get Variable (bool)"
           args {
-            string_value: "bol_HelpArrived"
+            string_value: "bol_CombatActive"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "CombatCounter"
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54925b666665386c040040de"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Item from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "SMG 2 Ingram Smartgun"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54701d67666538ac03001cef"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54701d67666538ac03001cef"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_flirty"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54701bad666538ac03001cec"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54838b45666538ac0900674f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "5470264a6665384809001364"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "54864f99666538ec0e007a67"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "   NewtEnters"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5470264a6665384809001364"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54838b45666538ac0900674f"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to Move To (Region)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54838b45666538ac0900674f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54924e666665386c04004080"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "54925b666665386c040040de"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "   NewtsConversation"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54924e666665386c04004080"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54838b45666538ac0900674f"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eCallNewt"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "54924e836665386c04004081"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "      NewtCoversExit"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_NewtConversation"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -9722,21 +10066,80 @@ triggers {
         }
       }
     }
+  }
+  actions {
     ops {
-      functionName: "Send Event"
+      functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Get Map Item (Event)"
+          functionName: "Get Map Item (Actor)"
           args {
-            string_value: "eBackupArrives"
+            string_value: "54838b45666538ac0900674f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Go... Better get out of here quick."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "549254d26665386c04004085"
           }
         }
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
-    id: "54b99884666538c0000008b3"
+    id: "549254d26665386c04004085"
   }
   elseActions {
   }
@@ -9775,16 +10178,41 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Global.LoneStarArrival"
+  name: "Global.LoneStarArrival (FAILURE)"
   events {
     ops {
       functionName: "Get Map Item (Event)"
       args {
-        string_value: "eLoneStarArrives"
+        string_value: "eUpdateCounter"
       }
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RoundsUntilLoneStar"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
   }
   actions {
     ops {
@@ -9881,7 +10309,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Goal)"
           args {
-            string_value: "You have been killed."
+            string_value: "You have been killed..."
           }
         }
       }
@@ -10367,7 +10795,7 @@ regions {
 regions {
   name: "rBadGuyArrival"
   position {
-    x: -69
+    x: -72
     y: -109
     width: 3
     height: 4
@@ -11494,7 +11922,7 @@ characters {
     can_combat_shove: true
     cyberware_jack: "Datajack"
     portrait {
-      filename: "maria_mercurial"
+      filename: "maria_amazon"
     }
     karma: 101
   }
@@ -11845,7 +12273,7 @@ characters {
       prefab_name: "Berlin_Fist 3 Cestus"
     }
     equipment {
-      prefab_name: "Corporate Salaryman"
+      prefab_name: "DeckerFab"
     }
     team_id: "Security"
     char_name: "Newt"
@@ -12722,6 +13150,22 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bol_CombatActive"
+    typeName: "bool"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_BadGuysReady"
+    typeName: "int"
+  }
+}
 mapEvents: "eBusArrival"
 mapEvents: "eBusDepart"
 mapEvents: "eBusNew"
@@ -12736,11 +13180,12 @@ mapEvents: "eHeckling"
 mapEvents: "eLoneStarArrives"
 mapEvents: "eBackupArrives"
 mapEvents: "eCallNewt"
+mapEvents: "eUpdateCounter"
 goals {
-  name: "You have been killed."
+  name: "You have been killed..."
   type: GoalType_Primary
   status: GoalStatus_Hidden
-  description: "You have been killed... please try again."
+  description: ""
 }
 goals {
   name: "Bypass Security"
@@ -12764,7 +13209,7 @@ goals {
   name: "Caught red-handed in a firefight.   Maybe you ought to try to leave before the badges show up next time?"
   type: GoalType_Primary
   status: GoalStatus_Hidden
-  description: "LoneStar Arrives"
+  description: ""
 }
 goals {
   name: "Maria Mecurial has been killed... Some protecter you turned out to be."
