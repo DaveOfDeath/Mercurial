@@ -51,18 +51,142 @@ nodes {
     id: "54b49130666538ec0c004cda"
   }
   index: 1
-  text: "Not me... but I know where they have a little somethin\' laying around...  Cut me in for 150\302\245, and I\'ll spill..."
+  text: "Not me... but I know where they have a little somethin\' laying around...  Cut me in for 350\302\245, and I\'ll spill..."
   branches {
-    responseText: "{{CC}}[150\302\245]{{/CC}} Alright, Whatcha got."
+    responseText: "{{CC}}[350\302\245]{{/CC}} Alright, Whatcha got."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 350
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 350
+        }
+      }
+    }
     nextNodeIndex: 2
   }
   branches {
     responseText: "{{CC}}[Strength - 4]{{/CC}} How about you start talking, and I\'ll decide how many bones you get to keep intact?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
     nextNodeIndex: 3
+    hideIfUnavailable: true
   }
   branches {
     responseText: "{{CC}}[Charisma - 4]{{/CC}} How about I get that large bouncers attention, and see if he can settle this for us?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
     nextNodeIndex: 4
+  }
+  branches {
+    responseText: "No, I\'m out."
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -74,7 +198,7 @@ nodes {
     id: "54b49231666538ec0c004ce0"
   }
   index: 2
-  text: "Pleasure doing business with ya...   In the backroom down this hall.  Code is 5-1-5-0.  "
+  text: "Pleasure doing business with ya...   In the backroom down this hall.  Code is 5-1-5-0.  You\'ll find what you\'re after in the back of the room, behind some shelving."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54b48e9d666538ec0c004cca"

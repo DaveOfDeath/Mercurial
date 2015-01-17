@@ -65,6 +65,59 @@ nodes {
     inputBypass: true
     auxiliaryLink: true
   }
+  branches {
+    responseText: "{{CC}}[Drone Control - 2]{{/CC}} Hotwire MagLock"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 10
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    inputBypass: true
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_InputNumpad
   inputMaxLength: 4
   sourceInSceneRef {
@@ -144,6 +197,28 @@ nodes {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54b48e9d666538ec0c004cca"
           }
         }
       }
