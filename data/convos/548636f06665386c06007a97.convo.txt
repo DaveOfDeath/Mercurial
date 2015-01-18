@@ -9,7 +9,85 @@ nodes {
   index: 0
   text: "Hoi pal... where do you think you\'re going?"
   branches {
-    responseText: "Backstage.   I have a meeting with Mr. Folley."
+    responseText: "{{CC}}[Back Stage Passes]{{/CC}} Wherever I like, pal.   I\'ve got my golden tickets."
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_BackStagePasses"
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Item from Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_BackStagePasses"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Backstage.   I have a meeting with Mr. Foley."
     nextNodeIndex: 1
   }
   branches {
@@ -165,7 +243,7 @@ nodes {
     id: "548638286665386c06007aab"
   }
   index: 2
-  text: "Head on back.  End of the hall.  Maria\'s room."
+  text: "Head on back.  Mecurial\'s room is down at the end of the hall."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "548635c56665386c06007a85"
