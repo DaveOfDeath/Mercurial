@@ -919,7 +919,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "543891776334646c09003c02"
   }
@@ -1238,7 +1238,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "543892e26334646c09003c04"
   }
@@ -1772,7 +1772,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "54389a306334646c09003c6d"
   }
@@ -1878,7 +1878,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "5438c8106334647c100066d0"
   }
@@ -5002,46 +5002,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Order Actor to Move To (Prop)"
-      args {
-        call_value {
-          functionName: "All Actors With Tag"
-          args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isDog"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Nothing Selected"
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "54b2acc261313190170050b3"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -5059,6 +5019,42 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Is_In_Intro"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -5239,23 +5235,72 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Region Enabled"
+      functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
+          functionName: "Triggering Actor"
         }
       }
       args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "54a84ea2666632341d000e29"
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "GRR-R-R-R..."
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "creatures"
+          }
+          args {
+            string_value: "Dog_Attack"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -5273,24 +5318,51 @@ triggers {
   name: "     *NewsMonster"
   events {
     ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "54a84ea2666632341d000e29"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Get Map Item (Event)"
       args {
         string_value: "eve_Newsloop"
       }
     }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "542b8fc53733615806005df9"
+          }
+        }
+      }
+    }
   }
   conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -5590,7 +5662,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "     *Corpses 1"
@@ -6084,6 +6156,35 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Actor Run Speed"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "RunSpeedMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Actor In Passive Mode"
       args {
         call_value {
@@ -6138,7 +6239,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Order Actor to Move To (Prop)"
+      functionName: "Order Actor to Move To (Region)"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -6156,9 +6257,9 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Prop)"
+          functionName: "Get Map Item (Region)"
           args {
-            string_value: "54b2acc261313190170050b3"
+            string_value: "54ba724f3231378805004e43"
           }
         }
       }
@@ -6169,7 +6270,90 @@ triggers {
             string_value: "FacingDirection"
           }
           args {
-            int_value: 0
+            int_value: 4
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54b2abf361313190170050b1"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "          *Silver ARO - Enter"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54ba724f3231378805004e43"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to Face Direction"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 4
           }
         }
       }
@@ -6221,12 +6405,296 @@ triggers {
       }
     }
     ops {
-      functionName: "No Effect"
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54bb1732323137401c00394e"
+          }
+        }
+      }
     }
   }
   isActive: true
   idRef {
-    id: "54b2abf361313190170050b1"
+    id: "54ba72923231378805004e44"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "               *Silver ARO - Convo"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54bb1732323137401c00394e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Is_In_Intro"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "537091876465657412003ce2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54ba7af93231378805004e57"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "NewTrigger"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "54bb15c3323137401c00390b"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "     *Matrix Terminal"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "542b8fc53733615806005f5e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54ba70f93231378805004e3e"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54b2916e6131317007006123"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "          *Matrix Terminal Access"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54ba70f93231378805004e3e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text In Popup"
+      args {
+        string_value: "Fixer\'s Call about Mercurial Job"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: " Find A Job, Keep Flying"
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54b171c261313170070060c8"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bool_Hiring"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54ba712c3231378805004e41"
   }
   elseActions {
   }
@@ -6540,86 +7008,6 @@ triggers {
   isActive: true
   idRef {
     id: "54b1756e61313170070060ca"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "Switch"
-  events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "542b8fc53733615806005f5e"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Display Text In Popup"
-      args {
-        string_value: "Fixer\'s Call about Mercurial Job"
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PopupType"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: " Find A Job, Keep Flying"
-      }
-    }
-    ops {
-      functionName: "Delete Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "54b171c261313170070060c8"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bool_Hiring"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54b2916e6131317007006123"
   }
   elseActions {
   }
@@ -7592,52 +7980,6 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "Dog Food"
-  position {
-    x: 106
-    y: -14
-    width: 5
-    height: 3
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "54a84ea2666632341d000e29"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
   name: "Runner Hiring Scene"
   position {
     x: 93
@@ -7833,6 +8175,98 @@ regions {
   is_camera_region: false
   idRef {
     id: "54b9dbe6323137201a00373f"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "Silver ARO - Enter"
+  position {
+    x: 105
+    y: -13
+    width: 1
+    height: 1
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "54ba724f3231378805004e43"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "Silver ARO Convo"
+  position {
+    x: 103
+    y: -13
+    width: 5
+    height: 3
+  }
+  enabledAtStart: false
+  is_camera_region: false
+  idRef {
+    id: "54bb1732323137401c00394e"
   }
   highlight_color {
     r: 0
@@ -9071,9 +9505,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 90
+    x: 89
     y: 0
-    z: -12
+    z: -11
   }
   orientation: ORIENTATION_S
   GeneralTags: "isDog"
@@ -9111,7 +9545,7 @@ characters {
     equipment {
       prefab_name: "Claw Swipe"
     }
-    team_id: "Civilians"
+    team_id: "Dogs"
     char_name: "Dog"
     GeneralTags: "isDog"
     GeneralTags: "isInIntro"
@@ -9126,11 +9560,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 104
+    x: 102
     y: 0
     z: 4
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_S
   GeneralTags: "isDog"
   GeneralTags: "isInIntro"
   displayName: "2"
@@ -9166,7 +9600,7 @@ characters {
     equipment {
       prefab_name: "Claw Swipe"
     }
-    team_id: "Civilians"
+    team_id: "Dogs"
     char_name: "Dog"
     GeneralTags: "isDog"
     GeneralTags: "isInIntro"
@@ -9180,7 +9614,7 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 90
+    x: 88
     y: 0
     z: 0
   }
@@ -9220,7 +9654,7 @@ characters {
     equipment {
       prefab_name: "Claw Swipe"
     }
-    team_id: "Civilians"
+    team_id: "Dogs"
     char_name: "Dog"
     GeneralTags: "isDog"
     GeneralTags: "isInIntro"
@@ -9691,6 +10125,7 @@ variables {
 mapEvents: "eve_Big_Jim_Angry"
 mapEvents: "eve_GEEKED_Angry"
 mapEvents: "eve_Newsloop"
+mapEvents: "eve_ARO_Wander"
 senseTags: "isUnhired"
 worldMapLocation {
   filename: ""
@@ -9703,7 +10138,7 @@ mapName: "Introduction - Welcome to the Doghouse"
 parentStory: ""
 scene_title: "Welcome to the Doghouse"
 scene_subtitle: ""
-scene_synopsis: "\342\200\230Needs a little work,\342\200\231 is how the contact described the place when he told you about it, \342\200\230but perfect for a team.\342\200\231  The contact didn\342\200\231t mention the broken windows, the door that doesn\342\200\231t shut, that doesn\342\200\231t lock, the complete lack of a security system. The only thing that still works is the pirated trideo signal, which carries on blather about the Mercurial event at Underworld 93. You\342\200\231ll have to make basic repairs, and you should probably take some security precautions- maybe meet your neighbors.\n\nYou\342\200\231re an up-and-comer in the world of Seattle\342\200\231s shadows. There was that thing with the Stuffer Shack, and a few forgettable adventures, but now your name is out there, and people know that you are someone who can lead a team and get things done.\n\nYour contact said that Mister Johnson was looking for a team, and you should be expecting his call. You\342\200\231ll have to talk to him, and then recruit a team for whatever job he\342\200\231s looking to do.\nIt\342\200\231s going to be an interesting night."
+scene_synopsis: "\342\200\230Needs a little work,\342\200\231 is how the contact described the place when he told you about it, \342\200\230but perfect for a team.\342\200\231  The contact didn\342\200\231t mention the broken windows, the door that doesn\342\200\231t shut, that doesn\342\200\231t lock, the complete lack of a security system. The only thing that still works is the pirated trideo signal, which carries on blather about the Mercurial event at Underworld 93. You\342\200\231ll have to make basic repairs, and you should probably take some security precautions- maybe meet your neighbors.\n\nYou\342\200\231re an up-and-comer in the world of Seattle\342\200\231s shadows. There was that thing with the Stuffer Shack, and a few forgettable adventures, but now your name is out there, and people know that you are someone who can lead a team and get things done.\n\nYour contact said that Mister Johnson was looking for a team, and you should be expecting his call. You\342\200\231ll have to talk to him, and then recruit a team for whatever job he\342\200\231s looking to do.\n\nIt\342\200\231s going to be an interesting night."
 scene_image: "marialoading"
 scene_continue_button_skip: false
 scene_restore_runner_health: false
@@ -9729,12 +10164,14 @@ team_affiliations {
   affiliation: 1
   affiliation: 1
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Gangers"
   affiliation: 1
   affiliation: 0
   affiliation: 1
+  affiliation: 0
   affiliation: 0
 }
 team_affiliations {
@@ -9743,9 +10180,19 @@ team_affiliations {
   affiliation: 1
   affiliation: 0
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Civilians"
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+}
+team_affiliations {
+  team_name: "Dogs"
+  affiliation: 0
   affiliation: 0
   affiliation: 0
   affiliation: 0
