@@ -7,14 +7,10 @@ nodes {
     id: "54bb20f6666538f00e006e89"
   }
   index: 0
-  text: "What\'s your damage, $(l.man)..."
+  text: "Hoi Chummer!,  I got whatcha need, $(l.man)..."
   branches {
-    responseText: "I hear you hold back a few backstage passes.  My associates and I need them."
+    responseText: "I hear you\'ve managed to  hold back a few backstage passes.  My associates and I find ourselves in need of them...  Perhaps we can strike some sort of arrangement?"
     nextNodeIndex: 1
-  }
-  branches {
-    responseText: ""
-    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -26,7 +22,7 @@ nodes {
     id: "54bb2146666538f00e006e8d"
   }
   index: 1
-  text: "That so... Well, what\'re they worth to ya?"
+  text: "I do indeed, Chummer...  Well, what\'re they worth to ya?"
   branches {
     responseText: "{{CC}}[500\302\245]{{/CC}} And I\'ll owe you a favor."
     conditions {
@@ -87,7 +83,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 7
   }
   branches {
     responseText: "{{CC}}[1,500\302\245]]{{/CC}} How about you lost them, and forget we ever met?"
@@ -118,11 +114,11 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 12
   }
   branches {
     responseText: "Too rich for my blood, I\'ll find another way."
-    nextNodeIndex: -1
+    nextNodeIndex: 13
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -136,26 +132,43 @@ nodes {
   index: 2
   text: "{{GM}}He appears to ponder your offer briefly.{{/GM}}\n\nAnd what kinda favors do you think I can\'t handle myself?"
   branches {
-    responseText: "I\'m a runner, a handy friend to have..."
-    nextNodeIndex: 7
-    auxiliaryLink: true
+    responseText: "Anything that can be handled legally, or you just don\'t need that kinda heat..."
+    nextNodeIndex: 3
   }
   branches {
     responseText: "Getting things off the top shelf?"
-    nextNodeIndex: 3
+    nextNodeIndex: 4
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+}
+nodes {
+  idRef {
+    id: "54c6cbf1666538a00d004b34"
+  }
+  index: 3
+  text: "{{GM}}He perks right up.{{/GM}}\n\nA runner huh?  I\'ll take you up on that.  Never know where a shadowy knife may come in handy..."
+  branches {
+    responseText: "So we have a deal?"
+    nextNodeIndex: 12
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
 }
 nodes {
   idRef {
     id: "54bb2420666538f00e006ebb"
   }
-  index: 3
-  text: "Funny, Chummer.  What else you got?"
+  index: 4
+  text: "Real fraggin\' funny Chummer.   I\'m thinking my passes are commited elsewhere..."
   branches {
-    responseText: "I\'m popular in certain shadowy endeavors.  The kinds of things you might find a use for someday..."
-    nextNodeIndex: 7
-    auxiliaryLink: true
+    responseText: "I\'m not the type of person to cross, halfer.   Hand over the passes, or be looking over your shoulder forever."
+    nextNodeIndex: 5
   }
   branches {
     responseText: "{{CC}}[250\302\245]{{/CC}} How about I kick it up another 250\302\245?"
@@ -178,16 +191,110 @@ nodes {
         }
       }
     }
-    actions {
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 250
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+}
+nodes {
+  idRef {
+    id: "54c6cc7f666538a00d004b39"
+  }
+  index: 5
+  text: "{{GM}}He swallows hard, and seems to have lost a bit of his nerve.{{/GM}}\n\nSo it\'s like that?   I guess I don\'t need to end up in a ditch somewhere... Take them."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_BackStagePasses"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
         }
       }
     }
-    nextNodeIndex: 7
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Backstage Passes"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "54c6ccea666538a00d004b3b"
+  }
+  index: 6
+  text: "Frag off, pal.   Find your own fraggin\' passes."
+  branches {
+    responseText: "Alright man... can\'t take a joke?   How about you hand them over, before I lose my sense of humor.   You\'d fit nicely in the storm drain out back..."
+    nextNodeIndex: 5
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'ll be back..."
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -198,15 +305,15 @@ nodes {
   idRef {
     id: "54bb2385666538f00e006eb5"
   }
-  index: 4
+  index: 7
   text: "Must be pretty desperate to get back there... You one of those groupie types with some sort of stalker fantasy for Mecurial?"
   branches {
-    responseText: "More like I\'m suppose to be meeting a fixer backstage, and he forgot to leave the passes.   In my line of work, being late gets you killed."
-    nextNodeIndex: 5
+    responseText: "Whatever gets those passes in my hand, and your mouth shut."
+    nextNodeIndex: 8
   }
   branches {
-    responseText: "How about I just take them, and in a few weeks someone will find your corpse clogging up their storm drain?"
-    nextNodeIndex: 6
+    responseText: "Hardly.   Didn\'t even know he was here until I walked up.   Got a meeting backstage with a fixer.    Need to get back there quickly, and quietly. "
+    nextNodeIndex: 9
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -217,11 +324,11 @@ nodes {
   idRef {
     id: "54bb26d2666538f00e006ec6"
   }
-  index: 5
-  text: "A runner?  Why didn\'t you mention that up front?"
+  index: 8
+  text: "Got a bit of an attitude problem, chummer... I\'m not sure I\'m handing these over... you see I got a rep to protect myself..."
   branches {
-    responseText: "Bad business practice.   So we got a deal?"
-    nextNodeIndex: 7
+    responseText: "What\'s worse, a damaged reputation?   Or a damaged spine?"
+    nextNodeIndex: 5
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -233,11 +340,35 @@ nodes {
   idRef {
     id: "54bb2703666538f00e006eca"
   }
-  index: 6
-  text: "Whoa Chummer... no need to get nasty.   I\'m just trying to make a living here too..."
+  index: 9
+  text: "Whoa there, chummer... You\'re a runner?"
   branches {
-    responseText: "So I\'ll be taking my passes then?"
-    nextNodeIndex: 7
+    responseText: "Yeah, what of it?"
+    nextNodeIndex: 10
+  }
+  branches {
+    responseText: "No.   Just a driver."
+    nextNodeIndex: 11
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+}
+nodes {
+  idRef {
+    id: "54c6ce39666538a00d004b49"
+  }
+  index: 10
+  text: "Throw in a favor someday, and you\'ve got a deal."
+  branches {
+    responseText: "Fine.   Are we agreed?"
+    nextNodeIndex: 12
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "The only thing I\'m throwing in is your continued ability to turn oxygen into carbon dioxide.   It\'s a limited time offer though, so what\'ll it be?"
+    nextNodeIndex: 5
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -247,9 +378,92 @@ nodes {
 }
 nodes {
   idRef {
+    id: "54c6cea2666538a00d004b51"
+  }
+  index: 11
+  text: "Yeah... sure... Alright, Chummer... you wanna play it close to the vest, no problem.   You\'re paying good nuyen for the passes, and I guess I ain\'t got nothing else for ya."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_BackStagePasses"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Backstage Passes"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
     id: "54bb229a666538f00e006e95"
   }
-  index: 7
+  index: 12
   text: "Done."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -326,6 +540,17 @@ nodes {
         }
       }
     }
+  }
+}
+nodes {
+  idRef {
+    id: "54c6cf06666538a00d004b53"
+  }
+  index: 13
+  text: "Suit yourself, Chummer.   Ain\'t gonna find a couple of these left in a bathroom stall, that\'s for fraggin\' sure."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
   }
 }
 roots {
