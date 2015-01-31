@@ -1,0 +1,597 @@
+idRef {
+  id: "54cc54e06131314c19006605"
+}
+ui_name: "DogHouse - Lonestar"
+nodes {
+  idRef {
+    id: "54cc54f36131314c1900660b"
+  }
+  index: 0
+  text: "The cold-eyed Lonestar captain regards you with a stare, a not-quite sneer decorating his face. His thumbs are hooked behind his belt, which is doing an admirable job holding in his spare tire."
+  branches {
+    responseText: "Talk to the Captain."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_LonestarCorpses"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_LonestarCorpses"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Arithmetic (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_LonestarCorpses"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Arithmetic Ops"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "The bodies are in that industrial dumpster across from the Stuffer Shack."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_LonestarCorpses"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 8
+    onlyOnce: true
+    idRef {
+      id: "54cc5c716131314c190066d9"
+    }
+  }
+  branches {
+    responseText: "Walk away."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc563b6131314c19006618"
+  }
+  index: 1
+  text: "{{GM}}The captain gives you a once-over, the word \'churlish\' seeming to best describe his demeanor.{{/GM}}\n\"What do you want, $+(l.man)?\""
+  branches {
+    responseText: "I know where some dead Lonestar officers got dumped. Interested?"
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "Nevermind. {{CC}}Walk away.{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc56d96131314c1900661d"
+  }
+  index: 2
+  text: "{{GM}}The Captain seems to come alive, the vein in his forehead throbbing as his gringds his teeth.{{/GM}} \"What does some street punk like you know about anything? You\'d better walk away while you still can.\""
+  branches {
+    responseText: "{{CC}}Start Combat{{/CC}} Oink, oink, little pig."
+    actions {
+      ops {
+        functionName: "Autosave Game"
+      }
+      ops {
+        functionName: "Change Actor Team"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "542a1a0d373361140d00769a"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Change Actor Team"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "542a1a1c373361140d00769c"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Corporate{{/CC}} I know that I\'d want to find my friends. How about I tell you where they are, and you owe me a favor?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 13
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "{{CC}}Gang{{/CC}} Huff and puff, big bad wolf. I know where they ended up, and I bet it\'s worth a few nuyen to you."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 15
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Security{{/CC}} I know the Star takes care of its own, do you want to know, or not?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 14
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Street{{/CC}} I know you want to know, what\'s it worth to you?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 18
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "You\'re not worth it. {{CC}}Walk away.{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc58876131314c19006625"
+  }
+  index: 3
+  text: "{{GM}}The captain grinds his teeth for a full ten seconds before he answers you.{{/GM}}\n\"Fine, tell me where, and once I recover my men, I\'ll owe you. One small favor.\""
+  branches {
+    responseText: "I don\'t deal in small favors. We\'re talking \'Get out of Jail Free card\' level of favor."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "Cash money, cred, or no dice."
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I just want them to be given a more dignified burial. They\'re in the dumpster by the Stuffer Shack."
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc595e6131314c1900662e"
+  }
+  index: 4
+  text: "The vein in his head beats out a rhythm you could dance to, and after a moment he nods."
+  branches {
+    responseText: "They\'re in the industrial dumpster across from the Stuffer Shack. There are a few other bodies in there, too."
+    nextNodeIndex: 8
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "First, payment; cash money, or digital nuyen?"
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "Wait right here, I\'ll be back with the information you want."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc5aaf6131314c19006643"
+  }
+  index: 5
+  text: "{{GM}}The captain nods, the sneer showing his attitude toward you.{{/GM}} \"What will it be, cash or cred?\""
+  branches {
+    responseText: "Cold hard digital nuyen."
+    actions {
+      ops {
+        functionName: "Add Nuyen"
+        args {
+          int_value: 1000
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "I prefer my money in untraceable paper currency that deckers around the world can\'t steal."
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc5c046131314c190066a4"
+  }
+  index: 6
+  text: "The Lonestar captain gives you a roll of white plastic bills, official Lonestar corpscript, redeemable at any Lonestar office or corporate shop- now including official ARES military products!"
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc595e6131314c1900662e"
+  }
+  index: 7
+  text: "The captain seems surprised by this, and studies you for a moment before nodding."
+  branches {
+    responseText: "They\'re in the industrial dumpster across from the Stuffer Shack."
+    nextNodeIndex: 8
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "The Lonestar officers are in there, but so are a few other people."
+    nextNodeIndex: 8
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Nevermind. Brass off."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc5a4d6131314c1900663d"
+  }
+  index: 8
+  text: "Why are you telling me this? Do you want a favor in payment?"
+  branches {
+    responseText: "Just give those officers a decent burial."
+    nextNodeIndex: 9
+  }
+  branches {
+    responseText: "Take care of the other bodies, too. There are too many dead forgotten."
+    nextNodeIndex: 10
+  }
+  branches {
+    responseText: "I\'ll take a favor, please."
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Nuyen is king."
+    nextNodeIndex: 5
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc595e6131314c1900662e"
+  }
+  index: 9
+  text: "The captain seems surprised by this, and studies you for a moment before nodding."
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54cc595e6131314c1900662e"
+  }
+  index: 10
+  text: "The captain seems surprised by this, and studies you for a moment before nodding."
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  nextNodeIndex: 0
+}
