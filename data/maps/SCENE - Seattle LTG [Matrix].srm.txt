@@ -3080,8 +3080,67 @@ props {
     property_id: "fxScript"
     string_value: "matrixDoorEnvironment90"
   }
+  displayName: "PenthouseExit_Door"
   idRef {
     id: "53e4dc1f373361900c0079a1"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 2
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Core1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Core1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_Door
+    interaction_info_text: "This doorway teleports you from the secured Node to the local LTG."
   }
   lod: 0
 }
@@ -3797,7 +3856,7 @@ props {
 props {
   name: "matrix_puzzle_switchIred"
   gridPoint {
-    x: 79
+    x: 78
     y: 0
     z: 20
   }
@@ -9287,9 +9346,9 @@ props {
 props {
   name: "matrix_puzzle_firewall1red"
   gridPoint {
-    x: 109.5
+    x: 103.5
     y: 0
-    z: 19.2
+    z: 14.200001
   }
   orientation: ORIENTATION_W
   GeneralTags: "Penthouse_Firewall_Safe"
@@ -10968,20 +11027,53 @@ props {
     z: 156.5
   }
   orientation: ORIENTATION_E
-  displayName: "Telecom"
+  displayName: "Doghouse_Telecom"
   idRef {
     id: "54cd4734613131bc1e002460"
   }
   interactionRoot {
     isEnabled: true
     interactionRadius: 2
-    inspectInteraction {
-      dispalyTime: 0
-      fadeTime: 0.1
-      inspectText: "There\'s a telecom wired from the wall to this deck - an illegal modification that gives this crashpad matrix access."
-      disableAfterInteracting: true
+    prerequisites {
+      ops {
+        functionName: "Evaluate If Team Has Cyberdeck"
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
     }
-    interaction_info_text: "Matrix Terminal"
+    jackPoint {
+      LANIdentifier: "54cd9259613131700e0007e4"
+      LANEquipment: ""
+    }
+    interaction_info_text: "There\'s a telecom wired from the wall to this deck - an illegal modification that gives this crashpad matrix access."
   }
   lod: 0
 }
@@ -10995,26 +11087,6 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "54cd4734613131bc1e002462"
-  }
-  lod: 0
-}
-props {
-  name: "system_invisible_nonsolidProp"
-  gridPoint {
-    x: 77
-    y: 0
-    z: 157
-  }
-  orientation: ORIENTATION_S
-  displayName: "Telecom Matrix"
-  idRef {
-    id: "54cd4734613131bc1e002463"
-  }
-  interactionRoot {
-    isEnabled: false
-    interactionRadius: 2
-    interactionIcon: InteractionIcon_Matrix
-    interaction_info_text: "Matrix Terminal"
   }
   lod: 0
 }
@@ -15217,8 +15289,49 @@ props {
   }
   orientation: ORIENTATION_N
   GeneralTags: "StarKafSecure"
+  displayName: "StarKaf Firewall"
   idRef {
     id: "54cd7f7a613131bc1e002617"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Actor Consciousness"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54cd8151613131bc1e002661"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Consciousness"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    matrixLabel {
+      hackingObjectID: "54cd7f7a613131bc1e002617"
+      label_text: "This poorly programmed firewall is the attempt by StarKaf to block your matrix intrusion without knowing how you\'re doing it. The program is authored by one \'Gunther Centralperk.\'"
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -15464,7 +15577,7 @@ props {
     z: 154
   }
   orientation: ORIENTATION_S
-  displayName: "obj_PenthouseDesk"
+  displayName: "Penthouse_MatrixConnect"
   idRef {
     id: "54cd8ee9613131700e0007d2"
   }
@@ -20801,6 +20914,7 @@ props {
     property_id: "fxScript"
     string_value: "matrixDoorEnvironment90"
   }
+  displayName: "PenthouseEntrance_Door"
   idRef {
     id: "54cdb7c6613131700e0009c0"
   }
@@ -21334,9 +21448,9 @@ props {
 props {
   name: "diveBar_wall_divider02glow"
   gridPoint {
-    x: 89
+    x: 88
     y: 0
-    z: 53
+    z: 52
   }
   orientation: ORIENTATION_S
   lod: 0
@@ -21668,6 +21782,77 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "54ce6ceb6131314416002622"
+  }
+  lod: 0
+}
+props {
+  name: "matrix_floor_entranceexit"
+  gridPoint {
+    x: 51
+    y: 0
+    z: 87
+  }
+  orientation: ORIENTATION_E
+  displayName: "Doghouse_Entrance"
+  idRef {
+    id: "54cea60b613131c01c006e5e"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "Matrix_Doghouse"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    matrixSpawnPoint {
+      dimension: "Default"
+    }
+    interaction_info_text: "This is the connection back to your meatsuit."
+  }
+  lod: 0
+}
+props {
+  name: "matrix_puzzle_node1red"
+  gridPoint {
+    x: 118.10001
+    y: 0.9
+    z: 21.5
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "Penthouse_Firewall_Safe"
+  idRef {
+    id: "54ceb45f613131c01c006e6a"
   }
   lod: 0
 }
