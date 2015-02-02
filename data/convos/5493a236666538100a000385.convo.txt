@@ -138,13 +138,37 @@ nodes {
     id: "5493a357666538100a00039b"
   }
   index: 1
-  text: "Very well, $(l.sir).   We can have a cab there in... uh... 40 minutes."
+  text: "Very well, $(l.sir).   We can have a cab there in... uh... 40 minutes... ish..."
   branches {
     responseText: "40 minutes?   I could walk there that slow..."
     nextNodeIndex: 2
   }
   branches {
     responseText: "Fine.   But I\'m not paying a premium for sub-par service."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_TakingACab"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: 4
   }
   nodeType: ConversationNodeType_Simple
@@ -160,6 +184,30 @@ nodes {
   text: "You\'re certainly welcome to that, if that\'s your choice $(l.sir)...  However I feel as though I should point out that quite a few disturbances are popping up across the police band scanner...  We couldn\'t recommend that..."
   branches {
     responseText: "Fine... Send the fraggin\' car."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_TakingACab"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: 3
   }
   branches {
@@ -188,23 +236,23 @@ nodes {
         }
       }
       ops {
-        functionName: "Set Variable (bool)"
+        functionName: "Enable/Disable Interactable Object"
         args {
           call_value {
-            functionName: "Get Variable (bool)"
+            functionName: "Get Preset Value (int)"
             args {
-              string_value: "bol_TaxiRefused"
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 0
             }
           }
         }
         args {
           call_value {
-            functionName: "Get Preset Value (int)"
+            functionName: "Get Map Item (InteractableObject)"
             args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
+              string_value: "5493a6dc666538100a0003ee"
             }
           }
         }
@@ -238,6 +286,28 @@ nodes {
             functionName: "Get Map Item (Prop)"
             args {
               string_value: "5493a6dc666538100a0003ee"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "5493a172666538100a000383"
             }
           }
         }
