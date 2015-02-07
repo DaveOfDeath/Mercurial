@@ -3071,15 +3071,16 @@ props {
 props {
   name: "vfx_fx_matrixDoor2"
   gridPoint {
-    x: 108
+    x: 110
     y: 0
-    z: 19
+    z: 21
   }
   orientation: ORIENTATION_S
   properties {
     property_id: "fxScript"
     string_value: "matrixDoorEnvironment90"
   }
+  GeneralTags: "isPenthouseDoor"
   displayName: "PenthouseExit_Door"
   idRef {
     id: "53e4dc1f373361900c0079a1"
@@ -3089,53 +3090,60 @@ props {
     interactionRadius: 2
     prerequisites {
       ops {
-        functionName: "Comparison (int)"
+        functionName: "AND"
         args {
           call_value {
-            functionName: "Get Variable (int)"
+            functionName: "Comparison (int)"
             args {
-              string_value: "int_Core1"
+              call_value {
+                functionName: "Get Variable (int)"
+                args {
+                  string_value: "int_Core1"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              int_value: 2
             }
           }
         }
         args {
           call_value {
-            functionName: "Get Preset Value (int)"
+            functionName: "Comparison (int)"
             args {
-              string_value: "Comparison Ops"
+              call_value {
+                functionName: "Get Variable (int)"
+                args {
+                  string_value: "int_Core2"
+                }
+              }
             }
             args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          int_value: 2
-        }
-      }
-      ops {
-        functionName: "Comparison (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "int_Core1"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 0
+                }
+              }
             }
             args {
-              int_value: 0
+              int_value: 2
             }
           }
-        }
-        args {
-          int_value: 2
         }
       }
     }
@@ -3380,13 +3388,6 @@ props {
   displayName: "Penthouse_Entrance"
   idRef {
     id: "53e4dd12373361900c0079b6"
-  }
-  interactionRoot {
-    isEnabled: true
-    interactionRadius: 1
-    dummyInteraciton {
-    }
-    interaction_info_text: ""
   }
   lod: 0
 }
@@ -4523,12 +4524,20 @@ props {
   name: "matrix_puzzle_node1red"
   gridPoint {
     x: 110.10001
-    y: 0.4
+    y: 0
     z: 21.5
   }
   orientation: ORIENTATION_N
+  displayName: "obj_PenthouseAccess"
   idRef {
     id: "53e4e325373361900c007a26"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -9203,7 +9212,7 @@ props {
   gridPoint {
     x: 113.2
     y: 0.5
-    z: 21.900002
+    z: 20.900002
   }
   orientation: ORIENTATION_S
   displayName: "CoreAlign2"
@@ -9212,7 +9221,7 @@ props {
   }
   interactionRoot {
     isEnabled: true
-    interactionRadius: 1
+    interactionRadius: 2
     interactionIcon: InteractionIcon_Inspect
     interaction_info_text: "This is the two-part alignment of the core to connect to the Matrix LTG."
   }
@@ -9375,7 +9384,7 @@ props {
   gridPoint {
     x: 115.2
     y: 0.5
-    z: 21.900002
+    z: 22.900002
   }
   orientation: ORIENTATION_S
   displayName: "CoreAlign1"
@@ -9384,7 +9393,7 @@ props {
   }
   interactionRoot {
     isEnabled: true
-    interactionRadius: 1
+    interactionRadius: 2
     interactionIcon: InteractionIcon_Inspect
     interaction_info_text: "This is the two-part alignment of the core to connect to the Matrix LTG."
   }
@@ -11032,12 +11041,12 @@ props {
   }
   interactionRoot {
     isEnabled: true
-    interactionRadius: 2
+    interactionRadius: 1
     jackPoint {
-      LANIdentifier: "54cd9259613131700e0007e4"
+      LANIdentifier: "54d5504f6665387407006c71"
       LANEquipment: ""
     }
-    interaction_info_text: "There\'s a telecom wired from the wall to this deck - an illegal modification that gives this crashpad matrix access."
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -15547,44 +15556,9 @@ props {
   }
   interactionRoot {
     isEnabled: true
-    interactionRadius: 1
-    prerequisites {
-      ops {
-        functionName: "Evaluate If Team Has Cyberdeck"
-        args {
-          call_value {
-            functionName: "Get Preset Value (string)"
-            args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (SceneDimension)"
-            args {
-              string_value: "Default"
-            }
-          }
-        }
-      }
-    }
+    interactionRadius: 5
     jackPoint {
-      LANIdentifier: "53e4dd12373361900c0079b6"
+      LANIdentifier: "54d540356665384405007986"
       LANEquipment: ""
     }
     interaction_info_text: ""
@@ -15722,28 +15696,6 @@ props {
   lod: 0
 }
 props {
-  name: "matrix_floor_entranceexit"
-  gridPoint {
-    x: 130
-    y: 0
-    z: 20
-  }
-  orientation: ORIENTATION_S
-  displayName: "Penthouse_Entrance"
-  idRef {
-    id: "54cd9242613131700e0007e3"
-  }
-  interactionRoot {
-    isEnabled: true
-    interactionRadius: 1
-    matrixSpawnPoint {
-      dimension: "Matrix"
-    }
-    interaction_info_text: ""
-  }
-  lod: 0
-}
-props {
   name: "vfx_fx_matrixentranceexit"
   gridPoint {
     x: 52
@@ -15758,13 +15710,6 @@ props {
   displayName: "Doghouse_Entrance"
   idRef {
     id: "54cd9259613131700e0007e4"
-  }
-  interactionRoot {
-    isEnabled: true
-    interactionRadius: 1
-    dummyInteraciton {
-    }
-    interaction_info_text: ""
   }
   lod: 0
 }
@@ -21635,28 +21580,6 @@ props {
   lod: 0
 }
 props {
-  name: "matrix_floor_entranceexit"
-  gridPoint {
-    x: 51
-    y: 0
-    z: 87
-  }
-  orientation: ORIENTATION_E
-  displayName: "Doghouse_Entrance"
-  idRef {
-    id: "54cea60b613131c01c006e5e"
-  }
-  interactionRoot {
-    isEnabled: true
-    interactionRadius: 1
-    matrixSpawnPoint {
-      dimension: "Matrix"
-    }
-    interaction_info_text: "This is the connection back to your meatsuit."
-  }
-  lod: 0
-}
-props {
   name: "matrix_puzzle_node1red"
   gridPoint {
     x: 118.10001
@@ -21667,6 +21590,50 @@ props {
   GeneralTags: "Penthouse_Firewall_Safe"
   idRef {
     id: "54ceb45f613131c01c006e6a"
+  }
+  lod: 0
+}
+props {
+  name: "matrix_floor_entranceexit"
+  gridPoint {
+    x: 130
+    y: 0
+    z: 20
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_MatrixSpawn-Penthouse"
+  idRef {
+    id: "54d540356665384405007986"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    matrixSpawnPoint {
+      dimension: "Matrix"
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "matrix_floor_entranceexit"
+  gridPoint {
+    x: 51
+    y: 0
+    z: 87
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_MatrixSpawn-DogHouse"
+  idRef {
+    id: "54d5504f6665387407006c71"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    matrixSpawnPoint {
+      dimension: "Matrix"
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
