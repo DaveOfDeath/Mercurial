@@ -9709,13 +9709,13 @@ triggers {
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "54a84eff666632341d000e2a"
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "     *NewsMonster"
@@ -12949,7 +12949,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Actor)"
           args {
-            string_value: "54bb1f0d3231371c20002fda"
+            string_value: "54bb217e3231371c20002fef"
           }
         }
       }
@@ -13024,6 +13024,31 @@ triggers {
       }
     }
     ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Order Actor to Move To (Actor)"
       args {
         call_value {
@@ -13072,17 +13097,17 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Map Item (Player)"
           args {
-            string_value: "54b289eb6131317007006115"
+            int_value: 0
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Map Item (Player)"
+          functionName: "Get Map Item (Actor)"
           args {
-            int_value: 0
+            string_value: "54b289eb6131317007006115"
           }
         }
       }
@@ -13187,7 +13212,7 @@ triggers {
       }
     }
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "Location - Stuffer Shack"
@@ -19787,7 +19812,10 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    interactionIcon: InteractionIcon_Conversation
+    conversationPoint {
+      conversationID: "54cc7dc16131314c190068a4"
+      turnToFace: false
+    }
     interaction_info_text: ""
   }
   lod: 0
