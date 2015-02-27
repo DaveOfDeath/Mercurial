@@ -358,6 +358,25 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54f0a2546131313017001962"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_jackin_decking"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -2105,6 +2124,241 @@ triggers {
   isActive: false
   idRef {
     id: "54e8f753663136ec16008003"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "--=== Taetzel Scripts ===--"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "54ed06976131311416006b8c"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Tatzel Entrance"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54ed07e56131311416006b8e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 9
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Image With Caption In Popup"
+      args {
+      }
+      args {
+        string_value: "This abandoned matrix node is shut down, "
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: " The Sad Story of Perfekto Polymers"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54ed06706131311416006b8a"
+  }
+  elseActions {
+    ops {
+      functionName: "No Effect"
+    }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Taetzel Teleport"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Turn Mode"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TurnBasedOrFreeMove"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 9
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Target Point"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54ed3cd26131311416006b94"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "54ed06896131311416006b8b"
   }
   elseActions {
   }
@@ -4166,104 +4420,12 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "SuperhighwayEnd_W"
-  position {
-    x: 13
-    y: -20
-    width: 3
-    height: 3
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "54cdb534613131700e0009ae"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
-  name: "SuperhighwayEnd_E"
-  position {
-    x: 13
-    y: 92
-    width: 3
-    height: 3
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "54cdb564613131700e0009af"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
   name: "SuperhighwayStart_E"
   position {
-    x: 13
-    y: 88
-    width: 3
-    height: 2
+    x: 12
+    y: 86
+    width: 4
+    height: 5
   }
   enabledAtStart: true
   is_camera_region: false
@@ -4307,9 +4469,9 @@ regions {
   name: "SuperhighwayStart_W"
   position {
     x: 13
-    y: -15
+    y: -17
     width: 3
-    height: 2
+    height: 4
   }
   enabledAtStart: true
   is_camera_region: false
@@ -6164,6 +6326,190 @@ characters {
     dimension_name: "Matrix"
     karma: 150
     is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 78
+    y: 0
+    z: 53
+  }
+  orientation: ORIENTATION_W
+  displayName: "Store"
+  idRef {
+    id: "54f0a2546131313017001962"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    interactionIcon: InteractionIcon_Conversation
+    interaction_info_text: "This decker is busy, buying and selling programs over the open matrix."
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Gangers/DwarfMaleBerlinGangerMohawk"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      archetypeName: "Guard - Protect"
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Shield"
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Kamikaze"
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Assassin"
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Attacker"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Supression 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Sniffer 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Medic 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Medic 2"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Shield 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Killjoy 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Killer 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Firewall 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Erosion 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Degrade 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Blaster 1"
+    }
+    equipment {
+      prefab_name: "Berlin_PR Black Hammer 1"
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Tar Bomb 1"
+    }
+    team_id: "Civilian"
+    char_name: "GolBauer"
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: "pc_dwarfmale_05c_dashing"
+    }
+    dimension_name: "Matrix"
+    karma: 174
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 84
+    y: 0
+    z: 40
+  }
+  orientation: ORIENTATION_E
+  displayName: "Pub Operator"
+  idRef {
+    id: "54f0a5b36131313017001964"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Story/HumanMaleBrotherhoodAcolyte"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      vulnerabilities {
+      }
+    }
+    team_id: "Friendly IC"
+    char_name: "Jingoistic"
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: "pc_humanmale_06c_shavedhead"
+    }
+    dimension_name: "Matrix"
+    karma: 174
   }
 }
 variables {
