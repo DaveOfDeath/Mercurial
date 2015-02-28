@@ -1155,7 +1155,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Pullyup.Entry"
+  name: "General.Pullyup_Entry"
   events {
     ops {
       functionName: "On Region Enter"
@@ -1240,7 +1240,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Pullyup.Exit"
+  name: "General.Pullyup_Exit"
   events {
     ops {
       functionName: "On Region Enter"
@@ -1321,6 +1321,212 @@ triggers {
     id: "54e9593e663136c414003b16"
   }
   elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "General.ShadowLand [NewsFeed]"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_NewsFeed"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iNewsPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isNews"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Get Variable (int)"
+                      args {
+                        string_value: "iNewsPosition"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "News"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iNewsPosition"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_NewsFeed"
+          }
+        }
+      }
+      args {
+        float_value: 5
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54f12557663136dc1600231f"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iNewsPosition"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_NewsFeed"
+          }
+        }
+      }
+      args {
+        float_value: 0.1
+      }
+    }
   }
   is_oneshot: false
 }
@@ -6312,6 +6518,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -6343,8 +6550,11 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    interactionIcon: InteractionIcon_Conversation
-    interaction_info_text: "This decker is busy, buying and selling programs over the open matrix."
+    conversationPoint {
+      conversationID: "54f12878663136dc16002330"
+      turnToFace: false
+    }
+    interaction_info_text: "Chat with Decker?"
   }
   lod: 0
   character_instance {
@@ -6383,7 +6593,7 @@ characters {
         edged: 0
         unarmed: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -6452,9 +6662,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 84
+    x: 83.9
     y: 0
-    z: 40
+    z: 40.8
   }
   orientation: ORIENTATION_E
   displayName: "Pub Operator"
@@ -6498,6 +6708,7 @@ characters {
         edged: 0
         unarmed: 0
       }
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -6510,6 +6721,7 @@ characters {
     }
     dimension_name: "Matrix"
     karma: 174
+    is_prop_character: true
   }
 }
 variables {
@@ -6552,9 +6764,26 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  int_value: 1
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iNewsPosition"
+    typeName: "int"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bool_DeckerStore"
+    typeName: "bool"
+  }
+}
 mapEvents: "eve_FLOP"
 mapEvents: "eve_Minions"
 mapEvents: "eve_MatrixExit"
+mapEvents: "eve_NewsFeed"
 senseTags: "MainGuy"
 goals {
   name: "Hacking Hernandez"
