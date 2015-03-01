@@ -288,9 +288,8 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 1
+    nextNodeIndex: 4
     hideIfUnavailable: true
-    auxiliaryLink: true
   }
   branches {
     responseText: "{{CC}}Decking{{/CC}} [Hack Hernandez]"
@@ -419,127 +418,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 1
-    hideIfUnavailable: true
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "[Harass Hernandez]"
-    conditions {
-      ops {
-        functionName: "AND"
-        args {
-          call_value {
-            functionName: "Comparison (bool)"
-            args {
-              call_value {
-                functionName: "Get Story Variable (bool)"
-                args {
-                  string_value: "542848a8633464d816001ad5"
-                }
-                args {
-                  string_value: "bool_InvestigateHernandez"
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "IsOrIsNot"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "bool"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Comparison (bool)"
-            args {
-              call_value {
-                functionName: "Get Story Variable (bool)"
-                args {
-                  string_value: "542848a8633464d816001ad5"
-                }
-                args {
-                  string_value: "bool_HarassHernandez"
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "IsOrIsNot"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "bool"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "str_MariaText"
-            }
-          }
-        }
-        args {
-          string_value: "You want to go down and visit Hernandez\' office?"
-        }
-      }
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_HubSubQuest"
-            }
-          }
-        }
-        args {
-          int_value: 5
-        }
-      }
-    }
-    nextNodeIndex: 1
+    nextNodeIndex: 4
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -658,11 +537,50 @@ nodes {
   text: "Alright, I guess... How did you want to handle it?"
   branches {
     responseText: "{{CC}}Call him{{/CC}} How about like a civilized person?"
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          string_value: "HERNANDEZ-CONFRONT"
+        }
+      }
+    }
+    nextNodeIndex: 3
   }
   branches {
     responseText: "{{CC}}Surprise Visit{{/CC}}  How about we just drop by?"
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          string_value: "HERNANDEZ-STEALTH"
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
   }
   branches {
     responseText: "Actually, let me think about it..."
@@ -689,6 +607,122 @@ nodes {
   sourceInSceneRef {
     id: "54369aab6334643c1b002352"
   }
+}
+nodes {
+  idRef {
+    id: "54f2b19a663136c006006186"
+  }
+  index: 3
+  text: "If you think thats best, $(l.name).  Probably best if you handle this one alone though."
+  branches {
+    responseText: "{{CC}}Confirm{{/CC}}  Agreed.   This may require a bit of diplomacy."
+    actions {
+      ops {
+        functionName: "Open Scene"
+        args {
+          call_value {
+            functionName: "Get Map Item (Scene)"
+            args {
+              string_value: "SCENE - Hernandez Office"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Cancel{{/CC}} Maybe I ought to think about this for a minute..."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "str_MariaIntro"
+            }
+          }
+        }
+        args {
+          string_value: "No problem... What seems best?"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54f2b04f663136c00600616a"
+  }
+}
+nodes {
+  idRef {
+    id: "54f2b37b663136c0060061fa"
+  }
+  index: 4
+  text: "$(scene.str_MariaIntro)"
+  branches {
+    responseText: "{{CC}}Confirm{{/CC}}"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          string_value: "LTG-PENTHOUSE"
+        }
+      }
+      ops {
+        functionName: "Open Scene"
+        args {
+          call_value {
+            functionName: "Get Map Item (Scene)"
+            args {
+              string_value: "SCENE - Seattle LTG [Matrix]"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Cancel{{/CC}} Actually... let me think..."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "str_MariaIntro"
+            }
+          }
+        }
+        args {
+          string_value: "No problem... What seems best?"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54369aab6334643c1b002352"
+  }
+  comment: "Decking SubQuests"
 }
 roots {
   nextNodeIndex: 0
