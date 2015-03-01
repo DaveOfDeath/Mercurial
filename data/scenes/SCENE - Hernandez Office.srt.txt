@@ -157,6 +157,50 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54f32cf6613131e409003e76"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -198,7 +242,7 @@ triggers {
         }
       }
       args {
-        string_value: "HERNANDEZ-STEALTH"
+        string_value: "FRESH"
       }
     }
   }
@@ -487,12 +531,14 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Specified Point (2D)"
+          functionName: "Current Location of Prop"
           args {
-            float_value: -30
-          }
-          args {
-            float_value: -12
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "54362450373361140a0066c8"
+              }
+            }
           }
         }
       }
@@ -503,7 +549,7 @@ triggers {
             string_value: "FacingDirection"
           }
           args {
-            int_value: 5
+            int_value: 6
           }
         }
       }
@@ -525,6 +571,131 @@ triggers {
     id: "54f22d3b6631369414002231"
   }
   elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "    Personal Conveyance"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_Homebase"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "DOGHOUSE"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "PENTHOUSE"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54f32cf6613131e409003e76"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "DOGHOUSE"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   is_oneshot: true
 }
@@ -707,34 +878,6 @@ triggers {
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "props"
-          }
-          args {
-            string_value: "LadderClimb"
-          }
-        }
-      }
-      args {
-        float_value: 5
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
       }
     }
   }
@@ -925,34 +1068,6 @@ triggers {
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "props"
-          }
-          args {
-            string_value: "LadderClimb"
-          }
-        }
-      }
-      args {
-        float_value: 5
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
       }
     }
   }
@@ -1169,83 +1284,6 @@ triggers {
           }
           args {
             int_value: 1
-          }
-        }
-      }
-    }
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "General.SceneTransition"
-  events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54f27a8b66313664000033c3"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_Hideout"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Open Scene"
-      args {
-        call_value {
-          functionName: "Get Map Item (Scene)"
-          args {
-            string_value: "HUB - Doghouse"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54f27dca66313664000033ca"
-  }
-  elseActions {
-    ops {
-      functionName: "Open Scene"
-      args {
-        call_value {
-          functionName: "Get Map Item (Scene)"
-          args {
-            string_value: "HUB - Penthouse"
           }
         }
       }
@@ -2282,6 +2320,310 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "Scene Exit"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54f32c1e613131e409003e70"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_HernandezStory"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "PERSUADED"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneTitle"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneDetails"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "RETURN"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54f32ea1613131e409003e77"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneTitle"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneDetails"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "RETURN"
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Scene Exit"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54f32c23613131e409003e71"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_HernandezStory"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "PERSUADED"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneTitle"
+          }
+        }
+      }
+      args {
+        string_value: "Return to the Doghouse"
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneDetails"
+          }
+        }
+      }
+      args {
+        string_value: "The van ride back to the Doghouse is intense. Armando\'s revelation about the setup casts several very important details in a new light.\n\nFoley hasn\'t been straight with you since the beginning. You saw a job, you took it, and you\'ve been running ever since. Hounded by street trash, thugs, and anyone looking to cash in on the reward, you haven\'t done anything but deal with the problems in front of you.\n\nNow you know that you\'ve been lied to, and it\'s time to deal with the liar.\n\nTime to talk to Max Foley, and get the fragging truth for once."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "BETRAYAL"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54f32f7a613131e409003e78"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneTitle"
+          }
+        }
+      }
+      args {
+        string_value: "Return to the Doghouse"
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SceneDetails"
+          }
+        }
+      }
+      args {
+        string_value: "The van is quiet on your ride back to the street market. No one feels like talking. \n\nHernandez clearly needed to be dealt with... so now that he\'s dead, why is that doubt sitting in the back of your mind? \n\nYou\'ve been running on pure adrenaline so far, making the choices put in front of you. There was a lot of pressure, with the attack on Maria, and street trash hounding your every step. \n\nThings don\'t add up, and it\'s time to get answers for your questions.\n\nIt\'s past time to talk to Max Foley."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "BETRAYAL"
+      }
+    }
+  }
+  is_oneshot: true
+}
 regions {
   name: "cHernandez"
   position {
@@ -2549,43 +2891,11 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    prerequisites {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bFlashLight_On"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
+    conversationPoint {
+      conversationID: ""
+      turnToFace: true
     }
-    interactionIcon: InteractionIcon_Conversation
-    interaction_info_text: "Talk to Hernandez"
+    interaction_info_text: "Hernandez is intensely staring at you. His eyes are bloodshot, like he\'s got the king of all hangovers, but he\'s clearly ready for you."
   }
   lod: 0
   character_instance {
@@ -2685,44 +2995,12 @@ characters {
   }
   interactionRoot {
     isEnabled: true
-    interactionRadius: 1
-    prerequisites {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bFlashLight_On"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
+    interactionRadius: 2
+    conversationPoint {
+      conversationID: ""
+      turnToFace: false
     }
-    interactionIcon: InteractionIcon_Conversation
-    interaction_info_text: "Talk to Hernandez?"
+    interaction_info_text: "This passed-out drunk is Armando Hernandez. Seems like he is taking Maria\'s leaving pretty hard."
   }
   lod: 0
   character_instance {
@@ -2826,6 +3104,14 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "str_HernandezStory"
+    typeName: "string"
+  }
+}
 mapEvents: "eGoUpstairs"
 mapEvents: "eGoDownstairs"
 mapEvents: "eFlashLight"
@@ -2838,10 +3124,10 @@ worldMapLocation {
 }
 mapName: "SCENE - Hernandez Office"
 parentStory: ""
-scene_title: "$(story.str_SceneTitle)"
-scene_subtitle: ""
+scene_title: "Puyallup - Office of Armando Hernandez"
+scene_subtitle: "Hernandez\'s Office"
 scene_synopsis: "$(story.str_SceneDetails)"
-scene_image: ""
+scene_image: "marialoading"
 scene_continue_button_skip: false
 scene_restore_runner_health: false
 directional_light_dir {
@@ -2890,8 +3176,6 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
-}
-character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
