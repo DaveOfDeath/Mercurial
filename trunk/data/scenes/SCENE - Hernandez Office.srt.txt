@@ -204,6 +204,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54f23abe6631369414002249"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Ambient Light Color"
       args {
         float_value: 0
@@ -536,6 +558,28 @@ triggers {
           functionName: "Get Map Item (Animation)"
           args {
             string_value: "Seattle:General/standing_idle_preen"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54f23a876631369414002247"
           }
         }
       }
@@ -1591,6 +1635,163 @@ triggers {
         string_value: "DOGHOUSE-BETRAYAL"
       }
     }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "General.ClearWaypoints"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Hideout"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54f32c23613131e409003e71"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54f5254a666538380e001186"
+  }
+  elseActions {
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54f32c1e613131e409003e70"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "General.TalkedToHernandez"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54f23abe6631369414002249"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54f23a876631369414002247"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bTalkToHernandez"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54f525ca666538380e001188"
+  }
+  elseActions {
   }
   is_oneshot: true
 }
@@ -2890,29 +3091,58 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "HERNANDEZ-CONFRONT"
+        }
+      }
+    }
     conversationPoint {
-      conversationID: ""
+      conversationID: "54f512eb666538380e000e4a"
       turnToFace: true
     }
     interaction_info_text: "Hernandez is intensely staring at you. His eyes are bloodshot, like he\'s got the king of all hangovers, but he\'s clearly ready for you."
   }
   lod: 0
   character_instance {
-    prefab_name: "Story/MrJohnson"
+    prefab_name: "Seattle:Story/MrJohnson"
     character_sheet_id: "Lvl2_Merc_Human_Assassin"
     character_mod {
       stats {
-        body: -1
-        quickness: -1
-        strength: 1
-        charisma: 1
-        intelligence: 1
-        willpower: -1
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
         essence: 0
-        magic: -6
+        magic: 0
         hp: 0
         ap: 0
-        armor: 0
+        armor: -1
         force: 0
         morale: 0
         discipline: 0
@@ -2921,51 +3151,48 @@ characters {
         authority: 0
         protect_tether_range: 0
         move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
       }
       skills {
         ranged_combat: 1
-        close_combat: -1
-        throwing_weapons: -2
+        close_combat: 0
+        throwing_weapons: 0
         spellcasting: 0
-        decking: 2
+        decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
         biotech: 0
-        dodge: 2
+        dodge: 1
         etiquette_corporate: 0
         etiquette_security: 0
         etiquette_gang: 0
-        etiquette_socialite: 6
+        etiquette_socialite: 0
         chi_casting: 0
         etiquette_shadowrunner: 0
-        etiquette_street: 2
+        etiquette_street: 0
         etiquette_academic: 0
       }
       specializations {
-        pistol: 1
+        pistol: 3
         rifle: 0
-        shotgun: 2
-        smg: -1
-        edged: -1
-        unarmed: 1
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Protect"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Pi 1 Fichetti Security 500"
-    }
-    equipment {
-      prefab_name: "Sh 3 Defiance T-250"
-    }
     team_id: "Civilians"
-    char_name: "Armando Hernandez"
+    char_name: "Armando Hernandez "
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     portrait {
@@ -2996,28 +3223,28 @@ characters {
     isEnabled: true
     interactionRadius: 2
     conversationPoint {
-      conversationID: ""
+      conversationID: "54f501ad666538380e000c7c"
       turnToFace: false
     }
     interaction_info_text: "This passed-out drunk is Armando Hernandez. Seems like he is taking Maria\'s leaving pretty hard."
   }
   lod: 0
   character_instance {
-    prefab_name: "Story/MrJohnson"
+    prefab_name: "Seattle:Story/MrJohnson"
     character_sheet_id: "Lvl2_Merc_Human_Assassin"
     character_mod {
       stats {
-        body: -1
-        quickness: -1
-        strength: 1
-        charisma: 1
-        intelligence: 1
-        willpower: -1
+        body: -3
+        quickness: -3
+        strength: -3
+        charisma: -2
+        intelligence: -2
+        willpower: -3
         essence: 0
         magic: -6
-        hp: 0
-        ap: 0
-        armor: 0
+        hp: -39
+        ap: -1
+        armor: -2
         force: 0
         morale: 0
         discipline: 0
@@ -3025,19 +3252,19 @@ characters {
         perception: 0
         authority: 0
         protect_tether_range: 0
-        move_speed: 0
+        move_speed: -5
       }
       skills {
-        ranged_combat: 1
-        close_combat: -1
+        ranged_combat: -3
+        close_combat: -3
         throwing_weapons: -2
         spellcasting: 0
-        decking: 2
+        decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
         biotech: 0
-        dodge: 2
+        dodge: -1
         etiquette_corporate: 0
         etiquette_security: 0
         etiquette_gang: 0
@@ -3048,12 +3275,12 @@ characters {
         etiquette_academic: 0
       }
       specializations {
-        pistol: 1
+        pistol: -1
         rifle: 0
-        shotgun: 2
+        shotgun: 0
         smg: -1
         edged: -1
-        unarmed: 1
+        unarmed: 0
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
@@ -3108,6 +3335,22 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "bHernandezPersuaded"
+    typeName: "bool"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sHernandezTalk"
+    typeName: "string"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bTalkToHernandez"
     typeName: "bool"
   }
 }
@@ -3176,8 +3419,6 @@ team_affiliations {
 scene_dimensions {
   dimension_name: "Default"
 }
-character_roster {
-}
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
@@ -3196,5 +3437,5 @@ show_equip_screen_on_scene_load: false
 is_persistant: false
 is_persistant_has_value: false
 can_move_outside_camera_regions: false
-can_start_before_triggers: true
+can_start_before_triggers: false
 can_use_team_advancement: false
