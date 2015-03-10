@@ -342,17 +342,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eve_CivilianChatter"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -9505,7 +9494,7 @@ triggers {
         }
       }
       args {
-        float_value: 3
+        float_value: 30
       }
     }
     ops {
@@ -15333,7 +15322,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "--== Civilian Behavior Triggers ==--"
+  name: "---==== Civilian Behavior Triggers =====---"
   events {
   }
   conditions {
@@ -15582,62 +15571,26 @@ triggers {
       }
     }
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Add Tag to Actor"
       args {
         call_value {
-          functionName: "Nearest Tagged Actor to Actor"
+          functionName: "Get Map Item (SenseTagList)"
           args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isSpeaker"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
+            string_value: "isSpeaker"
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Specific Actor"
           args {
-            string_value: "TextPopupStyle"
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
           }
           args {
-            int_value: 0
           }
         }
-      }
-      args {
-        string_value: "$(scene.sCivilianChatter)"
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 255
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 128
-      }
-      args {
-        float_value: 9
-      }
-      args {
-        float_value: 2
-      }
-      args {
-        float_value: 0
       }
     }
     ops {
@@ -16897,6 +16850,122 @@ triggers {
   isActive: true
   idRef {
     id: "54f9203e663136e413007591"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Civilian.DisplayDialogue"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_CivilianChatter"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isSpeaker"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "$(scene.sCivilianChatter)"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 9
+      }
+      args {
+        float_value: 2
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isSpeaker"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isSpeaker"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54fe53716665385c0b002ff9"
   }
   elseActions {
   }
@@ -20726,7 +20795,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb1f0d3231371c20002fda"
+                }
               }
             }
             args {
@@ -20857,7 +20929,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb1f7a3231371c20002fdb"
+                }
               }
             }
             args {
@@ -21084,7 +21159,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb1f833231371c20002fdd"
+                }
               }
             }
             args {
@@ -21216,7 +21294,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb1f883231371c20002fde"
+                }
               }
             }
             args {
@@ -21446,7 +21527,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb1f903231371c20002fe0"
+                }
               }
             }
             args {
@@ -21765,7 +21849,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20063231371c20002fe3"
+                }
               }
             }
             args {
@@ -21898,7 +21985,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20063231371c20002fe4"
+                }
               }
             }
             args {
@@ -22128,7 +22218,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20073231371c20002fe7"
+                }
               }
             }
             args {
@@ -22261,7 +22354,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20073231371c20002fe8"
+                }
               }
             }
             args {
@@ -22394,7 +22490,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20073231371c20002fe9"
+                }
               }
             }
             args {
@@ -22718,7 +22817,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20f73231371c20002fec"
+                }
               }
             }
             args {
@@ -22851,7 +22953,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb20f73231371c20002fed"
+                }
               }
             }
             args {
@@ -22984,7 +23089,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb217e3231371c20002fee"
+                }
               }
             }
             args {
@@ -23300,7 +23408,10 @@ characters {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Target Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54cc52e86131314c19006600"
+                }
               }
             }
             args {
