@@ -631,7 +631,7 @@ nodes {
   index: 1
   text: "I can take a look chummer, but I can\'t promise anything. First, let me check the security log-files and reset all the protocols."
   branches {
-    responseText: "The cameras aren\'t working at all, either."
+    responseText: "I don\'t think any of this security stuff works... doors don\'t lock, no cameras..."
     nextNodeIndex: 2
   }
   nodeType: ConversationNodeType_Simple
@@ -646,13 +646,13 @@ nodes {
   index: 2
   text: "Chummer, who the frag brought this broke-hoop old tech? See this panel-- it has the manufacture date stamped in here: SERETECH2021. This panel is older than you by about ten years."
   branches {
+    responseText: "I didn\'t buy the tech, it was here when we moved in. Sam said you were the best man for the job."
+    nextNodeIndex: 3
+  }
+  branches {
     responseText: "Don\'t ask, just repair it...I don\'t know, and I don\'t care. Fix it."
     nextNodeIndex: 6
     auxiliaryLink: true
-  }
-  branches {
-    responseText: "I didn\'t buy the tech, it was here when we moved in. Grey said you were the best man for this job."
-    nextNodeIndex: 3
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -923,19 +923,15 @@ nodes {
     id: "54cc4eb56131314c19006586"
   }
   index: 8
-  text: "\"Hoi Chummer, I know you just got into this place, but if you\'re looking for a team, I might be able to help out.\""
+  text: "I was actually on my way to this meeting when Sam asked me to stop in here first.   Suppose to be a gathering of a bunch of runners..."
   branches {
-    responseText: "Fix the tech, I\'ll worry about the team."
-    nextNodeIndex: 9
-  }
-  branches {
-    responseText: "What do you mean?"
+    responseText: "Really, tell me more..."
     nextNodeIndex: 9
     auxiliaryLink: true
   }
   branches {
-    responseText: "Not interested, just fix the tech problems."
-    nextNodeIndex: -1
+    responseText: "Fix the tech, I\'ll worry about the team."
+    nextNodeIndex: 9
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -944,7 +940,7 @@ nodes {
     id: "54dcd7cb666632601d004f0d"
   }
   index: 9
-  text: "\"I got invited to a meet not far from here. Johnson wanted to put together a team, reached out to everyone who was new to the Shadows.\""
+  text: "\"Well, it\'s not too far from here, actually... The Johnson wanted to put together a team, reached out to everyone who was new to the Shadows.  Any newcommers on the scene it seems.  Thought that might be useful to you...\""
   branches {
     responseText: "Where?"
     nextNodeIndex: 10
@@ -956,10 +952,6 @@ nodes {
   branches {
     responseText: "Who put it together?"
     nextNodeIndex: 16
-  }
-  branches {
-    responseText: "Not interested."
-    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -1000,6 +992,11 @@ nodes {
       }
     }
     nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5502a5b4663136ac0d001a99"
+    }
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1013,9 +1010,14 @@ nodes {
   branches {
     responseText: "Who says that the Johnson won\'t show up?"
     nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5502a5a8663136ac0d001a98"
+    }
   }
   branches {
-    responseText: "I may check it out, don\'t worry about it."
+    responseText: "I may check it out, thanks for telling me about it."
     actions {
       ops {
         functionName: "Set Variable (bool)"
@@ -1041,11 +1043,21 @@ nodes {
       }
     }
     nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5502a59e663136ac0d001a97"
+    }
     auxiliaryLink: true
   }
   branches {
     responseText: "Who set up the meeting?"
     nextNodeIndex: 14
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5502a599663136ac0d001a96"
+    }
   }
   branches {
     responseText: "Where?"
@@ -1074,6 +1086,7 @@ nodes {
       }
     }
     nextNodeIndex: 10
+    hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "54dcdb42666632601d004fd8"
@@ -1159,6 +1172,16 @@ nodes {
   }
   index: 15
   text: "\"Mister Fix It, he\'s an elf. Some people call him Mother Fragging Idiot; I guess it depends on how much you like him.\""
+  branches {
+    responseText: "Thanks, I might just check that out."
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Let me think about it..."
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -1174,7 +1197,8 @@ nodes {
   }
   branches {
     responseText: "I may check it out, don\'t worry about it."
-    nextNodeIndex: -1
+    nextNodeIndex: 13
+    auxiliaryLink: true
   }
   branches {
     responseText: "Where?"
@@ -1193,6 +1217,16 @@ nodes {
   }
   index: 17
   text: "\"MFI. He\'s a low-level fixer. Works with anyone who\'s willing, but he doesn\'t have the best reputation.\""
+  branches {
+    responseText: "Thanks Man... I might just have to check that out."
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'ll stop by, but no promises."
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -1237,6 +1271,17 @@ roots {
       }
       args {
         int_value: 1
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
       }
     }
   }
