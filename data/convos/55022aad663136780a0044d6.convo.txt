@@ -1,0 +1,58 @@
+idRef {
+  id: "55022aad663136780a0044d6"
+}
+ui_name: "DogHouse - Shady Merchant"
+nodes {
+  idRef {
+    id: "55022ac1663136780a0044dc"
+  }
+  index: 0
+  text: "{{GM}}The shady looking ork seems to be watching both ends of the alley at the same time, nervously darting his eyes back and forth.{{/GM}}\n\nI know you?   There a reason your in my grille?"
+  branches {
+    responseText: "{{CC}}Confront{{/CC}} What\'s your damage, pal... "
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "{{CC}}Walk Away{{/CC}}  Nope.   Sorry to have bothered you."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb20f73231371c20002fec"
+  }
+}
+nodes {
+  idRef {
+    id: "55022b76663136780a0044e5"
+  }
+  index: 1
+  text: "My damage?   Aren\'t you the little fire cracker...  I think I\'ve found someone who just my be interested in a couple of my little presents..."
+  branches {
+    responseText: "{{CC}}View Wares{{/CC}} Show me what you got..."
+    actions {
+      ops {
+        functionName: "Open Store Screen From Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "54bb20f73231371c20002fec"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Walk Away{{/CC}} Nope, not me.   I tend to buy from stable people."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb20f73231371c20002fec"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
