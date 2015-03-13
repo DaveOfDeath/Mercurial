@@ -353,6 +353,39 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Locate the DogHouse"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -934,6 +967,43 @@ triggers {
           functionName: "Get Map Item (Item)"
           args {
             string_value: "Berlin_Grenade 1 (Frag)"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Berlin_Player_SamuraiTrenchcoat"
           }
         }
       }
@@ -9874,15 +9944,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Remove Screen Label"
-      args {
-        string_value: "Objective 1"
-      }
-    }
-    ops {
-      functionName: "Clear All Waypoints"
-    }
-    ops {
       functionName: "Autosave Game"
     }
   }
@@ -9912,6 +9973,9 @@ triggers {
   conditions {
   }
   actions {
+    ops {
+      functionName: "Clear All Waypoints"
+    }
     ops {
       functionName: "Play Sound"
       args {
@@ -9970,11 +10034,83 @@ triggers {
         }
       }
       args {
-        float_value: 30
+        float_value: 45
       }
     }
     ops {
-      functionName: "Clear All Waypoints"
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective 1"
+      }
+      args {
+        string_value: "Clear the DogHouse"
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Locate the DogHouse"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Clear the DogHouse"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
     }
   }
   isActive: true
@@ -11686,6 +11822,45 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Objective 1"
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Clear the DogHouse"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Teleport Actor"
       args {
         call_value {
@@ -11953,7 +12128,7 @@ triggers {
         }
       }
       args {
-        string_value: "Hoi $(l.name), my chummer... Heard you might be interested in patching up some old tech... Nobody mentioned just how bad this place was gonna be though... "
+        string_value: "Hoi $(l.name), my chummer... Your boy Sam gave me a call... Said you might be interested in patching up some old tech... Nobody mentioned just how bad this place was gonna be though... "
       }
     }
     ops {
@@ -11983,6 +12158,27 @@ triggers {
             int_value: 4
           }
         }
+      }
+    }
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: 2
       }
     }
     ops {
@@ -12053,10 +12249,214 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "550291e4663136ac0d0015e9"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
     id: "54ba72923231378805004e44"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "               *Telecom Rings"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "FRESH"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "550291e4663136ac0d0015e9"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "542b8fc53733615806005f5e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "Berlin:props"
+          }
+          args {
+            string_value: "VidPhone"
+          }
+        }
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Answer VidPhone"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective1"
+      }
+      args {
+        string_value: "Answer the Vid-Phone"
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "550291e4663136ac0d0015e9"
   }
   elseActions {
   }
@@ -13361,142 +13761,16 @@ triggers {
 triggers {
   name: "     *Matrix Terminal"
   events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "542b8fc53733615806005f5e"
-          }
-        }
-      }
-    }
   }
   conditions {
-    ops {
-      functionName: "Comparison (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-          }
-          args {
-            string_value: "str_SpawnPoint"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        string_value: "FRESH"
-      }
-    }
   }
   actions {
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54ba70f93231378805004e3e"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "542b8fc53733615806005f5e"
-          }
-        }
-      }
-    }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "54b2916e6131317007006123"
   }
   elseActions {
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54ba712c3231378805004e41"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   is_oneshot: true
 }
@@ -13509,22 +13783,39 @@ triggers {
         call_value {
           functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "54ba70f93231378805004e3e"
+            string_value: "542b8fc53733615806005f5e"
           }
         }
       }
     }
   }
   conditions {
+  }
+  actions {
     ops {
-      functionName: "Comparison (string)"
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Stop Sound"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Get Map Item (Sound)"
           args {
+            string_value: "Berlin:props"
           }
           args {
-            string_value: "str_SpawnPoint"
+            string_value: "VidPhone"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Answer VidPhone"
           }
         }
       }
@@ -13532,19 +13823,42 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
           }
           args {
             int_value: 1
           }
         }
       }
+    }
+    ops {
+      functionName: "Set Variable (string)"
       args {
-        string_value: "FRESH"
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "[Sam, your fixer.   Got you though a few tough scrapes back in the day, now he markets your skillset and tries to keep you alive.]\n\nThe old man peers at you from the viewscreen of the telecom, as though trying to decide if you\'re real or not for a moment before he speaks.\n\n$(l.name), that you?"
       }
     }
-  }
-  actions {
     ops {
       functionName: "Start Conversation Between Actors"
       args {
@@ -13579,31 +13893,6 @@ triggers {
           }
           args {
             int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Clear All Waypoints"
-    }
-    ops {
-      functionName: "Set Waypoint on Prop"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PrimaryOrSecondary"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "54b1711661313170070060c6"
           }
         }
       }
@@ -13664,20 +13953,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54e8e53d613131580d00389e"
-          }
-        }
-      }
+      functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "WithOrWithout"
+            string_value: "EnableOrDisable"
           }
           args {
             int_value: 1
@@ -13686,23 +13967,9 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
+            string_value: "542b8fc53733615806005f5e"
           }
         }
       }
@@ -13714,7 +13981,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "          *Meetup"
@@ -13796,6 +14063,23 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Hoi Chummer... Sorry, but I couldn\'t help but overhear a bit of that... You\'re gonna try to put together a team on short notice to make that meet?  I might acutally be able to help you out with that..."
+      }
+    }
+    ops {
       functionName: "Set Variable (int)"
       args {
         call_value {
@@ -13810,53 +14094,6 @@ triggers {
       }
       args {
         int_value: 1
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54e8e53d613131580d00389e"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 2
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
       }
     }
     ops {
@@ -13892,6 +14129,31 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -13935,20 +14197,102 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Variable (string)"
+      functionName: "Set Goal Status"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Get Map Item (Goal)"
           args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_NPCIntroText"
+            string_value: "Hire A Team"
           }
         }
       }
       args {
-        string_value: "Hoi Chummer... sorry, I overheard a bit of that... You think you might need a team for that meet?  I might be able to help you out with that..."
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54e8e53d613131580d00389e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54b9dd8f323137201a003742"
+          }
+        }
       }
     }
   }
@@ -14697,6 +15041,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Teleport Actor"
       args {
         call_value {
@@ -14754,6 +15120,9 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear All Waypoints"
+    }
   }
   isActive: true
   idRef {
@@ -14762,6 +15131,76 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "     *Team Is Hired [Conditional Check]"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_TeamCount"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Count of Alive Actors"
+          args {
+            call_value {
+              functionName: "All Actors on Team"
+              args {
+                call_value {
+                  functionName: "Get Preset Value (string)"
+                  args {
+                    string_value: "FactionList"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "AllOrAny"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (SceneDimension)"
+                  args {
+                    string_value: "Default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55028ae9663136ac0d0014dc"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: "Hiring_Exit"
@@ -14972,6 +15411,15 @@ triggers {
             string_value: "5492409d6665386c0400401f"
           }
         }
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective1"
+      }
+      args {
+        string_value: "Update: Head to Underworld 93"
       }
     }
   }
@@ -15467,7 +15915,7 @@ triggers {
         }
       }
       args {
-        float_value: 30
+        float_value: 60
       }
     }
   }
@@ -15495,8 +15943,99 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_TeamCount"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
   }
   actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hire A Team"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Head off to Underworld 93"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
     ops {
       functionName: "Set Variable (string)"
       args {
@@ -17203,6 +17742,85 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "Player.Killed"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive to the Meeting"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "550299d6663136ac0d0018d5"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Camera - Downtown Market"
   position {
@@ -18264,10 +18882,10 @@ regions {
 regions {
   name: "Jammed Door"
   position {
-    x: 99
-    y: -23
-    width: 3
-    height: 7
+    x: 102
+    y: -22
+    width: 1
+    height: 9
   }
   enabledAtStart: true
   is_camera_region: false
@@ -24024,7 +24642,7 @@ characters {
     GeneralTags: "isCivilian"
     pc_spawn_number: -1
     portrait {
-      filename: ""
+      filename: "pc_trollfemale_04e_devil"
     }
     karma: 6
   }
@@ -24125,6 +24743,22 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_SamProgression"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_TeamCount"
+    typeName: "int"
+  }
+}
 mapEvents: "eve_Big_Jim_Angry"
 mapEvents: "eve_GEEKED_Angry"
 mapEvents: "eve_Newsloop"
@@ -24137,10 +24771,42 @@ mapEvents: "eve_SilverArrowRepair"
 mapEvents: "eve_AroSpeaks"
 mapEvents: "eve_CivilianChatter"
 mapEvents: "eve_LightsOnFirstTime"
+mapEvents: "eve_TeamHired"
 senseTags: "isUnhired"
 senseTags: "isWandering"
 senseTags: "isSpeaker"
 senseTags: "isDoneTalking"
+goals {
+  name: "Locate the DogHouse"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+}
+goals {
+  name: "Clear the DogHouse"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+}
+goals {
+  name: "Hire A Team"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+}
+goals {
+  name: "Head off to Underworld 93"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+}
+goals {
+  name: "Answer VidPhone"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+}
+goals {
+  name: "Survive to the Meeting"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "You\'ve gotta make it to the meeting to get paid, Chummer."
+}
 worldMapLocation {
   filename: ""
   location {

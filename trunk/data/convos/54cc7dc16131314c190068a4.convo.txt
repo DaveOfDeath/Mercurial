@@ -7,180 +7,503 @@ nodes {
     id: "54cc7dd46131314c190068aa"
   }
   index: 0
-  text: "The old man peers at you from the viewscreen of the telecom, as though trying to decide if you\'re real or not."
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Hey Old Man."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Don\'t you sass me, kid."
+        }
+      }
+    }
     nextNodeIndex: 1
     comment: "Introduction"
   }
-  branches {
-    responseText: "Hey, Old Sam."
-    conditions {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (bool)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "bool_Is_In_Intro"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 4
-    comment: "Level 1"
-  }
-  branches {
-    responseText: "Disconnect call."
-    conditions {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (bool)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "bool_Is_In_Intro"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: -1
-  }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb217e3231371c20002fef"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_SamProgression"
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  comment: "Story Text Expansion Variable"
 }
 nodes {
   idRef {
     id: "54cc7e166131314c190068af"
   }
   index: 1
-  text: "\"Don\'t you sass me, kid.\""
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Sorry, Sam, what do you have for me?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Been spreading the word about you kid... and I think I just got a bite.\n\nI know you\'re still getting settled into that new place... but I got a call from a \'Max Foley.\' He\'s looking to set up a job. Sounds pretty lucrative as well... You interested?"
+        }
+      }
+    }
     nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "550288dd663136ac0d0013f1"
+    }
   }
   branches {
     responseText: "This place you found for me is a dump, man."
-    nextNodeIndex: 3
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "What were you expecting?   Honestly, I thought for the price point you were working with that it wasn\'t going to get any better.   Four walls... for the most part. \n\nI sent my best decker your way, he ought to be able to help you get up and running at least.   I\'ll float the bill until you get your feet under you Kid."
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5502875c663136ac0d00139c"
+    }
+    auxiliaryLink: true
   }
   branches {
     responseText: "What was with the dogs in this place? They nearly bit my face off."
-    nextNodeIndex: 3
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Kid... it was called \"the doghouse\".   If it was called the den of free-nuyen, I would\'ve bought it myself.     You\'re not going to find a better place, with less occupants in your price range..."
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55028760663136ac0d00139d"
+    }
     auxiliaryLink: true
   }
   branches {
-    responseText: "Why the call?"
-    nextNodeIndex: 2
-    auxiliaryLink: true
+    responseText: "{{CC}}Disconnect Call{{/CC}}"
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_SamProgression"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb217e3231371c20002fef"
+  }
+  comment: "FoleyJobHub"
 }
 nodes {
   idRef {
     id: "54e1210f61313108150041fd"
   }
   index: 2
-  text: "I got a call from a \'Max Foley.\' He\'s looking to set up a job. You have a base of operations, you interested?"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "I have a "
-    nextNodeIndex: -1
+    responseText: "What do we know about this Foley character?"
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_SamProgression"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Not as much as I\'d like.   He\'s pretty well known on a social level... He runs a record label called \"Low Ball Records\".     Has a reputation of being a bit rutless with some of his problem clients... but who doesn\'t these days?\n\nHe sounds desperate, and desperate means profitable."
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "550281be663136ac0d001367"
+    }
+    auxiliaryLink: true
   }
   branches {
-    responseText: ""
-    nextNodeIndex: -1
+    responseText: "What kinda job we talking?"
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_SamProgression"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "He was pretty tight lipped about it over the phone.   Says he has security concerns, and needed to discuss it privately, and in person.   He\'s williing to foot the bill to get you into Underworld 93 tonight, for Mecurial\'s show... \n\nBeing at that show ought to raise your street cred more than enough to justify the timing."
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "550281c1663136ac0d001368"
+    }
+    auxiliaryLink: true
   }
   branches {
-    responseText: ""
-    nextNodeIndex: -1
+    responseText: "Sounds like its worth looking into, at the very least.   Shoot me the details on this."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_SamProgression"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "I thought you might agree... There is a small catch however.   While I know you\'re new in town, I can\'t really advertise you that way.    This Foley character is expecting a team, not a solo-act.  Think you can put something together by tonight?\n\nThis might just be your big break, kid... "
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "550281ba663136ac0d001366"
+    }
+  }
+  branches {
+    responseText: "It\'s not a great time... I just got in here, and I have a ton of work to do before I can really call this a base of operations."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_SamProgression"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Look Kid, I know better than most that it\'s never a convient time.  However, I\'ve been peddling you to every fixer, Johnson, and contact I can get to take my calls...  Bailing on this metting will set you back five years, at least.  There is a bit of an issue in the meeting as well... This Foley character is expecting a team, not a sole runner.   You\'re gonna need to put out some feelers, and staff up for this one.\n\nDespite the problems, this may just be your big break Kid..."
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5502823a663136ac0d00136a"
+    }
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb217e3231371c20002fef"
+  }
+  comment: "FoleyJob"
 }
 nodes {
   idRef {
-    id: "54e1215761313108150041ff"
+    id: "55028328663136ac0d001373"
   }
   index: 3
-  text: "Just for future reference, when you have a place called \'the doghouse,\' as in a place good enough for dogs to sleep, it\'s not going to be a nice place."
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "All right, I\'ll see what I can do.   Building a team in a couple of hours isn\'t going to be easy... It\'s gonna cost me a fortune."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Good news on that front, actually.   Foley has promised full shares to each team mate.  So the back end money should be pretty good... And like you, everyone is gonna want to catch this show...   I\'d imagine you won\'t have too much trouble building a team in an afternoon.\n\nI\'ll get word to him that you\'re in... and that you\'ll meet him at the club tonight.   Thanks Kid."
+        }
+      }
+    }
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "I\'m in.   I\'ll figure out the team problem, and meet the contact tonight."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "That\'s what I like to hear, Kid.    You see the oppertunities and you go for them... just like I used to.    Stick with me Kid, and we\'ll go far.\n\nI\'ll reach out to Foley, and let him know you\'ll meet him over at the club tonight.  Need anything else from me?"
+        }
+      }
+      ops {
+        functionName: "Set Screen Label"
+        args {
+          string_value: "Objective1"
+        }
+        args {
+          string_value: "Update:  Hire A Team."
+        }
+      }
+    }
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb217e3231371c20002fef"
+  }
+  comment: "AcceptFoley"
 }
 nodes {
   idRef {
-    id: "54e123ca6131311014006048"
+    id: "550284c5663136ac0d001379"
   }
   index: 4
-  text: "What? Don\'t call me old, I\'m not that much older than you are."
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "Not that much older? I bet you\'ll be dead inside four years."
-    nextNodeIndex: 5
-  }
-  branches {
-    responseText: ""
-    nextNodeIndex: -1
-  }
-  branches {
-    responseText: ""
-    nextNodeIndex: -1
+    responseText: "Thanks Sam.   I owe you one."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Anytime, Kid...  You got anything else for me?"
+        }
+      }
+      ops {
+        functionName: "Set Screen Label"
+        args {
+          string_value: "Objective1"
+        }
+        args {
+          string_value: "Update:  Hire A Team."
+        }
+      }
+    }
+    nextNodeIndex: 1
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
-    id: "54e12466613131101400608c"
+  sourceInSceneRef {
+    id: "54bb217e3231371c20002fef"
   }
-  index: 5
-  text: "That\'s harsh, man. But I better set up a contingency, just in case."
-  nodeType: ConversationNodeType_Simple
+  comment: "AcceptJob"
 }
 roots {
   nextNodeIndex: 0
