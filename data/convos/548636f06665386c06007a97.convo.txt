@@ -51,7 +51,7 @@ nodes {
     }
     actions {
       ops {
-        functionName: "Enable/Disable Trigger"
+        functionName: "Enable/Disable Interactable Object"
         args {
           call_value {
             functionName: "Get Preset Value (int)"
@@ -65,16 +65,20 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Trigger)"
+            functionName: "Get Map Item (InteractableObject)"
             args {
-              string_value: "54bb1fc9666538f00e006e28"
+              string_value: "54bb1eed666538f00e006e26"
             }
           }
         }
       }
     }
-    nextNodeIndex: 1
+    nextNodeIndex: 4
     hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5503c8f16631364c070059e9"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -83,11 +87,131 @@ nodes {
   }
   branches {
     responseText: "What\'s back there?"
-    nextNodeIndex: 3
+    nextNodeIndex: 2
   }
   branches {
     responseText: "Restrooms?"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "Access Granted."
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor is Inside Region"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "548635c56665386c06007a85"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "AreOrAreNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Region)"
+            args {
+              string_value: "547022276665384809001324"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: 4
+    hideIfUnavailable: true
+    comment: "Debugger"
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+}
+nodes {
+  idRef {
+    id: "5503c9126631364c070059ef"
+  }
+  index: 1
+  text: "Yeah, I\'ve heard that before, $(l.man)...  Look, I ain\'t letting no body back without a pass.   So bugger off."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bBackstageDenied"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDeniedBackstageAccess"
+          }
+        }
+      }
+      args {
+        float_value: 6
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "548637876665386c06007aa5"
+  }
+  index: 2
+  text: "If you have to ask, Chummer... you don\'t belong back there."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "548635c56665386c06007a85"
+  }
+}
+nodes {
+  idRef {
+    id: "5486373f6665386c06007aa2"
+  }
+  index: 3
+  text: "{{GM}}He hooks a thumb over his shoulder, indicating the long hallway behind him.{{/GM}}\n\nBack over there past the bar.  Down the hallway on your left."
+  branches {
+    responseText: "Thanks."
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -98,11 +222,11 @@ nodes {
   idRef {
     id: "548637996665386c06007aa7"
   }
-  index: 1
+  index: 4
   text: "Is that so..."
   branches {
     responseText: ""
-    nextNodeIndex: 2
+    nextNodeIndex: 5
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -228,12 +352,13 @@ nodes {
       }
     }
   }
+  comment: "Access Granted"
 }
 nodes {
   idRef {
     id: "548638286665386c06007aab"
   }
-  index: 2
+  index: 5
   text: "Head on back.  Mecurial\'s room is down at the end of the hall."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -265,32 +390,6 @@ nodes {
         }
       }
     }
-  }
-}
-nodes {
-  idRef {
-    id: "548637876665386c06007aa5"
-  }
-  index: 3
-  text: "If you have to ask, Chummer... you don\'t belong back there."
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "548635c56665386c06007a85"
-  }
-}
-nodes {
-  idRef {
-    id: "5486373f6665386c06007aa2"
-  }
-  index: 4
-  text: "{{GM}}He hooks a thumb over his shoulder, indicating the long hallway behind him.{{/GM}}\n\nBack over there past the bar.  Down the hallway on your left."
-  branches {
-    responseText: "Thanks."
-    nextNodeIndex: -1
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "548635c56665386c06007a85"
   }
 }
 roots {
