@@ -44,7 +44,7 @@ nodes {
     hideIfUnavailable: true
   }
   branches {
-    responseText: "My associates and I require a ride.   We\'re headed up to Westgate Condo complex in Tacoma."
+    responseText: "My associates and I require a ride.   We\'re headed up to Westgate Plaza in Tacoma."
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -75,7 +75,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 5
+    nextNodeIndex: 4
     hideIfUnavailable: true
   }
   branches {
@@ -140,38 +140,10 @@ nodes {
     id: "5493a357666538100a00039b"
   }
   index: 1
-  text: "Very well, $(l.sir).   We can have a cab there in... uh... 40 minutes... ish..."
+  text: "Very well, $(l.sir).   We can have a cab there in... uh... 260 minutes... ish..."
   branches {
-    responseText: "40 minutes?   I could walk there that slow..."
+    responseText: "260 minutes?   As in nearly four and a half hours?   I could walk there in that time!"
     nextNodeIndex: 2
-  }
-  branches {
-    responseText: "Fine.   But I\'m not paying a premium for sub-par service."
-    actions {
-      ops {
-        functionName: "Set Variable (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bol_TakingACab"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 4
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -184,34 +156,6 @@ nodes {
   }
   index: 2
   text: "You\'re certainly welcome to that, if that\'s your choice $(l.sir)...  However I feel as though I should point out that quite a few disturbances are popping up across the police band scanner...  We couldn\'t recommend that..."
-  branches {
-    responseText: "Fine... Send the fraggin\' car."
-    actions {
-      ops {
-        functionName: "Set Variable (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bol_TakingACab"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 3
-  }
   branches {
     responseText: "{{CC}}You glance over at the now owner-less van in the middle of the parking lot{{/CC}}\n\nForget it, I\'ll make my own travel arrangements."
     actions {
@@ -317,6 +261,34 @@ nodes {
     }
     nextNodeIndex: -1
   }
+  branches {
+    responseText: "Let me get back to you on that..."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_TakingACab"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 3
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "5493a265666538100a000391"
@@ -327,18 +299,7 @@ nodes {
     id: "5493a484666538100a0003ad"
   }
   index: 3
-  text: "Sure.   It\'ll be there... eventually."
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5493a265666538100a000391"
-  }
-}
-nodes {
-  idRef {
-    id: "5493a411666538100a0003a5"
-  }
-  index: 4
-  text: "We have no premium services... Our cars run on a flat rate."
+  text: "Very well, but I\'m not sending a car your way until I have confirmed payment... Minimum due is 215\302\245."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "5493a265666538100a000391"
@@ -348,15 +309,15 @@ nodes {
   idRef {
     id: "5493a374666538100a00039d"
   }
-  index: 5
+  index: 4
   text: "Of course.   I\'ll have a car there in 10 minutes.  Will there be anything else?"
   branches {
     responseText: "Yeah.   This needs to be discreet.  Your driver will understand when they arrive."
-    nextNodeIndex: 6
+    nextNodeIndex: 5
   }
   branches {
     responseText: "Nope.   That\'s it."
-    nextNodeIndex: 7
+    nextNodeIndex: 6
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -367,7 +328,7 @@ nodes {
   idRef {
     id: "5493a43a666538100a0003a7"
   }
-  index: 6
+  index: 5
   text: "I see.   I\'ll send you one of our best drivers."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -378,7 +339,7 @@ nodes {
   idRef {
     id: "5493a44d666538100a0003a9"
   }
-  index: 7
+  index: 6
   text: "Very well.  Have a pleasant evening."
   nodeType: ConversationNodeType_Simple
 }

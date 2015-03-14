@@ -9,7 +9,7 @@ nodes {
   index: 0
   text: "$(scene.str_MemphisOpener)"
   branches {
-    responseText: "I\'m looking for Johnny Memphis.  He\'s holding a car for me."
+    responseText: "Hi, a friend of mine asked me to get a quote to repair some minor damage on the front end of his van?   It\'s parked over in front of Yoshiros... Green, with a  purple dragon on the side... Can\'t miss it."
     actions {
       ops {
         functionName: "Set Variable (bool)"
@@ -154,6 +154,41 @@ nodes {
   text: "Mr. Memphis isn\'t in at the moment... perhaps you can leave your contact information, and he\'ll return your call at his earliest convience?"
   branches {
     responseText: "{{CC}}[Leave contact info]{{/CC}} See that he does.  It\'s important."
+    actions {
+      ops {
+        functionName: "Set Goal Status"
+        args {
+          call_value {
+            functionName: "Get Map Item (Goal)"
+            args {
+              string_value: "Get a quote to fix Newt\'s Van"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "GoalStatus"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: 3
     auxiliaryLink: true
   }
@@ -293,39 +328,6 @@ nodes {
   }
   nodeType: ConversationNodeType_Simple
   actions {
-    ops {
-      functionName: "Set Goal Status"
-      args {
-        call_value {
-          functionName: "Get Map Item (Goal)"
-          args {
-            string_value: "Meet Johnny Memphis"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "GoalStatus"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
     ops {
       functionName: "Set Variable (string)"
       args {

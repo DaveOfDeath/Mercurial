@@ -370,7 +370,7 @@ triggers {
         }
       }
       args {
-        string_value: "Do I know you?"
+        string_value: "Fine night, isn\'t it?"
       }
       args {
         float_value: 0
@@ -1590,7 +1590,7 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Evaluate Tag Pattern for Actor"
+      functionName: "Evaluate Tag for Actor"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -1615,11 +1615,34 @@ triggers {
         }
       }
       args {
-        string_value: "isRunner"
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isRunner"
+          }
+        }
       }
     }
   }
   actions {
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
     ops {
       functionName: "Display Text over Actor"
       args {
@@ -1699,6 +1722,31 @@ triggers {
             int_value: 1
           }
         }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        int_value: 1
       }
       args {
         call_value {
@@ -2076,7 +2124,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "SceneExit.DogHouse [Van]"
+  name: "SceneExit.DogHouse"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -2163,7 +2211,7 @@ triggers {
         }
       }
       args {
-        string_value: "Returning to the DogHouse"
+        string_value: "Barrens - Returning to the DogHouse"
       }
     }
     ops {
@@ -2180,7 +2228,7 @@ triggers {
         }
       }
       args {
-        string_value: "So you stole those dead guys van, huh?   I guess that\'s one way to hide the evidence of a triple murder... \n\nOh wait... no... lead them right to you..."
+        string_value: "So you stole those dead guys van, huh?   I guess that\'s one way to hide the evidence of a triple murder... \n\nOh wait... no... lead them right to you...\n\nAnyways, you head back to your safe house tucked down in the barrens to plan your next move..."
       }
     }
     ops {
@@ -2204,158 +2252,6 @@ triggers {
   isActive: true
   idRef {
     id: "5493baa0666538100a00049f"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "SceneExit.DogHouse [Taxi]"
-  events {
-    ops {
-      functionName: "On Conversation Complete"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "AND"
-      args {
-        call_value {
-          functionName: "Comparison (bool)"
-          args {
-            call_value {
-              functionName: "Get Variable (bool)"
-              args {
-                string_value: "bol_TakingACab"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "bool"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Comparison (int)"
-          args {
-            call_value {
-              functionName: "Get Story Variable (int)"
-              args {
-                string_value: "542848a8633464d816001ad5"
-              }
-              args {
-                string_value: "int_Hideout"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Comparison Ops"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Clear All Waypoints"
-    }
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_SceneTitle"
-          }
-        }
-      }
-      args {
-        string_value: "Returning to the DogHouse"
-      }
-    }
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_SceneDetails"
-          }
-        }
-      }
-      args {
-        string_value: "Meaningful crap goes here about how awesome it is to go back to the dumpy safehouse instead of the super starts penthouse loft.... good life choice, pal!"
-      }
-    }
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_SpawnPoint"
-          }
-        }
-      }
-      args {
-        string_value: "DOGHOUSE-RETURN"
-      }
-    }
-    ops {
-      functionName: "Open Scene"
-      args {
-        call_value {
-          functionName: "Get Map Item (Scene)"
-          args {
-            string_value: "HUB - Doghouse"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54c6c4a5666538a00d00497b"
   }
   elseActions {
   }
@@ -2456,7 +2352,7 @@ triggers {
         }
       }
       args {
-        string_value: "Living the High-Life!"
+        string_value: "Tacoma - Maria\'s Penthouse Suite"
       }
     }
     ops {
@@ -2473,7 +2369,7 @@ triggers {
         }
       }
       args {
-        string_value: "So you did it... you get to go back to the luxury high-rise penthouse. Guess that means life is pretty good, chummer.\n\nNow, if you can keep it in one piece, and maybe pick up a timeshare you\'ll be set!"
+        string_value: "As you pile into the cab, and head uptown towards the Penthouse, you can\'t help but wonder as to what exactly is going on.   \n\nMaria stays quiet for the entire ride, staring glassy eyed out the window.   \n\nI guess its time to plan your next move..."
       }
     }
     ops {
@@ -3634,7 +3530,7 @@ goals {
   status: GoalStatus_Hidden
 }
 goals {
-  name: "Meet Johnny Memphis"
+  name: "Get a quote to fix Newt\'s Van"
   type: GoalType_Secondary
   status: GoalStatus_Hidden
 }
