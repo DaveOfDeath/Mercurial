@@ -785,15 +785,14 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (bool)"
+      functionName: "Comparison (string)"
       args {
         call_value {
-          functionName: "Get Story Variable (bool)"
+          functionName: "Get Story Variable (string)"
           args {
-            string_value: "542848a8633464d816001ad5"
           }
           args {
-            string_value: "bool_Is_In_Intro"
+            string_value: "str_SpawnPoint"
           }
         }
       }
@@ -804,20 +803,12 @@ triggers {
             string_value: "IsOrIsNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
       args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
+        string_value: "FRESH"
       }
     }
   }
@@ -2983,7 +2974,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "     *Lights"
+  name: "     *Lights [Dynamic Lighting Scripts]"
   events {
     ops {
       functionName: "On Map Start"
@@ -3745,7 +3736,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Animation)"
           args {
-            string_value: "Seattle:General/standing_idle_junky"
+            string_value: "Seattle:General/standing_idle_headCradle"
           }
         }
       }
@@ -4320,6 +4311,45 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -7507,43 +7537,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Add Item to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "ESP Shield"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Display Text over Actor"
       args {
         call_value {
@@ -7609,6 +7602,20 @@ triggers {
             string_value: "54bb1f943231371c20002fe1"
           }
         }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_GiveESPToDecker"
+          }
+        }
+      }
+      args {
+        float_value: 7
       }
     }
   }
@@ -7685,6 +7692,65 @@ triggers {
         }
       }
     }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "          *GIve ESP to Decker Player"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_GiveESPToDecker"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "ESP Shield"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5503ad116631364c070057b3"
+  }
+  elseActions {
   }
   is_oneshot: true
 }
@@ -11567,7 +11633,7 @@ triggers {
   name: "     *Runner Van (Stolen/Visible)"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "On Curtains Up"
     }
   }
   conditions {
@@ -11602,7 +11668,7 @@ triggers {
             string_value: "bool"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -11648,7 +11714,7 @@ triggers {
             string_value: "bool"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -14253,7 +14319,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "54b9dd8f323137201a003742"
+            string_value: "54b1711661313170070060c6"
           }
         }
       }
@@ -16232,17 +16298,6 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "54bb20073231371c20002fe9"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54bb20f73231371c20002fec"
           }
         }
       }
@@ -20600,7 +20655,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Core/DwarfMale"
+    prefab_name: "Berlin:Gangers/DwarfMaleBerlinGangerMohawk"
     character_sheet_id: "AGChemie_Cyberzombie_Lv1"
     character_mod {
       stats {
@@ -20638,9 +20693,6 @@ characters {
       archetypeName: "Non-Combatant"
       vulnerabilities {
       }
-    }
-    equipment {
-      prefab_name: "Eiger_Jacket"
     }
     equipment {
       prefab_name: "Mercurial_Bum_Cram"
@@ -24733,6 +24785,7 @@ mapEvents: "eve_AroSpeaks"
 mapEvents: "eve_CivilianChatter"
 mapEvents: "eve_LightsOnFirstTime"
 mapEvents: "eve_TeamHired"
+mapEvents: "eve_GiveESPToDecker"
 senseTags: "isUnhired"
 senseTags: "isWandering"
 senseTags: "isSpeaker"
