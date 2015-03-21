@@ -386,6 +386,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5436cf3e633464b40800302c"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -769,6 +791,57 @@ triggers {
           functionName: "Get Map Item (Prop)"
           args {
             string_value: "55021ee1663136780a0044cc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "550d7bcb6131318419005285"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -7696,7 +7769,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "          *GIve ESP to Decker Player"
+  name: "          *Give ESP to Decker Player"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -7749,6 +7822,125 @@ triggers {
   isActive: true
   idRef {
     id: "5503ad116631364c070057b3"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "     Beta Cameo"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "550d7bcb6131318419005285"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "FRESH"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Good luck out there..."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0.5
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "550d7bcb6131318419005285"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "550d7c896131318419005286"
   }
   elseActions {
   }
@@ -21811,6 +22003,8 @@ characters {
         body: 1
         intelligence: 1
         willpower: -3
+        essence: -1
+        magic: -6
         morale: 0
         discipline: 0
         awareness: 0
@@ -21825,6 +22019,7 @@ characters {
         throwing_weapons: 1
         decking: 3
         dodge: 1
+        etiquette_security: 1
       }
       specializations {
         pistol: 2
@@ -21843,7 +22038,7 @@ characters {
       prefab_name: "CyberdeckVirtuaX"
     }
     team_id: "Civilians"
-    char_name: "Silver ARO"
+    char_name: "Silver Arrow"
     GeneralTags: "isUnhired"
     pc_spawn_number: -1
     hiring_type: HiringType_None
@@ -21947,11 +22142,14 @@ characters {
   character_instance {
     prefab_name: "Seattle:Story/SgtAguirre"
     character_sheet_id: "Crew_Dietrich_Lv1"
+    equipment_sheet_id: "Mercurial_NPC_Blight"
     character_mod {
       stats {
         body: 1
         quickness: -1
-        willpower: -3
+        intelligence: -1
+        willpower: -2
+        magic: 6
         hp: 10
         armor: 3
         morale: 0
@@ -21968,6 +22166,7 @@ characters {
         spirit_summoning: 2
         biotech: 1
         etiquette_gang: 1
+        etiquette_street: 1
       }
       specializations {
         shotgun: 1
@@ -21975,39 +22174,13 @@ characters {
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Berlin_Sh 1 Benelli (Sawed Off)"
-    }
-    equipment {
-      prefab_name: "Spell Haste 1"
-    }
-    equipment {
-      prefab_name: "Spell Fog"
-    }
-    equipment {
-      prefab_name: "Berlin_Spell Toxic Bolt 1"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack_med"
-    }
-    equipment {
-      prefab_name: "Berlin_IdolWildHuntsman"
-    }
-    equipment {
-      prefab_name: "Bound Abomination Spirit 1"
-    }
-    equipment {
-      prefab_name: "Bound Fire Spirit 1"
-    }
-    equipment {
-      prefab_name: "Bound Earth Spirit 1"
-    }
     team_id: "Civilians"
     char_name: "Blight"
     GeneralTags: "isUnhired"
     enabled_at_start: true
     pc_spawn_number: -1
     hiring_type: HiringType_None
+    revivable_value: true
     portrait {
       filename: "Geeked_Blight"
     }
@@ -22057,6 +22230,7 @@ characters {
   character_instance {
     prefab_name: "Berlin:Aztechnology/ElfMaleAztechGuard"
     character_sheet_id: "CG Elf Street Samurai"
+    equipment_sheet_id: "Mercurial_NPC_Shiver"
     character_mod {
       stats {
         body: 0
@@ -22077,7 +22251,7 @@ characters {
         perception: 0
         authority: 0
         protect_tether_range: 0
-        move_speed: 0
+        move_speed: 1
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
@@ -22116,24 +22290,6 @@ characters {
       attitude: AttitudeAggressive
       vulnerabilities {
       }
-    }
-    equipment {
-      prefab_name: "Pi 1 Modified Savalette (Glory)"
-    }
-    equipment {
-      prefab_name: "Grenade 1 (Frag)"
-    }
-    equipment {
-      prefab_name: "HealthPack"
-    }
-    equipment {
-      prefab_name: "Berlin_Suprathyroid (Bioware)"
-    }
-    equipment {
-      prefab_name: "Adrenal Pump (Bio)"
-    }
-    equipment {
-      prefab_name: "Cerebral Booster"
     }
     team_id: "Civilians"
     char_name: "Shiver"
@@ -22212,7 +22368,8 @@ characters {
         close_combat: 1
         spellcasting: 3
         conjuring: 1
-        dodge: 1
+        biotech: 2
+        dodge: 2
         etiquette_academic: 1
       }
       specializations {
@@ -22260,7 +22417,7 @@ characters {
     portrait {
       filename: "backer_humanmale_markkalinic"
     }
-    karma: 68
+    karma: 73
     hiring_cost_override: 1000
   }
 }
@@ -22290,8 +22447,14 @@ characters {
   character_instance {
     prefab_name: "Seattle:Story/WeaponsDealer"
     character_sheet_id: "Crew_Monika_Lv1"
+    equipment_sheet_id: "Mercurial_NPC_Nebel"
     character_mod {
       stats {
+        strength: -1
+        charisma: 1
+        intelligence: -1
+        willpower: -1
+        essence: 0
         armor: 3
         morale: 0
         discipline: 0
@@ -22300,10 +22463,20 @@ characters {
         authority: 0
         protect_tether_range: 0
         move_speed: 0
+        vision_peripheral_distance: -2
+        vision_cone_distance: -18
+        vision_cone_angle: -90
       }
       skills {
+        ranged_combat: 0
+        decking: -1
+        biotech: 0
+        dodge: -1
+        etiquette_shadowrunner: 1
       }
       specializations {
+        rifle: -2
+        smg: 2
       }
       vulnerabilities {
       }
@@ -22317,7 +22490,7 @@ characters {
     portrait {
       filename: "npc_humanfemale_weaponstechdealer"
     }
-    karma: 101
+    karma: 82
     hiring_cost_override: 1000
   }
 }
@@ -22363,12 +22536,15 @@ characters {
   character_instance {
     prefab_name: "Seattle:Standard/OrkMaleRigger"
     character_sheet_id: "Errant_Lv1_Rigger"
+    equipment_sheet_id: "Mercurial_NPC_Jefe"
     character_mod {
       stats {
         body: 2
         quickness: -1
         charisma: -1
         intelligence: 2
+        essence: -2
+        hp: 20
         morale: 0
         discipline: 0
         awareness: 0
@@ -22378,8 +22554,10 @@ characters {
         move_speed: 0
       }
       skills {
+        ranged_combat: 1
         close_combat: 1
         drone_control: 2
+        etiquette_security: 1
       }
       specializations {
         rifle: 2
@@ -22387,33 +22565,6 @@ characters {
       }
       vulnerabilities {
       }
-    }
-    equipment {
-      prefab_name: "Berlin_Obvious Cyberarm Reloader"
-    }
-    equipment {
-      prefab_name: "Berlin_Bone Lacing Kevlar"
-    }
-    equipment {
-      prefab_name: "DroneAttackC_Doberman"
-    }
-    equipment {
-      prefab_name: "Berlin_Grenade 1 (Frag)"
-    }
-    equipment {
-      prefab_name: "Berlin_Grenade 1 (Frag)"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack_med"
-    }
-    equipment {
-      prefab_name: "Outfit_Maintenance"
-    }
-    equipment {
-      prefab_name: "activesoft beta shotguns"
-    }
-    equipment {
-      prefab_name: "Berlin_AR 1 Semopal vz88v (Smartlink)"
     }
     team_id: "Civilians"
     char_name: "El Jefe"
@@ -22427,7 +22578,7 @@ characters {
     portrait {
       filename: "pc_orkmale_07_shotgun"
     }
-    karma: 72
+    karma: 75
     hiring_cost_override: 1000
   }
 }
@@ -22457,6 +22608,7 @@ characters {
   character_instance {
     prefab_name: "Seattle:Security/TrollFemaleSecurity"
     character_sheet_id: "Lvl1_Troll_Samurai"
+    equipment_sheet_id: "Mercurial_NPC_Gunner"
     character_mod {
       stats {
         body: 1
@@ -22487,33 +22639,13 @@ characters {
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Berlin_AR 1 Semopal vz88v (Smartlink)"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack_med"
-    }
-    equipment {
-      prefab_name: "Platelet Factory (Heal Wound)"
-    }
-    equipment {
-      prefab_name: "Berlin_Grenade 1 (Flashbang)"
-    }
-    equipment {
-      prefab_name: "Berlin_Grenade 1 (Flashbang)"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack_med"
-    }
-    equipment {
-      prefab_name: "Eiger_Jacket"
-    }
     team_id: "Civilians"
     char_name: "Gunner"
     GeneralTags: "isUnhired"
     enabled_at_start: true
     pc_spawn_number: -1
     hiring_type: HiringType_None
+    revivable_value: true
     cyberware_jack: "Datajack"
     cyberware_left_arm: "Berlin_Auto-Injector (Hyper)"
     portrait {
@@ -22553,6 +22685,7 @@ characters {
       stats {
         strength: -3
         intelligence: -2
+        armor: 3
         morale: 0
         discipline: 0
         awareness: 0
@@ -22657,12 +22790,14 @@ characters {
   character_instance {
     prefab_name: "Seattle:Story/StoryShaman"
     character_sheet_id: "Lvl1_Human_Adept"
+    equipment_sheet_id: "Mercurial_NPC_Luna"
     character_mod {
       stats {
         body: 2
         strength: 2
         willpower: 3
-        armor: 3
+        hp: 20
+        armor: 2
         morale: 0
         discipline: 0
         awareness: 0
@@ -22673,6 +22808,7 @@ characters {
       }
       skills {
         close_combat: 2
+        throwing_weapons: 0
         biotech: 0
         dodge: 2
         etiquette_gang: 1
@@ -22680,39 +22816,10 @@ characters {
       }
       specializations {
         edged: 3
+        unarmed: 2
       }
       vulnerabilities {
       }
-    }
-    equipment {
-      prefab_name: "Sword 2 Axe"
-    }
-    equipment {
-      prefab_name: "Counterstrike 1"
-    }
-    equipment {
-      prefab_name: "Magic Resistance 1"
-    }
-    equipment {
-      prefab_name: "Killing Hands"
-    }
-    equipment {
-      prefab_name: "Stride"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack_med"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack_med"
-    }
-    equipment {
-      prefab_name: "Player_AdeptStreetMonk"
-    }
-    equipment {
-      prefab_name: "Berlin_Spell Distraction 1"
-    }
-    equipment {
-      prefab_name: "Berlin_Spell Distraction 2"
     }
     team_id: "Civilians"
     char_name: "Luna"
@@ -22724,7 +22831,7 @@ characters {
     portrait {
       filename: "npc_humanfemale_shamaninvestigator"
     }
-    karma: 71
+    karma: 74
     hiring_cost_override: 1000
   }
 }
@@ -25845,6 +25952,101 @@ characters {
     }
     karma: 101
     hiring_cost_override: 1000
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 52
+    y: 0
+    z: -85
+  }
+  orientation: ORIENTATION_E
+  displayName: "Beta Tester"
+  idRef {
+    id: "550d7bcb6131318419005285"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: ""
+      turnToFace: false
+    }
+    interaction_info_text: "Talk to mysterious woman."
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Core/HumanFemale"
+    character_sheet_id: "BaseCivilian"
+    character_mod {
+      stats {
+        body: 7
+        quickness: 7
+        strength: 7
+        charisma: 7
+        intelligence: 7
+        willpower: 7
+        essence: 1
+        magic: 6
+        hp: 20
+        ap: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+        ranged_combat: 7
+        close_combat: 6
+        spellcasting: 6
+        decking: 6
+        conjuring: 6
+        spirit_summoning: 6
+        drone_control: 6
+        etiquette_corporate: 1
+        etiquette_security: 1
+        etiquette_gang: 1
+        etiquette_socialite: 1
+        chi_casting: 6
+        etiquette_shadowrunner: 1
+        etiquette_street: 1
+        etiquette_academic: 1
+      }
+      specializations {
+        pistol: 0
+        rifle: 7
+        smg: 0
+        spirit_control: 6
+      }
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "CyberdeckVirtuaX"
+    }
+    equipment {
+      prefab_name: "Berlin_Player_Outfit_TheBestOutfit"
+    }
+    equipment {
+      prefab_name: "Berlin_AR 3 Colt M23 (Smartlink)"
+    }
+    team_id: "Civilians"
+    char_name: "Beta"
+    pc_spawn_number: -1
+    hiring_type: HiringType_Hireable
+    cyberware_jack: "Datajack"
+    portrait {
+      filename: "pc_humanfemale_00_faceless"
+    }
+    portrait_code_override: "s6h7c10b0t0"
+    karma: 405
+    hiring_cost_override: 1000
+    is_prop_character: true
+    id: "Beta Tester"
   }
 }
 variables {
