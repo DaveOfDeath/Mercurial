@@ -3122,7 +3122,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "     *NPCs"
+  name: "     *NPCs  [Idle Animiations]"
   events {
     ops {
       functionName: "On Map Start"
@@ -3567,7 +3567,7 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Compare Actor Team"
+      functionName: "Comparison (Actor)"
       args {
         call_value {
           functionName: "Triggering Actor"
@@ -3586,20 +3586,9 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
+          functionName: "Get Map Item (Player)"
           args {
             int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
           }
         }
       }
@@ -18285,6 +18274,57 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Teleport Actor near Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -22642,7 +22682,7 @@ characters {
     team_id: "Civilians"
     char_name: "Gunner"
     GeneralTags: "isUnhired"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_None
     revivable_value: true
