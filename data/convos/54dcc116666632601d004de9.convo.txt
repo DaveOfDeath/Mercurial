@@ -7,7 +7,7 @@ nodes {
     id: "54dcc11a666632601d004def"
   }
   index: 0
-  text: ""
+  text: "{{CC}}PlaceHolder Intro Text{{/CC}}"
   branches {
     responseText: "Talk to {{CC}}El Jefe{{/CC}}."
     conditions {
@@ -40,7 +40,26 @@ nodes {
         }
       }
     }
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_NPC_Status_ElJefe"
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 1
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -77,6 +96,31 @@ nodes {
         }
         args {
           int_value: 2
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iTeamSize"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          int_value: 4
         }
       }
     }
@@ -133,6 +177,20 @@ nodes {
               string_value: "Default"
             }
           }
+        }
+      }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iTeamSize"
+            }
+          }
+        }
+        args {
+          int_value: 1
         }
       }
     }
@@ -225,6 +283,20 @@ nodes {
           int_value: 2
         }
       }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iTeamSize"
+            }
+          }
+        }
+        args {
+          int_value: -1
+        }
+      }
     }
     nextNodeIndex: -1
   }
@@ -236,6 +308,19 @@ nodes {
   sourceInSceneRef {
     id: "54b28c3f613131700700611b"
   }
+}
+nodes {
+  idRef {
+    id: "550de80166313610120004c9"
+  }
+  index: 1
+  text: "{{CC}}PlaceHolder Character description and bio{{/CC}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
 }
 roots {
   nextNodeIndex: 0
