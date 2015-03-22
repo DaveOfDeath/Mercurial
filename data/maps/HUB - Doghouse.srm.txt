@@ -15285,6 +15285,7 @@ props {
     z: 40
   }
   orientation: ORIENTATION_E
+  displayName: "obj_TalismongerDoor"
   idRef {
     id: "542a1c74373361140d007845"
   }
@@ -32112,7 +32113,7 @@ props {
     z: -18
   }
   orientation: ORIENTATION_E
-  displayName: "Body+Tech Entrance"
+  displayName: "obj_MedicalDoor"
   idRef {
     id: "542b5a2a373361580900597a"
   }
@@ -32148,7 +32149,12 @@ props {
         }
       }
     }
-    interactionIcon: InteractionIcon_Door
+    doorPoint {
+      doorState: false
+      aiOnlyDoor: false
+      doorSound: "DoorSwing"
+      doorSoundBundle: "props"
+    }
     interaction_info_text: "Body+Tech"
   }
   lod: 0
@@ -40278,6 +40284,45 @@ props {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate If Actor is Inside Region"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "AreOrAreNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Region)"
+            args {
+              string_value: "54fc54f2663136a005007617"
+            }
+          }
+        }
+      }
+    }
     interactionIcon: InteractionIcon_Inspect
     interaction_info_text: "Use lightswitch?"
   }
@@ -40619,19 +40664,6 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "542b8fc53733615806005eac"
-  }
-  lod: 0
-}
-props {
-  name: "tenements_furniture_futuristicBookshelf01"
-  gridPoint {
-    x: 90.3
-    y: 0
-    z: -9.0999985
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "542b8fc53733615806005eae"
   }
   lod: 0
 }
@@ -50852,6 +50884,7 @@ props {
     z: -74.6
   }
   orientation: ORIENTATION_E
+  displayName: "obj_GeekedDoor"
   idRef {
     id: "542c83c3373361840e0078c0"
   }
@@ -50887,7 +50920,12 @@ props {
         }
       }
     }
-    interactionIcon: InteractionIcon_Door
+    doorPoint {
+      doorState: false
+      aiOnlyDoor: false
+      doorSound: "DoorSlide"
+      doorSoundBundle: "props"
+    }
     interaction_info_text: "GEEKED Guns N\' Ammo!"
   }
   lod: 0
@@ -66775,15 +66813,14 @@ props {
     interactionRadius: 1
     prerequisites {
       ops {
-        functionName: "Comparison (bool)"
+        functionName: "Comparison (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (bool)"
+            functionName: "Get Story Variable (string)"
             args {
-              string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "bool_Is_In_Intro"
+              string_value: "str_SpawnPoint"
             }
           }
         }
@@ -66794,7 +66831,24 @@ props {
               string_value: "IsOrIsNot"
             }
             args {
-              int_value: 1
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "FRESH"
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_BodyDisposalMethod"
             }
           }
         }
@@ -66802,12 +66856,15 @@ props {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "bool"
+              string_value: "Comparison Ops"
             }
             args {
-              int_value: 0
+              int_value: 4
             }
           }
+        }
+        args {
+          int_value: 3
         }
       }
     }
@@ -69292,6 +69349,45 @@ props {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate If Actor is Inside Region"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "AreOrAreNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Region)"
+            args {
+              string_value: "54fc54f2663136a005007617"
+            }
+          }
+        }
+      }
+    }
     interactionIcon: InteractionIcon_Inspect
     interaction_info_text: "Use lightswitch?"
   }

@@ -1,0 +1,141 @@
+idRef {
+  id: "550eddc16631364c07006629"
+}
+ui_name: "DogHouse - Beertender"
+nodes {
+  idRef {
+    id: "550eddd96631364c07006633"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}4\302\245{{/CC}}  Something cheap, don\'t care what it is..."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 4
+        }
+      }
+      ops {
+        functionName: "Heal Actor"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HPOrAP"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "My favorite type of customer.   One who orders, and doesn\'t talk.   As long as I\'m pouring the suds, you can stay... if you want to talk, bother someone else."
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Beertender?   Not bartender?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Yeah.   Bartenders have to listen to all your whiny problems, beertenders just sling suds.   You have problems, welcome to the club.   You want some suds, I\'m your girl."
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "550ee07f6631364c07006641"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Walk Away{{/CC}} Nothing, Thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54385f47633464dc13003cc2"
+  }
+  comment: "MainLoop"
+}
+roots {
+  nextNodeIndex: 0
+}
