@@ -386,28 +386,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "5436cf3e633464b40800302c"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -20658,10 +20636,36 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    conversationPoint {
-      conversationID: ""
-      turnToFace: true
+    prerequisites {
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "FRESH"
+        }
+      }
     }
+    interactionIcon: InteractionIcon_Conversation
     interaction_info_text: "Big Jim"
   }
   lod: 0
@@ -22682,7 +22686,7 @@ characters {
     team_id: "Civilians"
     char_name: "Gunner"
     GeneralTags: "isUnhired"
-    enabled_at_start: false
+    enabled_at_start: true
     pc_spawn_number: -1
     hiring_type: HiringType_None
     revivable_value: true
@@ -26198,6 +26202,14 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "int_TeamCount"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iTeamSize"
     typeName: "int"
   }
 }
