@@ -7,7 +7,7 @@ nodes {
     id: "54dce5fc666632601d00519c"
   }
   index: 0
-  text: "{{GM}}The smug man wearing the fedora seems to look off to the distance, and is wearing a half-smile like someone who knows a joke they\'re not sharing.{{/GM}}"
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Talk to {{CC}}Blight{{/CC}}."
     conditions {
@@ -56,6 +56,23 @@ nodes {
         }
         args {
           int_value: 2
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Hoi Omae,\" the skinny man says, eyeing the other runners in the Stuffer Shack with a skeptical eye, like a lion trying to decide which gazelle is the slowest."
         }
       }
     }
@@ -345,20 +362,152 @@ nodes {
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Main Loop"
 }
 nodes {
   idRef {
     id: "550dbfd7663136081000723b"
   }
   index: 1
-  text: "{{GM}}PlaceHolder{{/GM}}\n\n{{CC}}Blights\' intro and character bio{{/CC}}"
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What do you think of the recruits?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"These sheep? Won\'t last more than a day on the streets- they\'ll get chewed up and spit out faster than a Nuk-O-Burger, especially those two\" the man nods in the direction of two recruits, the priest and the younger amerind woman."
+        }
+      }
+    }
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "What\'s with the suit?"
+    nextNodeIndex: -1
+  }
   branches {
     responseText: ""
-    nextNodeIndex: 0
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "I\'m looking to put together a team. What\'s your skillset?"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Story 0"
+}
+nodes {
+  idRef {
+    id: "550f7b346666322c1a007d9d"
+  }
+  index: 2
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What\'s up with the Priest?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"The priest is a goody-goody. I can smell it on him from here, too afraid to get his hands dirty, he prefers the nice and clean shadows.\"\n\nThe man horks, and spits snot onto the cold concrete of the Stuffer Shack, drawing a glare from the troll woman nearby.\n\n\"When he dies, if no one is there to profit, that\'ll be the real shame.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    onlyOnce: true
+    idRef {
+      id: "550f7ba26666322c1a007daa"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s up with the amerind girl?"
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "That troll has a pretty big gun."
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s up with the skinny elf? Did he murder someone and take their clothes?"
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What about the decker?"
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Anyone worth recruiting in here?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The man laughs, a cold and dark sound, \"Yeah. me.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Runner Commentary Loop"
 }
 roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The smug man wearing the fedora seems to look off to the distance, and is wearing a half-smile like someone who knows a joke they\'re not sharing."
+      }
+    }
+  }
   nextNodeIndex: 0
 }
