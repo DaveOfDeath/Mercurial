@@ -82,23 +82,6 @@ nodes {
           int_value: 2
         }
       }
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_SilverAroTag"
-            }
-          }
-        }
-        args {
-          string_value: "I was actually on my way to a meet when Sam asked me to stop in here first.  It\'s supposed to be some green Johnson putting together a team of runners."
-        }
-      }
     }
     nextNodeIndex: 5
     hideIfUnavailable: true
@@ -238,37 +221,6 @@ nodes {
       id: "55028760663136ac0d00139d"
     }
     auxiliaryLink: true
-  }
-  branches {
-    responseText: "{{CC}}Disconnect Call{{/CC}}"
-    conditions {
-      ops {
-        functionName: "Comparison (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "int_SamProgression"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 2
-            }
-          }
-        }
-        args {
-          int_value: 0
-        }
-      }
-    }
-    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -603,9 +555,9 @@ nodes {
     id: "54cc4eb56131314c19006586"
   }
   index: 5
-  text: "$(story.str_SilverAroTag)"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "I\'m listening."
+    responseText: ""
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -616,42 +568,38 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SilverAroTag"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          string_value: "It\'s not too far from here- up on the corner, the back room of the Stuffer Shack. The place is closed right night because of a shooting a few nights ago- I guess all the employees quit after that. But the manager does favors for runners, and lets us use the back room."
+          string_value: "I was actually on my way to a meet when Sam asked me to stop in here first.  It\'s supposed to be some green Johnson putting together a team of runners."
         }
       }
-    }
-    nextNodeIndex: 6
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "Fix the tech, I\'ll worry about that."
-    actions {
       ops {
-        functionName: "Set Variable (string)"
+        functionName: "Set Variable (int)"
         args {
           call_value {
-            functionName: "Get Story Variable (string)"
+            functionName: "Get Story Variable (int)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SilverAroTag"
+              string_value: "int_Story_Arrow"
             }
           }
         }
         args {
-          string_value: "\"Don\'t get tetchy with me, chummer. It\'s not too far from here, the Johnson wanted to put together a team, reached out to everyone who was new to the Shadows.  Thought that might be useful to you...\""
+          int_value: 2
         }
       }
     }
     nextNodeIndex: 6
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb217e3231371c20002fef"
+  }
   actions {
     ops {
       functionName: "Teleport Actor near Actor"
@@ -742,20 +690,9 @@ nodes {
       }
     }
     ops {
-      functionName: "Suspend Team\'s Turn"
+      functionName: "Trigger: Wait for Rounds"
       args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 2
+        int_value: 1
       }
       args {
         call_value {
@@ -767,14 +704,72 @@ nodes {
       }
     }
   }
-  comment: "Stuffer Shack Meet Loop"
+  comment: "Confirm Old Sam"
+}
+nodes {
+  idRef {
+    id: "5517859f663136fc09004e91"
+  }
+  index: 6
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "I\'m listening."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "It\'s not too far from here- up on the corner, the back room of the Stuffer Shack. The place is closed right night because of a shooting a few nights ago- I guess all the employees quit after that. But the manager does favors for runners, and lets us use the back room."
+        }
+      }
+    }
+    nextNodeIndex: 7
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Fix the tech, I\'ll worry about that."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Don\'t get tetchy with me, chummer. It\'s not too far from here, the Johnson wanted to put together a team, reached out to everyone who was new to the Shadows.  Thought that might be useful to you...\""
+        }
+      }
+    }
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
 }
 nodes {
   idRef {
     id: "54dcd7cb666632601d004f0d"
   }
-  index: 6
-  text: "$(story.str_SilverAroTag)"
+  index: 7
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Where?"
     actions {
@@ -787,7 +782,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SilverAroTag"
+              string_value: "str_NPCIntroText"
             }
           }
         }
@@ -796,7 +791,8 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 6
+    nextNodeIndex: 7
+    hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "54dcdb3c666632601d004fd7"
@@ -815,7 +811,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SilverAroTag"
+              string_value: "str_NPCIntroText"
             }
           }
         }
@@ -824,7 +820,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 6
+    nextNodeIndex: 7
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55178995663136fc09005013"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -839,7 +840,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SilverAroTag"
+              string_value: "str_NPCIntroText"
             }
           }
         }
@@ -848,7 +849,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 6
+    nextNodeIndex: 7
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55178999663136fc09005014"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -863,27 +869,38 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SilverAroTag"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          string_value: "Okay, anything else I can do for you, then? Want to come with me to the meet?"
+          string_value: "Okay, anything else I can do for you, then? Think I\'ll tag along until we get up to the meet..."
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 8
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5517899e663136fc09005015"
+    }
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
   comment: "Shack Meetup Loop"
 }
 nodes {
   idRef {
     id: "5513a1b3613131e81b0056dd"
   }
-  index: 7
-  text: "$(story.str_SilverAroTag)"
+  index: 8
+  text: "$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
 }
 roots {
   nextNodeIndex: 0
