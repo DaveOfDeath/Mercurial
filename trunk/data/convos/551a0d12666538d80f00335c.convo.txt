@@ -1,0 +1,130 @@
+idRef {
+  id: "551a0d12666538d80f00335c"
+}
+ui_name: "LTG - Foleys System Access Point"
+nodes {
+  idRef {
+    id: "551a0d36666538d80f003366"
+  }
+  index: 0
+  text: "{{GM}}Unauthorized Presence Detected, Please Enter Administrator Unlock Code:{{/GM}}\n\n$(scene.sAccessCode)"
+  branches {
+    responseText: "892515"
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_InputNumpad
+  inputMaxLength: 6
+  sourceInSceneRef {
+    id: "551a0ded666538d80f00337f"
+  }
+}
+nodes {
+  idRef {
+    id: "551a0d8c666538d80f003369"
+  }
+  index: 1
+  text: "Access Granted."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "551a0ded666538d80f00337f"
+  }
+  actions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55187c85663136bc0f0068e3"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "decker"
+          }
+          args {
+            string_value: "Matrix_NodeHackSuccess"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bFoleyOfficeHackAvailable"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55187c85663136bc0f0068e3"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
