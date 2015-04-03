@@ -1,0 +1,71 @@
+idRef {
+  id: "551e375a663136b4060041a8"
+}
+ui_name: "LTG - ShadowLand"
+nodes {
+  idRef {
+    id: "551e3776663136b4060041af"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Sell{{/CC}} Condo Residents Information"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "PAYDATA-Penthouse_Resident_Information"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551e3858663136b4060041c1"
+    }
+  }
+  branches {
+    responseText: "{{CC}}Log Off{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "551e379d663136b4060041b0"
+  }
+  comment: "Main Loop"
+}
+roots {
+  nextNodeIndex: 0
+}

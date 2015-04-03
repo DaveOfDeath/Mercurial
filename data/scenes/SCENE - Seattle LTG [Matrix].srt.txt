@@ -25,6 +25,43 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Remove Item from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "AR 1 Semopal vz88v"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54d2db97613131e819001798"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Variable (int)"
       args {
         call_value {
@@ -275,57 +312,6 @@ triggers {
           functionName: "Get Map Item (Animation)"
           args {
             string_value: "Seattle:General/standing_jackin_decking"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Item from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "AR 1 Semopal vz88v"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54d2db97613131e819001798"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Line of Sight Turn Mode"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
           }
         }
       }
@@ -1193,6 +1179,80 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "General.ShadowLand BBC [Interact]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54f0a7a66131313017001966"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "[[PLACE HOLDER]]\n\nIncomplete Conversation"
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "551e375a663136b4060041a8"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "551e379d663136b4060041b0"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "551e3943663136b4060041d4"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: " "
   events {
   }
@@ -1887,6 +1947,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Activate Actor Spawner By Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "FloatingPointOperation"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -2306,6 +2388,36 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "551e3b5e663136b4060041ee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "551e3c64663136b40600420a"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -2316,7 +2428,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Foley.OfficeMaintaince"
+  name: "Foley.AccountingSystem"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -2401,6 +2513,36 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "54e93636663136c414003a14"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "551e3be7663136b4060041fc"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "551e3c64663136b40600420a"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -5241,7 +5383,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Actor)"
           args {
-            string_value: "551a1d31666538a008005a7e"
+            string_value: "551a1f15666538a008005a80"
           }
         }
       }
@@ -5362,6 +5504,9 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "No Effect"
+    }
   }
   isActive: true
   idRef {
@@ -5459,7 +5604,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Order Actor to Hunt And Destroy (Team)"
+      functionName: "Order Actor to Seek And Destroy (Team)"
       args {
         call_value {
           functionName: "All Actors With Tag"
@@ -5500,6 +5645,53 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "551716d3663136c40f004d53"
           }
         }
       }
@@ -5838,10 +6030,10 @@ triggers {
 regions {
   name: "Doghouse"
   position {
-    x: -35
+    x: -36
     y: -83
-    width: 6
-    height: 4
+    width: 5
+    height: 5
   }
   enabledAtStart: true
   is_camera_region: true
@@ -7462,6 +7654,13 @@ characters {
   idRef {
     id: "54cd8151613131bc1e002661"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Matrix/MatrixICE_white_melee"
@@ -7540,7 +7739,7 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "matrix"
+    dimension_name: "Matrix"
     karma: 29
     is_prop_character: false
     has_fist: false
@@ -8050,7 +8249,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Friendly IC"
+    team_id: "Civilian"
     char_name: "Switch Guardian"
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
@@ -8064,11 +8263,12 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 144
+    x: 145
     y: 0
-    z: -49
+    z: -50
   }
   orientation: ORIENTATION_N
+  GeneralTags: "isFoleyIC"
   displayName: "FoleyIC"
   idRef {
     id: "5518844f663136bc0f0068e6"
@@ -8134,13 +8334,15 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Seek And Destroy"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
     team_id: "Civilian"
     char_name: "Door IC"
+    GeneralTags: "isFoleyIC"
+    enabled_at_start: false
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
     portrait {
@@ -8223,7 +8425,7 @@ characters {
         esp_control: 2
         drone_combat: 0
       }
-      archetypeName: "Guard - Seek And Destroy"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeBoss
       vulnerabilities {
       }
@@ -8511,11 +8713,12 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 144
+    x: 145
     y: 0
-    z: -47
+    z: -46
   }
   orientation: ORIENTATION_N
+  GeneralTags: "isFoleyIC"
   displayName: "FoleyIC"
   idRef {
     id: "551a0141666538d80f003311"
@@ -8581,13 +8784,15 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Seek And Destroy"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
     team_id: "Civilian"
     char_name: "Door IC "
+    GeneralTags: "isFoleyIC"
+    enabled_at_start: false
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
     portrait {
@@ -8695,7 +8900,7 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "matrix"
+    dimension_name: "Matrix"
     karma: 31
     is_prop_character: false
     has_fist: false
@@ -8773,11 +8978,12 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
-    team_id: "Shadowrunners"
+    team_id: "Civilian"
     char_name: "Foleys System Automated Administrator"
     pc_spawn_number: -1
     portrait {
@@ -8975,6 +9181,179 @@ characters {
     dimension_name: "Default"
     karma: 6
     is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -3
+    y: 0
+    z: -79
+  }
+  orientation: ORIENTATION_S
+  displayName: "NPC"
+  idRef {
+    id: "551e379d663136b4060041b0"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilian"
+    char_name: "Shadow Land BBC"
+    pc_spawn_number: -1
+    portrait {
+      filename: "moregeeked_plainhack"
+    }
+    dimension_name: "Default"
+    karma: 6
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -3
+    y: 0
+    z: -81
+  }
+  orientation: ORIENTATION_S
+  displayName: "NPC"
+  idRef {
+    id: "551e3c64663136b40600420a"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilian"
+    char_name: "Foley System"
+    pc_spawn_number: -1
+    portrait {
+      filename: "moregeeked_securityhack"
+    }
+    karma: 6
   }
 }
 variables {
