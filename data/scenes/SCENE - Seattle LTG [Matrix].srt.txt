@@ -316,6 +316,20 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Manual Turn Mode"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -423,28 +437,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Set Hack Status On Dummy Matrix Label"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HackIndicatorStatus"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54e943b0663136c414003a5d"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -498,7 +490,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Actor Reference)"
           args {
-            string_value: "5519dbce666538d80f0032d9"
+            string_value: "55204e5c6631362c10000719"
           }
         }
       }
@@ -509,7 +501,7 @@ triggers {
             string_value: "WithOrWithout"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -551,8 +543,34 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isOnTeam"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "54cdab17613131700e000876"
   }
@@ -604,7 +622,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Actor Reference)"
           args {
-            string_value: "5519dbd5666538d80f0032da"
+            string_value: "55204e586631362c10000718"
           }
         }
       }
@@ -615,7 +633,7 @@ triggers {
             string_value: "WithOrWithout"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -657,12 +675,215 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isOnTeam"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "54cdabd0613131700e000879"
   }
   elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "       Gather  Team"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Hideout"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isOnTeam"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "54d540356665384405007986"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55205b166631362c10000765"
+  }
+  elseActions {
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isOnTeam"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "54d5504f6665387407006c71"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   is_oneshot: true
 }
@@ -1382,6 +1603,489 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "General.PersonaKilled [Player]"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Compare Actor Team"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "ePlayerDies"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552011a96631360c1300261d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "General.PersonaKilled [Team Mate]"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Compare Actor Team"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "[Connection Lost]"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 6
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552012086631360c1300261e"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "General.Well [Summon Point]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5520598c6631362c10000761"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5519fd09666538d80f00330d"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5519fd09666538d80f00330d"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor near Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5519fd09666538d80f00330d"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "5520598c6631362c10000761"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552059a46631362c10000762"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "General.OnJackOut"
+  events {
+    ops {
+      functionName: "On Host Jacked Out"
+    }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "ePlayerDies"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Hideout"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "PENTHOUSE-MATRIXRETURN"
+      }
+    }
+    ops {
+      functionName: "Open Scene"
+      args {
+        call_value {
+          functionName: "Get Map Item (Scene)"
+          args {
+            string_value: "HUB - Penthouse"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552011076631360c1300261c"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "DOGHOUSE-MATRIXRETURN"
+      }
+    }
+    ops {
+      functionName: "Open Scene"
+      args {
+        call_value {
+          functionName: "Get Map Item (Scene)"
+          args {
+            string_value: "HUB - Doghouse"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
   name: " "
   events {
   }
@@ -1414,7 +2118,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Hernandez.FireWallSwitch"
+  name: "Hernandez.FireWallSwitch [GUEST]"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -1511,7 +2215,7 @@ triggers {
             string_value: "DoesOrDoesNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -1740,7 +2444,398 @@ triggers {
             string_value: "DoesOrDoesNot"
           }
           args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bool_HernandezSwitch"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "Berlin:cyberware"
+          }
+          args {
+            string_value: "Cyberware_Electronic_On"
+          }
+        }
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.FireWallSwitch [ADMIN]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "551f6c4a663136680d000a05"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54e95310663136c414003af5"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eHernandezFirewallOverride"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bool_HernandezSwitch"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
             int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isHernandezSecure"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54e95310663136c414003af5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "551f6c4a663136680d000a05"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bool_HernandezSwitch"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "Berlin:cyberware"
+          }
+          args {
+            string_value: "Cyberware_Electronic_Off"
+          }
+        }
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "552021a06631362c10000314"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Prop Visible"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "551f6c4a663136680d000a05"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54e95310663136c414003af5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isHernandezSecure"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -1899,6 +2994,31 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
   }
   actions {
     ops {
@@ -1965,6 +3085,1859 @@ triggers {
     id: "54e95688663136c414003b0e"
   }
   elseActions {
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "54e95628663136c414003b0c"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Shutdown_Status"
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54e95618663136c414003b0b"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552025236631362c10000436"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55202f3c6631362c10000583"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.DigialAssistant"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "552014006631360c1300261f"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Good day, $(scene.sUserName)...   How may I assist you today?"
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "552015206631360c13002654"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "552014006631360c1300261f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55201f3a6631362c1000030c"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.FirewallSwitchAccess [GUEST]"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55201e306631360c130027e0"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "I\'m sorry, that node is restricted.  Please move away from the area."
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "552015206631360c13002654"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "552014006631360c1300261f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55201f6d6631362c1000030d"
+  }
+  elseActions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "552014006631360c1300261f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "That area is restricted, $(scene.sUserName)!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55201e306631360c130027e0"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.FirewallSwitchAccess [ADMIN]"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sUserName"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "%Unknown Patron%"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isHernandezLobbySecure"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55201e306631360c130027e0"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552021a06631362c10000314"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "54e954d1663136c414003b08"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55201fbe6631362c1000030e"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.SystemShutDown [Update]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateShutDownTimer"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iRound"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Screen Label Progress Bar (int)"
+      args {
+        string_value: "Shutdown_Status"
+      }
+      args {
+        string_value: "Shutdown Status:"
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iRound"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552026666631362c1000047a"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552025236631362c10000436"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Prop Visible"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55202f3c6631362c10000583"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Apply Camera Shake"
+      args {
+        float_value: 3.5
+      }
+      args {
+        float_value: 1
+      }
+    }
+    ops {
+      functionName: "Fade Camera Out"
+      args {
+        float_value: 1
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "54e95628663136c414003b0c"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Point"
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "54e95628663136c414003b0c"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Fade Camera In"
+      args {
+        float_value: 1
+      }
+      args {
+        float_value: 1.75
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552025236631362c10000436"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Shutdown_Status"
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54e95618663136c414003b0b"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.SystemShutDown [Initiate]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eHernandezShutdown"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isHernandezLobbySecure"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        int_value: 15
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateShutDownTimer"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552021a06631362c10000314"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552025a96631362c10000437"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Hernandez.SystemShutDown [Incriment]"
+  events {
+    ops {
+      functionName: "On New Round"
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iRound"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateShutDownTimer"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "552026666631362c1000047a"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.GargoyleSpawn1"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55203b2f6631362c100006ce"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor Reference)"
+          args {
+            string_value: "552037c86631362c100006cb"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Hunt And Destroy (Team)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "552037c86631362c100006cb"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Seriously?"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 6
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55203b556631362c100006cf"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Hernandez.ShutdownOverRide"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55203ef86631362c100006dd"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "decker"
+          }
+          args {
+            string_value: "Matrix_NodeHackSuccess"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Shutdown_Status"
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552025236631362c10000436"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55203ef86631362c100006dd"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55203ef86631362c100006dd"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55203fd36631362c100006e0"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.Accounts"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54e952a9663136c414003af1"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isNebel"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5520414c6631362c100006e2"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "decker"
+          }
+          args {
+            string_value: "Matrix_NodeHackSuccess"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54e952a9663136c414003af1"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezHacked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "You quickly clear out Hernandez accounts."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hacking Hernandez"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54e952a9663136c414003af1"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5520417c6631362c100006e4"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5520414c6631362c100006e2"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "decker"
+          }
+          args {
+            string_value: "Matrix_Avatar-Death"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54e952a9663136c414003af1"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezHacked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/decking_dizzy_dumpshock"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Shit!   It\'s deleting the records!"
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Nebel"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hacking Hernandez"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54e952a9663136c414003af1"
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -3744,6 +6717,17 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "551a1d31666538a008005a7e"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Teleport Actor near Point"
       args {
         call_value {
@@ -3858,17 +6842,6 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "54cd4734613131bc1e002460"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Teleport Camera To Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "551a1d31666538a008005a7e"
           }
         }
       }
@@ -5633,9 +8606,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "No Effect"
-    }
   }
   isActive: true
   idRef {
@@ -6151,6 +9121,432 @@ triggers {
   isActive: true
   idRef {
     id: "551a03ce666538d80f003327"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Penthouse.TeamManagment"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55204ec86631362c1000071c"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55204ec86631362c1000071c"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55205c066631362c10000766"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Doghouse.TeamManagment"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55205c9b6631362c10000768"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55205c9b6631362c10000768"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55205c886631362c10000767"
   }
   elseActions {
   }
@@ -6712,7 +10108,7 @@ regions {
   name: "rHernandezEntry"
   position {
     x: 195
-    y: 137
+    y: 138
     width: 6
     height: 3
   }
@@ -7318,6 +10714,236 @@ regions {
   is_camera_region: false
   idRef {
     id: "551a0f09666538d80f00339c"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rHernandezAccessRestricted"
+  position {
+    x: 190
+    y: 132
+    width: 2
+    height: 4
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55201e306631360c130027e0"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rHernandezGargoyle1"
+  position {
+    x: 195
+    y: 118
+    width: 6
+    height: 7
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55203b2f6631362c100006ce"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rBankAccess"
+  position {
+    x: 190
+    y: 65
+    width: 14
+    height: 13
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "5520414c6631362c100006e2"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rPenthouseTeamWelcome"
+  position {
+    x: 128
+    y: 19
+    width: 9
+    height: 6
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55204ec86631362c1000071c"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rDoghouseTeamWelcome"
+  position {
+    x: 51
+    y: 84
+    width: 4
+    height: 7
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55205c9b6631362c10000768"
   }
   highlight_color {
     r: 0
@@ -8601,18 +12227,17 @@ characters {
   gridPoint {
     x: 1
     y: 0
-    z: -80
+    z: -83
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_E
   displayName: "NPC"
   idRef {
     id: "5519dbce666538d80f0032d9"
   }
   lod: 0
   character_instance {
-    prefab_name: "Berlin:Story/HumanMaleAmsel"
+    prefab_name: "Seattle:Objects/InvisibleActor"
     character_sheet_id: "Lvl1_Merc_Dwarf_CombatDecker"
-    equipment_sheet_id: "MECURIAL_NPC_SilverArrowGear"
     character_mod {
       stats {
         body: 1
@@ -8641,19 +12266,15 @@ characters {
         pistol: 2
         esp_control: 2
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Matrix Basic Attack (Ranged 2)"
-    }
-    team_id: "Civilians"
+    team_id: "Civilian"
     char_name: "Silver Arrow"
-    GeneralTags: "isSilverArrow"
-    enabled_at_start: false
+    enabled_at_start: true
     pc_spawn_number: -1
-    spawn_type: SpawnType_Avatar
+    spawn_type: SpawnType_Normal
     hiring_type: HiringType_Hireable
     cyberware_jack: "Datajack"
     portrait {
@@ -8663,26 +12284,26 @@ characters {
     karma: 1
     hiring_cost_override: 0
     hiring_tag: "Decker.   Resident tech."
+    is_prop_character: true
     id: "NPC_SilverArrow"
   }
 }
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 1
+    x: 0
     y: 0
-    z: -82
+    z: -83
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_E
   displayName: "NPC"
   idRef {
     id: "5519dbd5666538d80f0032da"
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Story/WeaponsDealer"
+    prefab_name: "Seattle:Objects/InvisibleActor"
     character_sheet_id: "Crew_Monika_Lv1"
-    equipment_sheet_id: "Mecurial_NPC_Nebel"
     character_mod {
       stats {
         strength: -1
@@ -8713,19 +12334,15 @@ characters {
         rifle: -2
         smg: 2
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Matrix Basic Attack (Ranged 2)"
-    }
-    team_id: "Civilians"
+    team_id: "Civilian"
     char_name: "Nebel"
-    GeneralTags: "isNebel"
-    enabled_at_start: false
+    enabled_at_start: true
     pc_spawn_number: -1
-    spawn_type: SpawnType_Avatar
+    spawn_type: SpawnType_Normal
     hiring_type: HiringType_Hireable
     cyberware_eyes: "Berlin_BrightLight System"
     cyberware_jack: "Datajack"
@@ -8736,17 +12353,18 @@ characters {
     karma: 1
     hiring_cost_override: 0
     hiring_tag: "Decker, quick tounge, quicker keyboard."
+    is_prop_character: true
     id: "NPC_Nebel"
   }
 }
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -1
+    x: -2
     y: 0
-    z: -82
+    z: -83
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_E
   displayName: "SlaveNode"
   idRef {
     id: "5519fd09666538d80f00330d"
@@ -8773,7 +12391,7 @@ characters {
         willpower: 0
         essence: 0
         magic: 0
-        hp: 0
+        hp: 85
         ap: 0
         armor: 0
         force: 0
@@ -8783,7 +12401,7 @@ characters {
         perception: 0
         authority: 0
         protect_tether_range: 0
-        move_speed: 0
+        move_speed: 6
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
@@ -8793,7 +12411,7 @@ characters {
         close_combat: 0
         throwing_weapons: 0
         spellcasting: 0
-        decking: 0
+        decking: -1
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
@@ -8816,7 +12434,7 @@ characters {
         edged: 0
         unarmed: 0
         spirit_control: 0
-        esp_control: 0
+        esp_control: -1
         drone_combat: 0
       }
       archetypeName: "Non-Combatant"
@@ -8824,19 +12442,15 @@ characters {
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "CyberdeckVirtuaX"
-    }
     team_id: "Civilian"
     char_name: "Matrix Spirit"
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
-    cyberware_jack: "Datajack"
     portrait {
       filename: "matrix_humanfemale_01a_shavedhead"
     }
     dimension_name: "Matrix"
-    karma: 74
+    karma: 68
   }
 }
 characters {
@@ -9404,7 +13018,7 @@ characters {
   gridPoint {
     x: -3
     y: 0
-    z: -81
+    z: -80
   }
   orientation: ORIENTATION_S
   displayName: "NPC"
@@ -9483,6 +13097,395 @@ characters {
       filename: "moregeeked_securityhack"
     }
     karma: 6
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 197
+    y: 0
+    z: 134.6
+  }
+  orientation: ORIENTATION_E
+  displayName: "HernandezMap"
+  idRef {
+    id: "552014006631360c1300261f"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 3
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iSystemShutDownTimer"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: -1
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_Conversation
+    interaction_info_text: "Access Digital Assistant"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Story/HumanFemaleMonika"
+    character_sheet_id: "Lvl4_Elf_Decker"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: -3
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "CyberdeckSony"
+    }
+    equipment {
+      prefab_name: "PR NPC Decker Medic 1"
+    }
+    equipment {
+      prefab_name: "PR NPC Decker Blaster 1"
+    }
+    equipment {
+      prefab_name: "PR NPC Decker Killer 1"
+    }
+    team_id: "Civilian"
+    char_name: "Digital Secretary"
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Avatar
+    cyberware_jack: "Datajack"
+    portrait {
+      filename: "matrix_humanfemale_monika"
+    }
+    karma: 104
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 197
+    y: 0
+    z: 120
+  }
+  orientation: ORIENTATION_E
+  displayName: "HernandezMap"
+  idRef {
+    id: "552037c86631362c100006cb"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Creatures/CreatureGargoyleBat"
+    character_sheet_id: "Lvl4_Human_Decker"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 190
+        ap: 0
+        armor: 2
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 1
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeBoss
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Matrix Basic Attack (Melee IC Lv 2)"
+    }
+    equipment {
+      prefab_name: "Matrix Basic Attack (Ranged ESP Lv 2)"
+    }
+    team_id: "Hostile"
+    char_name: "System Guardian"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: "Matrix_generic_machine"
+    }
+    dimension_name: "Matrix"
+    karma: 106
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 1
+    y: 0
+    z: -81
+  }
+  orientation: ORIENTATION_N
+  displayName: "Team"
+  idRef {
+    id: "55204e586631362c10000718"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Story/WeaponsDealer"
+    character_sheet_id: "Crew_Monika_Lv1"
+    equipment_sheet_id: "Mecurial_NPC_Nebel"
+    character_mod {
+      stats {
+        strength: -1
+        charisma: 1
+        intelligence: -1
+        willpower: -1
+        essence: 0
+        ap: 1
+        armor: 3
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 6
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        decking: -1
+        biotech: 0
+        dodge: -1
+        etiquette_shadowrunner: 1
+      }
+      specializations {
+        rifle: -2
+        smg: 2
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Nebel"
+    GeneralTags: "isNebel"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Avatar
+    hiring_type: HiringType_Hireable
+    cyberware_eyes: "Berlin_BrightLight System"
+    cyberware_jack: "Datajack"
+    portrait {
+      filename: "npc_humanfemale_weaponstechdealer"
+    }
+    dimension_name: "Matrix"
+    karma: 1
+    hiring_cost_override: 0
+    hiring_tag: "Decker, quick tounge, quicker keyboard."
+    has_fist: false
+    id: "NPC_Nebel"
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 1
+    y: 0
+    z: -80
+  }
+  orientation: ORIENTATION_N
+  displayName: "Team"
+  idRef {
+    id: "55204e5c6631362c10000719"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Story/HumanMaleAmsel"
+    character_sheet_id: "Lvl1_Merc_Dwarf_CombatDecker"
+    equipment_sheet_id: "MECURIAL_NPC_SilverArrowGear"
+    character_mod {
+      stats {
+        body: 1
+        intelligence: 1
+        willpower: -3
+        essence: -1
+        magic: -6
+        ap: 1
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 6
+      }
+      skills {
+        ranged_combat: 1
+        close_combat: 1
+        throwing_weapons: 1
+        decking: 3
+        dodge: 1
+        etiquette_security: 1
+      }
+      specializations {
+        pistol: 2
+        esp_control: 2
+      }
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilian"
+    char_name: "Silver Arrow"
+    GeneralTags: "isSilverArrow"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Avatar
+    hiring_type: HiringType_Hireable
+    cyberware_jack: "Datajack"
+    portrait {
+      filename: "npc_humanmale_blister"
+    }
+    dimension_name: "Matrix"
+    karma: 1
+    hiring_cost_override: 0
+    hiring_tag: "Decker.   Resident tech."
+    has_fist: false
+    id: "NPC_SilverArrow"
   }
 }
 variables {
@@ -9589,21 +13592,61 @@ variables {
     typeName: "string"
   }
 }
+variables {
+  string_value: "%Unknown Patron%"
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sUserName"
+    typeName: "string"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bHernandezShutDownWarned"
+    typeName: "bool"
+  }
+}
+variables {
+  int_value: -1
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iSystemShutDownTimer"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iRound"
+    typeName: "int"
+  }
+}
 mapEvents: "eve_FLOP"
 mapEvents: "eve_Minions"
 mapEvents: "eve_MatrixExit"
 mapEvents: "eve_NewsFeed"
+mapEvents: "ePlayerDies"
+mapEvents: "eTeammateDies"
+mapEvents: "eHernandezShutdown"
+mapEvents: "eUpdateShutDownTimer"
+mapEvents: "eHernandezFirewallOverride"
 senseTags: "MainGuy"
 senseTags: "isAware"
+senseTags: "isOnTeam"
 goals {
   name: "Hacking Hernandez"
-  type: GoalType_Primary
+  type: GoalType_Secondary
   status: GoalStatus_Hidden
+  description: "Oncover the truth about Hernandez"
 }
 goals {
   name: "Hacking Foley"
-  type: GoalType_Primary
+  type: GoalType_Secondary
   status: GoalStatus_Hidden
+  description: "Uncover the truth about Foley"
 }
 worldMapLocation {
   filename: ""
@@ -9674,6 +13717,20 @@ hiring_slot_count: 0
 hiring_minimum_karma: 1
 hiring_maximum_karma: 1
 roster_overrides {
+  roster_entries {
+    reference_id: "NPC_Nebel"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "NPC_SilverArrow"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
 }
 use_hiring_cost_warning: false
 hiring_average_cost: 0
