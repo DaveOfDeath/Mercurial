@@ -90,7 +90,10 @@ nodes {
       }
     }
     nextNodeIndex: 2
-    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551f598d663136680d00078e"
+    }
   }
   branches {
     responseText: "{{CC}}[1,000\302\245]{{/CC}} I\'ll pay full value."
@@ -159,7 +162,10 @@ nodes {
       }
     }
     nextNodeIndex: 7
-    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551f598b663136680d00078d"
+    }
   }
   branches {
     responseText: "{{CC}}[1,500\302\245]]{{/CC}} How about you lost them, and forget we ever met?"
@@ -228,7 +234,10 @@ nodes {
       }
     }
     nextNodeIndex: 12
-    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551f5988663136680d00078c"
+    }
   }
   branches {
     responseText: "Too rich for my blood, I\'ll find another way."
@@ -701,6 +710,97 @@ nodes {
     }
   }
 }
+nodes {
+  idRef {
+    id: "551f5a79663136680d00085f"
+  }
+  index: 14
+  text: "I know you, $(l.man)?"
+  branches {
+    responseText: "{{CC}}Walk Away{{/CC}} No."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+}
 roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_KnowsAaron"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
   nextNodeIndex: 0
+  comment: "Knows Aaron"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_KnowsAaron"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 14
+  comment: "Aarom Unknown"
 }
