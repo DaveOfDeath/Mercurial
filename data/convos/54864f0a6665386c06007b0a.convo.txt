@@ -640,6 +640,19 @@ nodes {
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eReturnGear"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
@@ -699,10 +712,6 @@ nodes {
   index: 17
   text: "Alright Max... But you owe us..."
   branches {
-    responseText: "Thanks!"
-    nextNodeIndex: -1
-  }
-  branches {
     responseText: "Man I wish I had my gear!"
     conditions {
       ops {
@@ -741,6 +750,81 @@ nodes {
     }
     nextNodeIndex: 18
   }
+  branches {
+    responseText: "Thanks!"
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_NewtConversation"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Clear All Waypoints"
+      }
+      ops {
+        functionName: "Set Waypoint on Prop"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "548654d5666538ec0e007ad3"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "548654d5666538ec0e007ad3"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54838b45666538ac0900674f"
@@ -761,6 +845,75 @@ nodes {
           functionName: "Get Map Item (Event)"
           args {
             string_value: "eReturnGear"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_NewtConversation"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "548654d5666538ec0e007ad3"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "548654d5666538ec0e007ad3"
           }
         }
       }
