@@ -657,6 +657,198 @@ nodes {
     id: "54701bad666538ac03001cec"
   }
 }
+nodes {
+  idRef {
+    id: "551f1e1c663136f413005a07"
+  }
+  index: 15
+  text: "What the frag is going on back here??!?"
+  branches {
+    responseText: "These guys just showed up and are trying to kill us... Get off your ass and help, or get out of the way!"
+    nextNodeIndex: 16
+  }
+  branches {
+    responseText: "Now\'s not a good time, pal..."
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54838b45666538ac0900674f"
+  }
+}
+nodes {
+  idRef {
+    id: "551f1f09663136f413005a0b"
+  }
+  index: 16
+  text: "Newt... Tellin... Help cover our escape.... we need to get out of here before the cops downstairs get up here to investigate!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 17
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54701bad666538ac03001cec"
+  }
+}
+nodes {
+  idRef {
+    id: "551f1f4b663136f413005a13"
+  }
+  index: 17
+  text: "Alright Max... But you owe us..."
+  branches {
+    responseText: "Thanks!"
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Man I wish I had my gear!"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_PlayerHasWeapon"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 18
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54838b45666538ac0900674f"
+  }
+}
+nodes {
+  idRef {
+    id: "551f1f8c663136f413005a17"
+  }
+  index: 18
+  text: "Thought you might need these...  You guys better scamper... my vans parked out back... take it... We\'ll cover you!"
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eReturnGear"
+          }
+        }
+      }
+    }
+  }
+}
 roots {
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
   nextNodeIndex: 0
+  comment: "Thugs Killed"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 15
+  comment: "Thugs Alive"
 }
