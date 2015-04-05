@@ -7,7 +7,7 @@ nodes {
     id: "54dce979666632601d0051bc"
   }
   index: 0
-  text: "This young Amerind woman is strong and confident, but has a nervous energy."
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Talk to {{CC}}Luna{{/CC}}."
     conditions {
@@ -42,20 +42,20 @@ nodes {
     }
     actions {
       ops {
-        functionName: "Set Variable (int)"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Story Variable (string)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_NPC_Status_Luna"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          int_value: 2
+          string_value: "\"X\314\243est sc\314\214\314\223lux\312\267,\" the young woman says easily, a familiar greeting, although you\'re not familiar with the language."
         }
       }
     }
@@ -140,24 +140,305 @@ nodes {
     comment: "Story 2"
   }
   branches {
+<<<<<<< .mine
+    responseText: "Talk to {{CC}}Luna{{/CC}}."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Story_Luna"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    comment: "Story 3"
+  }
+  branches {
+    responseText: "Talk to {{CC}}Luna{{/CC}}."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Story_Luna"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    comment: "Story 4"
+  }
+  branches {
     responseText: "Walk away."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Luna Intro"
 }
 nodes {
   idRef {
     id: "550dbbb3663136081000706f"
   }
   index: 1
-  text: "{{GM}}PLACE HOLDER{{/GM}}\n\n{{CC}}Details about Luna{{/CC}}"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: ""
-    nextNodeIndex: 0
+    responseText: "What the hell was that?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That was a Salish greeting,\" the young woman laughs, \"the language of my people for \'good evening\'.\""
+        }
+      }
+    }
+    nextNodeIndex: 1
     auxiliaryLink: true
   }
+  branches {
+    responseText: "{{CC}}Street{{/CC}} Was that Salish?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 18
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That was a Salish greeting,\" the young woman laughs, \"the language of my people for \'good evening\'.\""
+        }
+      }
+    }
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Academic{{/CC}} Good evening to you, as well."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 19
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That was a Salish greeting,\" the young woman laughs, \"the language of my people for \'good evening\'.\""
+        }
+      }
+    }
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+=======
+>>>>>>> .r182
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
+  comment: "Luna 0 Loop"
 }
 roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: " This young amerind woman is strong and confident, her arms covered with tribal tattoos, and the axe at her side has definitely seen use. She\'s confident, but has a nervous energy about her. "
+      }
+    }
+  }
   nextNodeIndex: 0
 }

@@ -7,7 +7,7 @@ nodes {
     id: "54dcceda666632601d004e26"
   }
   index: 0
-  text: "This gnarled dwarf is filthy and stinks. His clothes are tattered, and his weapons are the only thing on him that seem to have gotten any care- those are cleaned and smell like new oil."
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Talk to {{CC}}Sucio{{/CC}}."
     conditions {
@@ -58,9 +58,25 @@ nodes {
           int_value: 2
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf turns off him commlink, but not before you catch a glimpse of the filthy matrix node he was visiting. The commlink sputters and shoots sparks after he closes it. You catch a whiff of burning electronics.\n\n\"Hola, amigo,\" he says easily, \"How are you?\""
+        }
+      }
     }
     nextNodeIndex: 1
-    comment: "Story 0"
   }
   branches {
     responseText: "Talk to {{CC}}Sucio{{/CC}}."
@@ -95,20 +111,149 @@ nodes {
       }
     }
     nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551a153f613131ec1100549e"
+    }
     comment: "Story 1"
   }
   branches {
+<<<<<<< .mine
+    responseText: "Talk to {{CC}}Sucio{{/CC}}."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Story_Sucio"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551a153c613131ec1100549d"
+    }
+    comment: "Story 2"
+  }
+  branches {
+    responseText: "Talk to {{CC}}Sucio{{/CC}}."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Story_Sucio"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551a1538613131ec1100549c"
+    }
+    comment: "Story 3"
+  }
+  branches {
+    responseText: "Talk to {{CC}}Sucio{{/CC}}."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Story_Sucio"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551a1534613131ec1100549b"
+    }
+    comment: "Story 4"
+  }
+  branches {
+=======
+>>>>>>> .r182
     responseText: "Walk away."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Sucio Introduction"
 }
 nodes {
   idRef {
     id: "54dcd008666632601d004e37"
   }
   index: 1
-  text: "{{GM}}The dwarf turns off him commlink, but not before you catch a glimpse of the filthy matrix node he was visiting. The commlink sputters and shoots sparks after he closes it. You catch a whiff of burning electronics.{{/GM}}{{/GM}}  \"Hola, amigo,\" he says easily, \"How are you?\""
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: ""
     nextNodeIndex: -1
@@ -118,7 +263,27 @@ nodes {
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Sucio 0 Story"
 }
 roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "This gnarled dwarf is filthy and stinks. His clothes are tattered, and his weapons are the only thing on him that seem to have gotten any care- those are cleaned and smell like new oil."
+      }
+    }
+  }
   nextNodeIndex: 0
 }
