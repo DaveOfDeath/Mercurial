@@ -7,7 +7,7 @@ nodes {
     id: "54dccd65666632601d004e1a"
   }
   index: 0
-  text: "The man standing before you looks out of place here. He is clean, well groomed, and standing with professional bearing. That, and he\'s dressed like a catholic priest."
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Talk to {{CC}}Padre{{/CC}}."
     conditions {
@@ -31,31 +31,12 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 4
+              int_value: 0
             }
           }
         }
         args {
-          int_value: 1
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_NPC_Status_Padre"
-            }
-          }
-        }
-        args {
-          int_value: 2
+          int_value: 0
         }
       }
     }
@@ -192,6 +173,7 @@ nodes {
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Padre Intro"
 }
 nodes {
   idRef {
@@ -1292,5 +1274,24 @@ nodes {
   nodeType: ConversationNodeType_Simple
 }
 roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The man standing before you looks out of place here. He is clean, well groomed, and standing with professional bearing. That, and he\'s dressed like a catholic priest."
+      }
+    }
+  }
   nextNodeIndex: 0
 }
