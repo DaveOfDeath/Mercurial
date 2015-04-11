@@ -3753,6 +3753,85 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "DEBUGGER.CashFlow"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "543378b6373361e00f00702a"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Add Nuyen"
+      args {
+        int_value: 5000
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "--DEBUGGER--\n5,000\302\245 ADDED"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 6
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5528700b663136a80c0038a3"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Condo Cam"
   position {
@@ -4773,8 +4852,50 @@ characters {
     z: 96
   }
   orientation: ORIENTATION_N
+  displayName: "Ego"
   idRef {
     id: "543378b6373361e00f00702a"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "DEBUGGERMODE"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_ItemPickup
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -4782,7 +4903,7 @@ characters {
       archetypeName: "Player"
     }
     team_id: "Shadowrunners"
-    char_name: "New Actor"
+    char_name: "Player"
     enabled_at_start: true
     pc_spawn_number: 0
   }
@@ -5182,6 +5303,14 @@ variables {
     scope: TsVariableScope_Scene
     name: "str_MariaIntro"
     typeName: "string"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "DEBUGGERMODE"
+    typeName: "bool"
   }
 }
 mapEvents: "eSendDirections"

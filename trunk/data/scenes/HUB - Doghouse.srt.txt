@@ -3730,6 +3730,25 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "550d7bcb6131318419005285"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_bouncer"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -8094,7 +8113,10 @@ triggers {
       functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "550d7bcb6131318419005285"
+          }
         }
       }
       args {
@@ -8115,13 +8137,13 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 0
+        float_value: 255
       }
       args {
-        float_value: 0
+        float_value: 255
       }
       args {
-        float_value: 0
+        float_value: 128
       }
       args {
         float_value: 5
@@ -16295,6 +16317,26 @@ triggers {
     ops {
       functionName: "Clear All Waypoints"
     }
+    ops {
+      functionName: "Set Screen Label Progress Bar (int)"
+      args {
+        string_value: "CrewCount"
+      }
+      args {
+        string_value: "Runners Talked To:"
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iConversationCount"
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
   }
   isActive: true
   idRef {
@@ -16303,6 +16345,82 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "     Runner Counter Update"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor is Inside Region"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "AreOrAreNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "542bb17e373361f013004b44"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Screen Label Progress Bar (int)"
+      args {
+        string_value: "CrewCount"
+      }
+      args {
+        string_value: "Runners Talked To:"
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iConversationCount"
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55286da3663136a80c0038a0"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: "Hiring_Exit"
@@ -16324,12 +16442,9 @@ triggers {
       functionName: "Comparison (int)"
       args {
         call_value {
-          functionName: "Get Story Variable (int)"
+          functionName: "Get Variable (int)"
           args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Blight"
+            string_value: "iConversationCount"
           }
         }
       }
@@ -16340,208 +16455,12 @@ triggers {
             string_value: "Comparison Ops"
           }
           args {
-            int_value: 2
+            int_value: 3
           }
         }
       }
       args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_ElJefe"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Gunner"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Luna"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Nebel"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Padre"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Shiver"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Sucio"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
+        int_value: 3
       }
     }
   }
@@ -16801,6 +16720,12 @@ triggers {
         string_value: "Update: Head to Underworld 93"
       }
     }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "CrewCount"
+      }
+    }
   }
   isActive: true
   idRef {
@@ -16829,7 +16754,7 @@ triggers {
         }
       }
       args {
-        string_value: "I should at least meet these potential team mates before leaving..."
+        string_value: "I should at least meet a couple of these  potential team mates before leaving..."
       }
       args {
         float_value: 0
@@ -20094,6 +20019,85 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "DEBUGGER.CashFlow"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "550ef4126631364c070067ea"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Add Nuyen"
+      args {
+        int_value: 5000
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "--DEBUGGER--\n5,000\302\245 ADDED"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55286f54663136a80c0038a2"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 regions {
   name: "Camera - Downtown Market"
@@ -27369,10 +27373,7 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    conversationPoint {
-      conversationID: ""
-      turnToFace: false
-    }
+    interactionIcon: InteractionIcon_Conversation
     interaction_info_text: "Talk to mysterious woman."
   }
   lod: 0
@@ -27622,6 +27623,47 @@ characters {
   displayName: "Ego"
   idRef {
     id: "550ef4126631364c070067ea"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "DEBUGGERMODE"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_ItemPickup
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
@@ -27982,6 +28024,14 @@ variables {
     scope: TsVariableScope_Scene
     name: "DEBUGGERMODE"
     typeName: "bool"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iConversationCount"
+    typeName: "int"
   }
 }
 mapEvents: "eve_Big_Jim_Angry"
