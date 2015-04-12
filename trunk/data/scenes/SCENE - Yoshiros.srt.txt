@@ -292,6 +292,71 @@ triggers {
       }
     }
     ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55186566663136c411002611"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_preen"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Apply Condition Status Effect to Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55293fc5663136540600494c"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "StatusCondition"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "CameraMode"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "BuffDebuffType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+    ops {
       functionName: "Start Conversation"
       args {
         call_value {
@@ -317,25 +382,6 @@ triggers {
           }
           args {
             int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55186566663136c411002611"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Berlin:General/standing_idle_sitting"
           }
         }
       }
@@ -744,6 +790,63 @@ triggers {
   isActive: true
   idRef {
     id: "5493a130666538100a000381"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Exterior.DancesWithTraffic"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "552940cf663136540600494e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "535d8b5b373937f015007118"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552940fc6631365406004950"
   }
   elseActions {
   }
@@ -1240,7 +1343,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "5493b451666538100a00046a"
   }
@@ -3474,8 +3577,8 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Berlin:HavenCivilians/TrollMaleHavenCivilian_2"
-    character_sheet_id: "BaseCivilian"
+    prefab_name: "Seattle:Core/HumanMale"
+    character_sheet_id: "Lvl5_Dwarf_Shaman"
     character_mod {
       stats {
         body: 0
@@ -3505,7 +3608,7 @@ characters {
         ranged_combat: 0
         close_combat: 0
         throwing_weapons: 0
-        spellcasting: 0
+        spellcasting: 5
         decking: 0
         conjuring: 0
         spirit_summoning: 0
@@ -3549,13 +3652,96 @@ characters {
     equipment {
       prefab_name: "Berlin_Spell Fog"
     }
+    equipment {
+      prefab_name: "Spell Armor 2"
+    }
+    equipment {
+      prefab_name: "Spell Stunball 1"
+    }
+    equipment {
+      prefab_name: "Spell Flamethrower 2"
+    }
+    equipment {
+      prefab_name: "Spell Fireball 1"
+    }
+    equipment {
+      prefab_name: "Spell Powerbolt 2"
+    }
+    equipment {
+      prefab_name: "RiggerTrenchcoat"
+    }
     team_id: "Civilians"
-    char_name: "Urban Shaman"
+    char_name: "Dances With Traffic"
     pc_spawn_number: -1
     portrait {
-      filename: "npc_trollmale_meatgrinder"
+      filename: "GEEKED_DancesWithTraffic"
     }
-    karma: 6
+    portrait_code_override: "s2h1c7b11c7"
+    karma: 124
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 75
+    y: 0
+    z: 18
+  }
+  orientation: ORIENTATION_W
+  displayName: "Watcher"
+  idRef {
+    id: "55293fc5663136540600494c"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "ShamanCamera"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 174
+    is_prop_character: true
   }
 }
 variables {
@@ -3587,6 +3773,14 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "bol_TaxiRefused"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bol_DanceWithTrafficHostile"
     typeName: "bool"
   }
 }
