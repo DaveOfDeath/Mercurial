@@ -393,16 +393,36 @@ triggers {
       functionName: "Teleport Actor"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "All Actors on Team"
           args {
             call_value {
-              functionName: "Get Map Item (Player)"
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
               args {
                 int_value: 0
               }
             }
           }
           args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
           }
         }
       }
@@ -502,17 +522,6 @@ triggers {
           functionName: "Get Map Item (Player)"
           args {
             int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eve_SilverArrowRepair"
           }
         }
       }
@@ -754,6 +763,112 @@ triggers {
       }
       args {
         string_value: "Hey chummer, welcome back. I\'ve been busy, cleaning up the place and getting some of your tech working."
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Ignored by AI"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_SilverArrowRepair"
+          }
+        }
       }
     }
   }
@@ -12880,6 +12995,52 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Evaluate If Actor is Inside Region"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isDog"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "AreOrAreNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54fc54f2663136a005007617"
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -12892,7 +13053,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "     *SilverARO"
@@ -13265,6 +13426,28 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Variable (string)"
       args {
         call_value {
@@ -13354,28 +13537,6 @@ triggers {
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Waypoint on Actor"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PrimaryOrSecondary"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54b289eb6131317007006115"
-          }
-        }
       }
     }
     ops {
@@ -13649,64 +13810,6 @@ triggers {
           functionName: "Get Map Item (Trigger)"
           args {
             string_value: "54cd7572613131bc1e002504"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor Ignored by AI"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 1
           }
         }
       }
@@ -16237,7 +16340,7 @@ triggers {
             string_value: "542848a8633464d816001ad5"
           }
           args {
-            string_value: "int_NPC_Status_SilverARO"
+            string_value: "int_Story_Arrow"
           }
         }
       }
@@ -19630,6 +19733,247 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "          Maria.StormOff"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_MariaStormOff"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5503fd0f66313678170062ce"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Region)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55230cf26131317c0a007ff9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55230ccc6131317c0a007ff8"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552c2e98666538e80e003017"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552c2e98666538e80e003017"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "     [2] FoleyOffice"
   events {
     ops {
@@ -20227,10 +20571,10 @@ regions {
 regions {
   name: "CameraBounds"
   position {
-    x: 55
-    y: 53
-    width: 58
-    height: 35
+    x: 79
+    y: 56
+    width: 40
+    height: 20
   }
   enabledAtStart: true
   is_camera_region: true
@@ -21009,8 +21353,8 @@ regions {
 regions {
   name: "Junkies End"
   position {
-    x: 77
-    y: -57
+    x: 119
+    y: 103
     width: 2
     height: 2
   }
@@ -21423,8 +21767,8 @@ regions {
 regions {
   name: "Door Vortex"
   position {
-    x: 129
-    y: -13
+    x: 90
+    y: 121
     width: 2
     height: 2
   }
@@ -21944,6 +22288,9 @@ characters {
     prefab_name: "Lonestar/HumanFemaleLonestarCaptain"
     character_sheet_id: "Lonestar_Lv1_Captain"
     equipment_sheet_id: "Lonestar_Lv1_Captain_Gear"
+    character_mod {
+      archetypeName: "Non-Combatant"
+    }
     team_id: "Civilians"
     char_name: "Lonestar Captain"
     GeneralTags: "isLonestar"
@@ -21990,6 +22337,7 @@ characters {
       }
       specializations {
       }
+      archetypeName: "Non-Combatant"
     }
     team_id: "Civilians"
     char_name: "Lonestar Enforcer"
@@ -22036,6 +22384,7 @@ characters {
       }
       specializations {
       }
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -22051,9 +22400,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 117
     y: 0
-    z: -64
+    z: 96
   }
   orientation: ORIENTATION_S
   GeneralTags: "isBigJim"
@@ -22205,9 +22554,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 117
     y: 0
-    z: -62
+    z: 98
   }
   orientation: ORIENTATION_S
   GeneralTags: "isGeeked"
@@ -22284,7 +22633,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -22316,9 +22665,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 117
     y: 0
-    z: -60
+    z: 100
   }
   orientation: ORIENTATION_S
   displayName: "0"
@@ -22399,6 +22748,24 @@ characters {
       vulnerabilities {
       }
     }
+    equipment {
+      prefab_name: "HealthPack_med"
+    }
+    equipment {
+      prefab_name: "HealthPack_med"
+    }
+    equipment {
+      prefab_name: "HealthPack_hi"
+    }
+    equipment {
+      prefab_name: "HealthPack_hi"
+    }
+    equipment {
+      prefab_name: "Berlin_BuMoNABasic"
+    }
+    equipment {
+      prefab_name: "Berlin_BuMoNABasic"
+    }
     team_id: "Civilians"
     char_name: "Medical Drone"
     enabled_at_start: true
@@ -22412,9 +22779,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 117
     y: 0
-    z: -58
+    z: 102
   }
   orientation: ORIENTATION_S
   displayName: "1"
@@ -22517,9 +22884,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 117
     y: 0
-    z: -56
+    z: 104
   }
   orientation: ORIENTATION_S
   displayName: "2"
@@ -22595,7 +22962,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -22622,9 +22989,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 119
     y: 0
-    z: -64
+    z: 96
   }
   orientation: ORIENTATION_S
   displayName: "0"
@@ -22695,9 +23062,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 119
     y: 0
-    z: -62
+    z: 98
   }
   orientation: ORIENTATION_S
   displayName: "0"
@@ -22828,9 +23195,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 119
     y: 0
-    z: -60
+    z: 100
   }
   orientation: ORIENTATION_S
   GeneralTags: "isJunkie"
@@ -22953,7 +23320,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -22976,9 +23343,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 119
     y: 0
-    z: -58
+    z: 102
   }
   orientation: ORIENTATION_S
   GeneralTags: "isJunkie"
@@ -23046,7 +23413,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -23066,9 +23433,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 119
     y: 0
-    z: -56
+    z: 104
   }
   orientation: ORIENTATION_S
   displayName: "0"
@@ -23175,13 +23542,12 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 89
+    x: 90
     y: 0
     z: -11
   }
   orientation: ORIENTATION_S
   GeneralTags: "isDog"
-  GeneralTags: "isInIntro"
   displayName: "3"
   idRef {
     id: "54a85007666632341d000e2b"
@@ -23211,7 +23577,7 @@ characters {
       }
       specializations {
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -23224,7 +23590,6 @@ characters {
     team_id: "Dogs"
     char_name: "Dog"
     GeneralTags: "isDog"
-    GeneralTags: "isInIntro"
     pc_spawn_number: -1
     portrait {
       filename: "npc_dog_dante"
@@ -23236,13 +23601,12 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 103
+    x: 106
     y: 0
-    z: 4
+    z: 5
   }
   orientation: ORIENTATION_S
   GeneralTags: "isDog"
-  GeneralTags: "isInIntro"
   displayName: "2"
   idRef {
     id: "54a85007666632341d000e2c"
@@ -23272,7 +23636,7 @@ characters {
       }
       specializations {
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -23285,7 +23649,6 @@ characters {
     team_id: "Dogs"
     char_name: "Dog"
     GeneralTags: "isDog"
-    GeneralTags: "isInIntro"
     pc_spawn_number: -1
     portrait {
       filename: "npc_dog_dante"
@@ -23302,7 +23665,6 @@ characters {
   }
   orientation: ORIENTATION_S
   GeneralTags: "isDog"
-  GeneralTags: "isInIntro"
   displayName: "1"
   idRef {
     id: "54a85007666632341d000e2d"
@@ -23333,7 +23695,7 @@ characters {
       }
       specializations {
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -23346,7 +23708,6 @@ characters {
     team_id: "Dogs"
     char_name: "Dog"
     GeneralTags: "isDog"
-    GeneralTags: "isInIntro"
     pc_spawn_number: -1
     portrait {
       filename: "npc_dog_dante"
@@ -27312,9 +27673,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 79
+    x: 121
     y: 0
-    z: -58
+    z: 102
   }
   orientation: ORIENTATION_S
   displayName: "Protect"
@@ -27502,6 +27863,7 @@ characters {
         smg: 0
         spirit_control: 6
       }
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
@@ -27532,9 +27894,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 79
+    x: 121
     y: 0
-    z: -60
+    z: 100
   }
   orientation: ORIENTATION_S
   idRef {
@@ -27601,9 +27963,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 79
+    x: 121
     y: 0
-    z: -62
+    z: 98
   }
   orientation: ORIENTATION_S
   idRef {
@@ -27694,9 +28056,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 76
+    x: 106
     y: 0
-    z: -76
+    z: 103
   }
   orientation: ORIENTATION_S
   displayName: "Ego"
@@ -27761,9 +28123,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 76
+    x: 106
     y: 0
-    z: -75
+    z: 104
   }
   orientation: ORIENTATION_S
   idRef {
@@ -27783,9 +28145,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 77
+    x: 107
     y: 0
-    z: -76
+    z: 103
   }
   orientation: ORIENTATION_S
   idRef {
@@ -27805,9 +28167,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 77
+    x: 107
     y: 0
-    z: -75
+    z: 104
   }
   orientation: ORIENTATION_S
   idRef {
@@ -27827,18 +28189,19 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 75
+    x: 117
     y: 0
-    z: -65
+    z: 95
   }
   orientation: ORIENTATION_S
+  GeneralTags: "isAmazon"
   displayName: "Amazon"
   idRef {
     id: "55230ccc6131317c0a007ff7"
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Bug/BugVictim"
+    prefab_name: "Seattle:Objects/InvisibleActor"
     character_sheet_id: "AGChemie_Cyberzombie_Lv1"
     character_mod {
       stats {
@@ -27873,11 +28236,13 @@ characters {
         edged: 0
         unarmed: 0
       }
+      archetypeName: "Non-Combatant"
       vulnerabilities {
       }
     }
     team_id: "Civilians"
     char_name: "Maria Mercurial"
+    GeneralTags: "isAmazon"
     enabled_at_start: false
     pc_spawn_number: -1
     portrait {
@@ -27889,9 +28254,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 77
+    x: 119
     y: 0
-    z: -65
+    z: 95
   }
   orientation: ORIENTATION_S
   idRef {
@@ -28106,6 +28471,22 @@ variables {
     scope: TsVariableScope_Scene
     name: "iConversationCount"
     typeName: "int"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bTraumaDoor"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bAugmentationDoor"
+    typeName: "bool"
   }
 }
 mapEvents: "eve_Big_Jim_Angry"

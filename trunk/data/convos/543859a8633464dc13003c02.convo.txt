@@ -4,52 +4,23 @@ idRef {
 ui_name: "DogHouse - Medical Drone"
 nodes {
   idRef {
-    id: "543859cb633464dc13003c08"
+    id: "552c3eee666538e80e0033f5"
   }
   index: 0
-  text: "Which services do you request?"
-  branches {
-    responseText: ""
-    nextNodeIndex: 1
-  }
-  nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
-    id: "543859d9633464dc13003c0b"
-  }
-  index: 1
-  text: ""
+  text: "Greetings, $(l.race).   What services do you require?"
   branches {
     responseText: "{{CC}}Healing{{/CC}}"
-    actions {
+    conditions {
       ops {
-        functionName: "Teleport Actor"
+        functionName: "Comparison (bool)"
         args {
           call_value {
-            functionName: "Specific Actor"
+            functionName: "Get Story Variable (bool)"
             args {
-              call_value {
-                functionName: "Get Map Item (Actor)"
-                args {
-                  string_value: "54385a90633464dc13003c35"
-                }
-              }
+              string_value: "542848a8633464d816001ad5"
             }
             args {
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Center of Region"
-            args {
-              call_value {
-                functionName: "Get Map Item (Region)"
-                args {
-                  string_value: "54385955633464dc13003c00"
-                }
-              }
+              string_value: "bool_Street_Doc_1_Is_Alive"
             }
           }
         }
@@ -57,7 +28,7 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "FacingDirection"
+              string_value: "IsOrIsNot"
             }
             args {
               int_value: 1
@@ -68,66 +39,78 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "TeleportMethod"
+              string_value: "bool"
             }
             args {
-              int_value: 0
+              int_value: 1
             }
           }
         }
       }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Healing{{/CC}}"
+    conditions {
       ops {
-        functionName: "Play Animation From Manifest"
+        functionName: "Comparison (bool)"
         args {
           call_value {
-            functionName: "Get Map Item (Actor)"
+            functionName: "Get Story Variable (bool)"
             args {
-              string_value: "54385a90633464dc13003c35"
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Street_Doc_1_Is_Alive"
             }
           }
         }
         args {
           call_value {
-            functionName: "Get Map Item (Animation)"
+            functionName: "Get Preset Value (int)"
             args {
-              string_value: "Seattle:General/standing_idle_repairing"
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
             }
           }
         }
       }
     }
     nextNodeIndex: 2
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Medical Supplies{{/CC}}"
+    nextNodeIndex: 3
   }
   branches {
     responseText: "{{CC}}Augmentations{{/CC}}"
-    actions {
+    conditions {
       ops {
-        functionName: "Teleport Actor"
+        functionName: "Comparison (bool)"
         args {
           call_value {
-            functionName: "Specific Actor"
+            functionName: "Get Story Variable (bool)"
             args {
-              call_value {
-                functionName: "Get Map Item (Actor)"
-                args {
-                  string_value: "54385e37633464dc13003ca1"
-                }
-              }
+              string_value: "542848a8633464d816001ad5"
             }
             args {
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Center of Region"
-            args {
-              call_value {
-                functionName: "Get Map Item (Region)"
-                args {
-                  string_value: "54385948633464dc13003bff"
-                }
-              }
+              string_value: "bool_Street_Doc_2_Is_Alive"
             }
           }
         }
@@ -135,10 +118,10 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "FacingDirection"
+              string_value: "IsOrIsNot"
             }
             args {
-              int_value: 4
+              int_value: 1
             }
           }
         }
@@ -146,7 +129,50 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "TeleportMethod"
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 6
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Augmentations{{/CC}}"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Street_Doc_2_Is_Alive"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
             }
             args {
               int_value: 0
@@ -154,88 +180,92 @@ nodes {
           }
         }
       }
-      ops {
-        functionName: "Play Animation From Manifest"
-        args {
-          call_value {
-            functionName: "Get Map Item (Actor)"
-            args {
-              string_value: "54385a90633464dc13003c35"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Animation)"
-            args {
-              string_value: "Seattle:General/standing_idle_poised"
-            }
-          }
-        }
-      }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 7
+    hideIfUnavailable: true
   }
   branches {
-    responseText: "Never mind."
+    responseText: "Nothing... Thanks."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "543858d7633464dc13003bfc"
+  }
 }
 nodes {
   idRef {
-    id: "54385a1c633464dc13003c10"
+    id: "552c3f59666538e80e0033fb"
+  }
+  index: 1
+  text: "The doctor will see you.   Please proceed to the trauma ward."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "543858d7633464dc13003bfc"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bTraumaDoor"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "552c41d7666538e80e003439"
   }
   index: 2
-  text: "I need to be patched up. Possibly also some medical supplies."
+  text: "I\'m sorry, it appears that Dr. Ragon is not available."
   branches {
     responseText: ""
-    nextNodeIndex: 3
+    nextNodeIndex: 0
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
-    id: "542a348f373361140d007aa8"
+    id: "543858d7633464dc13003bfc"
   }
 }
 nodes {
   idRef {
-    id: "54385da2633464dc13003c7b"
+    id: "552c3f5b666538e80e0033fd"
   }
   index: 3
-  text: "The doctor will see you now."
+  text: "I can gladly assist you with that... What do you require?"
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+  }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "543858d7633464dc13003bfc"
+  }
   actions {
     ops {
-      functionName: "Move Prop"
+      functionName: "Open Store Screen From Actor"
       args {
         call_value {
-          functionName: "Get Map Item (Prop)"
+          functionName: "Get Map Item (Actor)"
           args {
-            string_value: "54385d7a633464dc13003c6c"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Current Location of Prop"
-          args {
-            call_value {
-              functionName: "Get Map Item (Prop)"
-              args {
-                string_value: "542b734f373361780f00222e"
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Delete Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "542b734f373361780f00222e"
+            string_value: "543858d7633464dc13003bfc"
           }
         }
       }
@@ -244,64 +274,87 @@ nodes {
 }
 nodes {
   idRef {
-    id: "54385a58633464dc13003c28"
+    id: "552c4274666538e80e003464"
   }
   index: 4
-  text: "I need an implant or to put in. Pronto."
+  text: "Will there be anything else?"
   branches {
-    responseText: ""
+    responseText: "Yes."
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "No."
     nextNodeIndex: 5
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
-    id: "542a348f373361140d007aa8"
+    id: "543858d7633464dc13003bfc"
   }
 }
 nodes {
   idRef {
-    id: "54385da2633464dc13003c7b"
+    id: "552c429d666538e80e00347d"
   }
   index: 5
-  text: "The doctor will see you now."
+  text: "Have a pleasant day."
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "543858d7633464dc13003bfc"
+  }
+}
+nodes {
+  idRef {
+    id: "552c3f5e666538e80e0033ff"
+  }
+  index: 6
+  text: "The Doctor is in... Please proceed to the cyber-enhancement suite."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "543858d7633464dc13003bfc"
+  }
   actions {
     ops {
-      functionName: "Move Prop"
+      functionName: "Set Variable (bool)"
       args {
         call_value {
-          functionName: "Get Map Item (Prop)"
+          functionName: "Get Variable (bool)"
           args {
-            string_value: "54385d16633464dc13003c68"
+            string_value: "bAugmentationDoor"
           }
         }
       }
       args {
         call_value {
-          functionName: "Current Location of Prop"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Map Item (Prop)"
-              args {
-                string_value: "542b7353373361780f00222f"
-              }
-            }
+            string_value: "bool"
           }
-        }
-      }
-    }
-    ops {
-      functionName: "Delete Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
           args {
-            string_value: "542b7353373361780f00222f"
+            int_value: 1
           }
         }
       }
     }
   }
 }
+nodes {
+  idRef {
+    id: "552c420f666538e80e00343b"
+  }
+  index: 7
+  text: "I\'m sorry, Dr. Knowles is out of the office today."
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "543858d7633464dc13003bfc"
+  }
+}
 roots {
+  responseText: ""
   nextNodeIndex: 0
 }
