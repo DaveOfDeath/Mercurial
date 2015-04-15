@@ -435,7 +435,7 @@ triggers {
         }
       }
       args {
-        string_value: "Fine night, isn\'t it?"
+        string_value: "Holy shit!   And here I thought it was going to be a quiet night!"
       }
       args {
         float_value: 0
@@ -819,7 +819,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Conversation)"
           args {
-            string_value: "5529419d6631365406004951"
+            string_value: "55186934663136c411002645"
           }
         }
       }
@@ -1343,7 +1343,7 @@ triggers {
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "5493b451666538100a00046a"
   }
@@ -1802,6 +1802,25 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_cower"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -2031,6 +2050,196 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "General.Crowd [1]"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "552dc74f663136a805006d31"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "552dc747663136a805006d30"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "I didn\'t see nothing, $(l.man)!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "552dc74f663136a805006d31"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552dc781663136a805006d33"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "General.Crowd [2]"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "552dc763663136a805006d32"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "552dc724663136a805006d2d"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "F\'ed them up good... Serves them right!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "552dc763663136a805006d32"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552dc794663136a805006d34"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: ""
   events {
   }
@@ -2194,6 +2403,72 @@ triggers {
   actions {
     ops {
       functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "549311c06665387404005996"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "549311c06665387404005996"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
     }
     ops {
       functionName: "Set Variable (bool)"
@@ -2362,6 +2637,72 @@ triggers {
       functionName: "Clear All Waypoints"
     }
     ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "549311c06665387404005996"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "549311c06665387404005996"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Variable (string)"
       args {
         call_value {
@@ -2375,7 +2716,7 @@ triggers {
         }
       }
       args {
-        string_value: "The cab arrives quickly, and your team piles into the back. Luckily, there\'s enough room for everyone, although it\'s a little tight and Maria has to sit on a lap- no one seems to mind that.\n\nThe cab heads uptown, running a pattern that Max requests, hoping to lose any tail. It feels like driving around in circles, but it gives you time to think and clear your head. Maria\'s penthouse makes the most sense- it\'s not like people know where it is, and it has layers of security that come from being a haven for the rich.\n\nMaria stays quiet for the entire ride, staring glassy-eyed out the window. She\'s acting like a completely different person to the woman who screamed as she attacked. You\'re beginning to wonder what\'s up with that.\n\nIt\'s time to plan your next move."
+        string_value: "The cab arrives quickly, and your team piles into the back. Luckily, there\'s enough room for everyone, although it\'s a little tight and Maria has to sit on a lap- but no one seems to mind that.\n\nThe cab heads uptown, running a pattern that Max requested, hoping to lose any tail. It feels like driving around in circles, but it gives you time to think and clear your head. Maria\'s penthouse makes the most sense- it\'s not like people know where it is, and it has layers of security that come from being a haven for the rich.\n\nMaria stays quiet for the entire ride, staring glassy-eyed out the window. She\'s acting like a completely different person to the woman who screamed as she attacked. You\'re beginning to wonder what\'s up with that.\n\nIt\'s time to plan your next move."
       }
     }
     ops {
@@ -2464,8 +2805,8 @@ regions {
 regions {
   name: "rActorSpawner"
   position {
-    x: -4
-    y: -42
+    x: -9
+    y: -39
     width: 3
     height: 6
   }
@@ -2611,6 +2952,98 @@ regions {
   is_camera_region: false
   idRef {
     id: "5493b424666538100a000469"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rCrowd1"
+  position {
+    x: 47
+    y: 22
+    width: 5
+    height: 5
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "552dc74f663136a805006d31"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rCrowd2"
+  position {
+    x: 50
+    y: 27
+    width: 4
+    height: 4
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "552dc763663136a805006d32"
   }
   highlight_color {
     r: 0
@@ -2935,9 +3368,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -4
+    x: -9
     y: 0
-    z: -42
+    z: -39
   }
   orientation: ORIENTATION_N
   displayName: "EyeCandy"
@@ -2997,9 +3430,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -4
+    x: -9
     y: 0
-    z: -39
+    z: -37
   }
   orientation: ORIENTATION_N
   displayName: "EyeCandy"
@@ -3059,9 +3492,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -4
+    x: -9
     y: 0
-    z: -40
+    z: -38
   }
   orientation: ORIENTATION_N
   displayName: "EyeCandy"
@@ -3121,9 +3554,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -2
+    x: -9
     y: 0
-    z: -41
+    z: -35
   }
   orientation: ORIENTATION_S
   displayName: "TaxiCompany"
@@ -3207,9 +3640,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -2
+    x: -7
     y: 0
-    z: -37
+    z: -34
   }
   orientation: ORIENTATION_E
   GeneralTags: "isRunner"
@@ -3304,9 +3737,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -2
+    x: -7
     y: 0
-    z: -39
+    z: -36
   }
   orientation: ORIENTATION_E
   GeneralTags: "isRunner"
@@ -3406,9 +3839,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -2
+    x: -7
     y: 0
-    z: -38
+    z: -35
   }
   orientation: ORIENTATION_E
   GeneralTags: "isRunner"
@@ -3784,17 +4217,27 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bFreeRange"
+    typeName: "bool"
+  }
+}
 mapEvents: "eMaxLeaves"
 mapEvents: "eSummonRunners"
 goals {
   name: "Protect Mercurial"
   type: GoalType_Primary
   status: GoalStatus_Hidden
+  description: "BodyGuard 101 Chummer... Protect the Protectee."
 }
 goals {
   name: "You\'ve been killed..."
   type: GoalType_Primary
   status: GoalStatus_Hidden
+  description: "Dead runners are far less likely to get paid..."
 }
 goals {
   name: "Get a quote to fix Newt\'s Van"
@@ -3815,9 +4258,9 @@ worldMapLocation {
 }
 mapName: "SCENE - Yoshiros"
 parentStory: ""
-scene_title: "Downtown - Yoshiros Resturant"
+scene_title: "Barrens - Yoshiros Resturant"
 scene_subtitle: ""
-scene_synopsis: "$(story.str_SceneDetails)\n\nRegrouping from the UnderWorld 93 encounter, and droping off Newt\'s van outside a upscale japanese resturant ... But what now? "
+scene_synopsis: "$(story.str_SceneDetails)"
 scene_image: "marialoading"
 scene_continue_button_skip: false
 scene_restore_runner_health: true
@@ -3888,5 +4331,5 @@ show_equip_screen_on_scene_load: false
 is_persistant: false
 is_persistant_has_value: false
 can_move_outside_camera_regions: false
-can_start_before_triggers: true
+can_start_before_triggers: false
 can_use_team_advancement: false

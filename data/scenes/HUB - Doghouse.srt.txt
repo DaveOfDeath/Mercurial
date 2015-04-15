@@ -11538,7 +11538,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Order Actor to Hunt And Destroy (Team)"
+      functionName: "Order Actor to Seek And Destroy (Team)"
       args {
         call_value {
           functionName: "All Actors With Tag"
@@ -11579,44 +11579,6 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enforce Actor Current Orders"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors With Tag"
-          args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isDog"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
           }
         }
       }
@@ -14034,37 +13996,13 @@ triggers {
   name: "SilverAro.Chatter"
   events {
     ops {
-      functionName: "On Actor Movement Finished"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_SilverArrowRepair"
+      }
     }
   }
   conditions {
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54b289eb6131317007006115"
-          }
-        }
-      }
-    }
     ops {
       functionName: "Comparison (string)"
       args {
@@ -14092,62 +14030,6 @@ triggers {
         string_value: "FRESH"
       }
     }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_SilverARO"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_SilverARO"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
   }
   actions {
     ops {
@@ -14173,12 +14055,23 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
+      functionName: "Send Event After Delay"
       args {
         call_value {
           functionName: "Get Map Item (Event)"
           args {
             string_value: "eve_AroSpeaks"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (float)"
+          args {
+            float_value: 10
+          }
+          args {
+            float_value: 20
           }
         }
       }
@@ -14438,7 +14331,7 @@ triggers {
         }
       }
       args {
-        string_value: "This tech was installed in 2021!"
+        string_value: "This tech was installed in 2015!"
       }
       args {
         float_value: 0
@@ -19768,6 +19661,28 @@ triggers {
       functionName: "Clear All Waypoints"
     }
     ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552c2e98666538e80e003017"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
@@ -19811,6 +19726,35 @@ triggers {
           functionName: "Get Preset Value (int)"
           args {
             string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Ignored by AI"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
           }
           args {
             int_value: 1
@@ -19910,42 +19854,6 @@ triggers {
           functionName: "Get Map Item (Actor)"
           args {
             string_value: "55230ccc6131317c0a007ff8"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "552c2e98666538e80e003017"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Wait for Rounds"
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
           }
         }
       }
@@ -20541,6 +20449,409 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "Mercurial.Respawn"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_RunnerRespawn"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Mecurial"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor near Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Prop)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5503fd0f66313678170062ce"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "542b8fc53733615806005dc1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552da889663136700c00154b"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Hernandez.Respawn"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_RunnerRespawn"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Hernandez"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor near Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "550eba516131313c1800116e"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Protect (Actor)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "550eba516131313c1800116e"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5503fd0f66313678170062ce"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552dbfd4663136a805006cf9"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Foley.Respawn"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_RunnerRespawn"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Foley"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor near Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "550eba516131313c1800116e"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Prop)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55230ccc6131317c0a007ff8"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "542b8fc53733615806005e7d"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "552dbfd6663136a805006cfa"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "SilverAro.Respawn"
   events {
     ops {
@@ -20639,7 +20950,7 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "552da889663136700c00154b"
+    id: "552dbfd7663136a805006cfb"
   }
   elseActions {
   }
@@ -21520,17 +21831,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eve_SilverArrowRepair"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Remove Tag from Actor"
       args {
         call_value {
@@ -21552,6 +21852,46 @@ triggers {
             }
           }
           args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Ignored by AI"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_SilverArrowRepair"
           }
         }
       }
@@ -21593,6 +21933,35 @@ triggers {
           functionName: "Get Preset Value (int)"
           args {
             string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Ignored by AI"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
           }
           args {
             int_value: 1
@@ -25542,7 +25911,7 @@ characters {
   name: "chars_icon_playerIcon"
   gridPoint {
     x: 99
-    y: 9
+    y: 0
     z: -70
   }
   orientation: ORIENTATION_W
@@ -28829,7 +29198,7 @@ characters {
   gridPoint {
     x: 67
     y: 0
-    z: -23
+    z: -22
   }
   orientation: ORIENTATION_E
   displayName: "01"
@@ -28909,6 +29278,7 @@ characters {
       filename: "Generic_Spirit_Air"
     }
     karma: 341
+    is_prop_character: true
   }
 }
 characters {
@@ -29589,6 +29959,7 @@ characters {
     z: 98
   }
   orientation: ORIENTATION_S
+  displayName: "Protect"
   idRef {
     id: "550eba516131313c1800116e"
   }
@@ -29880,6 +30251,7 @@ characters {
     z: 95
   }
   orientation: ORIENTATION_S
+  displayName: "Protect"
   idRef {
     id: "55230ccc6131317c0a007ff8"
   }
