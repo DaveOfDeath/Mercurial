@@ -363,12 +363,13 @@ nodes {
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 9
     hideIfUnavailable: true
+    auxiliaryLink: true
   }
   branches {
     responseText: "That\'s quite a weapon you got there. Are you compensating for something?"
-    nextNodeIndex: 16
+    nextNodeIndex: 18
   }
   branches {
     responseText: "Nevermind. {{CC}}Walk away{{/CC}}"
@@ -412,7 +413,8 @@ nodes {
   }
   branches {
     responseText: "Gunner will do. What\'s your skillset?"
-    nextNodeIndex: -1
+    nextNodeIndex: 9
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   comment: "Friends and Runners Loop"
@@ -457,40 +459,6 @@ nodes {
     responseText: "I\'ll go talk to them, and meet back with you later. {{CC}}Walk away{{/CC}}"
     nextNodeIndex: -1
   }
-  branches {
-    responseText: "He may not be coming- looks like he got geeked at an airport in New York."
-    conditions {
-      ops {
-        functionName: "Comparison (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_Story_Nebel"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          int_value: 1
-        }
-      }
-    }
-    nextNodeIndex: -1
-  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -506,7 +474,8 @@ nodes {
   }
   branches {
     responseText: "I could use the tactical know-how you\'d bring to the team."
-    nextNodeIndex: -1
+    nextNodeIndex: 9
+    auxiliaryLink: true
   }
   branches {
     responseText: "I\'m here as a \'Plus One.\' {{CC}}Walk away{{/CC}}"
@@ -883,7 +852,22 @@ nodes {
     id: "54e9f6f36131316407007f91"
   }
   index: 8
-  text: "Gunner smiles, briefly amused \"I do karaoke on the weekends, and I swam in college,\" before her expression turns serious. \n\n\"I scanned the guest list for this event, and I don\'t remember you being on there.\""
+  text: "Gunner smiles, briefly amused \"I do karaoke on the weekends, and I swam in college,\" before her expression turns serious, and she turns to watch you carefully.\n\n\"I remember when I scanned the guest list for this event, and I don\'t remember you being on there.\""
+  branches {
+    responseText: "I\'m a late addition to the guest list."
+    nextNodeIndex: 9
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'m crashing the party, looking for a team for a job I have coming up."
+    nextNodeIndex: 9
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'m just a dumb tourist, looking at all the big shadowrunners."
+    nextNodeIndex: 9
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -894,23 +878,81 @@ nodes {
   text: "She looks you over once again, clearly seeing something that meets with her approval, before nodding. \"I\'m heavy weapons. Looks like you have deckers, mages, a rigger, and a lot of trouble if Mister Johnson doesn\'t show up soon.\""
   branches {
     responseText: "See anyone worth talking to?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That really depends on if you need a decker, mage, someone for the front line, or a rigger. Looks like all of the skillsets are covered. The two mercenaries over there seem pretty solid, and I\'ve heard of the twitchy elf before, although he\'s got an unlovely rep,\" Gunner clears her throat, leaving unsaid what would constitute an unlovely reputation in a room full of professional criminals."
+        }
+      }
+    }
     nextNodeIndex: 10
   }
   branches {
     responseText: "Anyone I should stay away from or keep an eye on?"
-    nextNodeIndex: 11
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I got a bad vibe from the guy in the suit, and I don\'t trust the decker as far as I can throw her, and the priest is as green as they come,\" Gunner laughs, \"This may actually be his first time in the Stuffer Shack.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
   }
   branches {
     responseText: "Where did you get your training and cyberware?"
-    nextNodeIndex: 12
+    nextNodeIndex: 11
   }
   branches {
     responseText: "Which corp did you work for?"
-    nextNodeIndex: 13
+    nextNodeIndex: 12
   }
   branches {
     responseText: "Nice gun."
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"It\'s a Czech VZ88V, one of the best guns on the market. Bullpup design for greater stability, laser sight integral, although mine is infrared so the humies can\'t see it, caseless ammunition, gas vent for recoil, and mine has a mounted under-barrel grenade launcher.\"\n\n\"It\'s Smartlinked, which means the microcomputer updates target information and keeps my rounds going where they need to.\"\n\nGunner pats the weapon affectionately, \"I call her Vera.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
   }
   branches {
     responseText: "Talk to you later {{CC}}Walk away.{{/CC}}"
@@ -923,26 +965,167 @@ nodes {
     id: "54e9f9956131316407007ffb"
   }
   index: 10
-  text: "Depends on if you need a decker, mage, someone for the front line, or a rigger. Looks like all of the skillsets are covered. The two mercenaries over there seem pretty solid, and I\'ve heard of the twitchy elf before, although he\'s got an unlovely rep."
-  nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
-    id: "54e9f9bb6131316407007ffd"
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What\'s the word on the elf?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Civilian, faster than lightning with Wired Reflexes  on Kamikaze. Shoots that pistol off like he shoots off his mouth- early and often.\"\n\nGunner takes a breath, as though weighing her options, and finally says \"Anything more than that, you need to talk to the man yourself.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
   }
-  index: 11
-  text: "I got a bad vibe from the guy in the suit, and I don\'t trust the decker as far as I can throw her, and the priest is as green as they come. This may actually be his first time in the Stuffer Shack."
+  branches {
+    responseText: "What\'s with the guy in the suit?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Nothing specific, I just get a bad vibe from him.\" Gunner clears her throat, dropping her voice close to a whisper, \"and anyone who stands in a group like this and talks to himself is trouble.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s with the decker?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I don\'t know her myself, but I\'ve had friends work with her before, and she has a tendency to sleep with coworkers and cut out when things get rough,\" Gunner shrugs.\n\n\"When I say it out loud, it doesn\'t sound that bad.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I came here with Silver Arrow, do you know him?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Gunner glances in Silver Arrow\'s diretion briefly, \"The \'chummer\' guy? I don\'t know that I could take him seriously.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Anyone I should stay away from?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I got a bad vibe from the guy in the suit, and I don\'t trust the decker as far as I can throw her, and the priest is as green as they come,\" Gunner laughs, \"This may actually be his first time in the Stuffer Shack.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Anyone interesting?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Gunner eyes her fellow runners, \"I think you have the makings of a good team here. Ignoring the mages, you have a rigger, a decker, and at least two weapons specialists. That\'s enough support to get most jobs done.\"\n\n\"I\'ve never been good with magic, though,\" Gunner admits."
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Okay, I think that\'s all I need to know about the group {{CC}}Walk away{{/CC}}."
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
+  comment: "Runner Loop"
 }
 nodes {
   idRef {
     id: "54e9fa256131316407007fff"
   }
-  index: 12
+  index: 11
   text: "Gunner gives you a half smile. \"Detroit,\" is all that she answers."
   branches {
-    responseText: "Detroit, that means ARES, right?"
-    nextNodeIndex: 13
+    responseText: "Detroit- that means ARES, right?"
+    nextNodeIndex: 12
     auxiliaryLink: true
   }
   branches {
@@ -956,36 +1139,226 @@ nodes {
   idRef {
     id: "54e9fa396131316407008001"
   }
-  index: 13
-  text: "\"That\'s considered a rude question to ask, since anyone here is going to be burned by their parent corporation and not want to talk about it.\""
+  index: 12
+  text: "\"That\'s considered a rude question to ask,\" Gunner pauses, punctuating the sentence with each word, \"Anyone here is going to be burned by their parent corporation and not want to talk about it.\""
   branches {
-    responseText: "My apologies. "
+    responseText: "Later. {{CC}}Walk away{{/CC}}"
     nextNodeIndex: -1
   }
   branches {
     responseText: "My apologies. See anyone worth talking to?"
-    nextNodeIndex: 14
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Depends on if you need a decker, mage, someone for the front line, or a rigger. Looks like all of the skillsets are covered. The dwarf mercenary over there is known for his lack of social etiquette, you two should be fast friends- and the elf has an unlovely reputation. \""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
   }
   branches {
     responseText: "My apologies. See anyone I should stay away from or keep an eye on?"
-    nextNodeIndex: 15
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"It\'s a room full of criminals with questionable social skills, you probably don\'t want to go asking a lot of personal questions and pissing people off.\" \n\nGunner nods in the direction of the skinny elf \"He has a reputation for shooting first and asking questions later.\"\n\nGunner glances over her shoulder at the man in the suit, \"and that bastard has been talking to himself for the past ten minutes.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
-    id: "54e9f9956131316407007ffb"
+    id: "552ddc96613131581e0074c8"
+  }
+  index: 13
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What is caseless ammunition?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Gunner smiles, a very attractive look on her, \"Bullets with external propellant, sealed with thin plastic- they fire straight, and they don\'t leave brass or tin casings behind to show the cops where you were shooting from.\"\n\n\"They\'re a standard precaution among runners who know what they\'re doing.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What is bullpup?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Gunner moves her weapon out for you to inspect, but not touch, \"the grip is moved up here in the design, in front of the magazine, giving the weapon more stability. The cartiridges load here, in the stock, and all the fun bits are loaded on the end.\" \n\nGunner seems quite proud of her weapon."
+        }
+      }
+    }
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What is Czech?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Fragging hell, man\" Gunner says, rolling her eyes. \"Not what, where- Czechoslovakia is a country in Europe.\"\n\nGunner shakes her head \"I\'d heard the UCAS public school system was bad, but I didn\'t know it was this bad.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Grenade launcher?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Gunner smiles, \"Oh, yes. I got my armament guy to mount the grenade launcher underbarrel here, with the rangefinder built into the existing Smartlink. Fires microgrenades, and can even take armored targets like vehicles out.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Smartlink?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Smartlinks are a bit of cyberware- probably the best thing ever invented by man since the modern rifle.\"\n\nGunner shows you the induction jack in her hand, and the pad it connects to on her rifle \"The weapon transmits information to my brain, allowing me to drop an empty clip with a tought, or giving me realtime targeting data, target speed, and barrel heat. Really great information to have in the heat of battle.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I don\'t want to talk about weapons anymore."
+    nextNodeIndex: 14
+  }
+  branches {
+    responseText: "That\'s quite a weapon you got there. Are you compensating for something?"
+    nextNodeIndex: 16
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Weapon loop"
+}
+nodes {
+  idRef {
+    id: "552dde68613131581e007528"
   }
   index: 14
-  text: "Depends on if you need a decker, mage, someone for the front line, or a rigger. Looks like all of the skillsets are covered. The two mercenaries over there seem pretty solid, and I\'ve heard of the twitchy elf before, although he\'s got an unlovely rep."
+  text: "Gunner looks at you, and nods \"What would you like to talk about, then?\""
+  branches {
+    responseText: "I\'m building a team."
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Weather?"
+    nextNodeIndex: 15
+  }
+  branches {
+    responseText: "Can\'t think of anything {{CC}}Walk Away{{/CC}}"
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
-    id: "54e9f9bb6131316407007ffd"
+    id: "552de26f613131581e007558"
   }
   index: 15
-  text: "I got a bad vibe from the guy in the suit, and I don\'t trust the decker as far as I can throw her, and the priest is as green as they come. This may actually be his first time in the Stuffer Shack."
+  text: "\"Rainy,\" Gunner responds quickly, a shadow of a smile on her face."
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -1013,6 +1386,34 @@ nodes {
     id: "551a0d7f613131ec11005148"
   }
   index: 17
+  text: "Gunner looks at you, stunned, and then laughs. \"You\'re all right, for a dirty stinking $-(l.race).\"\n\nShe chucks you on the shoulder, harder than probably necessary, and goes back to watching the room with a steely gaze."
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54e9f8cc6131316407007fb2"
+  }
+  index: 18
+  text: "Gunner stares down at you, clearly irritated with you. When she finally speaks, her words carry her irritation with you.\n \"You got something to say?\""
+  branches {
+    responseText: "Sorry, I didn\'t mean anything by it."
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Like, compensating for not having a penis."
+    nextNodeIndex: 19
+  }
+  branches {
+    responseText: "{{CC}}Walk away.{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "551a0d7f613131ec11005148"
+  }
+  index: 19
   text: "Gunner looks at you, stunned, and then laughs. \"You\'re all right, for a dirty stinking $-(l.race).\"\n\nShe chucks you on the shoulder, harder than probably necessary, and goes back to watching the room with a steely gaze."
   nodeType: ConversationNodeType_Simple
 }
