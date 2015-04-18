@@ -1,0 +1,115 @@
+idRef {
+  id: "5531d3b56631360405002726"
+}
+ui_name: "DogHouse - Street Doc 2 (CyberWare)"
+nodes {
+  idRef {
+    id: "5531d3d3663136040500272d"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Medical Supplies{{/CC}} How about some medpacks?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "You\'ll need to head next door for those items.   All we do here is Augmentation.   Have a descent selection of cyberware, if you\'re interested though..."
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Augmentation{{/CC}} Lets see what we can do to improve this old meat-bag."
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}} Thats all, Thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54385e37633464dc13003ca1"
+  }
+  comment: "BaseLoop"
+}
+nodes {
+  idRef {
+    id: "5531d5f46631360405002737"
+  }
+  index: 1
+  text: "Of course, take a look..."
+  branches {
+    responseText: "Thanks."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Of course!   Will there be anything else?"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Open Cyberware Screen From Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5531cce3663136040500271e"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Well Hi there.   I wasn\'t sure that bot up front even worked anymore... seems like it\'s been ages since it let anyone back here... What can I do you for?"
+      }
+    }
+  }
+  nextNodeIndex: 0
+}

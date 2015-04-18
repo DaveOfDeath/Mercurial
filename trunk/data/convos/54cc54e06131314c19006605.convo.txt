@@ -1,7 +1,7 @@
 idRef {
   id: "54cc54e06131314c19006605"
 }
-ui_name: "DogHouse - Lonestar"
+ui_name: "DogHouse - Lonestar Captain"
 nodes {
   idRef {
     id: "54cc54f36131314c1900660b"
@@ -89,7 +89,7 @@ nodes {
     nextNodeIndex: 1
   }
   branches {
-    responseText: "The bodies are in that industrial dumpster across from the Stuffer Shack."
+    responseText: "I heard a little rumor about some of your boys gone missing... Heard the bodies are in that industrial dumpster across from the Stuffer Shack."
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -100,7 +100,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_LonestarCorpses"
+              string_value: "int_BodyDisposalMethod"
             }
           }
         }
@@ -111,16 +111,36 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 2
+              int_value: 4
             }
           }
         }
         args {
-          int_value: 1
+          int_value: 3
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_BodyDisposalMethod"
+            }
+          }
+        }
+        args {
+          int_value: 5
         }
       }
     }
     nextNodeIndex: 8
+    hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "54cc5c716131314c190066d9"
@@ -137,9 +157,58 @@ nodes {
     id: "54cc563b6131314c19006618"
   }
   index: 1
-  text: "{{GM}}The captain gives you a once-over, the word \'churlish\' seeming to best describe his demeanor.{{/GM}}\n\"What do you want, $+(l.man)?\""
+  text: "{{GM}}The captain gives you a once-over, the word \'churlish\' seeming to best describe his demeanor.{{/GM}}\n\"What do you want, $+(s.man)?\""
   branches {
     responseText: "I know where some dead Lonestar officers got dumped. Interested?"
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_BodyDisposalMethod"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_BodyDisposalMethod"
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
     nextNodeIndex: 2
   }
   branches {
@@ -557,7 +626,7 @@ nodes {
     nextNodeIndex: 10
   }
   branches {
-    responseText: "I\'ll take a favor, please."
+    responseText: "How about you owe me one, and we call it square."
     nextNodeIndex: 3
     auxiliaryLink: true
   }

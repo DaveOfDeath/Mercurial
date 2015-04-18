@@ -1,0 +1,485 @@
+idRef {
+  id: "5531d8c56631360405002786"
+}
+ui_name: "DogHouse - Geeked (Weapons)"
+nodes {
+  idRef {
+    id: "5531d8d7663136040500278c"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Shop{{/CC}} Let me see what you\'ve got."
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "Sorry, I wasn\'t trying to mess with your gear man... Just got some really nice pieces, and I wanted a closer look."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_GEEKED_Anger_Level"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bAngerLowered"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_GEEKED_Anger_Level"
+            }
+          }
+        }
+        args {
+          int_value: -1
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bAngerLowered"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5531dc9966313604050027ba"
+    }
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5436df45633464b408003077"
+  }
+  comment: "BaseLoop"
+}
+nodes {
+  idRef {
+    id: "5531dbfd66313604050027ac"
+  }
+  index: 1
+  text: "Feast your eyes on these beauties..."
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Anything else?"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5436df45633464b408003077"
+  }
+  actions {
+    ops {
+      functionName: "Open Store Screen From Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5531cae26631360405002716"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5531db8266313604050027a9"
+  }
+  index: 2
+  text: "{{GM}}He visibly calms slightly, but you can tell his feathers are still ruffled.{{/GM}}\n\nJust keep your hands off my stuff $(s.man)... and we\'ll get along just fine..."
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Now... was there something I could do for you?"
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5436df45633464b408003077"
+  }
+}
+roots {
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_GEEKED_Anger_Level"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Hoi Mate.   Welcome to Geeked\'s Guns and Ammo.   Finest arments you\'ll find in all of Seattle.  So, what\'ll it be... you just a window licker, or are you here to buy?"
+      }
+    }
+  }
+  nextNodeIndex: 0
+  comment: "Anger - 0"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_GEEKED_Anger_Level"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Oi... Now you wanna talk?  Keep you\'re mitts off my gear and we\'ll be besties... Now... you here to buy?"
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAngerLowered"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+  auxiliaryLink: true
+  comment: "Anger - 1"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_GEEKED_Anger_Level"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "You\'d better have a damn good reason for pissing me off, Mate.   How about you hand me some nuyen, before I hand you your ass... \n\nNow... you here to buy or what?"
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAngerLowered"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+  auxiliaryLink: true
+  comment: "Anger - 2"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_GEEKED_Anger_Level"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "You\'ve got some motha fuggin\' nerve... Messing with all my chit... \n\nYou\'re on thin ice, $(s.man).   What the fug do you want?"
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAngerLowered"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+  auxiliaryLink: true
+  comment: "Anger - 3"
+}

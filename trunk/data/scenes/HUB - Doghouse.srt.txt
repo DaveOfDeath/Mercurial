@@ -359,6 +359,28 @@ triggers {
       }
     }
     ops {
+      functionName: "Activate Actor Spawner By Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isDog"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Order Actor to Face Direction"
       args {
         call_value {
@@ -6630,7 +6652,7 @@ triggers {
         }
       }
       args {
-        string_value: "Looking to know when you\'re going to die?"
+        string_value: "You... there... I can read your future, if you\'ve got a moment..."
       }
       args {
         float_value: 0
@@ -8560,7 +8582,7 @@ triggers {
   }
   actions {
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "5436e002633464b408003079"
   }
@@ -24191,6 +24213,7 @@ characters {
   }
   orientation: ORIENTATION_S
   GeneralTags: "isLonestar"
+  displayName: "LoneStar"
   idRef {
     id: "542a1a0d373361140d00769a"
   }
@@ -24199,15 +24222,14 @@ characters {
     interactionRadius: 3
     prerequisites {
       ops {
-        functionName: "Comparison (bool)"
+        functionName: "Comparison (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (bool)"
+            functionName: "Get Story Variable (string)"
             args {
-              string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "bool_Is_In_Intro"
+              string_value: "str_SpawnPoint"
             }
           }
         }
@@ -24218,20 +24240,12 @@ characters {
               string_value: "IsOrIsNot"
             }
             args {
-              int_value: 1
+              int_value: 0
             }
           }
         }
         args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
+          string_value: "FRESH"
         }
       }
     }
@@ -24243,11 +24257,26 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Lonestar/HumanFemaleLonestarCaptain"
+    prefab_name: "Seattle:Lonestar/HumanFemaleLonestarCaptain"
     character_sheet_id: "Lonestar_Lv1_Captain"
     equipment_sheet_id: "Lonestar_Lv1_Captain_Gear"
     character_mod {
+      stats {
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+      }
+      specializations {
+      }
       archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
     }
     team_id: "Civilians"
     char_name: "Lonestar Captain"
@@ -24255,8 +24284,9 @@ characters {
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
-      filename: ""
+      filename: "npc_humanfemale_muller"
     }
+    karma: 44
   }
 }
 characters {
@@ -24268,13 +24298,13 @@ characters {
   }
   orientation: ORIENTATION_W
   GeneralTags: "isLonestar"
-  displayName: "Tommy"
+  displayName: "LoneStar"
   idRef {
     id: "542a1a1c373361140d00769c"
   }
   lod: 0
   character_instance {
-    prefab_name: "Lonestar/OrkLoneStarCaptain"
+    prefab_name: "Seattle:Lonestar/OrkLoneStarCaptain"
     character_sheet_id: "Lonestar_Lv1_Ork_Shotgun"
     equipment_sheet_id: "Lonestar_Lv1_Shotgun_Gear"
     character_mod {
@@ -24296,6 +24326,8 @@ characters {
       specializations {
       }
       archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
     }
     team_id: "Civilians"
     char_name: "Lonestar Enforcer"
@@ -24303,8 +24335,9 @@ characters {
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
-      filename: ""
+      filename: "pc_orkmale_10_blue"
     }
+    karma: 33
   }
 }
 characters {
@@ -24400,7 +24433,10 @@ characters {
         }
       }
     }
-    interactionIcon: InteractionIcon_Conversation
+    conversationPoint {
+      conversationID: "5531ddaa66313604050027e2"
+      turnToFace: false
+    }
     interaction_info_text: "Big Jim"
   }
   lod: 0
@@ -24525,8 +24561,37 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 3
+    prerequisites {
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "FRESH"
+        }
+      }
+    }
     conversationPoint {
-      conversationID: ""
+      conversationID: "5531d8c56631360405002786"
       turnToFace: true
     }
     interaction_info_text: "GEEKED!"
@@ -24750,7 +24815,7 @@ characters {
     isEnabled: true
     interactionRadius: 1
     conversationPoint {
-      conversationID: ""
+      conversationID: "5531d7066631360405002750"
       turnToFace: true
     }
     interaction_info_text: "Street Doc"
@@ -24855,7 +24920,7 @@ characters {
     isEnabled: true
     interactionRadius: 1
     conversationPoint {
-      conversationID: ""
+      conversationID: "5531d3b56631360405002726"
       turnToFace: true
     }
     interaction_info_text: "Street Doc"
@@ -25062,7 +25127,7 @@ characters {
       }
     }
     conversationPoint {
-      conversationID: ""
+      conversationID: "5531e56f6631360405002874"
       turnToFace: true
     }
     interaction_info_text: "Talismonger"
@@ -25549,6 +25614,7 @@ characters {
     team_id: "Civilians"
     char_name: "Dog"
     GeneralTags: "isDog"
+    enabled_at_start: false
     pc_spawn_number: -1
     portrait {
       filename: "npc_dog_dante"
@@ -25610,6 +25676,7 @@ characters {
     team_id: "Civilians"
     char_name: "Dog"
     GeneralTags: "isDog"
+    enabled_at_start: false
     pc_spawn_number: -1
     portrait {
       filename: "npc_dog_dante"
@@ -25671,6 +25738,7 @@ characters {
     team_id: "Civilians"
     char_name: "Dog"
     GeneralTags: "isDog"
+    enabled_at_start: false
     pc_spawn_number: -1
     portrait {
       filename: "npc_dog_dante"
@@ -27308,7 +27376,7 @@ characters {
     isEnabled: false
     interactionRadius: 1
     conversationPoint {
-      conversationID: ""
+      conversationID: "5531e1b96631360405002830"
       turnToFace: false
     }
     interaction_info_text: ""
@@ -29271,6 +29339,7 @@ characters {
     }
     karma: 341
     is_prop_character: true
+    has_fist: false
   }
 }
 characters {
@@ -29658,7 +29727,7 @@ characters {
   gridPoint {
     x: 121
     y: 0
-    z: 102
+    z: 97
   }
   orientation: ORIENTATION_S
   displayName: "Protect"
@@ -29879,7 +29948,7 @@ characters {
   gridPoint {
     x: 121
     y: 0
-    z: 100
+    z: 98
   }
   orientation: ORIENTATION_S
   idRef {
@@ -29948,7 +30017,7 @@ characters {
   gridPoint {
     x: 121
     y: 0
-    z: 98
+    z: 96
   }
   orientation: ORIENTATION_S
   displayName: "Protect"
@@ -30238,7 +30307,7 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 119
+    x: 121
     y: 0
     z: 95
   }
@@ -30328,6 +30397,678 @@ characters {
     description_bio: "Foley is in his 50s, short, fat and balding, wears latest fashions, suited to teens. He smokes large cigarettes. He\'s a talker. His constant refrain is \"Am I right?\""
     karma: 65
     hiring_cost_override: 3000
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 30
+    y: 0
+    z: -54
+  }
+  orientation: ORIENTATION_S
+  displayName: "Vendor"
+  idRef {
+    id: "5531cae26631360405002716"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Weapons_1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "Geeked_Low"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 31
+    y: 0
+    z: -54
+  }
+  orientation: ORIENTATION_S
+  displayName: "Vendor"
+  idRef {
+    id: "5531cb376631360405002717"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Weapons_2"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "Geeked_High"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 20
+    y: 0
+    z: 51
+  }
+  orientation: ORIENTATION_S
+  displayName: "Vendor"
+  idRef {
+    id: "5531cbca6631360405002718"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Magic_2"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "Magic_High"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 20
+    y: 0
+    z: 50
+  }
+  orientation: ORIENTATION_S
+  displayName: "Vender"
+  idRef {
+    id: "5531cbce6631360405002719"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Magic_1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "Magic_Low"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 47
+    y: 0
+    z: -57
+  }
+  orientation: ORIENTATION_E
+  displayName: "Vendor"
+  idRef {
+    id: "5531cc55663136040500271a"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Tech_2"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "Tech_High"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 48
+    y: 0
+    z: -57
+  }
+  orientation: ORIENTATION_E
+  displayName: "Vendor"
+  idRef {
+    id: "5531cc60663136040500271b"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "AGChemie_Cyberzombie_Lv1"
+    equipment_sheet_id: "Berlin_Merchant_Tech_1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        dodge: 0
+      }
+      specializations {
+        rifle: 0
+        edged: 0
+        unarmed: 0
+      }
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "Tech_Low"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 174
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 32
+    y: 0
+    z: 8
+  }
+  orientation: ORIENTATION_S
+  displayName: "Vendor"
+  idRef {
+    id: "5531cce3663136040500271e"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Doctor_1"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "CyberWare_Low"
+    pc_spawn_number: -1
+    portrait {
+      filename: "NPC_TrollMale_CyberZombie"
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 33
+    y: 0
+    z: 8
+  }
+  orientation: ORIENTATION_S
+  displayName: "Vendor"
+  idRef {
+    id: "5531cce6663136040500271f"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Doctor_2"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Shadowrunners"
+    char_name: "CyberWare_High"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
   }
 }
 variables {
@@ -30471,6 +31212,14 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "bAugmentationDoor"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bAngerLowered"
     typeName: "bool"
   }
 }
