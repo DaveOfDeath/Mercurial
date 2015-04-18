@@ -1,0 +1,112 @@
+idRef {
+  id: "5531d7066631360405002750"
+}
+ui_name: "DogHouse - Street Doc 1 (Supplies)"
+nodes {
+  idRef {
+    id: "5531d72e6631360405002756"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Medical Supplies{{/CC}} How about some Medpacks?"
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "{{CC}}Augmentation{{/CC}} Lets see what body mods you can do..."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Oooh... Sorry.   You\'ll need to head to the other office for that.    I just carry the medical supplies..."
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "BaseLoop"
+}
+nodes {
+  idRef {
+    id: "5531d79f6631360405002766"
+  }
+  index: 1
+  text: "Take a look..."
+  branches {
+    responseText: "Thanks."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Anything else I can get ya?"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Open Store Screen From Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5531cce3663136040500271e"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Well Hi there.   I wasn\'t sure that bot up front even worked anymore... seems like it\'s been ages since it let anyone back here... What can I do you for?"
+      }
+    }
+  }
+  nextNodeIndex: 0
+}

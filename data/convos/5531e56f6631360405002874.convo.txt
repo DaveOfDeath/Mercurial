@@ -1,0 +1,93 @@
+idRef {
+  id: "5531e56f6631360405002874"
+}
+ui_name: "DogHouse - Talismonger (Magic)"
+nodes {
+  idRef {
+    id: "5531e57f663136040500287a"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Browse{{/CC}} Lets see what you\'ve got."
+    nextNodeIndex: 1
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54386225633464dc13003cdc"
+  }
+}
+nodes {
+  idRef {
+    id: "5531e5e4663136040500287e"
+  }
+  index: 1
+  text: "Of course, friend.   Please have a look..."
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Anything else, Friend?"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54386225633464dc13003cdc"
+  }
+  actions {
+    ops {
+      functionName: "Open Store Screen From Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5531cbce6631360405002719"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Friend... Please come in.   I have all manner of trinkets available to those who have the magic of ages in their veins..."
+      }
+    }
+  }
+  nextNodeIndex: 0
+}
