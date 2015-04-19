@@ -1,0 +1,655 @@
+idRef {
+  id: "5532a418663136200f0008a2"
+}
+ui_name: "STORY - Hernandez Call"
+nodes {
+  idRef {
+    id: "5532a4d7663136200f0008ae"
+  }
+  index: 0
+  text: "{{GM}}You dial the number Max gave you, and after a few rings the line is picked up by a gorgeous red-haired secretary.{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Armando Hernandez\'s office.  How may I direct your call?"
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5532a516663136200f0008b1"
+  }
+  index: 1
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Armando Hernandez please, it\'s urgent."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "I\'m sorry, $(s.sir)... But Mr. Hernandez just stepped out.   If you\'d like to leave your contact information, I\'ll gladly have him return your call as soon as he returns."
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "I have some information regarding Maria Mercurials whereabouts.  Put me through to Mr. Hernandez please."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "That\'s fantastic news!   Mr. Hernadez has been looking all over for her...  He is actually out at the moment, conversting with a few of his own contacts trying to track down some information on her...  Please, if you leave me your contact information, I\'ll gladly have him paged so he can return your call quickly."
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "It\'s very important that I speak with Mr. Hernandez.   I have something for him... a favor to return for his warm welcome back at UnderWorld 93."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "I see.   Unfortunately, you\'ve just missed him.   He just got a rather important call and had to run an errand.   I can take down your contact information and have him return your call at his earliest convenience..."
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Hang Up{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceWithTagInScene: "isHotadaSecretary"
+  comment: "Hotada Loop"
+}
+nodes {
+  idRef {
+    id: "5532a980663136200f000920"
+  }
+  index: 2
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Etiquette - Security{{/CC}} No, I\'ll call back later."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 14
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_TalkedToHotada"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Etiquitte - ShadowRunner{{/CC}} That\'s bad policy, lady.   I\'ll return the call later."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 17
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_TalkedToHotada"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Leave Contact Information{{/CC}} See that he does, and quickly."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_TalkedToHotada"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Hang Up{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceWithTagInScene: "isHotadaSecretary"
+  comment: "LeaveContactInfo"
+}
+nodes {
+  idRef {
+    id: "5532ab72663136200f000979"
+  }
+  index: 3
+  text: "{{GM}}You dial the number Max gave you, and you get a pre-recorded messages stating the phone number has been disconnected.{{/GM}}"
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "5532b8bc663136200f000a3d"
+  }
+  index: 4
+  text: "{{GM}}You dial the number Maria gave you, and the call is picked up, mid-way through the first ring.{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The man who answers the line appears to have one foot in the grave, and the other on a banana peel.   His eyes are bloodshot, and he looks like he hasn\'t had anything that isn\'t 90 proof or higher in his system for ages.\n\n\"Hernandez\" he answers."
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "5532b8fc663136200f000a41"
+  }
+  index: 5
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Armando Hernandez?  This is $(l.name).   We have a mutual acquaintance...Maria Mercurial?"
+    nextNodeIndex: 6
+  }
+  branches {
+    responseText: "{{CC}}Hang Up{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "550eba516131313c1800116e"
+  }
+  comment: "HernandezLoop"
+}
+nodes {
+  idRef {
+    id: "5532bdb5663136200f000a91"
+  }
+  index: 6
+  text: "{{GM}}He instantly snaps straight up.{{/GM}}\n\n\"Maria?   You know where she is?\""
+  branches {
+    responseText: "We need to meet up.   I\'m not discussing this over an open line."
+    nextNodeIndex: 7
+  }
+  branches {
+    responseText: "Yes.  Lets meet.  Your place in 20 minutes."
+    nextNodeIndex: 7
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "550eba516131313c1800116e"
+  }
+}
+nodes {
+  idRef {
+    id: "5532c1aa663136200f000a97"
+  }
+  index: 7
+  text: "Here, in 20 minutes.   I\'ll be waiting for you."
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_TalkedToHernandez"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  responseText: "{{CC}}Call Hernandez{{/CC}} Using the number Max gave you."
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_Hernandez_FakeTelecomNumber"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_TalkedToHotada"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+  hideIfUnavailable: true
+  comment: "Foleys Fake Number"
+}
+roots {
+  responseText: "{{CC}}Call Hernandez{{/CC}} Using the number Max gave you."
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_Hernandez_FakeTelecomNumber"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_TalkedToHotada"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 3
+  hideIfUnavailable: true
+  comment: "Foleys Fake Number (Redial)"
+}
+roots {
+  responseText: "{{CC}}Call Hernandez{{/CC}} Using the number Maria gave you."
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_Hernandez_RealTelecomNumber"
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 4
+  hideIfUnavailable: true
+  onlyOnce: true
+  idRef {
+    id: "5532a74c663136200f0008e9"
+  }
+  comment: "Marias Real Number"
+}
