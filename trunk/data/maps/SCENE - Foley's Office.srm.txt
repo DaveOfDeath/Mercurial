@@ -1,7 +1,7 @@
 minX: -27
-minZ: -8
+minZ: -24
 numX: 30
-numZ: 16
+numZ: 32
 props {
   name: "office_furniture_loungeChair01"
   gridPoint {
@@ -85,11 +85,90 @@ props {
   gridPoint {
     x: -10
     y: 0
-    z: -4
+    z: -3
   }
   orientation: ORIENTATION_S
+  displayName: "obj_SydneysDesk"
   idRef {
     id: "54fc8d976131317c02001bd9"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate If Actor is Inside Region"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54fc8d976131317c02001bda"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "AreOrAreNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Region)"
+            args {
+              string_value: "54fe4873666538280c00422e"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bOfficeAccessable"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_Generic
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -289,19 +368,6 @@ props {
   lod: 0
 }
 props {
-  name: "office_wall_greyEnd02"
-  gridPoint {
-    x: -15.7
-    y: 0
-    z: -8.6
-  }
-  orientation: ORIENTATION_W
-  idRef {
-    id: "54fc8d976131317c02001bf1"
-  }
-  lod: 0
-}
-props {
   name: "diveBar_appliance_hangingTV"
   gridPoint {
     x: -25.4
@@ -374,8 +440,15 @@ props {
     z: -3
   }
   orientation: ORIENTATION_S
+  displayName: "obj_FoleysDesk"
   idRef {
     id: "54fc8d976131317c02001bf9"
+  }
+  interactionRoot {
+    isEnabled: false
+    interactionRadius: 2
+    interactionIcon: InteractionIcon_Inspect
+    interaction_info_text: "Search Desk?"
   }
   lod: 0
 }
@@ -408,7 +481,7 @@ props {
 props {
   name: "office_wall_greyEdge13"
   gridPoint {
-    x: -17.7
+    x: -18.300001
     y: 0
     z: -8.6
   }
@@ -434,9 +507,9 @@ props {
 props {
   name: "office_furniture_liquorTable"
   gridPoint {
-    x: -25.6
+    x: -25.7
     y: 0
-    z: -6.3
+    z: -6.4
   }
   orientation: ORIENTATION_S
   idRef {
@@ -467,19 +540,6 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "54fc8d976131317c02001c06"
-  }
-  lod: 0
-}
-props {
-  name: "office_wall_greyEdge14"
-  gridPoint {
-    x: -20.1
-    y: 0
-    z: -8.6
-  }
-  orientation: ORIENTATION_E
-  idRef {
-    id: "54fc8d976131317c02001c07"
   }
   lod: 0
 }
@@ -1730,7 +1790,7 @@ props {
 props {
   name: "office_wall_bigSafeDark"
   gridPoint {
-    x: -24
+    x: -24.1
     y: 0
     z: -8.6
   }
@@ -1740,36 +1800,8 @@ props {
   idRef {
     id: "5520bd9c6631367c12005f7b"
   }
-  lod: 0
-}
-props {
-  name: "office_furniture_execChair01"
-  gridPoint {
-    x: -10.4
-    y: 0
-    z: -3.9
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "54fc9f3c6131317c07007763"
-  }
-  lod: 0
-}
-props {
-  name: "office_wall_bigSafeDarkOpen"
-  gridPoint {
-    x: -24.1
-    y: 0
-    z: -8.6
-  }
-  orientation: ORIENTATION_E
-  GeneralTags: "isSafeOpen"
-  displayName: "obj_SafeCracked"
-  idRef {
-    id: "54fc9f7a6131317c07007765"
-  }
   interactionRoot {
-    isEnabled: true
+    isEnabled: false
     interactionRadius: 1
     prerequisites {
       ops {
@@ -1806,8 +1838,63 @@ props {
         }
       }
     }
-    dummyInteraciton {
+    interactionIcon: InteractionIcon_Generic
+    interaction_info_text: "Open Safe?"
+  }
+  lod: 0
+}
+props {
+  name: "office_wall_bigSafeDarkOpen"
+  gridPoint {
+    x: -24.1
+    y: 0
+    z: -8.6
+  }
+  orientation: ORIENTATION_E
+  GeneralTags: "isSafeOpen"
+  displayName: "obj_SafeCracked"
+  idRef {
+    id: "54fc9f7a6131317c07007765"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bSafeOpen"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
     }
+    interactionIcon: InteractionIcon_ItemPickup
     interaction_info_text: ""
   }
   lod: 0
@@ -1978,19 +2065,6 @@ props {
   orientation: ORIENTATION_N
   idRef {
     id: "5520b9ed6631367c12005f49"
-  }
-  lod: 0
-}
-props {
-  name: "office_wall_greyEnd02"
-  gridPoint {
-    x: -14.7
-    y: 0
-    z: -8.6
-  }
-  orientation: ORIENTATION_W
-  idRef {
-    id: "5520b9f66631367c12005f4a"
   }
   lod: 0
 }
@@ -2516,14 +2590,47 @@ props {
     z: 5
   }
   orientation: ORIENTATION_E
-  displayName: "obj_ExitDoor"
+  displayName: "obj_ExitDoorPenthouse"
   idRef {
     id: "5520bb9c6631367c12005f73"
   }
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    interactionIcon: InteractionIcon_SceneTransition
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Hideout"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    transitionPoint {
+      scene_name: "HUB - Penthouse"
+      confirmation_text: "Return to the Penthouse?"
+    }
     interaction_info_text: "Exit Foley\'s Office?"
   }
   lod: 0
@@ -2541,7 +2648,7 @@ props {
 props {
   name: "office_wall_greyEdge13"
   gridPoint {
-    x: -18.7
+    x: -20.2
     y: 0
     z: -8.6
   }
@@ -2654,6 +2761,185 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "5520cdd4663136400f006395"
+  }
+  lod: 0
+}
+props {
+  name: "office_wall_greyEdge13"
+  gridPoint {
+    x: -16.400002
+    y: 0
+    z: -8.6
+  }
+  orientation: ORIENTATION_E
+  idRef {
+    id: "5532cb9c663136200f000afc"
+  }
+  lod: 0
+}
+props {
+  name: "office_wall_greyEdge13"
+  gridPoint {
+    x: -15.000002
+    y: 0
+    z: -8.6
+  }
+  orientation: ORIENTATION_E
+  idRef {
+    id: "5532cba1663136200f000afd"
+  }
+  lod: 0
+}
+props {
+  name: "syndicate_building_fortressscorchedwall01"
+  gridPoint {
+    x: -21.7
+    y: 0
+    z: -7.3
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isDamaged"
+  idRef {
+    id: "5532cbea663136200f000afe"
+  }
+  lod: 0
+}
+props {
+  name: "syndicate_building_fortressscorchedwall01"
+  gridPoint {
+    x: -24.3
+    y: 0
+    z: -7.7000003
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isDamaged"
+  idRef {
+    id: "5532cbf3663136200f000aff"
+  }
+  lod: 0
+}
+props {
+  name: "syndicate_ground_fortressscorched02"
+  gridPoint {
+    x: -25
+    y: 0
+    z: -9
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isDamaged"
+  idRef {
+    id: "5532cc07663136200f000b02"
+  }
+  lod: 0
+}
+props {
+  name: "syndicate_ground_fortressscorched02"
+  gridPoint {
+    x: -24
+    y: 0
+    z: -9
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isDamaged"
+  idRef {
+    id: "5532ce1e663136200f000b06"
+  }
+  lod: 0
+}
+props {
+  name: "office_wall_greyDoorMid02"
+  gridPoint {
+    x: -7
+    y: 0
+    z: 5
+  }
+  orientation: ORIENTATION_E
+  displayName: "obj_ExitDoorDogHouse"
+  idRef {
+    id: "5532d4a8663136200f000b0b"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Hideout"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    transitionPoint {
+      scene_name: "HUB - Doghouse"
+      confirmation_text: "Return to the DogHouse?"
+    }
+    interaction_info_text: "Exit Foley\'s Office?"
+  }
+  lod: 0
+}
+props {
+  name: "office_decor_bloodSplatter04"
+  gridPoint {
+    x: -25
+    y: 0
+    z: -5.4
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isDamaged"
+  idRef {
+    id: "5532da52663136200f000b47"
+  }
+  lod: 0
+}
+props {
+  name: "school_floor_blueTile03"
+  gridPoint {
+    x: -12
+    y: 0
+    z: -24
+  }
+  orientation: ORIENTATION_S
+  lod: 0
+}
+props {
+  name: "office_tech_matrixJunction"
+  gridPoint {
+    x: -24.9
+    y: 0.9
+    z: -7.7
+  }
+  orientation: ORIENTATION_E
+  displayName: "obj_SafeCode"
+  idRef {
+    id: "5532e399663136200f000b9e"
+  }
+  interactionRoot {
+    isEnabled: false
+    interactionRadius: 1
+    interactionIcon: InteractionIcon_Generic
+    interaction_info_text: "Use Terminal?"
   }
   lod: 0
 }
