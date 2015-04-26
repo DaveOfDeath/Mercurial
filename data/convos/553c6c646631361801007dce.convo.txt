@@ -1,0 +1,279 @@
+idRef {
+  id: "553c6c646631361801007dce"
+}
+ui_name: "NPC - Hotoda [Betrayal]"
+nodes {
+  idRef {
+    id: "553c6c8d6631361801007dd4"
+  }
+  index: 0
+  text: "{{GM}}The Yakuza witch is holding something out towards Maria and talking in a soothing voice.{{/GM}}\n\nNow, you know how you\'ve missed it\'s power... Just one little taste?  For old times sake?"
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+}
+nodes {
+  idRef {
+    id: "553c6cfa6631361801007dd9"
+  }
+  index: 1
+  text: "I don\'t want it...   I don\'t want it anymore...   Armando helped me kick it..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532f058663136200f000bf3"
+  }
+}
+nodes {
+  idRef {
+    id: "553c6d296631361801007ddc"
+  }
+  index: 2
+  text: "Armando is weak... He just couldn\'t afford the good stuff like you needed..."
+  branches {
+    responseText: "Yo... Bitch... Get the fuck away from my client!"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "I\'m here Maria.   As for your friends, it\'s time for you to leave.   You can use the door, or some extra thick trashbags, but you\'re out.   Now."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "{{CC}}Wait{{/CC}}"
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+}
+nodes {
+  idRef {
+    id: "553c6da16631361801007dee"
+  }
+  index: 3
+  text: "{{GM}}The Yazuka lady jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\nMax... you said $(l.he) wouldn\'t be back for hours... Clearly our faith in you was misplaced.   Take $(l.him) out!"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eStartCombat"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "553c6e156631361801007df0"
+  }
+  index: 4
+  text: "{{GM}}A now familiar expression comes over Maria\'s face, indicating she\'s gone Amazon again.   Gone in an instant is the crying weak woman, replaced by the hardened street samurai.{{/GM}}\n\n{{CC}}She lashes out, kicking whatever was in Hotodas hand away, and turns to you... {{/CC}}  \n\n\"It\'s about time, $(l.name).   We\'ve got some trash to take out.\""
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532ef7f663136200f000bee"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_attack_unarmed_kick"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e936131313023007217"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_hitreaction"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eStartCombat"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "553c6f0b6631361801007df2"
+  }
+  index: 5
+  text: "Take it, Maria... Become the starlet we\'re all expecting to find..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+}
+nodes {
+  idRef {
+    id: "553c6f336631361801007df6"
+  }
+  index: 6
+  text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nShe reaches out and takes the small chip from Hotoda."
+  branches {
+    responseText: "{{CC}}Start Combat{{/CC}}"
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "55059e936131313023007217"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "Get $(l.him)!   Max you told us $(l.he) wouldn\'t be back for hours!"
+        }
+        args {
+          float_value: 255
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 128
+        }
+        args {
+          float_value: 7
+        }
+        args {
+          float_value: 3
+        }
+        args {
+          float_value: 0
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eStartCombat"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Let Maria Insert the Chip.{{/CC}}"
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eMariaChips"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532f058663136200f000bf3"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_interact"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  nextNodeIndex: 0
+  comment: "INTRO"
+}
+roots {
+  responseText: ""
+  nextNodeIndex: -1
+  comment: "FLEEING"
+}
