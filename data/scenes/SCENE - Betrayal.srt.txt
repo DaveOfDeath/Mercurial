@@ -3249,7 +3249,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Event)"
           args {
-            string_value: "eDragonLight"
+            string_value: "eDragonFire"
           }
         }
       }
@@ -3269,7 +3269,7 @@ triggers {
     ops {
       functionName: "Get Map Item (Event)"
       args {
-        string_value: "eDragonLight"
+        string_value: "eDragonFire"
       }
     }
   }
@@ -3428,7 +3428,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Event)"
           args {
-            string_value: "eDragonLight"
+            string_value: "eDragonFire"
           }
         }
       }
@@ -3531,17 +3531,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eDragonDone"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Prop Visible by Tag"
       args {
         call_value {
@@ -3583,6 +3572,17 @@ triggers {
       }
     }
     ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonDone"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Fade Camera In"
       args {
         float_value: 3
@@ -3591,6 +3591,176 @@ triggers {
         float_value: 0
       }
     }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "isKilled.MaxFoley"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e856131313023007215"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bMaxDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Foley"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "553d9b076631363810002ab5"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "isKilled.Hotoda"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e936131313023007217"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHotodaDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Hotoda"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "553d9b5b6631363810002ab8"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
@@ -3606,19 +3776,12 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Evaluate Actor Consciousness"
+      functionName: "Comparison (bool)"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Variable (bool)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55059e856131313023007215"
-              }
-            }
-          }
-          args {
+            string_value: "bMaxDead"
           }
         }
       }
@@ -3626,10 +3789,21 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "Consciousness"
+            string_value: "IsOrIsNot"
           }
           args {
             int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -3815,6 +3989,30 @@ triggers {
     id: "553c8bf26631361801007e5a"
   }
   elseActions {
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "553c89786631361801007e54"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e856131313023007215"
+              }
+            }
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -3830,19 +4028,12 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Evaluate Actor Consciousness"
+      functionName: "Comparison (bool)"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Variable (bool)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55059e936131313023007217"
-              }
-            }
-          }
-          args {
+            string_value: "bHotodaDead"
           }
         }
       }
@@ -3850,10 +4041,21 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "Consciousness"
+            string_value: "IsOrIsNot"
           }
           args {
             int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -4039,6 +4241,30 @@ triggers {
     id: "553c8c766631361801007e5c"
   }
   elseActions {
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "553c89d46631361801007e57"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e936131313023007217"
+              }
+            }
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -6440,12 +6666,28 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bMaxDead"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bHotodaDead"
+    typeName: "bool"
+  }
+}
 mapEvents: "eStartCombat"
 mapEvents: "eEndCombat"
 mapEvents: "eMariaChips"
 mapEvents: "eYakuzaFlees"
 mapEvents: "eDragonAttack"
-mapEvents: "eDragonLight"
+mapEvents: "eDragonFire"
 mapEvents: "eDragonDone"
 worldMapLocation {
   filename: ""
