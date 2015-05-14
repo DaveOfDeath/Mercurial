@@ -1131,23 +1131,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Foley"
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
   }
   isActive: true
   idRef {
@@ -20913,6 +20896,109 @@ triggers {
   name: "          Telecom [Post Interaction]"
   events {
     ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "542b8fc53733615806005f5e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "HERNANDEZ"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "542b8fc53733615806005f5e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "5532a418663136200f0008a2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5531cc60663136040500271b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "555429cd6131314811004a10"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "          Telecom [Post Interaction]"
+  events {
+    ops {
       functionName: "On Conversation Complete"
     }
   }
@@ -28524,7 +28610,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Berlin:HavenCivilians/DwarfMaleHavenBigJacket_1"
+    prefab_name: "Berlin:HavenCivilians/DwarfMaleHavenBigJacket_2"
     character_sheet_id: "CG Dwarf None"
     character_mod {
       stats {
@@ -31525,6 +31611,8 @@ characters {
       }
       archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
+      vulnerabilities {
+      }
     }
     equipment {
       prefab_name: "Pi 1 Fichetti Security 500"
@@ -32344,10 +32432,10 @@ characters {
       }
     }
     team_id: "Civilians"
-    char_name: "Tech_Low"
+    char_name: "Telecom"
     pc_spawn_number: -1
     portrait {
-      filename: ""
+      filename: "generic_drone_hover"
     }
     karma: 174
     is_prop_character: true
