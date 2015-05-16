@@ -1078,7 +1078,9 @@ nodes {
     nextNodeIndex: 2
   }
   nodeType: ConversationNodeType_Simple
-  sourceWithTagInScene: "isAmazon"
+  sourceInSceneRef {
+    id: "55230ccc6131317c0a007ff7"
+  }
   comment: "Maria pissed"
 }
 nodes {
@@ -1088,63 +1090,8 @@ nodes {
   index: 2
   text: "\"Armando Fragging Hernandez,\" Maria spits the name, \"I can\'t even talk about him, go talk to Max if you have any questions...\" and with that Maria walks away..."
   nodeType: ConversationNodeType_Simple
-  sourceWithTagInScene: "isAmazon"
-  actions {
-    ops {
-      functionName: "Set Actor In Passive Mode"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enforce Actor Current Orders"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54369aab6334643c1b002352"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
+  sourceInSceneRef {
+    id: "55230ccc6131317c0a007ff7"
   }
 }
 nodes {
@@ -1366,7 +1313,7 @@ nodes {
           }
         }
         args {
-          string_value: "Maria nods, and says \"I guess he should be, but I think if he\'s not looking for a fight, you showing up with your entire team unannounced will start one.\"\n\n\"I think you should probably take one or two people, or just go alone.\""
+          string_value: "Maria nods, and says \"I guess he should be, but I think if he\'s not looking for a fight, you showing up with your entire team unannounced may start one.\"\n\n\'You\'re the expert here... so I\'ll leave that call up to you.\""
         }
       }
       ops {
@@ -1384,6 +1331,45 @@ nodes {
         }
         args {
           string_value: "Maria warns you to be careful, and gives you the address. You\'re on the road inside ten minutes. \n\nYou try to plan this out in your mind- Maria gave you the layout of the building, with the recording studio on the ground floor and the apartment upstairs. \n\nIf Hernandez was twirling his moustache and confessed to the attack in a monologue before you fought him to the death, that would be nice. Unlikely, but nice.\n\nYou don\'t know what to expect, be armed and have your wits ready."
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_HubSubQuest"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+      ops {
+        functionName: "Set Waypoint on Prop"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "54c6c5fa666538a00d00497f"
+            }
+          }
         }
       }
     }
@@ -1407,7 +1393,7 @@ nodes {
           }
         }
         args {
-          string_value: "HERNANDEZ-CONFRONT"
+          string_value: "HERNANDEZ"
         }
       }
       ops {
@@ -1424,7 +1410,7 @@ nodes {
           }
         }
         args {
-          string_value: "Maria smiles, and nods. Clearly she still has a soft spot for Hernandez. \"If he really is as bad as Max says, this will prove it, and if he\'s not this will give him a chance to defend himself.\"\n\n\"Max would say that I\'m deluding myself. What, am I expecting him to tidy up a bit, maybe throw together something to eat? \"\n\n\"I would prefer you didn\'t show up with a hit squad of your own, maybe just take one or two people, or go alone?\""
+          string_value: "Maria smiles, and nods. Clearly she still has a soft spot for Hernandez. \"If he really is as bad as Max says, this will prove it, and if he\'s not this will give him a chance to defend himself.\"\n\n\"Max would say that I\'m deluding myself. What, am I expecting him to tidy up a bit, maybe throw together something to eat?   Here\'s his number... give him a call, I\'m sure it\'ll be more hospitable that way...\""
         }
       }
       ops {
@@ -1442,6 +1428,82 @@ nodes {
         }
         args {
           string_value: "Maria places a call to Hernandez\'s personal line, which she\'s sure will still be connected. There\'s no answer, but she leaves a message and five minutes later Hernandez is on the phone, calling her back and begging for a change to meet up.\n\nMaria gives you the layout of the building, with the recording studio on the ground floor and the apartment upstairs. \n\nYou don\'t know what to expect, be armed and have your wits ready. If Hernandez has a hit squad with him, burn that place to the ground, otherwise, Maria asked you to hear him out.\n\nYou worry about it the entire ride back to Puyallup, checking weapons and thinking of contingencies. Time to clean up the mess."
+        }
+      }
+      ops {
+        functionName: "Add Item to Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_Hernandez_RealTelecomNumber"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_HubSubQuest"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+      ops {
+        functionName: "Set Waypoint on Prop"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "54c6c5fa666538a00d00497f"
+            }
+          }
         }
       }
     }
