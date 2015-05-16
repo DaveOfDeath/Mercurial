@@ -1131,6 +1131,23 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Arrow"
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
   }
   isActive: true
   idRef {
@@ -11975,7 +11992,7 @@ triggers {
         }
       }
       args {
-        float_value: 45
+        float_value: 5
       }
     }
     ops {
@@ -12851,7 +12868,7 @@ triggers {
         }
       }
       args {
-        float_value: 20
+        float_value: 35
       }
     }
   }
@@ -13190,7 +13207,7 @@ triggers {
         }
       }
       args {
-        float_value: 20
+        float_value: 35
       }
     }
   }
@@ -14602,7 +14619,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Actor near Point"
+      functionName: "Order Actor to Move To (Prop)"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -14619,50 +14636,42 @@ triggers {
         }
       }
       args {
-        int_value: 2
-      }
-      args {
         call_value {
-          functionName: "Current Location of Prop"
+          functionName: "Nearest Tagged Prop to Actor"
           args {
             call_value {
-              functionName: "Nearest Tagged Prop to Actor"
+              functionName: "Tag From String"
               args {
                 call_value {
-                  functionName: "Tag From String"
+                  functionName: "Append (string)"
                   args {
                     call_value {
-                      functionName: "Append (string)"
+                      functionName: "Convert (int) to (string)"
                       args {
                         call_value {
-                          functionName: "Convert (int) to (string)"
+                          functionName: "Random (int)"
                           args {
-                            call_value {
-                              functionName: "Random (int)"
-                              args {
-                                int_value: 1
-                              }
-                              args {
-                                int_value: 11
-                              }
-                            }
+                            int_value: 1
+                          }
+                          args {
+                            int_value: 11
                           }
                         }
                       }
-                      args {
-                        string_value: "Fixup "
-                      }
                     }
+                  }
+                  args {
+                    string_value: "Fixup"
                   }
                 }
               }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
               args {
-                call_value {
-                  functionName: "Get Map Item (Actor)"
-                  args {
-                    string_value: "54b289eb6131317007006115"
-                  }
-                }
+                string_value: "54b289eb6131317007006115"
               }
             }
           }
@@ -14679,14 +14688,17 @@ triggers {
           }
         }
       }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (SceneDimension)"
           args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 3
+            string_value: "Default"
           }
         }
       }
@@ -20509,116 +20521,6 @@ triggers {
       functionName: "Clear All Waypoints"
     }
     ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "552c2e98666538e80e003017"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "5503fd0f66313678170062ce"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor Ignored by AI"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5503fd0f66313678170062ce"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5503fd0f66313678170062ce"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Order Actor to Move To (Region)"
       args {
         call_value {
@@ -20656,6 +20558,45 @@ triggers {
       }
     }
     ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Waypoint on Actor"
       args {
         call_value {
@@ -20677,6 +20618,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "552c2e98666538e80e003017"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -20685,6 +20648,22 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: "            Disable Maria"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "5556f87f6631368810003815"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 triggers {
   name: "          Max.Interaction"
@@ -20721,12 +20700,12 @@ triggers {
             string_value: "IsOrIsNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
       args {
-        string_value: "DOGHOUSE-RETURN"
+        string_value: "FRESH"
       }
     }
   }
@@ -23537,35 +23516,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Actor Ignored by AI"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Actor In Passive Mode"
       args {
         call_value {
@@ -23677,35 +23627,6 @@ triggers {
   }
   elseActions {
     ops {
-      functionName: "Set Actor Ignored by AI"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Change Actor Team"
       args {
         call_value {
@@ -23747,35 +23668,6 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor In Passive Mode"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
           }
         }
       }
@@ -23920,7 +23812,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Actor Ignored by AI"
+      functionName: "Set Actor In Passive Mode"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -26098,10 +25990,10 @@ regions {
 regions {
   name: "rMariasSafePlace"
   position {
-    x: 108
-    y: 5
-    width: 2
-    height: 2
+    x: 107
+    y: 2
+    width: 4
+    height: 5
   }
   enabledAtStart: false
   is_camera_region: false
@@ -27548,7 +27440,7 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 94
+    x: 93
     y: 0
     z: -1
   }
@@ -31696,6 +31588,7 @@ characters {
     }
     karma: 101
     hiring_cost_override: 1000
+    has_fist: false
   }
 }
 characters {
@@ -31802,6 +31695,13 @@ characters {
   displayName: "Protect"
   idRef {
     id: "550eba516131313c1800116e"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
   character_instance {
