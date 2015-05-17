@@ -1,5 +1,5 @@
 triggers {
-  name: "General.WeatherConditions"
+  name: "General.MapLoad [Exterior]"
   events {
     ops {
       functionName: "On Map Start"
@@ -23,6 +23,125 @@ triggers {
       }
       args {
         int_value: 700
+      }
+    }
+    ops {
+      functionName: "Set Actor Wander Range"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5558427b6631360c1100074f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Actor In Passive Mode"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5558427b6631360c1100074f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Run Speed"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5558427b6631360c1100074f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "RunSpeedMethod"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Patrol"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5558427b6631360c1100074f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (PatrolRoute)"
+          args {
+            string_value: "55583e4d6631360c1100074c"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
       }
     }
   }
@@ -74,8 +193,8 @@ regions {
     a: 1
   }
   ambience_template: "graveyard-night"
-  combat_music: ""
-  default_music: ""
+  combat_music: "Seattle-Set5-Combat"
+  default_music: "Seattle-Set5-Stealth"
   loop_combat_music: true
   loop_default_music: false
   no_fow_in_region: false
@@ -174,10 +293,10 @@ regions {
 }
 patrolRoutes {
   name: "pVanRoute"
-  pathType: 0
+  pathType: 2
   nodes {
     position {
-      x: -129
+      x: -116
       z: -110
     }
     index: 0
@@ -198,43 +317,14 @@ patrolRoutes {
   }
   nodes {
     position {
-      x: -130
-      z: -192
+      x: -50
+      z: -193
     }
     index: 3
-  }
-  nodes {
-    position {
-      x: -129
-      z: -110
-    }
-    index: 4
   }
   can_move_beyond_node: false
   idRef {
     id: "55583e4d6631360c1100074c"
-  }
-}
-characters {
-  name: "system_spawner_playerSpawner"
-  gridPoint {
-    x: 33
-    y: 0
-    z: -37
-  }
-  orientation: ORIENTATION_N
-  idRef {
-    id: "54430a8a373361e002006e63"
-  }
-  lod: 0
-  character_instance {
-    character_mod {
-      archetypeName: "Player"
-    }
-    team_id: "Shadowrunners"
-    char_name: "New Actor"
-    enabled_at_start: true
-    pc_spawn_number: 0
   }
 }
 characters {
@@ -412,9 +502,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 13
+    x: -101
     y: 0
-    z: -204
+    z: -113
   }
   orientation: ORIENTATION_E
   idRef {
@@ -434,11 +524,12 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -129
+    x: -116
     y: 0
     z: -110
   }
   orientation: ORIENTATION_S
+  displayName: "Walker"
   idRef {
     id: "5558427b6631360c1100074f"
   }
@@ -509,13 +600,15 @@ characters {
     }
     team_id: "Civilians"
     char_name: "VanPosition"
-    patrolRoute: "pVanRoute"
+    patrolRoute: "None"
     pc_spawn_number: -1
+    ai_ignores: false
     portrait {
       filename: "NPC_TrollMale_CyberZombie"
     }
     karma: 6
-    is_prop_character: true
+    is_prop_character: false
+    has_fist: false
   }
 }
 worldMapLocation {
