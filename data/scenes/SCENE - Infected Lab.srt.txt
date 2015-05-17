@@ -1,10 +1,80 @@
+triggers {
+  name: "General.SmartLabsSign"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55581b3a663136400b001485"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "S.M.A.R.T. Labs?   Wow... someone was really stretching to make that acronym work."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 6
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55581b3c663136400b001486"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
 regions {
   name: "cLabMainFloor"
   position {
     x: -78
     y: -141
-    width: 136
-    height: 111
+    width: 139
+    height: 114
   }
   enabledAtStart: true
   is_camera_region: true
@@ -26,7 +96,7 @@ regions {
     z: -0.75
   }
   directional_light_color {
-    r: 0.22352941
+    r: 0.4627451
     g: 0
     b: 0
     a: 1
@@ -137,12 +207,12 @@ worldMapLocation {
 }
 mapName: "SCENE - Infected Lab"
 parentStory: ""
-scene_title: "New Scene"
+scene_title: "Investigate S.M.A.R.T. Labs"
 scene_subtitle: ""
-scene_synopsis: ""
-scene_image: ""
+scene_synopsis: "[Possible Side Quest]"
+scene_image: "marialoading"
 scene_continue_button_skip: false
-scene_restore_runner_health: false
+scene_restore_runner_health: true
 directional_light_dir {
   x: -0.5
   y: -1
@@ -195,8 +265,6 @@ scene_dimensions {
   initial_alarm_state: 10
   turns_per_round: 3
 }
-character_roster {
-}
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
@@ -205,7 +273,7 @@ scene_hiring_prerequisites {
 }
 hiring_slot_count: 0
 hiring_minimum_karma: 0
-hiring_maximum_karma: 25
+hiring_maximum_karma: 0
 roster_overrides {
 }
 use_hiring_cost_warning: false
@@ -214,6 +282,6 @@ override_hiring_average_cost: false
 show_equip_screen_on_scene_load: false
 is_persistant: false
 is_persistant_has_value: false
-can_move_outside_camera_regions: true
-can_start_before_triggers: true
+can_move_outside_camera_regions: false
+can_start_before_triggers: false
 can_use_team_advancement: false
