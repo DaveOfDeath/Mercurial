@@ -7,9 +7,9 @@ nodes {
     id: "5493a23f666538100a00038b"
   }
   index: 0
-  text: "Good Evening.   How can I assist you tonight?"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "I need a pickup.   I\'m at Yoshiros, downtown, and I\'m headed to The Cornot Hotel in the barrens."
+    responseText: "I need a pickup.   I\'m at Yoshiros, off I-5, and I\'m headed to The Cornot Hotel."
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -42,6 +42,7 @@ nodes {
     }
     nextNodeIndex: 1
     hideIfUnavailable: true
+    comment: "Doghouse"
   }
   branches {
     responseText: "My associates and I require a ride.   We\'re headed up to Westgate Plaza in Tacoma."
@@ -74,12 +75,49 @@ nodes {
           int_value: 2
         }
       }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     hideIfUnavailable: true
+    comment: "Penthouse"
   }
   branches {
-    responseText: "{{CC}}[Hang Up]{{/CC}} I\'m good, thanks."
+    responseText: "I\'m okay, thanks. {{CC}}Disconnect Call{{/CC}}"
     actions {
       ops {
         functionName: "Set Variable (bool)"
@@ -134,16 +172,60 @@ nodes {
       }
     }
   }
+  comment: "Opening Loop"
 }
 nodes {
   idRef {
     id: "5493a357666538100a00039b"
   }
   index: 1
-  text: "Very well, $(l.sir).   We can have a cab there in... uh... 260 minutes... ish..."
+  text: "\"I apologize, Sir,\" the operator says helpfully, \"I\'m not familiar with the Cornot Hotel, and I\'m not showing it on the registry. Can you give me any landmarks?\""
   branches {
-    responseText: "260 minutes?   As in nearly four and a half hours?   I could walk there in that time!"
+    responseText: "Puyallup Barrens, near the Sunnyside street market."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator looks very serious, and says \"I am sorry to inform you that the Barrens are outside of our coverage area. I can find you a third-party cab, but we do not vouch for your safety or their service. I\'m showing here that CombatCab and a number of Gypsy Cabs operate in that area, if you are interested. I can contact those companies, and I can guarantee there will be a cab there in 260 minutes.\""
+        }
+      }
+    }
     nextNodeIndex: 2
+  }
+  branches {
+    responseText: "Off the 512, near South Hill."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator punches those directions into the computer, and a look of horror spreads across her face, \"The Puyallup Barrens? I\'m sorry, but that is outside of our coverage area. I can send you a Combat Cab, but it\'ll charge a premium, and in case of any disturbance you\'ll be gassed with Neurostun and dumped on the street.\"\n\n\"I can have a cab there between forty-five minutes, and... four hours?\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -152,12 +234,43 @@ nodes {
 }
 nodes {
   idRef {
-    id: "5493a3d2666538100a0003a3"
+    id: "5558f2ac613131f8120059d9"
   }
   index: 2
-  text: "You\'re certainly welcome to that, if that\'s your choice $(l.sir)...  However I feel as though I should point out that quite a few disturbances are popping up across the police band scanner...  We couldn\'t recommend that..."
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "{{CC}}You glance over at the now owner-less van in the middle of the parking lot{{/CC}}\n\nForget it, I\'ll make my own travel arrangements."
+    responseText: "Four hours?   I could walk back in that time!"
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+  comment: "Barrens Loop"
+}
+nodes {
+  idRef {
+    id: "5493a3d2666538100a0003a3"
+  }
+  index: 3
+  text: "The operator looks very serious, and says \"$+(l.sir), I can\'t possibly recommend that. According to Lonestar statistics, there have been 17,572 incidents in that area in the last month, and there\'s a notation here that many crimes in that area go unreported.\"\n\n\"Our driver-operators have been robbed, attacked, and several killed or killed in 4,575 separate incidents so far this year. You\'re certainly free to make your own decision, but I want to make it clear that neither I nor the company endorse that choice.\"\n"
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5493a265666538100a000391"
+  }
+}
+nodes {
+  idRef {
+    id: "55590595613131f812005a2b"
+  }
+  index: 4
+  text: "{{GM}}You realize that there\'s a van running in the parking lot, with keys in it, and no surviving owners.{{/GM}}"
+  branches {
+    responseText: "{{CC}}Head for the van{{/CC}} I\'ll worry about my own travel arrangements."
     actions {
       ops {
         functionName: "Set Variable (bool)"
@@ -262,6 +375,29 @@ nodes {
     nextNodeIndex: -1
   }
   branches {
+    responseText: "Send the Cab, I\'ll be waiting right here."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator makes a note on her display, and asks \"I will register the call for the cab, but we haven\'t yet discussed the subject of payment. the estimated cost of a operator taking you into the Barrens at this time of night, with premium add-ons for likely operator death and dismemberment; the totals add up to: 1,215\302\245.\"\n\n\"How would you like to pay for that today? Certified credstick, cash deposit, or organ donor waiver?\""
+        }
+      }
+    }
+    nextNodeIndex: 5
+  }
+  branches {
     responseText: "Let me get back to you on that..."
     actions {
       ops {
@@ -286,38 +422,273 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator smiles, and says \"I\'ll register the call for the cab as soon as you like, but be aware that because of the location and destination, you\'re going to face some pretty stuiff fees. The estimated cost of a operator taking you into the Barrens at this time of night, with premium add-ons for outsourced cab, armored courier, and for likely operator death and dismemberment; the totals add up to: 1,215\302\245.\"\n\n\"We accept Certified credstick, cash deposit, or organ donor waiver, please have your payment ready when you buzz us again.\""
+        }
+      }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 5
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5493a265666538100a000391"
+  actions {
+    ops {
+      functionName: "Add Camera Point of Interest (Point)"
+      args {
+        call_value {
+          functionName: "Specified Point (2D)"
+          args {
+            float_value: 53
+          }
+          args {
+            float_value: -8
+          }
+        }
+      }
+      args {
+        float_value: 3
+      }
+    }
+    ops {
+      functionName: "Remove Camera Point of Interest (Point)"
+      args {
+        call_value {
+          functionName: "Triggering Target Point"
+        }
+      }
+    }
   }
 }
 nodes {
   idRef {
-    id: "5493a484666538100a0003ad"
+    id: "5558f962613131f8120059e5"
   }
-  index: 3
-  text: "Very well, but I\'m not sending a car your way until I have confirmed payment... Minimum due is 215\302\245."
+  index: 5
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "1,215\302\245? That can\'t be right."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator nods, \"I\'m sorry if this is out of your price range, but the payment breakdown is as follows:\"\n\nA text image assembles itself onscreen: \n\nOutsourced third party cab: 250\302\245\nDeath and Dismemberment Waiver: 250\302\245\nArmored Courier: 500\302\245\nDistance: 24.78 miles @ 4.34\302\245 per kilometer * Midnight Service x2 multiplier= 215\302\245"
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55590102613131f812005a03"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Certified Credstick?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator nods, \"Yes, and I\'m sorry to tell you this, but we only accept certified credsticks of rating silver or better for that neighborhood.\""
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55590105613131f812005a04"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Cash deposit?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator helpfully explains \"All of our TaxiCab Company kiosks function as mobile deposit units. You deposit your paper or plastic bills one at a time, our system scans them and checks the available exchange rates. When you\'ve submitted the full payment, the electronic payment will be transferred and the cab is sent, as easy as that!\""
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55590109613131f812005a05"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}1,215\302\245{{/CC}} I\'ll go ahead and pay that myself now."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 1215
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "b_CalledCab"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Waypoint on Prop"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "5493a172666538100a000383"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 1215
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Organ donation waiver?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator nods, \"Yes, we\'ve found that for some our of more indigent consumers, premium rates price them out of being able to afford service.\"\n\n\"In lieu of your fee, TaxiCab company, LLC will co-sign a transferrable power of attorney over organs equalling or exceeding the value of your transit. Those organs will be harvested at time of your death, or a donation date selected by creditors, at no cost to you!\""
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5559010d613131f812005a06"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Disconnect{{/CC}} I\'ll worry about my own travel arrangements."
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5493a265666538100a000391"
-  }
+  comment: "Payment Loop"
 }
 nodes {
   idRef {
     id: "5493a374666538100a00039d"
   }
-  index: 4
+  index: 6
   text: "Of course.   I\'ll have a car there in 10 minutes.  Will there be anything else?"
   branches {
     responseText: "Yeah.   This needs to be discreet.  Your driver will understand when they arrive."
-    nextNodeIndex: 5
+    nextNodeIndex: 7
   }
   branches {
     responseText: "Nope.   That\'s it."
-    nextNodeIndex: 6
+    nextNodeIndex: 8
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -328,7 +699,7 @@ nodes {
   idRef {
     id: "5493a43a666538100a0003a7"
   }
-  index: 5
+  index: 7
   text: "I see.   I\'ll send you one of our best drivers."
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -339,10 +710,212 @@ nodes {
   idRef {
     id: "5493a44d666538100a0003a9"
   }
-  index: 6
+  index: 8
   text: "Very well.  Have a pleasant evening."
   nodeType: ConversationNodeType_Simple
 }
+nodes {
+  idRef {
+    id: "5558fb46613131f8120059ea"
+  }
+  index: 9
+  text: "$(story.str_NPCIntroText), $+(l.sir), how else can I help you today?\""
+  branches {
+    responseText: "I\'d like to call a cab."
+    conditions {
+      ops {
+        functionName: "No Condition"
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The operator shakes her head and frowns, \"I have ot apologize for the inconvenience, but I\'m showing a system block on sending cabs to this destination.\"\n\n\"The corporate liason between TaxiCab Co, LLC. and Lonestar has been informed that a person matching your description has been involved in numerous criminal incidents tonight. This kiosk has been locked down, and Lonestar has been notified of your exact location.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+  }
+  branches {
+    responseText: "Where is my cab?"
+    nextNodeIndex: 11
+  }
+  branches {
+    responseText: "That was quick."
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Sorry, I was hoping to get a different operator."
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5558fc62613131f8120059ef"
+  }
+  index: 10
+  text: "\"Hello again,\" The Operator says helpfully, \"I\'m afraid that I\'m sorry to inform you that this kiosk has been locked down due to criminal activity in your area. In our Partnership contract with the municipality of Seattle, and Lonestar Police Enforcement, Incorporated; we are required to comply with all official criminal investigations.\"\n\n\"There are questions about the following codes that the officers of Lonestar would like you question you about: 204,  090, 040, 043, 071, 330, 185, 242, 244, 080, 32, 110, 250, 363, 141 and 010. As you can imagine, these are serious charges, and will be fully investigated before you will be able to use our service again.\""
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55590617613131f812005a3c"
+  }
+  index: 11
+  text: "The operator helpfully says \"I do apologize for this, $(l.sir), but your call has been locked down by our system, pending an official investigation by Lonestar officials and clearing you of any crimes.\"\n\n\"It should only be about ten minutes or so before Lonestar is there on-site, just wait for them to arrive and we\'ll get this sorted out as quickly as possible.I\'m afraid that I\'m sorry to inform you that this kiosk has been locked down until then. In our Partnership contract with the municipality of Seattle, and Lonestar Police Enforcement, Incorporated; we are required to comply with all official criminal investigations.\"\n\n\"There are questions about the following codes that the officers of Lonestar would like you question you about: 204,  090, 040, 043, 071, 330, 185, 242, 244, 080, 32, 110, 250, 363, 141 and 010. As you can imagine, these are serious charges, and will be fully investigated before your refund will be processed.\""
+  nodeType: ConversationNodeType_Simple
+}
 roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_FirstCab"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The Taxi operator asnwers the call almost immediately, and smiles when the call connects. You know that she\'s following a prompted script, but it makes you feel better to see someone who isn\'t trying to kill you.\n\n\"Good evening, how can I help yo?\""
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_FirstCab"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
   nextNodeIndex: 0
+  comment: "First Call"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_FirstCab"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The operator connects your call instantly, \"Hello again"
+      }
+    }
+  }
+  nextNodeIndex: 9
+  comment: "2+ Calls"
 }

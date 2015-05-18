@@ -25,7 +25,7 @@ nodes {
           }
         }
         args {
-          string_value: "\"What??!?!\" Dave asks, incredulously. He doesn\'t look like he wants to give you his clothes. \n\n\"I-- uh, it\'s cold out here, I don\'t really want to give you my clothes... and I rode the train to get here.\""
+          string_value: "\"What?\" Dave asks, incredulously. He wraps his arms protectively around himself.\n\n\"I-- uh, it\'s cold out here, I don\'t really want to give you my clothes... and I rode the train to get here.\""
         }
       }
     }
@@ -184,7 +184,7 @@ nodes {
           }
         }
         args {
-          string_value: "Dave shrugs, \"You could totally steal one- but why you\'d want to steal a rig full of soy that\'s "
+          string_value: "Dave shrugs, \"You could totally steal one- but why on earth would want to steal a rig full of soy that\'s got 81 different geo-synch trackers and electronic bugs on it? You might get out of town on a rig like this, but you wouldn\'t get far.\""
         }
       }
     }
@@ -197,10 +197,192 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: ""
+    responseText: "I need money for cab fare, so I\'m robbing you."
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "545825a46665382c0f0018f9"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "Just my fragging luck. Now how am I getting home?"
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 3
+        }
+        args {
+          float_value: 1
+        }
+      }
+      ops {
+        functionName: "Add Nuyen"
+        args {
+          call_value {
+            functionName: "Random (int)"
+            args {
+              int_value: 10
+            }
+            args {
+              int_value: 105
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "545825a46665382c0f0018f9"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Later, Dave."
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "545825a46665382c0f0018f9"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "Uh... bye?"
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 3
+        }
+        args {
+          float_value: 1
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "545825a46665382c0f0018f9"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "545825a46665382c0f0018f9"
+          }
+        }
+      }
+    }
+  }
   comment: "Dave Loop"
 }
 nodes {
@@ -208,7 +390,7 @@ nodes {
     id: "55580561613131740a006bee"
   }
   index: 1
-  text: "The trucker stares at you, surprised. \"These rigs don\'t really work like that. I\'m the rigger, I set up the automated path they follow, and then I gas them up before each run. There\'s not even a seat for a pilot to sit in some of these rigs.\""
+  text: "The trucker stares at you, surprised. \"$+(l.guy), these rigs don\'t really work like that. I\'m the rigger, I set up the automated path they follow, and then I gas them up before each run. There\'s not even a seat for a pilot to sit in some of these rigs, which is a good thing, because the trip they make is incredibly boring.\""
   branches {
     responseText: ""
     actions {
@@ -226,6 +408,7 @@ nodes {
           }
         }
         args {
+          string_value: "\"Dave looks over his shoulder at the rigs, \"I could give you my passkey, but then you\'d have to hold on the outside of this thing for the 3,321.74 km trip to Chicago.\"\n\n\"Luckily, there\'s no human driver to make mistakes or need to stop or sleep, so it only takes about 16 hours to get there. The rig is also going about 200 kph, which would make hanging on difficult.\""
         }
       }
     }
