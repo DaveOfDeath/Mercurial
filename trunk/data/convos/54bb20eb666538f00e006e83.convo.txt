@@ -7,9 +7,28 @@ nodes {
     id: "54bb20f6666538f00e006e89"
   }
   index: 0
-  text: "Hoi Chummer!,  I got whatcha need, $(l.man)..."
+  text: "The dwarf stares at you for a moment after answering a message on his commlink. \"Tellin says you\'re cool. I think maybe I got whatcha need.\""
   branches {
-    responseText: "I hear you\'ve managed to  hold back a few backstage passes.  My associates and I find ourselves in need of them...  Perhaps we can strike some sort of arrangement?"
+    responseText: "I hear you\'ve managed to  hold onto a backstage pass or two. Perhaps we can strike some sort of deal?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf scans the crowd for anyone watching too closely, and then nods, \"You heard correctly. What are they worth to ya?\""
+        }
+      }
+    }
     nextNodeIndex: 1
   }
   nodeType: ConversationNodeType_Simple
@@ -22,9 +41,76 @@ nodes {
     id: "54bb2146666538f00e006e8d"
   }
   index: 1
-  text: "I do indeed, Chummer...  Well, what\'re they worth to ya?"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "{{CC}}[500\302\245]{{/CC}} And I\'ll owe you a favor."
+    responseText: "How much?"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_BackStagePasses"
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf shrugs, and sticks his hands in the pocket of his jacket, \"-but suit yourself. You ain\'t gonna find a couple of these left in a bathroom stall, that\'s for fraggin\' sure.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "555e8c756131319c0e000959"
+    }
+  }
+  branches {
+    responseText: "{{CC}}500\302\245{{/CC}} Five hundred, and I\'ll owe you a favor."
     conditions {
       ops {
         functionName: "Evaluate Nuyen"
@@ -88,15 +174,32 @@ nodes {
           int_value: 500
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf takes your nuyen, and a thoughtful look appears in his eyes as he ponders your offer, however briefly.\n\n\"What kinda favors can I get from you that I couldn\'t just get myself?\" he asks."
+        }
+      }
     }
-    nextNodeIndex: 2
+    nextNodeIndex: 3
     onlyOnce: true
     idRef {
       id: "551f598d663136680d00078e"
     }
   }
   branches {
-    responseText: "{{CC}}[1,000\302\245]{{/CC}} I\'ll pay full value."
+    responseText: "{{CC}}[1,000\302\245]{{/CC}} How about a grand, and you forget where you lost them?"
     conditions {
       ops {
         functionName: "Evaluate Nuyen"
@@ -158,90 +261,35 @@ nodes {
         functionName: "Remove Nuyen"
         args {
           int_value: 1000
-        }
-      }
-    }
-    nextNodeIndex: 7
-    onlyOnce: true
-    idRef {
-      id: "551f598b663136680d00078d"
-    }
-  }
-  branches {
-    responseText: "{{CC}}[1,500\302\245]]{{/CC}} How about you lost them, and forget we ever met?"
-    conditions {
-      ops {
-        functionName: "Evaluate Nuyen"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          int_value: 1500
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "Specific Actor"
-            args {
-              call_value {
-                functionName: "Get Map Item (Player)"
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_BackStagePasses"
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 1500
         }
       }
     }
     nextNodeIndex: 12
     onlyOnce: true
     idRef {
-      id: "551f5988663136680d00078c"
+      id: "551f598b663136680d00078d"
     }
   }
   branches {
-    responseText: "Too rich for my blood, I\'ll find another way."
+    responseText: "{{CC}}1,500\302\245{{/CC}} Fifteen hundred, and you forget we ever met?"
     conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 1500
+        }
+      }
       ops {
         functionName: "Evaluate If Actor Has Item"
         args {
@@ -280,11 +328,22 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 13
-    hideIfUnavailable: true
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 1500
+        }
+      }
+    }
+    nextNodeIndex: 17
+    onlyOnce: true
+    idRef {
+      id: "551f5988663136680d00078c"
+    }
   }
   branches {
-    responseText: "Already got what I need, Chummer... Thanks."
+    responseText: "I don\'t know that I can afford it. {{CC}}Leave{{/CC}}"
     conditions {
       ops {
         functionName: "Evaluate If Actor Has Item"
@@ -326,40 +385,670 @@ nodes {
     }
     nextNodeIndex: -1
     hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "555e8c966131319c0e00095a"
+    }
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54bb1eed666538f00e006e26"
+  }
+  comment: "Main Loop"
+}
+nodes {
+  idRef {
+    id: "54c6cf06666538a00d004b53"
+  }
+  index: 2
+  text: "The dwarf shakes his head, \"I\'m asking you to set the price- if you have to ask how much I want, it\'s probably going to be too expensive.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+  actions {
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective"
+      }
+      args {
+        string_value: "Find an alternative route to get backstage."
+      }
+    }
   }
 }
 nodes {
   idRef {
     id: "54bb226b666538f00e006e93"
   }
-  index: 2
-  text: "{{GM}}He appears to ponder your offer briefly.{{/GM}}\n\nAnd what kinda favors do you think I can\'t handle myself?"
+  index: 3
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "Anything that can be handled legally, or you just don\'t need that kinda heat..."
+    responseText: "I specialize in the quasi-legal."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf smiles, \"Well, hello then pal! I\'m Aaron, and I often have quasi-legal needs.\" \n\nPassing you two passes, Aaron slides his commlink out of his pocket, and pings your network, \"One favor, no questions asked. I don\'t need your morality getting in the way of my solutions.\"\n\n\"Deal?\""
+        }
+      }
+      ops {
+        functionName: "Set Actor Display Name"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "54bb1eed666538f00e006e26"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          string_value: "Aaron"
+        }
+      }
+    }
     nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Never hurts to have a tech around."
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 5
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 10
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf raises eyebrows appreciatively at your tech collection, and whistles. \"You certainly know what you\'re on about there,\" he says. \n\n\"Those are valuable skills, certainly the sort that I can make use of; and not just to reset the clock on my home automation.\" "
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Mages don\'t grow on trees."
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 8
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf eyes you suspiciously, \"I don\'t know much about magic, except what I see on the trid, but it is a rare talent.\"\n\n\"If you can throw spells half as wiz as \'Felix\' from Odd Coven, that would be fraggin great.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Things need hitting, I hit things, they die."
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf looks you over, and nods, \"You certainly know how to carry yourself- not the swagger of someone who doesn\'t know what they\'re doing.\"\n\n\"I\'d say that\'s a useful skillset.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "If you need a deniable-type asset, someone to do things so your hands stay clean."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "You know, of a sexual nature..."
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf takes a moment to eye you lustfully, \"I could certainly use a little back door nasty in my life, that\'s for sure.\" \n\nHe takes his commlink out of his pocket, tapping it against yours to leave his personal information. "
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "555e8d146131319c0e00096e"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "You know, of a sexual nature..."
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The dwarf takes your nuyen, and eyes you with lust in his eyes, \"I can\'t say the idea doesn\'t hold its appeal, but I don\'t usually go for the fairer sex.\"\n\nAaron shrugs, \"Sorry, Lady.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "555e8d186131319c0e00096f"
+    }
+    auxiliaryLink: true
   }
   branches {
     responseText: "Getting things off the top shelf?"
-    nextNodeIndex: 4
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 10
+    comment: "end"
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54bb1eed666538f00e006e26"
   }
+  comment: "500 Loop"
 }
 nodes {
   idRef {
     id: "54c6cbf1666538a00d004b34"
   }
-  index: 3
-  text: "{{GM}}He perks right up.{{/GM}}\n\nA runner huh?  I\'ll take you up on that.  Never know where a shadowy knife may come in handy..."
+  index: 4
+  text: "Aaron\'s eyes narrow, but you can see the caculations behind them. \"A runner-type, eh? I could always use an ace in the hole. Five hundred nuyen, cash, and this favor- no questions asked?\""
   branches {
-    responseText: "So we have a deal?"
-    nextNodeIndex: 12
+    responseText: ""
+    nextNodeIndex: 10
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -371,14 +1060,23 @@ nodes {
   idRef {
     id: "54bb2420666538f00e006ebb"
   }
-  index: 4
-  text: "Real fraggin\' funny Chummer.   I\'m thinking my passes are commited elsewhere..."
+  index: 5
+  text: "The dwarf\'s face goes stone solid, and his cheek twitches. You seem to have hit a sore spot. \n\n\"Real fraggin\' funny, Fragger,\" Aaron snaps his fingers, \"You know what? I just remembered that my good friend Shedeem wanted these, so I\'m afraid my passes are commited elsewhere. Better luck next time, chummer, maybe you can find some on the top shelf.\""
   branches {
-    responseText: "I\'m not the type of person to cross, halfer.   Hand over the passes, or be looking over your shoulder forever."
-    nextNodeIndex: 5
+    responseText: "{{CC}}1000\302\245{{/CC}} How about we double the price?"
+    nextNodeIndex: 6
   }
   branches {
-    responseText: "{{CC}}[250\302\245]{{/CC}} How about I kick it up another 250\302\245?"
+    responseText: "What can I do for you that Shedeem can\'t?"
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Intimidate{{/CC}} I\'m not the type of person to cross, halfer. Give me the passes, or bleed for resisting."
+    nextNodeIndex: 7
+  }
+  branches {
+    responseText: "{{CC}}Cha 4{{/CC}} How about I kick it up another 250\302\245?"
     conditions {
       ops {
         functionName: "Evaluate Nuyen"
@@ -398,7 +1096,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 6
+    nextNodeIndex: 8
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -407,10 +1105,66 @@ nodes {
 }
 nodes {
   idRef {
+    id: "555ea9706131319c0e000a57"
+  }
+  index: 6
+  text: "You see the look of greed in Aaron\'s eyes, and he pulls the passes from his pocket, passing them to you as you trade nuyen.\n\n\"Keep the halfer jokes to yourself next time, or I\'ll ventilate your kneecaps.\""
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_BackStagePasses"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective"
+      }
+      args {
+        string_value: "Head backstage."
+      }
+    }
+  }
+}
+nodes {
+  idRef {
     id: "54c6cc7f666538a00d004b39"
   }
-  index: 5
-  text: "{{GM}}He swallows hard, and seems to have lost a bit of his nerve.{{/GM}}\n\nSo it\'s like that?   I guess I don\'t need to end up in a ditch somewhere... Take them."
+  index: 7
+  text: "{{GM}}He swallows hard, and glares at you, although he seems to have lost his nerve.{{/GM}}\n\n\"So it\'s like that?   I guess I don\'t need to end up in a ditch somewhere... Take them.\""
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54bb1eed666538f00e006e26"
@@ -468,12 +1222,11 @@ nodes {
   idRef {
     id: "54c6ccea666538a00d004b3b"
   }
-  index: 6
-  text: "Frag off, pal.   Find your own fraggin\' passes."
+  index: 8
+  text: "Aaron gives you the finger, leaning back against the leg of the Beast, enjoying the thrumming speakers of the legendary fixture at U93.\n\n\"Kick rocks, $+(l.race), you\'re ruining my night.\""
   branches {
-    responseText: "Alright man... can\'t take a joke?   How about you hand them over, before I lose my sense of humor.   You\'d fit nicely in the storm drain out back..."
-    nextNodeIndex: 5
-    auxiliaryLink: true
+    responseText: "Can\'t take a joke?   "
+    nextNodeIndex: 9
   }
   branches {
     responseText: "I\'ll be back..."
@@ -497,17 +1250,114 @@ nodes {
 }
 nodes {
   idRef {
+    id: "555eb3cf6131319c0e000a5d"
+  }
+  index: 9
+  text: "Aaron shrugs, \"Sure, with my friends, of whom you are not one. Get lost creeper.\""
+  branches {
+    responseText: "{{CC}}Intimidate{{/CC}} I notice you don\'t have any firends here to back you up. How about I stuff you in a short trash can and let the rats find you?"
+    nextNodeIndex: 7
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "555ea6256131319c0e0009cc"
+  }
+  index: 10
+  text: "\"Do we have a deal?\" Aaron asks hesitantly."
+  branches {
+    responseText: "Yes."
+    nextNodeIndex: 11
+  }
+  branches {
+    responseText: "No, I\'d rather just pay for the passes."
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "No, I\'ll find another way."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "54bb229a666538f00e006e95"
+  }
+  index: 11
+  text: "\"Done,\" the dwarf nods, sliding his hands into his pockets. \n\n{{GM}}You have the passes, and you\'re on your way.{{/GM}}"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_BackStagePasses"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective"
+      }
+      args {
+        string_value: "Head backstage."
+      }
+    }
+  }
+}
+nodes {
+  idRef {
     id: "54bb2385666538f00e006eb5"
   }
-  index: 7
-  text: "Must be pretty desperate to get back there... You one of those groupie types with some sort of stalker fantasy for Mecurial?"
+  index: 12
+  text: "Aaron whistles, and lets you get the cash out of your pocket before he pulls the tickets out of his. \n\n\"You must be some uber fan, desperate to get back stage. Mercurial is good people- one of us, a kid from the street.\"\n\nAaron hands you the passes, and then asks \"You\'re not one of those murder groupies type, are you?\""
   branches {
     responseText: "Whatever gets those passes in my hand, and your mouth shut."
-    nextNodeIndex: 8
+    nextNodeIndex: 13
   }
   branches {
-    responseText: "Hardly.   Didn\'t even know he was here until I walked up.   Got a meeting backstage with a fixer.    Need to get back there quickly, and quietly. "
-    nextNodeIndex: 9
+    responseText: "Hardly.   Didn\'t even know he was here until I walked up."
+    nextNodeIndex: 14
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -518,11 +1368,11 @@ nodes {
   idRef {
     id: "54bb26d2666538f00e006ec6"
   }
-  index: 8
-  text: "Got a bit of an attitude problem, chummer... I\'m not sure I\'m handing these over... you see I got a rep to protect myself..."
+  index: 13
+  text: "Aaron shrugs, and stuffs the tickets back in his pocket. \"You got an attitude problem, I got a rep to protect myself... Maybe I should just hold onto these?\""
   branches {
     responseText: "What\'s worse, a damaged reputation?   Or a damaged spine?"
-    nextNodeIndex: 5
+    nextNodeIndex: 7
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -534,15 +1384,15 @@ nodes {
   idRef {
     id: "54bb2703666538f00e006eca"
   }
-  index: 9
-  text: "Whoa there, chummer... You\'re a runner?"
+  index: 14
+  text: "Aaron blinks at you, \"He? Mercurial is a woman. Maria Mercurial.\""
   branches {
     responseText: "Yeah, what of it?"
-    nextNodeIndex: 10
+    nextNodeIndex: 15
   }
   branches {
     responseText: "No.   Just a driver."
-    nextNodeIndex: 11
+    nextNodeIndex: 16
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -553,16 +1403,16 @@ nodes {
   idRef {
     id: "54c6ce39666538a00d004b49"
   }
-  index: 10
-  text: "Throw in a favor someday, and you\'ve got a deal."
+  index: 15
+  text: "\"Whatever. Your cred is good, you\'re fine with me.\""
   branches {
-    responseText: "Fine.   Are we agreed?"
-    nextNodeIndex: 12
+    responseText: "Fine."
+    nextNodeIndex: 17
     auxiliaryLink: true
   }
   branches {
     responseText: "The only thing I\'m throwing in is your continued ability to turn oxygen into carbon dioxide.   It\'s a limited time offer though, so what\'ll it be?"
-    nextNodeIndex: 5
+    nextNodeIndex: 7
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -574,8 +1424,8 @@ nodes {
   idRef {
     id: "54c6cea2666538a00d004b51"
   }
-  index: 11
-  text: "Yeah... sure... Alright, Chummer... you wanna play it close to the vest, no problem.   You\'re paying good nuyen for the passes, and I guess I ain\'t got nothing else for ya."
+  index: 16
+  text: "Aaron snorts, and looks away \"Yeah, sure Pal. You wanna play it close to the vest, no problem.   You\'re paying good nuyen for the passes, and I guess I ain\'t got nothing else for ya.\"\n\n\"Get lost, don\'t harsh my mellow.\""
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54bb1eed666538f00e006e26"
@@ -633,8 +1483,8 @@ nodes {
   idRef {
     id: "54bb229a666538f00e006e95"
   }
-  index: 12
-  text: "Done."
+  index: 17
+  text: "\"Done,\" the dwarf nods, sliding his hands into his pockets. \n\n{{GM}}You have the passes, and you\'re on your way.{{/GM}}"
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54bb1eed666538f00e006e26"
@@ -690,34 +1540,12 @@ nodes {
 }
 nodes {
   idRef {
-    id: "54c6cf06666538a00d004b53"
-  }
-  index: 13
-  text: "Suit yourself, Chummer.   Ain\'t gonna find a couple of these left in a bathroom stall, that\'s for fraggin\' sure."
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54bb1eed666538f00e006e26"
-  }
-  actions {
-    ops {
-      functionName: "Set Screen Label"
-      args {
-        string_value: "Objective"
-      }
-      args {
-        string_value: "Find an alternative route to get backstage."
-      }
-    }
-  }
-}
-nodes {
-  idRef {
     id: "551f5a79663136680d00085f"
   }
-  index: 14
-  text: "I know you, $(l.man)?"
+  index: 18
+  text: "The surly dwarfs stares you down, and asks \"Do I know you, $+(l.man)? Kick rocks!\""
   branches {
-    responseText: "{{CC}}Walk Away{{/CC}} No."
+    responseText: "{{CC}}Walk Away{{/CC}}"
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -762,7 +1590,7 @@ roots {
     }
   }
   nextNodeIndex: 0
-  comment: "Knows Aaron"
+  comment: "Aaron Known"
 }
 roots {
   responseText: ""
@@ -801,6 +1629,98 @@ roots {
       }
     }
   }
-  nextNodeIndex: 14
-  comment: "Aarom Unknown"
+  nextNodeIndex: 18
+  comment: "Aaron Unknown"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_BackStagePasses"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54bb1eed666538f00e006e26"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Get lost, I\'m tryin ta enjoy the show!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 2
+      }
+    }
+  }
+  nextNodeIndex: -1
+  comment: "Have Pases"
 }
