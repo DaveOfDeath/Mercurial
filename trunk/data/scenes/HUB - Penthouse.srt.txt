@@ -98,6 +98,43 @@ triggers {
       }
     }
     ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556022236131310011002607"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Teleport Actor"
       args {
         call_value {
@@ -257,6 +294,64 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "556022d16131310011002608"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -344,8 +439,58 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "54361a456334643009004977"
+                string_value: "54361bfc633464300900497c"
               }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556022236131310011002607"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Random Point Within Region"
+          args {
+            call_value {
+              functionName: "Nothing Selected"
             }
           }
         }
@@ -378,6 +523,50 @@ triggers {
       args {
         call_value {
           functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "556022d16131310011002608"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
           args {
             int_value: 0
           }
@@ -884,6 +1073,9 @@ triggers {
         float_value: 0
       }
     }
+    ops {
+      functionName: "No Effect"
+    }
   }
   isActive: true
   idRef {
@@ -894,7 +1086,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "          *04 - The Living Room"
+  name: "          *03 - The Spare Room"
   events {
     ops {
       functionName: "On Region Enter"
@@ -902,7 +1094,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Region)"
           args {
-            string_value: "54361a456334643009004977"
+            string_value: "543618596334643009004976"
           }
         }
       }
@@ -974,7 +1166,15 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text at Screen Position"
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54369aab6334643c1b002352"
+          }
+        }
+      }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -982,12 +1182,12 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
       args {
-        string_value: "The centerpiece of this room is a large, square conversation pit, revolving around a raised open fireplace with a hood-type chimney over it."
+        string_value: "This room contains a closet to one side."
       }
       args {
         float_value: 0
@@ -1002,19 +1202,246 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 2
+        float_value: 3
       }
       args {
         float_value: 0.1
       }
       args {
         float_value: 0
+      }
+    }
+    ops {
+      functionName: "No Effect"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556025906131310011002610"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "          *04 - The Living Room"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54361a456334643009004977"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "AND"
+      args {
+        call_value {
+          functionName: "Comparison (Actor)"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556022236131310011002607"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "PENTHOUSE-ENTRY"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "556022236131310011002607"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "I need to find a damned drink!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Actor In Passive Mode"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556022236131310011002607"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Actor Run Speed"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556022236131310011002607"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "RunSpeedMethod"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Region)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556022236131310011002607"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54361bfc633464300900497c"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 7
+          }
+        }
       }
     }
   }
@@ -3537,247 +3964,6 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Maria.StormOff"
-  events {
-    ops {
-      functionName: "On Conversation Complete"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_MariaStormOff"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Clear All Waypoints"
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54369aab6334643c1b002352"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54369aab6334643c1b002352"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Order Actor to Move To (Region)"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54369aab6334643c1b002352"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55230d506131317c0a007ffa"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Waypoint on Actor"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PrimaryOrSecondary"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "5521b0a46131319c15000d0b"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "552c2e98666538e80e003017"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Wait for Rounds"
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "552c2e98666538e80e003017"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
   name: "     [2] FoleyOffice"
   events {
     ops {
@@ -4110,6 +4296,497 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: "Sam_Mutters"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eSamMutter"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 6
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eMutters"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSamMutter"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (float)"
+          args {
+            float_value: 30
+          }
+          args {
+            float_value: 360
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556022d16131310011002608"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mutters1"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMutters"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        string_value: "Look at all this money!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556023746131310011002609"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mutters2"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMutters"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        string_value: "Is that real?"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556024da613131001100260b"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mutters3"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMutters"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        string_value: "Fraggin A!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556024dd613131001100260c"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mutters4"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMutters"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        string_value: "Great Ghost..."
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556024e0613131001100260d"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mutters5"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMutters"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 5
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        string_value: "I can\'t believe this..."
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556024e0613131001100260e"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "   Mutters6"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMutters"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RandomNumber"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 6
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_Mutters"
+          }
+        }
+      }
+      args {
+        string_value: "Look at all this fragging money!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556024e0613131001100260f"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 regions {
   name: "Condo Cam"
@@ -5483,34 +6160,37 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 67
+    x: 145
     y: 0
-    z: 52
+    z: 117
   }
   orientation: ORIENTATION_E
-  displayName: "Fixer"
+  displayName: "21"
   idRef {
-    id: "5521b0a46131319c15000d0b"
+    id: "556022236131310011002607"
   }
   interactionRoot {
     isEnabled: true
     interactionRadius: 2
-    interactionIcon: InteractionIcon_Conversation
-    interaction_info_text: "Talk to Max?"
+    conversationPoint {
+      conversationID: "54cc7dc16131314c190068a4"
+      turnToFace: true
+    }
+    interaction_info_text: "Talk to Sam"
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Wealthy/HumanMaleAutumn"
-    character_sheet_id: "BaseCivilian"
+    prefab_name: "Seattle:Story/SamWatts"
+    character_sheet_id: "Lvl1_Merc_Human_Assassin"
     character_mod {
       stats {
-        body: 1
-        quickness: 2
-        strength: 1
-        charisma: 4
-        intelligence: 3
-        willpower: 4
-        essence: 1
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
         magic: 0
         hp: 0
         ap: 0
@@ -5528,7 +6208,7 @@ characters {
         vision_cone_angle: 0
       }
       skills {
-        ranged_combat: 3
+        ranged_combat: 0
         close_combat: 0
         throwing_weapons: 0
         spellcasting: 0
@@ -5537,7 +6217,7 @@ characters {
         spirit_summoning: 0
         drone_control: 0
         biotech: 0
-        dodge: 3
+        dodge: 0
         etiquette_corporate: 0
         etiquette_security: 0
         etiquette_gang: 0
@@ -5548,7 +6228,7 @@ characters {
         etiquette_academic: 0
       }
       specializations {
-        pistol: 1
+        pistol: 0
         rifle: 0
         shotgun: 0
         smg: 0
@@ -5558,28 +6238,19 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
-      attitude: AttitudeCautious
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Pi 1 Fichetti Security 500"
-    }
-    equipment {
-      prefab_name: "RiggerTrenchcoat"
-    }
     team_id: "Civilians"
-    char_name: "Max Foley"
+    char_name: "Old Sam"
+    enabled_at_start: true
     pc_spawn_number: -1
-    hiring_type: HiringType_None
     portrait {
-      filename: "backer_humanmale_chrisvangraas"
+      filename: "npc_humanmale_samwattspresent"
     }
-    description_bio: "Foley is in his 50s, short, fat and balding, wears latest fashions, suited to teens. He smokes large cigarettes. He\'s a talker. His constant refrain is \"Am I right?\""
-    karma: 65
-    hiring_cost_override: 3000
-    is_prop_character: true
+    karma: 43
   }
 }
 variables {
@@ -5598,7 +6269,25 @@ variables {
     typeName: "string"
   }
 }
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "str_Mutters"
+    typeName: "string"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_RandomNumber"
+    typeName: "int"
+  }
+}
 mapEvents: "eSendDirections"
+mapEvents: "eMutters"
+mapEvents: "eSamMutter"
 worldMapLocation {
   filename: ""
   location {
