@@ -7,14 +7,154 @@ nodes {
     id: "553c6c8d6631361801007dd4"
   }
   index: 0
-  text: "{{GM}}The Yakuza witch is holding something out towards Maria and talking in a soothing voice.{{/GM}}\n\nNow, you know how you\'ve missed it\'s power... Just one little taste?  For old times sake?"
+  text: "{{GM}}As you glimpse the scene, you see Maria backed into a corner, surrounded by thugs. One has his head blown off, and several have ballistic impacts on their armor. Maria is holding her PISTOL with the slide locked back, but she doesn\'t seem to notice, she keeps pulling the trigger and pointing at the goons between her and her tormentor.{{/GM}}\n\n\"You remember us, don\'t you Maria? We\'re friends - we both know Max. Don\'t try to fight us, see what I have here for you?\"\n\nYou can\'t see what the woman has in her hand, but it buzzes as she holds it. That can\'t be a good sign."
   branches {
     responseText: ""
+    conditions {
+      ops {
+        functionName: "Compare Actor Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "5532f1186631360007001367"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: 1
+    comment: "No Armando"
+  }
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "Compare Actor Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "5532f1186631360007001367"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 7
+    comment: "Armando"
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "55059e936131313023007217"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e936131313023007217"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_sweeping"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_pistol"
+          }
+        }
+      }
+    }
   }
 }
 nodes {
@@ -161,6 +301,302 @@ nodes {
     id: "553c6f336631361801007df6"
   }
   index: 6
+  text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nShe reaches out and takes the small chip from Hotoda."
+  branches {
+    responseText: "{{CC}}Start Combat{{/CC}}"
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "55059e936131313023007217"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "Get $(l.him)!   Max you told us $(l.he) wouldn\'t be back for hours!"
+        }
+        args {
+          float_value: 255
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 128
+        }
+        args {
+          float_value: 7
+        }
+        args {
+          float_value: 3
+        }
+        args {
+          float_value: 0
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eStartCombat"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Let Maria Insert the Chip.{{/CC}}"
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eMariaChips"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532f058663136200f000bf3"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_interact"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "553c6cfa6631361801007dd9"
+  }
+  index: 7
+  text: "Maria continues to pull the trigger, and shakes her head no \"No, I don\'t want it... I don\'t like it, the world gets grey... I don\'t want it anymore... Armando helped me kick it...\"\n\nHotada continues to hold it out the Maria, and you can see that Maria is temped."
+  branches {
+    responseText: ""
+    nextNodeIndex: 8
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532f058663136200f000bf3"
+  }
+}
+nodes {
+  idRef {
+    id: "5560b10b613131fc1b000db9"
+  }
+  index: 8
+  text: "\"Maria, NO!\" Armando shouts, rushing into the room with fear painted on his face."
+  branches {
+    responseText: ""
+    nextNodeIndex: 9
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532f1186631360007001367"
+  }
+  actions {
+    ops {
+      functionName: "No Effect"
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "553c6d296631361801007ddc"
+  }
+  index: 9
+  text: "\"Armando?\" Maria asks, shaking her head to clear the haze."
+  branches {
+    responseText: "Yo... Bitch... Get the fuck away from my client!"
+    nextNodeIndex: 10
+  }
+  branches {
+    responseText: "I\'m here Maria.   As for your friends, it\'s time for you to leave.   You can use the door, or some extra thick trashbags, but you\'re out.   Now."
+    nextNodeIndex: 11
+  }
+  branches {
+    responseText: "{{CC}}Wait{{/CC}}"
+    nextNodeIndex: 12
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532f058663136200f000bf3"
+  }
+}
+nodes {
+  idRef {
+    id: "553c6da16631361801007dee"
+  }
+  index: 10
+  text: "{{GM}}The Yazuka lady jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\nMax... you said $(l.he) wouldn\'t be back for hours... Clearly our faith in you was misplaced.   Take $(l.him) out!"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eStartCombat"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "553c6e156631361801007df0"
+  }
+  index: 11
+  text: "{{GM}}A now familiar expression comes over Maria\'s face, indicating she\'s gone Amazon again.   Gone in an instant is the crying weak woman, replaced by the hardened street samurai.{{/GM}}\n\n{{CC}}She lashes out, kicking whatever was in Hotodas hand away, and turns to you... {{/CC}}  \n\n\"It\'s about time, $(l.name).   We\'ve got some trash to take out.\""
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532ef7f663136200f000bee"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_attack_unarmed_kick"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e936131313023007217"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_hitreaction"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eStartCombat"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "553c6f0b6631361801007df2"
+  }
+  index: 12
+  text: "Take it, Maria... Become the starlet we\'re all expecting to find..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 13
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+}
+nodes {
+  idRef {
+    id: "553c6f336631361801007df6"
+  }
+  index: 13
   text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nShe reaches out and takes the small chip from Hotoda."
   branches {
     responseText: "{{CC}}Start Combat{{/CC}}"
