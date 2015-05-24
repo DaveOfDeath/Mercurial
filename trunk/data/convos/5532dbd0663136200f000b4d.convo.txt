@@ -7,7 +7,7 @@ nodes {
     id: "5532dc01663136200f000b57"
   }
   index: 0
-  text: "{{GM}}She smiles up at you warmly.{{/GM}}\n\nWhy hello there.   Welcome to LowBall Records.   Can I help you with something?"
+  text: "{{GM}}The attractive elven female smiles up at you warmly as the elevator doors open and you enter the office of Lowball Records.{{/GM}}\n\n\"Hi, I\'m Sydney,\" the elven woman says happily, \"Welcome to Lowball Records!\""
   branches {
     responseText: "I\'m a new business associate of Mr. Foley.   Said I should come by and check out the view."
     nextNodeIndex: 1
@@ -68,6 +68,108 @@ nodes {
     }
   }
 }
+nodes {
+  idRef {
+    id: "5561061b393066c413003c78"
+  }
+  index: 3
+  text: "$(story.str_NPCIntroText)"
+  nodeType: ConversationNodeType_Simple
+}
 roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_Secretary"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
   nextNodeIndex: 0
+  comment: "First talk"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_Secretary"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+      }
+    }
+  }
+  nextNodeIndex: 3
+  comment: "Return Talk"
 }
