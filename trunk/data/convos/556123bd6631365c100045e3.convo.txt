@@ -1,0 +1,107 @@
+idRef {
+  id: "556123bd6631365c100045e3"
+}
+ui_name: "Sunnyside - Magic Vendor"
+nodes {
+  idRef {
+    id: "556123cb6631365c100045e9"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Hangs In Slums?   Wasn\'t your name Dances With Traffic a few days ago outside Yoshiros?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Uh... No... Some say that true names have power over the soul, so mine may changes from time to time.   Today I\'m Hangs in Slums... tomorrow... I dunno... maybe Drunk In The Forest."
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556124e76631365c100045ed"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}View Wares{{/CC}} Whatcha got?"
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bMagicVendor"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Open Store Screen From Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "55611e3c6631365c100045de"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Walk Away{{/CC}} Thanks, I\'m good."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  responseText: ""
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: " Hey... $(l.man)... You\'re ready now $(l.man)...  Name\'s Hangs In Slums... you interested in a little magical fortifications?   I can totally improve your astral presence..."
+      }
+    }
+  }
+  nextNodeIndex: 0
+}
