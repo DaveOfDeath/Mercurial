@@ -1,0 +1,237 @@
+idRef {
+  id: "556152016631365c09003fc6"
+}
+ui_name: "Sunnyside - Halloweeners"
+nodes {
+  idRef {
+    id: "556152106631365c09003fcc"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Sgt. Matthews has issued the order, all gangs must vacate the area immediately."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "That so... Whadda you think of that, Lopez?"
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Sorry, wrong turn."
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Default Loop"
+}
+nodes {
+  idRef {
+    id: "556152fb6631365c09003fd7"
+  }
+  index: 1
+  text: "That so... Whadda you think of that, Lopez?"
+  branches {
+    responseText: ""
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "556153266631365c09003fda"
+  }
+  index: 2
+  text: "Looks like she finally found a sucker to take her up on her lost cause.  God that bitch is determined.   Why can\'t she just move on, and leave this place to us?"
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Looks like you can go tell the bronzer bitch that we\'re not going anywhere... \n\nIn fact... Maybe I\'ll come visit her tonight... Tell her myself.   Give her a wakeup call she\'ll never forget..."
+        }
+      }
+    }
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5561473e6631365c09003f17"
+  }
+}
+nodes {
+  idRef {
+    id: "556153666631365c09003fdd"
+  }
+  index: 3
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Attack{{/CC}}"
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eHalloweenersSurprised"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Investigate{{/CC}}  Lopez?   Aren\'t you one of Matthews guys?   Why are you down here siding with these  lowlife gangers?"
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "{{CC}}Back Away{{/CC}} This is too heavy, I\'m out of here."
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Confront"
+}
+nodes {
+  idRef {
+    id: "556154c46631365c09003fe2"
+  }
+  index: 4
+  text: "If the star was better paying, I might have been more loyal... and these \'lowlife gangers\' as you put it are more of a brotherhood to me than this badge ever was.\n\nIf that bitch thinks she\'s gonna run off my new friends... it sounds like they\'ll be a vacancy in the top of the chain of command around her shortly... And hell... I may even put in for it."
+  branches {
+    responseText: "{{CC}}Attack{{/CC}} You disgust me."
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eHalloweenersSurprised"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "A dirty cop... How original."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "So what\'s it gonna be, $(story.str_Racism1)?"
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5561473e6631365c09003f17"
+  }
+}
+nodes {
+  idRef {
+    id: "5561578d6631365c09003ff8"
+  }
+  index: 5
+  text: "Too late for that pal... Get $(l.him)!"
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eHalloweenersAware"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "556170ba6631365c09004308"
+  }
+  index: 6
+  text: "I\'ll say so.   Smells like a pig.... Get \'$(l.him) boys!"
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eHalloweenersAware"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "[The gnarled old troll looks over at you, sizing you up in an instant... and you\'re left with distinct impression that he\'s not impressed.]\n\nYou picked the wrong alley to wander down..."
+      }
+    }
+  }
+  nextNodeIndex: 0
+}
