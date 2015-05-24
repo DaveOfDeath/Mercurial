@@ -1,0 +1,106 @@
+idRef {
+  id: "556115db6631365c10004593"
+}
+ui_name: "Sunnyside - Tech Vendor"
+nodes {
+  idRef {
+    id: "556115e66631365c10004599"
+  }
+  index: 0
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Why are you not wearing any clothes?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Are you kidding me?  Don\'t you  know how sensitive high end electronics are to static discharge?    You may be willing to risk your mid-grade tech over some silly fashion sense...\n\nBut me?   I practice static safety... I hack naked."
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556116056631365c1000459d"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}View Wares{{/CC}}  Lets see your tech?"
+    actions {
+      ops {
+        functionName: "Open Store Screen From Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "556111516631365c10004592"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bTechVendor"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Back away slowly{{/CC}} I\'ll just be going now..."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Welcome to RayineMahn\'s finest tech and gidgets... What can I get ya friend?"
+      }
+    }
+  }
+  nextNodeIndex: 0
+}
