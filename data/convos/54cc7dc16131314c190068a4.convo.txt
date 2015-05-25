@@ -1908,6 +1908,23 @@ nodes {
   }
   index: 26
   text: "Sam shrugs, \"Okay, so what\'s the deal? Where are we headed?\""
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Open Scene"
+        args {
+          call_value {
+            functionName: "Get Map Item (Scene)"
+            args {
+              string_value: "HUB - Penthouse"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
   actions {
     ops {
@@ -1927,9 +1944,6 @@ nodes {
         string_value: "The ride to Maria\'s part of town is quiet as the grave. No one feels like talking, even those of you without a scratch.\n\nWhen you stop in the underground parking garage of Maria\'s penthouse, Sam breathes a sigh and says \"No fragging way,\" as if he couldn\'t believe it.\n\nThe keycard that got you access to the garage also gets you into the elevator, and although your heart stops when those doors close, it starts beating again when it doesn\'t open on the top floor with a hundred mooks armed to the teeth ready to kill you.\n\nWelcome to the life of luxury. This is how the 1% lives, even a few miles from the Barrens."
       }
     }
-    ops {
-      functionName: "No Effect"
-    }
   }
 }
 nodes {
@@ -1940,6 +1954,123 @@ nodes {
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Investigate{{/CC}} Bounty on your head"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_VisitedSunnyside"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam nods, \"Okay, I do remember hearing something about this. There were a lot of people calling me, very interested in knowing if I was still BFFs with you, and where they might be able to find you.\"\n\n\"Lucky for you, I\'m a very private person, who never would sell out a friend, and also happened to be too drunk to answer the telecom at the time.\"\n\nSam smiles, and you don\'t know if he\'s joking or not, \"Who did you have looking into this for you?\""
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_HubSubQuest"
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
+    nextNodeIndex: 28
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Return to Sunnyside Slums{{/CC}}"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_VisitedSunnyside"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (int)"
@@ -1972,9 +2103,55 @@ nodes {
           }
         }
         args {
-          string_value: "Sam nods, \"Okay, I do remember hearing something about this. There were a lot of people calling me, very interested in knowing if I was still BFFs with you, and where they might be able to find you.\"\n\n\"Lucky for you, I\'m a very private person, who never would sell out a friend, and also happened to be too drunk to answer the telecom at the time.\"\n\nSam smiles, and you don\'t know if he\'s joking or not, \"Who did you have looking into this for you?\""
+          string_value: "\"Couldn\'t get enough, eh?   Once more into the breech and all that?\""
         }
       }
+    }
+    nextNodeIndex: 36
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Head to the Taetzel Building{{/CC}}"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
       ops {
         functionName: "Set Variable (string)"
         args {
@@ -1984,16 +2161,35 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SceneDetails"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
+          string_value: "\"Guess theres no stopping you now.   This one is going to be the fight of your lives... So you\'d damned sure be ready for it.   Are you Kid?\""
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_HubSubQuest"
+            }
+          }
+        }
+        args {
+          int_value: 6
         }
       }
     }
-    nextNodeIndex: 28
+    nextNodeIndex: 36
     hideIfUnavailable: true
+    auxiliaryLink: true
   }
   branches {
     responseText: "{{CC}}Investigate{{/CC}} Visit Foley\'s Office"
@@ -2105,7 +2301,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -2121,7 +2317,7 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "bool_InvestigateHernandez"
+              string_value: "bool_HarassHernandez"
             }
           }
         }
@@ -2143,7 +2339,7 @@ nodes {
               string_value: "bool"
             }
             args {
-              int_value: 1
+              int_value: 0
             }
           }
         }
@@ -2168,7 +2364,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 31
+    nextNodeIndex: 30
     hideIfUnavailable: true
     comment: "Post-Betrayal"
   }
@@ -2293,7 +2489,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 32
     hideIfUnavailable: true
     comment: "Player"
   }
@@ -2418,7 +2614,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 32
     hideIfUnavailable: true
     auxiliaryLink: true
     comment: "Player"
@@ -2578,7 +2774,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -2737,9 +2933,117 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     hideIfUnavailable: true
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Call Maria{/CC}} to check up on her."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    comment: "Taeztel Unknown"
+  }
+  branches {
+    responseText: "{{CC}}Call Maria{/CC}} to check up on her."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "[You dial the TelCom number of the street doc clinic where you have Maria stashed.   After several minutes of ringing, you hang up... Something is ver clearly wrong.]"
+        }
+      }
+    }
+    nextNodeIndex: 27
+    hideIfUnavailable: true
+    auxiliaryLink: true
+    comment: "Tatzel Known"
   }
   branches {
     responseText: "{{CC}}Wait{{/CC}} We need to just hole up and wait for this all to blow over..."
@@ -2792,7 +3096,7 @@ nodes {
           }
         }
         args {
-          string_value: "Maria paces a bit, and finally slumps her shoulders, \"If you think we need to wait it out, we can try that, but I\'m dying to get out there and DO something about all this!\""
+          string_value: "[Sam seems to be bursting at the seams with barely restrained contempt.]\n\n\"We can\'t just sit around, kid.   Remember when a fraggin\' dragon burned down your safehouse, and you were marked for death by both a yakuza witch, and some anonymous bounty?    These are really things that we need to take care of quickly.\"\n\n[He sighs deeply]\n\n\"Get your head right, and lets get back into this.   I\'ll give you a minute.\""
         }
       }
     }
@@ -2835,8 +3139,25 @@ nodes {
           string_value: "[UNDEFINED]"
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Thats one of the few luxuries we don\'t actually have, kid... but if you need a minute, take it.\""
+        }
+      }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 35
   }
   branches {
     responseText: "DEBUGGER - Confirm Mission"
@@ -2878,7 +3199,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     hideIfUnavailable: true
     comment: "DEBUGGER-Confirm Leaving"
   }
@@ -3818,7 +4139,7 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 2
+              int_value: 3
             }
           }
         }
@@ -3846,7 +4167,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -3880,7 +4201,8 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 30
+    nextNodeIndex: 28
+    auxiliaryLink: true
   }
   branches {
     responseText: "Moderate your tone about trolls."
@@ -3938,33 +4260,20 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 30
+    nextNodeIndex: 28
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
-    id: "55601d63613131001100243f"
+    id: "5521aefd6131319c15000c58"
   }
   index: 30
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: ""
-    nextNodeIndex: -1
-  }
-  nodeType: ConversationNodeType_Simple
-  comment: "Mateo Loop"
-}
-nodes {
-  idRef {
-    id: "5521aefd6131319c15000c58"
-  }
-  index: 31
-  text: "$(story.str_NPCIntroText)"
-  branches {
     responseText: "How long have you known Hernandez?"
-    nextNodeIndex: 31
+    nextNodeIndex: 30
     auxiliaryLink: true
   }
   branches {
@@ -3988,7 +4297,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 32
+    nextNodeIndex: 31
     comment: "Past Loop"
   }
   branches {
@@ -4010,7 +4319,7 @@ nodes {
   idRef {
     id: "5521b2d46131319c15000dd2"
   }
-  index: 32
+  index: 31
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "What do you mean, your early memories are hazy?"
@@ -4033,7 +4342,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 32
+    nextNodeIndex: 31
     auxiliaryLink: true
   }
   branches {
@@ -4057,7 +4366,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 32
+    nextNodeIndex: 31
     auxiliaryLink: true
   }
   branches {
@@ -4081,7 +4390,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 32
+    nextNodeIndex: 31
     auxiliaryLink: true
   }
   branches {
@@ -4115,7 +4424,7 @@ nodes {
   idRef {
     id: "554c1554663136b00c00090e"
   }
-  index: 33
+  index: 32
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Take along {{CC}}Silver Arrow{{/CC}}"
@@ -4172,7 +4481,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     auxiliaryLink: true
   }
   branches {
@@ -4260,11 +4569,46 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 36
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   comment: "Player isDecker"
+}
+nodes {
+  idRef {
+    id: "5562c2136631366810007901"
+  }
+  index: 33
+  text: "{{CC}}The phone rings once or twice before being picked up by Maria.{{/CC}}\n\n$(l.name)?   That you?   Ghost it\'s good to hear from you...\n\n{{CC}}You chat with Maria for several minutes before disconnecting{{/CC}}"
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That was nice.   Taking this bodyguarding thing seriously, eh?\""
+        }
+      }
+    }
+    nextNodeIndex: 27
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5521afe66131319c15000d0a"
+  }
 }
 nodes {
   idRef {
@@ -4276,9 +4620,17 @@ nodes {
 }
 nodes {
   idRef {
-    id: "5503ecd86631367817006109"
+    id: "5562bd70663136681000725f"
   }
   index: 35
+  text: "$(story.str_NPCIntroText)"
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5503ecd86631367817006109"
+  }
+  index: 36
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Confirm{{/CC}}"
