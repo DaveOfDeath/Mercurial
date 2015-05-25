@@ -7,9 +7,9 @@ nodes {
     id: "554ab4c1663136c010003025"
   }
   index: 0
-  text: "{{GM}}She looks like she migh collapse at any moment... And nothing but her willpower is holding her up.{{/GM}}\n\nWelcome to the Sunnyside Precinct.   I\'m afraid I don\'t reconize you, stranger... I\'m Sergeant Matthews.   And you are?"
+  text: "{{GM}}The woman manning the precinct alone is formidible, tough, and looks like she could chew nails. She looks like she might collapse at any moment... And nothing but her willpower is holding her up.{{/GM}}\n\n\"Welcome to Sunnyside, Precinct Oscar-Five-Four.   I know most of the citizens of Sunnyside, but I\'\'m afraid I don\'t recognize you... I\'m Sergeant Matthews, of course.   And you are?\"\n\nSergeant Matthews stares at you, waiting for you to respond. "
   branches {
-    responseText: "$(s.name)...   And I\'m here to help.   Where can you use me, Sergeant?"
+    responseText: "$(s.name). I\'m here to help.   Where can you use me, Sergeant?"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -35,28 +35,11 @@ nodes {
           }
         }
       }
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Alright, $(scene.sLoneStarCallName)... I can use all the help I can get.   I\'ve got two deputies assigned to this precinct, and they\'re outmatched by some of the local gangs.   LoneStar has pulled the rest of my precinct out, and reassigned them to \"more pressing areas\".     \n\nAin\'t that just the biggest line of crap you\'ve ever heard?    I know Sunnyside isn\'t want it used to be... but this is where I grew up, and I\'ll be damned if some gangs can take it from the descent folk who still live here..."
-        }
-      }
     }
     nextNodeIndex: 1
   }
   branches {
-    responseText: "Just a concerned citizen.  Rumor around town is that you could use a hand?   I\'ve got a couple of spares if you think you can use them..."
+    responseText: "Just a concerned citizen.  Rumor around town is that you could use a hand? I\'ve got a set, if you think you can use them."
     conditions {
       ops {
         functionName: "Compare Actor Gender"
@@ -127,11 +110,15 @@ nodes {
     }
     nextNodeIndex: 1
     hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562c04c393066200c00380e"
+    }
     auxiliaryLink: true
     comment: "Male PC"
   }
   branches {
-    responseText: "Just a concerned citizen.  Rumor around town is that you could use a hand?   I\'ve got a couple of spares if you think you can use them..."
+    responseText: "Just a concerned citizen.  Rumor around town is that you could use a hand? I\'ve got a set, if you think you can use them."
     conditions {
       ops {
         functionName: "Compare Actor Gender"
@@ -202,12 +189,16 @@ nodes {
     }
     nextNodeIndex: 1
     hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562c050393066200c00380f"
+    }
     auxiliaryLink: true
     comment: "Female PC"
   }
   branches {
-    responseText: "{{CC}}Walk Away{{/CC}}\nLost.   Excuse me for a moment..."
-    nextNodeIndex: 3
+    responseText: "{{CC}}Walk Away{{/CC}} I thought this was the Nuke-O-Burger. Excuse me."
+    nextNodeIndex: 5
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -216,6 +207,37 @@ nodes {
     id: "554ab844663136c010003032"
   }
   index: 1
+  text: "Sgt Matthews smiles, and nods. \n\n\"Alright, $(scene.sLoneStarCallName), welcome to O54.\"\n\n\"I can use all the help I can get around here.   I\'ve got four deputies assigned to this precinct, two for days, and two for nights.\""
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"We\'re outmatched by some of the local gangs.   Command has pulled the rest of my staff out, and reassigned them to \'more pressing areas\'. Ain\'t that just the biggest line of crap you\'ve ever heard?\n\nI know Sunnyside isn\'t want it used to be... but this is where I grew up, and I\'ll be damned if some gangs can take it from the descent folk who still live here..."
+        }
+      }
+    }
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5562b987393066200c0037ec"
+  }
+  index: 2
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "John?"
@@ -261,7 +283,7 @@ nodes {
           }
         }
         args {
-          string_value: "Yup.   As in John Doe... Now are you interesting in helping around here?"
+          string_value: "Sgt Matthews nods, \"Official designation for unknown corpses in morgue. John Doe. Not that we even have morgues anymore, with bodies getting chopped and parted out by Organ Grinders... Now, are you interesting in helping around here?\""
         }
       }
     }
@@ -317,7 +339,7 @@ nodes {
           }
         }
         args {
-          string_value: "Yup.   As in Jane Doe... Now are you interesting in helping around here?"
+          string_value: "Sgt Matthews nods, \"Official designation for unknown female corpses in morgue. Jane Doe. Not that we even have morgues anymore, with bodies getting chopped and parted out by Organ Grinders.\"\n\n\"Now, are you interesting in helping around here?\""
         }
       }
     }
@@ -330,7 +352,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "Tell me about this gang problem..."
+    responseText: "Tell me about the gang problem."
     conditions {
       ops {
         functionName: "Evaluate Goal"
@@ -517,7 +539,7 @@ nodes {
           }
         }
         args {
-          string_value: "Problems, actually...   We have a mismatched gang of smugglers of some sort down in a warehouse yard across from \"Big Man Burley\'s\"... as well as a charming group of Halloweeners who moved into a vacant yard down the street,  just past the Nuke-o-Burger hut.   Really, I need someone to clear out both patches, and if you can capture the two leaders... that\'d just be peachy for me.   I may even be able to throw in a little something for your efforts."
+          string_value: "Sgt Matthews sighs, \"Gang problems, actually, plural.\"\n\n\"We have a small mercenary gang of smugglers of some kind in a warehouse east of here. I don\'t know what they run, or who they run it for, but we need them shut down yesterday.\"\n\n\"Head smuggler for the crew, calls himself Lex.\""
         }
       }
       ops {
@@ -555,11 +577,11 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 2
+    nextNodeIndex: 3
     hideIfUnavailable: true
   }
   branches {
-    responseText: "LoneStar just pulled all your support?   Won\'t that cause problems for the locals?"
+    responseText: "Lonestar pulled all your support?   Won\'t that cause problems for the locals?"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -575,7 +597,7 @@ nodes {
           }
         }
         args {
-          string_value: "I would\'ve thought that was a primary concern myself... but the powers that be deemed the neighboring precient a higher priority.    Something about an entire strike team going missing?   \n\nSounds to me like they\'re covering up one of their ugly little black-op runs... but who can even keep this sort of stuff straight these days."
+          string_value: "Sgt Matthews answers, \"I would think it would be priority, but the powers that be see the big picture for Seattle as a whole. Apparently the VP here in South Seattle is in deep drek because an entire Urban High Threat Response Team is missing, with all their gear?\"\n\n\"Is smells to me like someone is covering up one of their ugly little black-op runs... but who can even keep this sort of stuff straight these days.\""
         }
       }
     }
@@ -661,13 +683,44 @@ nodes {
     hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
-  comment: "1st-Time Loop"
+  comment: "1st Time Loop"
 }
 nodes {
   idRef {
     id: "55615f876631365c0900409b"
   }
-  index: 2
+  index: 3
+  text: "Sgt Matthews sighs, \"Gang problems, actually, plural.\"\n\n\"We have a small mercenary gang of smugglers of some kind in a warehouse east of here. I don\'t know what they run, or who they run it for, but we need them shut down yesterday.\"\n\n\"Head smuggler for the crew, calls himself Lex.\""
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"The newest charming addition to our neighborhood is a group of Halloweeners who moved into a vacant yard nearby. The citizens here had some local muscle that kept gangs out, but it does\'t seem to working anymore.\"\n\n\"The Halloweeners are just south of Nuke-o-Burger, you can\'t miss it. Red Charles leads the Halloweeners, but I don\'t know who he sent to run this group, and I haven\'t heard back from the Deputy who was supposed to talk to them.\"\n\n\"I was just trying to keep the peace, but it doesn\'t looke like that\'s going to happen.\"\n\n\"Really, I need someone to clear out both groups, and if you can capture the two leaders, that would just be peachy.  I may even be able to throw in a little something for your efforts. Interested?\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5562bbc7393066200c003800"
+  }
+  index: 4
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Capture?  Not... uh... dispose of?"
@@ -686,15 +739,44 @@ nodes {
           }
         }
         args {
-          string_value: "As much as I\'d like to give you the green light on the scum tearing up my precient... I can\'t.  I play by the rules, and follow procedure.\n\nIt\'s alot less paperwork for the upstairs brass if they gang leaders are captured alive... And I may actually be able to staff up again to get the place safe for descent folks again.   You\'d be doing me a solid... but if it can\'t be done, do what you have to."
+          string_value: "Sergeant Matthews sighs, \"I know, I know. As much as I\'d love to give you the green light to take out scum bothering my citizens, I can\'t.\"\n\n\"I have to play by the rules, and I have to follow my procedures. Anything less, and I\'ll get hung out to dry while these scumbags walk.\"\n\n\"It is less paperwork for Command if the gang leaders are captured alive, we\'ll claim Citizens Arrest... and I may actually be able to staff up again to get the place safe for descent folks.   You\'d be doing me a solid... but if it can\'t be done, do what you have to.\""
         }
       }
     }
-    nextNodeIndex: 2
+    nextNodeIndex: 4
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "55618d676631360006000b4a"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Who was this deputy that you lost?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sergeant Matthews stops and recites from memory, \"Officer Mario Lopez, transfer in from Tacoma. I don\'t know who he fragged off, but he did it good.\"\n\n\"Lopez has only been here a few weeks, and I\'ve been trying to get him integrated into the community. This precinct is so small that I know we can\'t get anything done without community involvement. He\'s taken to the groups well enough, but he doesn\'t like to report in.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562bd25393066200c00380d"
     }
     auxiliaryLink: true
   }
@@ -715,7 +797,7 @@ nodes {
           }
         }
         args {
-          string_value: "I appreciate the help. Hopefully things can be resolved peacefully, but you know how these ganger types behave.\n\nI\'ll kick in for a bonus if you can do this and bring back either one of the leaders, and I may have something special if you can bring back both."
+          string_value: "Sgt Matthews shrugs, \"I appreciate the help, but I can\'t command you to help. We don\'t have the resources to deal with this on our own, so unless we get outside help, things will get worse and worse.\"\n\nI can give you a discretionary bonus for helping out- if you can do this and bring back either one of the leaders  I can pay the normal CI fees, and if you can both leaders back here, I\'ll make sure you get something nice from our evidence lockup.\""
         }
       }
     }
@@ -723,21 +805,46 @@ nodes {
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
+  comment: "Ganger Loop"
 }
 nodes {
   idRef {
     id: "554ab707663136c01000302d"
   }
-  index: 3
-  text: "Sure."
+  index: 5
+  text: "Sgt Matthews looks back to her digital display, \"10-4, Citizen.\""
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "556162c86631365c090040c1"
   }
-  index: 4
+  index: 6
   text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Anything new in Sunnyside?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Well,\" Sergeant Matthews says, \"There\'s the bombing of the UB next door by some madman, which doens\'t make sense, because they usually attract the crazies.\"\n\n\"Our Lieutenant has been reassigned, our Captain is missing, presumed dead, and I\'m down to four beat cops- two day shift and two night shift.\"\n\n\"Other than a brewing gang war over territory, a fragging Dragon burning down the street market, and killing countless others, and my fantasy Urban Brawl team, things are pretty quiet.\""
+        }
+      }
+    }
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
   branches {
     responseText: "{{CC}}Smugglers Cleared{{/CC}}"
     conditions {
@@ -790,7 +897,7 @@ nodes {
           }
         }
         args {
-          string_value: "That\'s fantastic!   Those smugglers were really putting the fear of God into the neighborhood.   Thank you so much for dealing with them.\n\nI have a bit of nuyen in my discretionary fund for this sort of thing... please take this."
+          string_value: "Sergeant Matthews runs a hand through her hair, clearly relieved to have some good news for once. \n\n\"That is good news- I don\'t know who the smugglers were operating for, but with smuglers, drugs, gangs, and crime can\'t be far behind.\"\n\n\"I have permission to pay a bonus for any citizen or officer stopping a gang war, so here\'s 1500 nuyen as a thankyou.\""
         }
       }
       ops {
@@ -800,7 +907,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -936,7 +1043,7 @@ nodes {
       ops {
         functionName: "Add Nuyen"
         args {
-          int_value: 650
+          int_value: 500
         }
       }
       ops {
@@ -953,11 +1060,11 @@ nodes {
           }
         }
         args {
-          string_value: "I\'m not easily impressed... but you\'ve just done it.  Marching into a den of smugglers... crippling their operation is impressive... but pulling out their leader to face charges?    I\'d pin a damned medal on you in a heartbeat for that one."
+          string_value: "Sergeant Matthews breathes a sigh of relief, and says \"I am not a woman that\'s easily impressed, but you just managed to stop a gang war and capture a high-value target for interrogation and processing. This neighborhood owes you a debt.\"\n\n\"And not just for crippling the smugglers, but for making this area safe. People are noticing the work that you\'re doing.\" \n\n\"Single-handedly crippling a smuggling operation is impressive, but pulling out their leader to face charges? I\'d pin a damned medal on you in a heartbeat for that.\""
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1017,7 +1124,7 @@ nodes {
           }
         }
         args {
-          string_value: "Great news!    First, please take this... You\'ve certainly earned it.\n\nSecondly... You didn\'t by chance see one of my deputies in the area did you?   I\'d sent Officer Lopez down to keep an eye on things, but havn\'t heard back from him."
+          string_value: "Sergeant Matthews rolls her head back, cracking her neck to relieve some of the tension in it. \"That is great news, $(s_LoneStarCallName)!\"\n\n\"First, please take this... You\'ve certainly earned it. Halloweeners are recognized by the department as a danger that incites riotous activities, so it\'s a bit more than you\'d usually get.\"\n\n\"Also, I\'m still missing one of my deputies. I sent Officer Lopez down to keep an eye on things, but havn\'t heard back from him, and I\'m starting to worry.\""
         }
       }
       ops {
@@ -1027,7 +1134,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 5
+    nextNodeIndex: 7
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1130,7 +1237,7 @@ nodes {
           call_value {
             functionName: "Get Map Item (SenseTagList)"
             args {
-              string_value: "isLightOn2"
+              string_value: "isLightOn1"
             }
           }
         }
@@ -1179,11 +1286,11 @@ nodes {
           }
         }
         args {
-          string_value: "Just got word of that.   Fantastic job.  Here\'s a little extra..."
+          string_value: "Sergeant Matthews rubs her neck, \"I can\'t believe that, it\'s just too much good news. I wish that it was Charles the Red, but his lackey is just as good.\"\n\n\"We\'ll get valuable intel, and be able to stop a dangerous street gang from spreading. Thank you. Here\'s the reward for a citizen\'s arrest, five hundred nuyen.\""
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1192,7 +1299,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "I captured both leaders... You mentioned something about having a little something extra for me?"
+    responseText: "I captured both leaders... You mentioned special goodies?"
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -1266,7 +1373,7 @@ nodes {
           }
         }
         args {
-          string_value: "Yeah, I do.   I\'d like to pass along a prized piece from the old Lieutenants armory.  So what suits you?  "
+          string_value: "Sergeant Matthews smiles, for the first time since you\'ve met her. She still looks exhausted, but triumphant. \n\n\"I\'d love to give you more than this, but I\'d like to pass along a prized piece from the old seizure closet, known locally as our Captain\'s Armory.\"\n\n\"What interests you?  "
         }
       }
       ops {
@@ -1292,7 +1399,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 6
+    nextNodeIndex: 8
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1301,7 +1408,7 @@ nodes {
   }
   branches {
     responseText: "Let me get back to you."
-    nextNodeIndex: 8
+    nextNodeIndex: 11
   }
   nodeType: ConversationNodeType_Simple
   comment: "Return Loop"
@@ -1310,7 +1417,7 @@ nodes {
   idRef {
     id: "556165996631365c09004175"
   }
-  index: 5
+  index: 7
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Yeah I did.  He chose to side with the Halloweeners.   Unwise career path."
@@ -1329,15 +1436,15 @@ nodes {
           }
         }
         args {
-          string_value: "[She seems unsurprised]\n\nI knew that Mario couldn\'t be trusted... but didn\'t think he\'d go that far.   I guess it\'ll save I.A. some work... Thanks."
+          string_value: "Sergeant Matthews seems unsurprised by this news. \n\n\"I can\'t say that\'s a shock- I knew that no one got banished here without reason. You could use the stack of paperwork that IA had on Lopez as body armor. I knew that he couldn\'t be trusted, but didn\'t think he\'d go that far.\"\n\n\"I guess it\'ll save I.A. some work... Thank you.\""
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     auxiliaryLink: true
   }
   branches {
-    responseText: "He turned on the badge.   He\'ll be a bit late for the rest of his shifts though."
+    responseText: "He turned on you.   He\'ll be a bit late for the rest of his shifts."
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -1353,11 +1460,11 @@ nodes {
           }
         }
         args {
-          string_value: "I suspected.   \n\n[She sighs deeply]\n\nYou never do get used to being betrayed by your own team, huh?   You wear all this armor... and they always seem to find that one chick and stick a knife in it."
+          string_value: "Sergeant Matthews sighs, hanging her head dejectedly. A few moments go by, and then she sighs again, and says, \"I suspected that he was dirty, but I didn\'t think he\'d go that far.\"\n\n\"You never can really be sure of what someone will do. Can you ever get used to being betrayed by your own team?   You wear all this armor... and they always seem to find that one unarmored spot to stick a knife in.\""
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     auxiliaryLink: true
   }
   branches {
@@ -1377,11 +1484,11 @@ nodes {
           }
         }
         args {
-          string_value: "[She looks a little skeptical]\n\nNo?   Well maybe the rumors that he\'d turned were false... I\'ll keep an eye out for him.   He\'s bound to show up sooner or later, right?"
+          string_value: "Sergeant Matthews looks at you skeptically, waiting for you to tell her the truth.\n\n\"Haven\'t seen him? I\'ve heard that IA was hoping to hang him on Organized Crime charged, but if the rumors that he\'d turned were false...\" Matthews getsures, but doesn\'t elaborate.\n\n\"I\'ll keep an eye out for him. He\'s bound to show up sooner or later, right?\"\n\nAfter a moment, Matthew picks up her radio, and says \"Hendrickson?\" Waits for the voice on the other end to respond, and then asks \"Can we get the drones to check the storm drains and sewers? I want to start scanning for Lopez, see if we can find him before ghouls what\'s left.\""
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1390,7 +1497,7 @@ nodes {
   idRef {
     id: "556169726631365c090041d1"
   }
-  index: 6
+  index: 8
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "How about a {{CC}}Pistol{{/CC}}?"
@@ -1433,7 +1540,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 9
   }
   branches {
     responseText: "How about a {{CC}}SMG{{/CC}}?"
@@ -1476,7 +1583,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 9
     auxiliaryLink: true
   }
   branches {
@@ -1520,7 +1627,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 9
     auxiliaryLink: true
   }
   branches {
@@ -1564,7 +1671,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 9
     auxiliaryLink: true
   }
   branches {
@@ -1576,7 +1683,7 @@ nodes {
           call_value {
             functionName: "Get Map Item (Item)"
             args {
-              string_value: "Berlin_Sword 3 Laser Axe"
+              string_value: "Berlin_Sword 2 KatanaDikote"
             }
           }
         }
@@ -1608,7 +1715,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 9
     auxiliaryLink: true
   }
   branches {
@@ -1621,8 +1728,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 9
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "Maybe a spell?"
+    nextNodeIndex: 10
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -1630,7 +1741,7 @@ nodes {
   idRef {
     id: "556169e96631365c090041d9"
   }
-  index: 7
+  index: 9
   text: "Done.   Take this."
   branches {
     responseText: "Thanks."
@@ -1653,16 +1764,68 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 6
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
+    id: "5562c85a393066200c003858"
+  }
+  index: 10
+  text: "Sergeant Matthews fixes you with a glare that almost makes you forget her smile, and says \"I\'m not even supposed to know that our old Captain was hoarding illegal spell forumulae, much less have the paperwork since he disappeared. But since you did me a favor, I\'m going to pretend that I didn\'t drop this right here, and you didn\'t pick it up.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 9
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Spell Petrify"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
     id: "55616b186631365c0900423a"
   }
-  index: 8
+  index: 11
   text: "Sure, $(scene.sLoneStarCallName)."
   nodeType: ConversationNodeType_Simple
 }
@@ -1742,9 +1905,10 @@ roots {
         }
       }
       args {
-        string_value: "Welcome back, $(scene.sLoneStarCallName). Any update on our problems?"
+        string_value: "Sergeant Matthews doesn\'t smile when she sees you- you get the definite impression that she doesn\'t smile much at all.\n\nHer grimace becomes less severe, and she says \"Welcome back, $(scene.sLoneStarCallName). Any update on our problems?\""
       }
     }
   }
-  nextNodeIndex: 4
+  nextNodeIndex: 6
+  comment: "Return"
 }
