@@ -80,11 +80,12 @@ nodes {
           }
         }
         args {
-          string_value: "\"There\'s a fragging DRAGON in the area? I haven\'t seen it myself, but it burned down a section of the Street Market. I heard a lot of people got hurt, but we\'ve only seen a small portion o them come here.\""
+          string_value: "\"Have you noticed that there\'s a fragging DRAGON in the area? I haven\'t seen it myself, but it burned down a section of the Street Market. I heard a lot of people got hurt, but we\'ve only seen a small portion of them come here.\"\n\n\"I hope they\'re safe somewhere else, not just dead in the street.\""
         }
       }
     }
     nextNodeIndex: 0
+    hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
@@ -92,6 +93,7 @@ nodes {
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "I"
 }
 nodes {
   idRef {
@@ -142,7 +144,7 @@ nodes {
     id: "5562d702393066200c003a8f"
   }
   index: 3
-  text: "\"Sunnyside was a great place to live, and I don\'t know that I\'d want to raise a family here. No schools, no libraries, three whorehouses. It used to be, everyone was a exec or worker at Perfekto Polymers. When we needed things, we got them, but now that the company is gone, no one is paying for anything!\""
+  text: "\"Sunnyside was a great place to live, and I don\'t know that I\'d want to raise a family here. No schools, no libraries, three whorehouses. It used to be, everyone was a exec or worker at Perfekto Polymers. When we needed things, we got them, but the company shut down overnight like five years ago, and now no one is paying for anything!\""
   branches {
     responseText: ""
     nextNodeIndex: 0
@@ -155,88 +157,932 @@ nodes {
     id: "55441c2c663136b00c0013d7"
   }
   index: 4
-  text: "Contact Person: 2\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What can you tell me about New Horizons?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d549393066200c003a7d"
+    }
+  }
+  branches {
+    responseText: "What\'s crime like in this area?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Used to have Halloweeners in the area pretty heavily. Some concerned citizens banded together, convinced some local muscle to protect the area.\"\n\n\"More recently, we\'ve had Yakuza slashing prices and making friends in the area, trying to convince people to sell to New Horizons.\""
+        }
+      }
+    }
+    nextNodeIndex: 7
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d7a7393066200c003aa0"
+    }
+  }
+  branches {
+    responseText: "Have you seen anything that I should know about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"We used to have a couple local boys to keep up safe, Ronnie and Razor and they had a crew of runners that they worked with.\"\n\n\"But it seems like they left, just like everyone else.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635d03613131c81f0069aa"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Thank you."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "II"
+}
+nodes {
+  idRef {
+    id: "55635792613131c81f00693d"
+  }
+  index: 5
+  text: "{{GM}}$+(s.he) snorts derisively{{/GM}}\n\n\"Tell you about them? You mean, other than the fact that they\'re a front for the Shigeda Oyabun?\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "556357ec613131c81f006940"
+  }
+  index: 6
+  text: "\"Seriously, how have people not figured this out? A nice shiny company shows up, offers to buy everything, and when some people don\'t sell- BOOM, yakuza soldiers in suits show up, threatening, breaking things, and convincing people its in their best interest to sell.\""
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"People look at me like I\'m crazy, but I mean, OPEN YOUR EYES!\"\n\n\"Sell to them, sure, make your money and get out, but stay away from them. Yakuza is known to cut, burn, and murder whoever or whatever doesn\'t get out of their way.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55635914613131c81f00694f"
+  }
+  index: 7
+  text: "\"Used to have Halloweeners in the area pretty heavily. Some concerned citizens banded together, convinced some local muscle to protect the area. Now we mostly have street kids and ganger posers.\"\n\n\"More recently, we\'ve had Yakuza slashing prices and making friends in the area, trying to convince people to sell to New Horizons.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "55441c30663136b00c0013d9"
   }
-  index: 5
-  text: "Contact Person: 3\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 8
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What\'s going on here?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Not much going on here, chummer.\"\n\n\"It looked like things were turning around a year or so ago, back when New Horizons came to town. They slapped up billboards everywhere, started buying anything that wasn\'t nailed down.\"\n\n\"Then a couple of weeks ago, all the construction stopped, not like slowed down, but everyone just left the construction sites. It was scary, like there was a bomb threat and everyone forgot to tell us. No one has been active on those sites since.\""
+        }
+      }
+    }
+    nextNodeIndex: 8
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d7a7393066200c003aa0"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s new in this area?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Of course, be careful, there\'s a nasty case of \'getting murdered in your face\' going around, I wouldn\'t want to catch it.\"\n\n\"I bet you wouldn\'t want to, either.\""
+        }
+      }
+    }
+    nextNodeIndex: 9
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635cf0613131c81f0069a8"
+    }
+  }
+  branches {
+    responseText: "Have you seen anything that I should know about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Be careful. Anyone going around asking too many questions gets a case of lead poisoning.\"\n\n\"A lot of us think that\'s what happened with Ronnie and Razor, and their crew. They were good guys.\""
+        }
+      }
+    }
+    nextNodeIndex: 8
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635cf4613131c81f0069a9"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Bye"
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "III"
+}
+nodes {
+  idRef {
+    id: "55635b2f613131c81f0069a4"
+  }
+  index: 9
+  text: "{{GM}}$+(s.he) points off in the distance, and you can see one of the abandoned skyscrapers through the pollution. Air traffic behind it briefly illuminates the building from behind, so you can get a sense of how big it is.{{/GM}}\n\n\"That there is the Taetzel building. The same day that all the New Horizons construction stopped, a bunch of blacked-out armored vans showed up around the building with a bunch of construction equipment, generators, and the like. Some people checked it out, and every single one of them came down with a nasty case of fragging murdered. You got problems in this area, I\'d start sniffing around there.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 8
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "55441c34663136b00c0013db"
   }
-  index: 6
-  text: "Contact Person: 4\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 10
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What\'s going on in this area?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"About a year ago, New Horizons came to town. A lot of people were excited, first we pushed the gangs and drugs out, and now we had local work!\"\n\n\"Then a couple of weeks ago, all the construction stopped, not like slowed down, but all the managers left, everyone else just got told not to come back until they got called.\"\n\n\"It\'s been two weeks, and I don\'t think they\'re going to call us.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d7a7393066200c003aa0"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s new here?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Once the music stores and department stores moved out, the pimps, dealers, and whorehouses opened up.\"\n\n\"Not that I have anything against legal prostitution, but they have to follow rules and keep it clean- these are just cheap places for sleazebags to pimp out strung-out BTL addicts and get blackmail.\""
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635cf0613131c81f0069a8"
+    }
+  }
+  branches {
+    responseText: "Have you seen anything that I should know about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Are you fragging kidding me?\"\n\n\"Have you heard about the bombing? Some crazy fragger wearing a road cone on his head showed up at the UB, screaming and throwing things.\"\n\n\"We just thought he was a normal crazy, but the Brothers were taking it pretty seriously, so we ran for it. And we were lucky we did, because the fragger had a bomb on him!\"\n\n\"He blew the place up, and now the cops have it all  shut down! Now where are we going to get anything to eat?\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635cf4613131c81f0069a9"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Later."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "IV"
+}
+nodes {
+  idRef {
+    id: "5563600e613131c81f0069c6"
+  }
+  index: 11
+  text: "{{GM}}$+(s.he) gestures to the trash-filled streets, decrepit buildings, and abundance of graffiti.\"\n\n\"Crime, corruption, debuchery, those are all pretty new.\"\n\n\"Five years ago, you should have seen this place. We had managers, employees, and people were working and earning money.\"\n\n\"We had one of the lowest crime rates in Seattle, especially for this far south. We had our own Lonestar precinct station and everything. Then, the company turned over, and everyone bailed. People who sold early got out, everyone else got stuck here.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 10
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "55441c36663136b00c0013dd"
   }
-  index: 7
-  text: "Contact Person: 5\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 12
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Have you seen anything that I should know about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"We used to have a Lonestar precinct in the area, to keep us safe. Now we have a building with Lonestar painted on the side, a joke of a police force, and two cops holding hands trying to hold back all the crime in an area this side.\"\n\n\"You do the math- we need citizens to get involved. Maybe someone talk to the Brass, figure out what they need to start getting cops back in here, make this place respectable again.\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635cf4613131c81f0069a9"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s going on in this area?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I heard that Mitsuhama is planning to build a huge microchip manufactury near the 7/512 interchange.\"\n\n\"Seriously, just this side of Ft Lewis, close enough that we could have workers living here! How crazy would that be? Of course, we\'d need to rebuild here, but with New Horizons working on new construction projects, things are looking up for Sunnyside!\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d7a7393066200c003aa0"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What\'s new here?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Not much, just trillions in corpscript about to rain into our fair community, make everything better!\"\n\n\"Can you imagine, all those posh wageslaves, with money to spend, looking to grab a chunk of land for them, their spouse, and their 1.2 beautiful children?\"\n\n\"Can you imagine it, if the executives decide to rebuild their posh neighborhood here? So many jobs for locals, money for our land, it\'s a dream come true!\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55635cf0613131c81f0069a8"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "See you later."
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
+  comment: "V"
 }
 nodes {
   idRef {
     id: "55441c38663136b00c0013df"
   }
-  index: 8
-  text: "Contact Person: 6\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 13
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What\'s new in the area?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"The neighborhood has been circling the drain for about five years.\"\n\n\"Perfekto Polymers shut down suddenly. We heard the CEO had a heart attack, and suddenly every executive is trying to jump ship to another company.\"\n\n\"Imagine coming in to work, and suddenly people are looting computers to sell, trying to sell their houses or find new work. No one knows why it shut down, but everyone was afraid to hire any of us, so we were stuck here.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5563657e613131c81f006a59"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Have you seen anything that I should know about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"A few weeks back, all the construction got shut down, and then a bunch of crews went to the old executive tower, worked for a few days and nights, and then just disappeared.\"\n\n\"My buddy Tim was happy to get hired on to work construction, but he just disappeared afterwards. His brothers looked into it; they got killed and left in the street.\"\n\n\"No one knows who did it, and no one wants to look into it, not even the cops.\""
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556364e9613131c81f006a47"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What can you tell me about the old Factory?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"The factory was a deathtrap when there was a company monitoring safety. I can\'t imagine it\'s gotten better in the last five years, with Devil Rats running things.\"\n\n\"I know a lot of people got sick when they worked in the factory, so we all stayed away when it was closed, even though some of those chemicals are worth good money.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556364ec613131c81f006a48"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What can you tell me about the Taetzel building?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 14
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55636576613131c81f006a58"
+    }
+  }
+  branches {
+    responseText: "Thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "VI"
+}
+nodes {
+  idRef {
+    id: "5563677e613131c81f006a5e"
+  }
+  index: 14
+  text: "{{CC}}The $(s.race) $(s.man) shrugs.{{/CC}}\n\n\"Prolly a lot. I used to be on \'executive support staff\' in the Taetzel building. Most everything is stripped out. At first, people were just stealing whatever they thought they could get away with. Then, when we stopped getting paid, they stole everything worth a damn to try and pay the mortgage.\"\n\n\"Eventually, some of us got tasked to clean up the building, remove expensive fixtures and anything not nailed down. I don\'t know about any other crews, but we lasted until the first missed paycheck, and then walked off.\""
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"If you ARE heading to Taetzel, and I would NOT recommend that suicidal action, you might need to open a door or whatever.\"\n\n\"Maintentance had a \'Lazyman\' code, because busy executives couldn\'t be bothered to remember their codes. This was ours to use when they needed it reset to their new mistress\' birthday or whatever.\"\n\n\"Ready? It\'s easy to memorize: 11111.\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "55441c3b663136b00c0013e1"
   }
-  index: 9
-  text: "Contact Person: 7\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 15
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What can you tell me about New Horizons?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 16
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d549393066200c003a7d"
+    }
+  }
+  branches {
+    responseText: "What can you tell me about Perfekto Polymers?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I mean, think about it- if Perfekto was one of the megacorps, who could shut it down overnight like that? Gank the Aztechnology VP, steal his secretary, kill execs at our company?\"\n\n\"All of that in one night? That would be come crazy bad luck. But who could do that to one of the Big Eight Megacorporations?\""
+        }
+      }
+    }
+    nextNodeIndex: 18
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5562d7a7393066200c003aa0"
+    }
+  }
+  branches {
+    responseText: "Have you seen anything that I should know about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Nothing recently. I got a job at Nuke-O-Burger, and I keep my head down. I don\'t get involved in anyone\'s business, and until my bankruptcy clears, there\'s not much else I can do but work and try to pay down my debt.\""
+        }
+      }
+    }
+    nextNodeIndex: 15
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556372fd613131c81f006aec"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "VII"
+}
+nodes {
+  idRef {
+    id: "55636fea613131c81f006ad5"
+  }
+  index: 16
+  text: "The $(s.race) shrugs, \"I can\'t tell you drek about New Horizons, I\'m just hoping they come back and pay everyone for the property they promised to buy.\"\n\n\"I hope the people with cred show up, and not yak legbreakers, I guess that\'s what I\'m saying.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 17
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
-    id: "55441c40663136b00c0013e5"
+    id: "55637043613131c81f006ad8"
   }
-  index: 10
-  text: "Contact Person: 9\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 17
+  text: "\"I was a shift lead at the Chem Factory, though. Want to know a secret?\"\n\n\"Perfekto Polymers is a wholly-owned subsidiary of Aztechnology, Megacorporation! How crazy is that, I\'m technically an Aztech employee?\"\n\n$+(s.he) waves at you, \"I\'m not going to go all crazy and try to murder you for corporate greed or anything, just... most people don\'t know that, and I thought it was pretty cool.\" "
+  branches {
+    responseText: ""
+    nextNodeIndex: 15
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55637105613131c81f006ae5"
+  }
+  index: 18
+  text: "\"We had this big internal audit right before the shutdown, and an executive from Aztlan came out, VP of business practices, he came out and met with all our executives, you should have seen them sweat at this hatchetman. They didn\'t want to do anything to offend him, and gave him absolutely everything he wanted.\"\n\n\"Expensive hotel room, for him and his girlfriend/secretary. Weird chick with metal limbs, brown hair. Nice enough, though. He was here for a few days, and then the drek really hit the fan.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 19
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "556371f2613131c81f006ae8"
+  }
+  index: 19
+  text: "\"I mean, it had to be Shadowrunners, right? Texamech got killed, his secretary got grabbed, the CEO has a \'massive heart attack\' the same day, and all the other VPs are trying to get out of the company. It was like a sinking ship, only no one told the passengers, so only rats were trying to get off.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 15
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "55441c3d663136b00c0013e3"
   }
-  index: 11
-  text: "Contact Person: 8\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 20
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55637cfe613131c81f006b59"
+    }
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55637d01613131c81f006b5a"
+    }
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55637d05613131c81f006b5b"
+    }
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
+  comment: "VIII"
+}
+nodes {
+  idRef {
+    id: "55441c40663136b00c0013e5"
+  }
+  index: 21
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  nodeType: ConversationNodeType_Simple
+  comment: "IX"
 }
 nodes {
   idRef {
     id: "55441c42663136b00c0013e7"
   }
-  index: 12
-  text: "Contact Person: 10\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 22
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
+  comment: "X"
 }
 nodes {
   idRef {
     id: "55441c45663136b00c0013e9"
   }
-  index: 13
-  text: "Contact Person: 11\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 23
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
+  comment: "XI"
 }
 nodes {
   idRef {
     id: "55441c47663136b00c0013eb"
   }
-  index: 14
-  text: "Contact Person: 12\n\n{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
+  index: 24
+  text: "{{GM}}$(scene.sCharacterIntro){{/GM}}\n\n$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
+  comment: "XII"
 }
 roots {
   conditions {
@@ -293,7 +1139,7 @@ roots {
         }
       }
       args {
-        string_value: "\"Hey, what can I do for you?\""
+        string_value: "\"Hey there, what do you need?\""
       }
     }
   }
@@ -341,6 +1187,25 @@ roots {
       }
     }
   }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"What\'s up, Doc?\""
+      }
+    }
+  }
   nextNodeIndex: 4
   comment: "Contact:2"
 }
@@ -385,7 +1250,26 @@ roots {
       }
     }
   }
-  nextNodeIndex: 5
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"Whatcha need, omae?\""
+      }
+    }
+  }
+  nextNodeIndex: 8
   comment: "Contact:3"
 }
 roots {
@@ -429,7 +1313,26 @@ roots {
       }
     }
   }
-  nextNodeIndex: 6
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"Welcome to Sunnyside!\""
+      }
+    }
+  }
+  nextNodeIndex: 10
   comment: "Contact:4"
 }
 roots {
@@ -473,7 +1376,26 @@ roots {
       }
     }
   }
-  nextNodeIndex: 7
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"Howdy stranger, what can I do for you?\""
+      }
+    }
+  }
+  nextNodeIndex: 12
   comment: "Contact:5"
 }
 roots {
@@ -517,7 +1439,26 @@ roots {
       }
     }
   }
-  nextNodeIndex: 8
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"Hey cowboy, what can I help you with?\""
+      }
+    }
+  }
+  nextNodeIndex: 13
   comment: "Contact:6"
 }
 roots {
@@ -561,52 +1502,27 @@ roots {
       }
     }
   }
-  nextNodeIndex: 9
-  comment: "Contact:7"
-}
-roots {
-  responseText: ""
-  conditions {
+  actions {
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "Set Variable (string)"
       args {
         call_value {
-          functionName: "Triggering Target Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Story Variable (string)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "542848a8633464d816001ad5"
           }
           args {
-            int_value: 1
+            string_value: "str_NPCIntroText"
           }
         }
       }
       args {
-        call_value {
-          functionName: "Nearest Tagged Actor to Actor"
-          args {
-            call_value {
-              functionName: "Tag From String"
-              args {
-                string_value: "isContact9"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-        }
+        string_value: "\"Hey Player, what\'s up?\""
       }
     }
   }
-  nextNodeIndex: 10
-  comment: "Contact:9"
+  nextNodeIndex: 15
+  comment: "Contact:7"
 }
 roots {
   responseText: ""
@@ -649,8 +1565,52 @@ roots {
       }
     }
   }
-  nextNodeIndex: 11
+  nextNodeIndex: 20
   comment: "Contact:8"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                string_value: "isContact9"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 21
+  comment: "Contact:9"
 }
 roots {
   responseText: ""
@@ -693,7 +1653,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 12
+  nextNodeIndex: 22
   comment: "Contact:10"
 }
 roots {
@@ -737,7 +1697,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 13
+  nextNodeIndex: 23
   comment: "Contact:11"
 }
 roots {
@@ -781,6 +1741,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 14
+  nextNodeIndex: 24
   comment: "Contact:12"
 }
