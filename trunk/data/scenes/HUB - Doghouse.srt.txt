@@ -25842,6 +25842,207 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "Hotel.ManagerLeaves"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_ManagerLeaves"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "DOGHOUSE-HOTEL"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to Move To (Prop)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5564f923393066a80e000a30"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55581518663136840b002f10"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 7
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5564f923393066a80e000a30"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_interact"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5564f923393066a80e000a30"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "DOGHOUSE-RETURN"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55668134663136e40f005467"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Camera - Downtown Market"
   position {
@@ -34694,6 +34895,7 @@ mapEvents: "eve_TeamHired"
 mapEvents: "eve_GiveESPToDecker"
 mapEvents: "eve_RunnerRespawn"
 mapEvents: "eve_HotelSubQuest_Assign"
+mapEvents: "eve_ManagerLeaves"
 senseTags: "isUnhired"
 senseTags: "isWandering"
 senseTags: "isSpeaker"
