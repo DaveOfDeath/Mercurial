@@ -173,6 +173,44 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "Global.WeaponsVendor"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "555d225a6131317c1e0033b4"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Open Store Screen From Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "555d225a6131317c1e0033b5"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556945e6663136ac0a00379b"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: ""
   events {
   }
@@ -369,6 +407,23 @@ triggers {
             string_value: "preen"
           }
         }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Foley"
+          }
+        }
+      }
+      args {
+        int_value: 2
       }
     }
     ops {
@@ -850,6 +905,91 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: "Exterior.SwitchMaria"
+  events {
+    ops {
+      functionName: "On Conversation Complete"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "549311c06665387404005996"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "549311c06665387404005996"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556970d5663136240d0020d7"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 triggers {
   name: ""
@@ -1742,6 +1882,52 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Hunt And Destroy (Team)"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isRunner"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -3724,6 +3910,7 @@ characters {
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
+        is_fearless: 1
       }
       skills {
         ranged_combat: 0
@@ -3821,12 +4008,13 @@ characters {
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
+        is_fearless: 1
       }
       skills {
         ranged_combat: 0
         close_combat: 0
         throwing_weapons: 0
-        spellcasting: -2
+        spellcasting: -1
         decking: 0
         conjuring: 0
         spirit_summoning: 0
@@ -3870,7 +4058,10 @@ characters {
       prefab_name: "Spell Powerbolt 1"
     }
     equipment {
-      prefab_name: "Player_MageSlick"
+      prefab_name: "MageSlick"
+    }
+    equipment {
+      prefab_name: "Spell Armor 1"
     }
     team_id: "Civilians"
     char_name: "Lori"
@@ -3879,7 +4070,7 @@ characters {
     portrait {
       filename: "pc_humanfemale_10_combatmage"
     }
-    karma: 74
+    karma: 78
   }
 }
 characters {
@@ -3923,6 +4114,7 @@ characters {
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
+        is_fearless: 1
       }
       skills {
         ranged_combat: 0
@@ -4263,29 +4455,26 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 2
-    conversationPoint {
-      conversationID: "5531d8c56631360405002786"
-      turnToFace: true
-    }
+    interactionIcon: InteractionIcon_Conversation
     interaction_info_text: "Talk to Cain?"
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Core/HumanMale"
-    character_sheet_id: "CG Human Street Samurai"
+    prefab_name: "Seattle:Story/SaraCastle"
+    character_sheet_id: "BaseCivilian"
     character_mod {
       stats {
-        body: 2
-        quickness: 2
-        strength: 2
-        charisma: 2
-        intelligence: 2
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
         willpower: 0
         essence: 0
         magic: 0
         hp: 0
         ap: 0
-        armor: 2
+        armor: 0
         force: 0
         morale: 0
         discipline: 0
@@ -4299,11 +4488,11 @@ characters {
         vision_cone_angle: 0
       }
       skills {
-        ranged_combat: 2
-        close_combat: 2
+        ranged_combat: 0
+        close_combat: 0
         throwing_weapons: 0
         spellcasting: 0
-        decking: 4
+        decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
@@ -4319,42 +4508,33 @@ characters {
         etiquette_academic: 0
       }
       specializations {
-        pistol: 1
-        rifle: 1
-        shotgun: 1
-        smg: 1
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
         edged: 0
-        unarmed: 1
+        unarmed: 0
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Protect"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
-    equipment {
-      prefab_name: "Berlin_Sh 2 Remington 990 (Smartlink)"
-    }
-    equipment {
-      prefab_name: "CyberdeckSony"
-    }
-    equipment {
-      prefab_name: "DeckerJacket"
-    }
     team_id: "Civilians"
-    char_name: "Kane"
+    char_name: "Castle"
     GeneralTags: "isGeeked"
     enabled_at_start: true
     pc_spawn_number: -1
     cyberware_jack: "Datajack"
     cyberware_body: "Orthoskin"
     portrait {
-      filename: "npc_humanmale_mulvihill"
+      filename: "backer_humanfemale_saracastle_drsaracastle_tribute"
     }
     portrait_code_override: "s6h7c7b8c1t0"
-    karma: 100
+    karma: 6
     persistent_body: true
   }
 }

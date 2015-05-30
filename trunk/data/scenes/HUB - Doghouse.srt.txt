@@ -8721,7 +8721,7 @@ triggers {
         string_value: "A Fellow decker, eh?   Well, I guess you\'ll be needing this.   No one should enter the Matrix without one..."
       }
       args {
-        float_value: 0
+        float_value: 85
       }
       args {
         float_value: 0
@@ -8809,7 +8809,7 @@ triggers {
         string_value: "Omae, be cool, or the Star will notice me over here!"
       }
       args {
-        float_value: 0
+        float_value: 85
       }
       args {
         float_value: 0
@@ -9164,7 +9164,7 @@ triggers {
         string_value: "Yo $(l.guy)...    You heard of that geeked\' cats loot?   Got himself a prototype blaster, and some big money sword...   Fine merch, for the one who could score it..."
       }
       args {
-        float_value: 0
+        float_value: 85
       }
       args {
         float_value: 0
@@ -9216,7 +9216,7 @@ triggers {
         string_value: "What\'re you neighborhood watch?   Back off, \'fore I call my boys..."
       }
       args {
-        float_value: 0
+        float_value: 85
       }
       args {
         float_value: 0
@@ -9228,7 +9228,7 @@ triggers {
         float_value: 128
       }
       args {
-        float_value: 7
+        float_value: 9
       }
       args {
         float_value: 3
@@ -25731,6 +25731,28 @@ triggers {
       }
     }
     ops {
+      functionName: "Activate Actor Spawner By Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isManager"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Send Event"
       args {
         call_value {
@@ -25846,57 +25868,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Actor near Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5564f923393066a80e000a30"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Player)"
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Waypoint on Actor"
       args {
         call_value {
@@ -25985,12 +25956,30 @@ triggers {
       }
     }
     ops {
-      functionName: "Activate Actor Spawner By Tag"
+      functionName: "Teleport Actor near Actor"
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Specific Actor"
           args {
-            string_value: "isManager"
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5564f923393066a80e000a30"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
           }
         }
       }
@@ -25998,7 +25987,18 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "WithOrWithout"
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
           }
           args {
             int_value: 0
