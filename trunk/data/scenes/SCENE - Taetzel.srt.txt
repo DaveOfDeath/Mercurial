@@ -89,114 +89,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Set Actor Wander Range"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55696405663136081300282f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Actor In Passive Mode"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55696405663136081300282f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor Run Speed"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55696405663136081300282f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "RunSpeedMethod"
-          }
-          args {
-            int_value: 4
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Order Actor to Patrol"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55696405663136081300282f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (PatrolRoute)"
-          args {
-            string_value: "556963eb663136081300282e"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "End Current Team Round"
-    }
   }
   isActive: true
   idRef {
@@ -310,15 +202,95 @@ triggers {
     id: "55695b8a663136ac13004873"
   }
   elseActions {
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eResetTrogWagon"
+          }
+        }
+      }
+      args {
+        float_value: 10
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "General.YakuzaDefeated"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eResetTrogWagon"
+          }
+        }
+      }
+      args {
+        float_value: 10
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5569f267663136800f00761c"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
 triggers {
   name: "Back_Elevator Crash"
   events {
-    ops {
-      functionName: "On Map Start"
-    }
   }
   conditions {
     ops {
@@ -713,9 +685,6 @@ triggers {
 triggers {
   name: "Front_Elevator Crash"
   events {
-    ops {
-      functionName: "On Map Start"
-    }
   }
   conditions {
     ops {
@@ -2063,7 +2032,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "--=== Matrix General Triggers  ===--"
+  name: "--=== TrogWagon Triggers  ===--"
   events {
     ops {
       functionName: "On Region Enter"
@@ -2090,48 +2059,93 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "TrogWagon.Patrol"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eResetTrogWagon"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "5569f674663136800f00761e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (2D)"
+          args {
+            float_value: 12
+          }
+          args {
+            float_value: -80
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop with Speed"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "5569f674663136800f00761e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (3D)"
+          args {
+            float_value: 12
+          }
+          args {
+            float_value: 0
+          }
+          args {
+            float_value: -219
+          }
+        }
+      }
+      args {
+        float_value: 15
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556966566631360813002834"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "TrogWagon.PatrolReset"
   events {
     ops {
-      functionName: "On Region Enter"
+      functionName: "On Item Interaction"
       args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "556965e26631360813002830"
+            string_value: "5443af9a37336128130050fe"
           }
         }
       }
     }
   }
   conditions {
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55696405663136081300282f"
-          }
-        }
-      }
-    }
   }
   actions {
     ops {
@@ -2145,114 +2159,13 @@ triggers {
         }
       }
       args {
-        float_value: 5
+        float_value: 10
       }
     }
   }
   isActive: true
   idRef {
     id: "556965ff6631360813002831"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "TrogWagon.RestartPatrol"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eResetTrogWagon"
-      }
-    }
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55696405663136081300282f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Center of Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "5569667b6631360813002835"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Order Actor to Patrol"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55696405663136081300282f"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (PatrolRoute)"
-          args {
-            string_value: "556963eb663136081300282e"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "556966566631360813002834"
   }
   elseActions {
   }
@@ -3234,141 +3147,6 @@ regions {
   loop_default_music: true
   no_fow_in_region: false
 }
-regions {
-  name: "rRestartRoute"
-  position {
-    x: -48
-    y: -192
-    width: 1
-    height: 1
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "556965e26631360813002830"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
-  name: "rRouteStart"
-  position {
-    x: -115
-    y: -110
-    width: 1
-    height: 1
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "5569667b6631360813002835"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-patrolRoutes {
-  name: "pTrogWagonRoute"
-  pathType: 2
-  nodes {
-    position {
-      x: -115
-      z: -110
-    }
-    index: 0
-  }
-  nodes {
-    position {
-      x: 13
-      z: -110
-    }
-    index: 1
-  }
-  nodes {
-    position {
-      x: 13
-      z: -158
-    }
-    index: 2
-  }
-  nodes {
-    position {
-      x: 13
-      z: -192
-    }
-    index: 3
-  }
-  nodes {
-    position {
-      x: -48
-      z: -192
-    }
-    index: 4
-  }
-  can_move_beyond_node: false
-  idRef {
-    id: "556963eb663136081300282e"
-  }
-}
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
@@ -3430,94 +3208,6 @@ characters {
     prefab_name: "Objects/AutoTurret"
     character_sheet_id: "Turret_Lv2"
     equipment_sheet_id: "Turret_Lv2_Burst_Gear"
-    character_mod {
-      stats {
-        morale: 0
-        discipline: 0
-        awareness: 0
-        perception: 0
-        authority: 0
-        protect_tether_range: 0
-        move_speed: 0
-        vision_peripheral_distance: 2
-        vision_cone_distance: 18
-        vision_cone_angle: 90
-        is_fearless: 0
-      }
-      skills {
-      }
-      specializations {
-      }
-    }
-    team_id: "Civilians"
-    char_name: "Auto Turret"
-    pc_spawn_number: -1
-    portrait {
-      filename: ""
-    }
-  }
-}
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: 98
-    y: 0
-    z: -25.5
-  }
-  orientation: ORIENTATION_E
-  displayName: "3"
-  idRef {
-    id: "544d197e37336174090079eb"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Objects/AutoTurret"
-    character_sheet_id: "Turret_Lv1"
-    equipment_sheet_id: "Turret_Lv1_Burst_Gear"
-    character_mod {
-      stats {
-        morale: 0
-        discipline: 0
-        awareness: 0
-        perception: 0
-        authority: 0
-        protect_tether_range: 0
-        move_speed: 0
-        vision_peripheral_distance: 2
-        vision_cone_distance: 18
-        vision_cone_angle: 90
-        is_fearless: 0
-      }
-      skills {
-      }
-      specializations {
-      }
-    }
-    team_id: "Civilians"
-    char_name: "Auto Turret"
-    pc_spawn_number: -1
-    portrait {
-      filename: ""
-    }
-  }
-}
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: 98
-    y: 0
-    z: -13.5
-  }
-  orientation: ORIENTATION_W
-  displayName: "4"
-  idRef {
-    id: "544d19af37336174090079ed"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Objects/AutoTurret"
-    character_sheet_id: "Turret_Lv1"
-    equipment_sheet_id: "Turret_Lv1_Burst_Gear"
     character_mod {
       stats {
         morale: 0
@@ -4193,98 +3883,6 @@ characters {
     has_fist: false
   }
 }
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: -115
-    y: 0
-    z: -110
-  }
-  orientation: ORIENTATION_S
-  GeneralTags: "isTrogWagon"
-  displayName: "Vehicle"
-  idRef {
-    id: "55696405663136081300282f"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Seattle:Story/GreenLucifer"
-    character_sheet_id: "BaseCivilian"
-    character_mod {
-      stats {
-        body: 0
-        quickness: 0
-        strength: 0
-        charisma: 0
-        intelligence: 0
-        willpower: 0
-        essence: 0
-        magic: 0
-        hp: 0
-        ap: 0
-        armor: 0
-        force: 0
-        morale: 0
-        discipline: 0
-        awareness: 0
-        perception: 0
-        authority: 0
-        protect_tether_range: 0
-        move_speed: 0
-        vision_peripheral_distance: 0
-        vision_cone_distance: 0
-        vision_cone_angle: 0
-      }
-      skills {
-        ranged_combat: 0
-        close_combat: 0
-        throwing_weapons: 0
-        spellcasting: 0
-        decking: 0
-        conjuring: 0
-        spirit_summoning: 0
-        drone_control: 0
-        biotech: 0
-        dodge: 0
-        etiquette_corporate: 0
-        etiquette_security: 0
-        etiquette_gang: 0
-        etiquette_socialite: 0
-        chi_casting: 0
-        etiquette_shadowrunner: 0
-        etiquette_street: 0
-        etiquette_academic: 0
-      }
-      specializations {
-        pistol: 0
-        rifle: 0
-        shotgun: 0
-        smg: 0
-        edged: 0
-        unarmed: 0
-        spirit_control: 0
-        esp_control: 0
-        drone_combat: 0
-      }
-      archetypeName: "Non-Combatant"
-      attitude: AttitudeAggressive
-      vulnerabilities {
-      }
-    }
-    team_id: "Civilians"
-    char_name: "TrogWagon"
-    GeneralTags: "isTrogWagon"
-    patrolRoute: "None"
-    pc_spawn_number: -1
-    uninjurable: false
-    portrait {
-      filename: ""
-    }
-    karma: 6
-    is_prop_character: false
-    has_fist: false
-  }
-}
 variables {
   bool_value: false
   variableref_value {
@@ -4378,6 +3976,8 @@ scene_dimensions {
   dimension_name: "Matrix"
   initial_alarm_state: 25
   turns_per_round: 3
+}
+character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
