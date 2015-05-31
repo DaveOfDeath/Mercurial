@@ -53,38 +53,23 @@ triggers {
       }
     }
     ops {
-      functionName: "Add Item to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "Berlin_DroneAttackB_Strato9"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
+      functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "WithOrWithout"
+            string_value: "EnableOrDisable"
           }
           args {
-            int_value: 1
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55639ca26631363003007fc6"
           }
         }
       }
@@ -2069,52 +2054,6 @@ triggers {
     }
   }
   conditions {
-    ops {
-      functionName: "Comparison (float)"
-      args {
-        call_value {
-          functionName: "Point Component (float)"
-          args {
-            call_value {
-              functionName: "Current Location of Prop"
-              args {
-                call_value {
-                  functionName: "Get Map Item (Prop)"
-                  args {
-                    string_value: "5569f674663136800f00761e"
-                  }
-                }
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "VectorComponent"
-              }
-              args {
-                int_value: 2
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        float_value: -210
-      }
-    }
   }
   actions {
     ops {
@@ -2267,61 +2206,17 @@ triggers {
         float_value: 10
       }
     }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bVanMoving"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
     id: "556966566631360813002834"
   }
   elseActions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bVanMoving"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   is_oneshot: false
 }
 triggers {
-  name: "TrogWagon.SearchArea [WestBound]"
+  name: "TrogWagon.SetLocation"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -2338,53 +2233,10 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (bool)"
+      functionName: "Comparison (float)"
       args {
         call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bVanMoving"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Move Region to Point"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "556a6396663136140c0018e5"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Offset Point"
+          functionName: "Point Component (float)"
           args {
             call_value {
               functionName: "Current Location of Prop"
@@ -2400,12 +2252,188 @@ triggers {
           }
           args {
             call_value {
-              functionName: "Specified Point (2D)"
+              functionName: "Get Preset Value (int)"
               args {
-                float_value: -3
+                string_value: "VectorComponent"
               }
               args {
-                float_value: -5
+                int_value: 2
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        float_value: -215
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fPLayer_X"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Point Component (float)"
+          args {
+            call_value {
+              functionName: "Current Location of Actor"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "VectorComponent"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fPlayer_Z"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Point Component (float)"
+          args {
+            call_value {
+              functionName: "Current Location of Actor"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "VectorComponent"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fVanLocation_X"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Point Component (float)"
+          args {
+            call_value {
+              functionName: "Current Location of Prop"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Prop)"
+                  args {
+                    string_value: "5569f674663136800f00761e"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "VectorComponent"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fVanLocation_Z"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Point Component (float)"
+          args {
+            call_value {
+              functionName: "Current Location of Prop"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Prop)"
+                  args {
+                    string_value: "5569f674663136800f00761e"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "VectorComponent"
+              }
+              args {
+                int_value: 2
               }
             }
           }
@@ -2423,36 +2451,15 @@ triggers {
         }
       }
       args {
-        float_value: 0.06
+        float_value: 0.1
       }
     }
   }
   isActive: true
   idRef {
-    id: "556a63d5663136140c0018e7"
+    id: "556a9661663136780e00435d"
   }
   elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "TrogWagon.PatrolReset"
-  events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54424813373361a811005f4c"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-  }
-  actions {
     ops {
       functionName: "Send Event After Delay"
       args {
@@ -2464,43 +2471,241 @@ triggers {
         }
       }
       args {
-        float_value: 1
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "556965ff6631360813002831"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "TrogWagon.SpottedRunners"
-  events {
-    ops {
-      functionName: "On Region Enter"
-      args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Random (float)"
           args {
-            string_value: "556a6396663136140c0018e5"
+            float_value: 45
+          }
+          args {
+            float_value: 70
           }
         }
       }
     }
   }
+  is_oneshot: false
+}
+triggers {
+  name: "TrogWagon.ProximityEvaluate"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMoveSearchArea"
+      }
+    }
+  }
   conditions {
+    ops {
+      functionName: "AND"
+      args {
+        call_value {
+          functionName: "Comparison (float)"
+          args {
+            call_value {
+              functionName: "Absolute Value (float)"
+              args {
+                call_value {
+                  functionName: "Arithmetic (float)"
+                  args {
+                    call_value {
+                      functionName: "Absolute Value (float)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (float)"
+                          args {
+                            string_value: "fPLayer_X"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    call_value {
+                      functionName: "Get Preset Value (int)"
+                      args {
+                        string_value: "Arithmetic Ops"
+                      }
+                      args {
+                        int_value: 1
+                      }
+                    }
+                  }
+                  args {
+                    call_value {
+                      functionName: "Absolute Value (float)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (float)"
+                          args {
+                            string_value: "fVanLocation_X"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 4
+              }
+            }
+          }
+          args {
+            float_value: 5
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (float)"
+          args {
+            call_value {
+              functionName: "Absolute Value (float)"
+              args {
+                call_value {
+                  functionName: "Arithmetic (float)"
+                  args {
+                    call_value {
+                      functionName: "Absolute Value (float)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (float)"
+                          args {
+                            string_value: "fPlayer_Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    call_value {
+                      functionName: "Get Preset Value (int)"
+                      args {
+                        string_value: "Arithmetic Ops"
+                      }
+                      args {
+                        int_value: 1
+                      }
+                    }
+                  }
+                  args {
+                    call_value {
+                      functionName: "Absolute Value (float)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (float)"
+                          args {
+                            string_value: "fVanLocation_Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 4
+              }
+            }
+          }
+          args {
+            float_value: 5
+          }
+        }
+      }
+    }
   }
   actions {
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "556a9661663136780e00435d"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "556966566631360813002834"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "556a99eb663136780e004360"
+          }
+        }
+      }
+    }
     ops {
       functionName: "Move Prop"
       args {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "556a75dd663136140c0018f7"
+            string_value: "556a9c34663136780e00436c"
           }
         }
       }
@@ -2524,7 +2729,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "556a75dd663136140c0018f8"
+            string_value: "556a9c34663136780e00436b"
           }
         }
       }
@@ -2548,7 +2753,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "556a75dd663136140c0018f9"
+            string_value: "556a9c34663136780e00436a"
           }
         }
       }
@@ -2586,12 +2791,126 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Region Enabled"
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isTroll"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "556a9c34663136780e00436a"
+              }
+            }
+          }
+        }
+      }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "EnableOrDisable"
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isTroll"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
           }
           args {
             int_value: 1
@@ -2600,20 +2919,92 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Get Map Item (SceneDimension)"
           args {
-            string_value: "556a6396663136140c0018e5"
+            string_value: "Default"
           }
         }
       }
     }
     ops {
-      functionName: "Display Text over Prop"
+      functionName: "Order Actor to Hunt And Destroy (Team)"
       args {
         call_value {
-          functionName: "Get Map Item (Prop)"
+          functionName: "All Actors With Tag"
           args {
-            string_value: "556a75dd663136140c0018f9"
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isTroll"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isTroll"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "556aa2c2663136780e004371"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "556aa2c2663136780e004371"
           }
         }
       }
@@ -2624,12 +3015,15 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 2
+            int_value: 0
           }
         }
       }
       args {
-        string_value: "Damn door wont open!"
+        string_value: "Fragging $(story.str_Sexism)... "
+      }
+      args {
+        float_value: 255
       }
       args {
         float_value: 0
@@ -2638,13 +3032,10 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 0
+        float_value: 128
       }
       args {
-        float_value: 0
-      }
-      args {
-        float_value: 9
+        float_value: 8
       }
       args {
         float_value: 3
@@ -2654,75 +3045,71 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Trigger"
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Random Actor on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "EnableOrDisable"
+            string_value: "TextPopupStyle"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
       args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "556965ff6631360813002831"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
+        string_value: "You\'re about to suck void buddy!"
       }
       args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "556a63d5663136140c0018e7"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
+        float_value: 255
       }
       args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "556966566631360813002834"
-          }
-        }
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 8
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 10
       }
     }
   }
   isActive: true
   idRef {
-    id: "556a73ec663136140c0018f4"
+    id: "556a99eb663136780e004360"
   }
   elseActions {
   }
@@ -3189,52 +3576,6 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "Matrix_Entrance"
-  position {
-    x: -155
-    y: -171
-    width: 2
-    height: 2
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "5564157a613131f418007448"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
   name: "Entrance-SPU"
   position {
     x: -174
@@ -3468,7 +3809,7 @@ regions {
   visible_at_start: false
   is_closet: false
   is_teleporter_region: true
-  linked_teleporter_region: ""
+  linked_teleporter_region: "55651efe6131314c140060fb"
   teleport_facing: -1
   teleport_sound_fx: ""
   teleport_sound_volume: 0
@@ -3704,51 +4045,13 @@ regions {
   loop_default_music: true
   no_fow_in_region: false
 }
-regions {
-  name: "rSearchPattern"
-  position {
-    x: 9
-    y: -85
-    width: 12
-    height: 6
-  }
-  enabledAtStart: true
-  is_camera_region: false
+patrolRoutes {
+  name: "pVanRoute"
+  pathType: 1
+  can_move_beyond_node: false
   idRef {
-    id: "556a6396663136140c0018e5"
+    id: "556a8d92663136c00900209c"
   }
-  highlight_color {
-    r: 1
-    g: 1
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
 }
 characters {
   name: "chars_icon_playerIcon"
@@ -4486,6 +4789,376 @@ characters {
     has_fist: false
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -116
+    y: 0
+    z: -210
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isTroll"
+  displayName: "TrogWagon"
+  idRef {
+    id: "556aa2c2663136780e004371"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Core/TrollMale"
+    character_sheet_id: "Lvl3_Troll_Samurai"
+    character_mod {
+      stats {
+        body: 0
+        quickness: -1
+        strength: 3
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 25
+        ap: 0
+        armor: 3
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: -4
+        close_combat: 4
+        throwing_weapons: -2
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: -2
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: -1
+        shotgun: -4
+        smg: 0
+        edged: 0
+        unarmed: 4
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Berlin_Fist 1 Spiked Fist"
+    }
+    equipment {
+      prefab_name: "SamuraiMilitary"
+    }
+    team_id: "Civilians"
+    char_name: "Jurrassic"
+    GeneralTags: "isTroll"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    portrait_code_override: "s5h2c13b12c13t2"
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -116
+    y: 0
+    z: -209
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isTroll"
+  displayName: "TrogWagon"
+  idRef {
+    id: "556aa4c4663136780e004372"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Security/TrollMalesSecurityNVG"
+    character_sheet_id: "Lvl3_Troll_Samurai"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Berlin_Sh 2 Remington 990"
+    }
+    team_id: "Civilians"
+    char_name: "RagnaRock"
+    GeneralTags: "isTroll"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 96
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -115
+    y: 0
+    z: -210
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isTroll"
+  displayName: "TrogWagon"
+  idRef {
+    id: "556aa544663136780e004373"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Story/Loate"
+    character_sheet_id: "Lvl4_Ork_Adept"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 15
+        ap: -1
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Berlin_Killing Hands"
+    }
+    equipment {
+      prefab_name: "Mystic Armor"
+    }
+    equipment {
+      prefab_name: "Quick Strike"
+    }
+    team_id: "Civilians"
+    char_name: "Mr. Death"
+    GeneralTags: "isTroll"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 92
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -115
+    y: 0
+    z: -209
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isTroll"
+  displayName: "TrogWagon"
+  idRef {
+    id: "556aa696663136780e004374"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:HavenCivilians/TrollMaleHavenCivilian_2"
+    character_sheet_id: "Lvl3_Troll_Shaman"
+    equipment_sheet_id: "Errant_Lv3_Shaman_Water"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 30
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: -2
+        close_combat: 0
+        throwing_weapons: -1
+        spellcasting: 0
+        decking: 0
+        conjuring: 1
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: -1
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Tsunami"
+    GeneralTags: "isTroll"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 70
+  }
+}
 variables {
   bool_value: false
   variableref_value {
@@ -4511,17 +5184,42 @@ variables {
   }
 }
 variables {
-  bool_value: false
+  float_value: 0
   variableref_value {
     scope: TsVariableScope_Scene
-    name: "bVanMoving"
-    typeName: "bool"
+    name: "fVanLocation_X"
+    typeName: "float"
+  }
+}
+variables {
+  float_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fVanLocation_Z"
+    typeName: "float"
+  }
+}
+variables {
+  float_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fPLayer_X"
+    typeName: "float"
+  }
+}
+variables {
+  float_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fPlayer_Z"
+    typeName: "float"
   }
 }
 mapEvents: "eRiggerBackGate"
 mapEvents: "eUnusedMatrix"
 mapEvents: "eResetTrogWagon"
 mapEvents: "eMoveSearchArea"
+mapEvents: "eRunnerSpotted"
 worldMapLocation {
   filename: ""
   location {
