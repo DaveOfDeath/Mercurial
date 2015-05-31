@@ -11117,7 +11117,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Actor)"
           args {
-            string_value: "556111516631365c10004592"
+            string_value: "556ad9f4663136fc0c0006fb"
           }
         }
       }
@@ -11223,6 +11223,63 @@ triggers {
         }
       }
     }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "StreetDoc.Ed [Interact]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55521fd0373361380a00370f"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "556adbb4663136fc0c00071d"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55521fd0373361380a00370f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556adb50663136fc0c000712"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
@@ -19142,6 +19199,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -19164,14 +19222,21 @@ characters {
     z: -50
   }
   orientation: ORIENTATION_S
-  displayName: "Ed the street doc"
+  displayName: "StreetDoc"
   idRef {
     id: "55521fd0373361380a00370f"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    interactionIcon: InteractionIcon_Conversation
+    interaction_info_text: "Talk to Street Doc?"
   }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Scientist/HumanMaleScientist"
     character_sheet_id: "Lvl4_Human_Mage"
+    equipment_sheet_id: "Berlin_Merchant_Doctor_2"
     character_mod {
       stats {
         body: 0
@@ -19228,6 +19293,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -20288,7 +20354,7 @@ characters {
   character_instance {
     prefab_name: "Seattle:Story/ThaddeusRyker"
     character_sheet_id: "AGChemie_Cyberzombie_Lv1"
-    equipment_sheet_id: "Berlin_Merchant_Weapons_3"
+    equipment_sheet_id: "Berlin_Merchant_Weapons_2"
     character_mod {
       stats {
         body: 0
@@ -20357,7 +20423,6 @@ characters {
   character_instance {
     prefab_name: "Seattle:Core/ElfMale"
     character_sheet_id: "BaseCivilian"
-    equipment_sheet_id: "Merchant_Tech_High"
     character_mod {
       stats {
         body: 0
@@ -20553,7 +20618,7 @@ characters {
   character_instance {
     prefab_name: "Seattle:Objects/InvisibleActor"
     character_sheet_id: "AGChemie_Cyberzombie_Lv1"
-    equipment_sheet_id: "Berlin_Merchant_Magic_3"
+    equipment_sheet_id: "Berlin_Merchant_Magic_2"
     character_mod {
       stats {
         body: 0
@@ -22041,7 +22106,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -22857,11 +22922,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -128
+    x: -125
     y: 0
     z: 73
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_W
   GeneralTags: "isResident"
   displayName: "NonCriticalResident"
   idRef {
@@ -22985,6 +23050,7 @@ characters {
       filename: ""
     }
     karma: 6
+    is_prop_character: true
   }
 }
 characters {
@@ -23650,6 +23716,101 @@ characters {
       filename: ""
     }
     karma: 6
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 32
+    y: 3
+    z: -36
+  }
+  orientation: ORIENTATION_E
+  displayName: "Vendor"
+  idRef {
+    id: "556ad9f4663136fc0c0006fb"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    equipment_sheet_id: "Berlin_Merchant_Tech_2"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "TechSupplies"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
   }
 }
 variables {
