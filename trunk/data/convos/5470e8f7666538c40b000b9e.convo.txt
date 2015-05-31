@@ -7,7 +7,7 @@ nodes {
     id: "5470e4a8666538c40b000b5f"
   }
   index: 0
-  text: "Welcome to Underworld 93.   What\'s your poison?"
+  text: "{{GM}}The pleasant looking man stops pouring shots for long enough to glance at you. {{/GM}}\n\n$(story.str_NPCIntroText)"
   branches {
     responseText: "A cute guy like you probably overhears quite a bit in a place like this... Anything good? "
     conditions {
@@ -41,6 +41,31 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
     }
     actions {
       ops {
@@ -54,9 +79,44 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Can I get you anything else? A cocktail? Maybe some breakfast after the party?\""
+        }
+      }
     }
     nextNodeIndex: 1
     hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556a9c42393066a810000ad1"
+    }
   }
   branches {
     responseText: "Hey Chummer... You got the pulse out here... What\'s the good word?"
@@ -91,8 +151,135 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
     }
     nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556a9c45393066a810000ad2"
+    }
+  }
+  branches {
+    responseText: "{{CC}}[2\302\245]{{/CC}} Heard anything else interesting?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 2
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eGenerateRumor"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 4
     hideIfUnavailable: true
   }
   branches {
@@ -113,6 +300,60 @@ nodes {
         }
         args {
           int_value: 3
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -215,9 +456,140 @@ nodes {
           int_value: -1
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"One Pabst draw for the $(l.guy), you got it.\" \n\nAfter he sets the glass in front of you, he asks \"Can I get you anything else?\""
+        }
+      }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
     }
     nextNodeIndex: 0
+    hideIfUnavailable: true
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}[3\302\245]{{/CC}} Give me a beer."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I think you\'ve had enough. Go sleep it off.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    auxiliaryLink: true
+    comment: "Drunk"
   }
   branches {
     responseText: "{{CC}}[5\302\245]{{/CC}} Give me a shot.  Something hard."
@@ -339,9 +711,140 @@ nodes {
           int_value: -1
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Some Absynth for the brave $(l.man)! Anything else can I get you?\""
+        }
+      }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
     }
     nextNodeIndex: 0
+    hideIfUnavailable: true
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}[5\302\245]{{/CC}} Give me a shot.  Something hard."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Take it easy, buddy, no one likes a mean drunk.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    auxiliaryLink: true
+    comment: "Drunk"
   }
   branches {
     responseText: "{{CC}}[8\302\245]{{/CC}} Glass of wine, please."
@@ -361,6 +864,159 @@ nodes {
         }
         args {
           int_value: 8
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Sit down for a little while, have something to eat. Sober up a bit, and then try your luck with the opposite sex before your liquid courage wears off!\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    auxiliaryLink: true
+    comment: "Drunk"
+  }
+  branches {
+    responseText: "{{CC}}[8\302\245]{{/CC}} Glass of wine, please."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 8
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -463,8 +1119,40 @@ nodes {
           int_value: -1
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"An elven port for our developed palate! I\'m sure you\'ll want to nurse that for a while, is there anything else I can do for you?\""
+        }
+      }
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
     }
     nextNodeIndex: 0
+    hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
@@ -484,6 +1172,24 @@ nodes {
   text: "$(scene.str_Rumor)"
   branches {
     responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
     nextNodeIndex: 0
     auxiliaryLink: true
   }
@@ -497,7 +1203,7 @@ nodes {
     id: "5470e9c5666538c40b000bd5"
   }
   index: 2
-  text: "I sell drinks, pal.   And I get tips for it.  You want something else, you\'d better be paying for my time..."
+  text: "{{GM}}The guy gives you a flat look, clearly uninterested.{{/GM}}\n\n\"I sell drinks, pal. And I get tips for it. You want anything not on the drink menu, you\'d better be paying for my time...\""
   branches {
     responseText: "{{CC}}[2\302\245]{{/CC}} What\'ve you heard?"
     conditions {
@@ -537,11 +1243,47 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That\'s the word on the street. Well, as street as I get. Anything else for you?\""
+        }
+      }
     }
     nextNodeIndex: 3
   }
   branches {
-    responseText: "I\'ve heard enough."
+    responseText: "Later."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"My time is valuable, but I don\'t turn away paying customers. What can I get for you?\""
+        }
+      }
+    }
     nextNodeIndex: 0
     auxiliaryLink: true
   }
@@ -566,6 +1308,60 @@ nodes {
     id: "5470cf94666538c40b000b37"
   }
 }
+nodes {
+  idRef {
+    id: "5470ebe8666538c40b000c30"
+  }
+  index: 4
+  text: "$(scene.str_Rumor)"
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"But that\'s just what I\'ve heard. Could be nothing.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5470cf94666538c40b000b37"
+  }
+}
 roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"Welcome to Underworld 93.   What\'s your poison?\""
+      }
+    }
+  }
   nextNodeIndex: 0
 }

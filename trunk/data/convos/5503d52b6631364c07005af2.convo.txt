@@ -7,7 +7,7 @@ nodes {
     id: "5503d53a6631364c07005af8"
   }
   index: 0
-  text: "{{GM}}The large bouncer glances over at you as you approach, ignoring the hecklers in line{{/GM}}\n\n\"You\'ve got ten seconds- what the hell do you want?   Don\'t you see the line?\""
+  text: "{{GM}}The large churlish troll bouncer eyeballs you, ignoring the hecklers in line.{{/GM}}\n\n$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Etiquette: Shadowrunner{{/CC}}  I\'m actually here for a meeting with Mr. Johnson, backstage."
     conditions {
@@ -74,7 +74,7 @@ nodes {
           }
         }
         args {
-          string_value: "Yeah... He left word for you to meet him backstage.   Said something about a test to see if you were good enough to get back there without his help?   Said you\'d understand..."
+          string_value: "Newt smiles, \"Yeah... He left word for you to meet him backstage.   Said something about some sort of \'audition,\' to get backstage without his help?\""
         }
       }
     }
@@ -147,7 +147,7 @@ nodes {
           }
         }
         args {
-          string_value: "Yeah... Now I remember.   Said something about a test to see if you were good enough to get back there without his help?   Said you\'d understand..."
+          string_value: "\"Yes, $(l.sir). Your contact left word that you\'d be required to discretely get your own access to the meeting room, which is located upstairs in the backstage area.\""
         }
       }
     }
@@ -221,7 +221,7 @@ nodes {
           }
         }
         args {
-          string_value: "A true fan, huh?   Who am I to deny access to that?  Head on in..."
+          string_value: "Newt laughs, \"A true believer? How can I say no to a fellow Silver Lady fanatic?\"\n\n\"Head on in, and enjoy the show of a lifetime!\""
         }
       }
     }
@@ -230,7 +230,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "{{CC}}Bribe Newt{{/CC}} My friend and I are late for our party. I\'ll go inside, and leave "
+    responseText: "{{CC}}Bribe 100Y{{/CC}} My friend Kojima and I are late for our party. I\'ll go inside, and leave him here to hold our place in line."
     conditions {
       ops {
         functionName: "Evaluate Nuyen"
@@ -246,7 +246,7 @@ nodes {
           }
         }
         args {
-          int_value: 50
+          int_value: 100
         }
       }
     }
@@ -265,7 +265,7 @@ nodes {
           }
         }
         args {
-          string_value: "I seem to recall you being on the list... Uh... yeah... here you are...  Come on in."
+          string_value: "Newt glances at his digital clipboard, discretely taking your bribe with his other hand, ignoring the jeering from the crowd. \n\n\"I see you right here on the list... $(l.honorific) Hostetler. Yup, here you are right here...  Come on in.\""
         }
       }
     }
@@ -289,15 +289,192 @@ nodes {
           }
         }
         args {
-          string_value: "Just a friendly bit of advice, $(l.guy)... Don\'t name drop.  It\'ll get you into real trouble around here.   \n\nLast I heard, he was headed backstage.  He did mention some sort of test to see if you could get back there unassisted.   Said you\'d understand?"
+          string_value: "\"A bit of advice, $(l.guy)... Don\'t name drop, It may make you feel like a big player, but if your employer wants it kept quiet that he\'s hiring someone, he won\'t appreciate it.\"\n\nNewt sighs, \"When he went backstage, he mentioned some sort of test to see if you could get back there unassisted.   Said you\'d understand?\""
         }
       }
     }
-    nextNodeIndex: 1
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556aae22393066a810000bf1"
+    }
     auxiliaryLink: true
   }
   branches {
-    responseText: "{{CC}}Walk Away{{/CC}}  Excuse me..."
+    responseText: "What?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_WasteTime"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You got eight seconds before my patience runs out, $+(story.str_Racism1).\""
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_WasteTime"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556aa0b4393066a810000bb3"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_WasteTime"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You got about two seconds before it\'s \'punch-your-face-o\'clock\'. \""
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_WasteTime"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556aa0b4393066a810000bb3"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Walk Away{{/CC}} Uh, Excuse me..."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -310,6 +487,487 @@ nodes {
     id: "5503d6e56631364c07005aff"
   }
   index: 1
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Thanks."
+    actions {
+      ops {
+        functionName: "Clear All Waypoints"
+      }
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "54838b45666538ac0900674f"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "If you make any trouble, and I\'ll bust you up..."
+        }
+        args {
+          float_value: 225
+        }
+        args {
+          float_value: 128
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 128
+        }
+        args {
+          float_value: 8
+        }
+        args {
+          float_value: 3
+        }
+        args {
+          float_value: 3
+        }
+      }
+      ops {
+        functionName: "Play Animation From Manifest"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "54838b45666538ac0900674f"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Animation)"
+            args {
+              string_value: "Seattle:General/standing_interact"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Delete Prop"
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "5534f7643733613010003fb9"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "546fe1db66653884080008ba"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Waypoint on Prop"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "546fe1db66653884080008ba"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "54838b45666538ac0900674f"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Play Animation From Manifest"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "54838b45666538ac0900674f"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Animation)"
+            args {
+              string_value: "Seattle:General/standing_idle_bouncer"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54838b45666538ac0900674f"
+  }
+  comment: "NewtConviced"
+}
+nodes {
+  idRef {
+    id: "5503d53a6631364c07005af8"
+  }
+  index: 2
+  text: "{{GM}}The large churlish troll bouncer eyeballs you, ignoring the hecklers in line.{{/GM}}\n\n$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}Etiquette: Shadowrunner{{/CC}}  I\'m actually here for a meeting with Mr. Johnson, backstage."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 17
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Newt smiles, \"Yeah, I was wondering if you\'d work up the courage to ask me about it. Johnson left word for you to meet him backstage. Said something about some sort of \'audition,\' to get backstage discretely without his help?\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Etiquette: Security{{/CC}}  I\'m here for a meeting with my discreet contact.   Should\'ve left word that we\'d be coming."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 14
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Yes, $(l.sir). Your contact left word that you\'d be required to discretely get your own access to the meeting room, which is located upstairs in the backstage area. Still waiting on that 2am start time, don\'t be late.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Etiquette: Socialite{{/CC}}  Can you believe that Mecurial\'s really here?  Right behind this door?  I just got to get in there!"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 16
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Newt laughs, \"A true believer? How can I say no to a fellow Silver Lady fanatic?\"\n\n\"Head on in, and enjoy the show of a lifetime!\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Bribe 100Y{{/CC}} My friend Kojima and I are late for our party. I\'ll go inside, and leave him here to hold our place in line."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 100
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "I seem to recall you being on the list... Uh... yeah... here you are...  Come on in."
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I really need to get inside."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Newt smiles, \"I was wondering if you would work up the courage to confront me. You didn\'t disappoint.\"\n\n\"Your potential employer is backstage, and he said that if you could get backstage without drawing a lot of attention, that would be your audition to get the job.\"\n\n\"Good luck, kid.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54838b45666538ac0900674f"
+  }
+}
+nodes {
+  idRef {
+    id: "5503d6e56631364c07005aff"
+  }
+  index: 3
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Thanks."
@@ -488,5 +1146,119 @@ nodes {
   comment: "NewtConviced"
 }
 roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_NewtConversation"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"You\'ve got ten seconds to prove you\'re worth my time. What the hell do you want?\""
+      }
+    }
+  }
   nextNodeIndex: 0
+  comment: "Initial"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_NewtTalk"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "\"You in or out, kid? What do you want?\""
+      }
+    }
+  }
+  nextNodeIndex: 2
+  comment: "Second"
 }
