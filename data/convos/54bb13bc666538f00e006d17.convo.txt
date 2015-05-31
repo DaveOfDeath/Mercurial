@@ -7,153 +7,70 @@ nodes {
     id: "54bb13d2666538f00e006d1d"
   }
   index: 0
-  text: "Evening friend.  What can I get for ya?"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "Rumor has it that you\'re a fountain of information..."
-    nextNodeIndex: 1
-  }
-  branches {
-    responseText: "What... No drinks menu?"
-    nextNodeIndex: 6
-  }
-  branches {
-    responseText: "Nothing, thanks."
-    nextNodeIndex: -1
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54b98095666538b409004df3"
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Variable (string)"
-          args {
-            string_value: "str_TellinText"
-          }
-        }
-      }
-      args {
-        string_value: "Rumor has it, huh?   I guess I\'ve been known to share my wealth of knowledge from time to time... But these lessons are hard learned, and will cost ya...  \n\nWhatcha wanna know?"
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "54bb1430666538f00e006d22"
-  }
-  index: 1
-  text: "$(scene.str_TellinText)"
-  branches {
-    responseText: "{{CC}}[50\302\245]{{/CC}} Tell me about Mecurial."
+    responseText: "Who was the dwarf with the backstage passes?"
     conditions {
       ops {
-        functionName: "Evaluate Nuyen"
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_KnowsAaron"
+            }
+          }
+        }
         args {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "Comparison Ops"
+              string_value: "IsOrIsNot"
             }
             args {
-              int_value: 3
+              int_value: 1
             }
           }
         }
         args {
-          int_value: 50
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
         }
       }
     }
     actions {
       ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 50
-        }
-      }
-    }
-    nextNodeIndex: 2
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "54bb35c2666538f00e006ff9"
-    }
-  }
-  branches {
-    responseText: "{{CC}}[50\302\245]{{/CC}} Tell me about Max Foley..."
-    conditions {
-      ops {
-        functionName: "Evaluate Nuyen"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Preset Value (int)"
+            functionName: "Get Story Variable (string)"
             args {
-              string_value: "Comparison Ops"
+              string_value: "542848a8633464d816001ad5"
             }
             args {
-              int_value: 3
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          int_value: 50
+          string_value: "Tellin stares at you, \"You\'re kidding me, right kid?\"\n\n\"Ghost- pay attention. I forgot to charge you for the info last time, but when someone accidentally gives you something, don\'t ask them for it again immediately.\"\n\n\"Aaron is he dwarf near the beat, the big speaker robot thing in the middle of the place. He liked the way the speakers make his haird stand on end. He has scakped tickets that can get you backstage, if you need to.\""
         }
       }
     }
-    actions {
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 50
-        }
-      }
-    }
-    nextNodeIndex: 3
+    nextNodeIndex: 0
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
-      id: "54c6ca66666538a00d004ab5"
+      id: "556acd41393066a810000fec"
     }
-  }
-  branches {
-    responseText: "{{CC}}[50\302\245]{{/CC}} Tell me about Hernandez"
-    conditions {
-      ops {
-        functionName: "Evaluate Nuyen"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          int_value: 50
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 50
-        }
-      }
-    }
-    nextNodeIndex: 4
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "54c6ca6a666538a00d004ab6"
-    }
+    auxiliaryLink: true
   }
   branches {
     responseText: "Any idea where I can score some backstage passes?"
@@ -187,6 +104,39 @@ nodes {
             }
             args {
               int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bol_KnowsAaron"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
             }
           }
         }
@@ -238,7 +188,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 5
+    nextNodeIndex: 1
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -246,21 +196,354 @@ nodes {
     }
   }
   branches {
-    responseText: "Thats enough for now."
+    responseText: "How do you know my name?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Tellin shrugs, \"Sam talks you up a lot, and you look like he described you. Maybe he said you\'d be taller, or that was just my impression.\"\n\n\"Anyway, what can I do for you?\""
+        }
+      }
+    }
     nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556abb09393066a810000e31"
+    }
     auxiliaryLink: true
   }
+  branches {
+    responseText: "I heard you\'re a font of rumors worth knowing about."
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556abb04393066a810000e30"
+    }
+  }
+  branches {
+    responseText: "Hey darling.   You heard any good rumors lately?"
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eGenerateRumor"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Can I get you anything else, Cutie? Maybe my telecom number?\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556a9843393066a8100009b4"
+    }
+  }
+  branches {
+    responseText: "Do you serve drinks?"
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Occaisonally, I dabble in the information trade. I do love to listen, and I keep my ear to the ground for anything worth knowing.\"\n\n\"What can I interest you in?\""
+        }
+      }
+    }
+    nextNodeIndex: 14
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556ab8af393066a810000d16"
+    }
+  }
+  branches {
+    responseText: "Do you serve drinks?"
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Tellin shakes his head \'no,\' and continues wiping the counter, \"Not to drunks, I don\'t. Not to you right now.\"\n\n\"Go watch the show, sober up for a little bit, try your luck with one of the guys or girls here.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556ab8af393066a810000d16"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}5\302\245{{/CC}} What\'ve you heard?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 5
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eGenerateRumor"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That\'s the word on the street. Well, as street as I get. Anything else for you?\""
+        }
+      }
+    }
+    nextNodeIndex: 15
+  }
+  branches {
+    responseText: "Nothing, thanks."
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
+  }
+  comment: "Tellin Loop"
 }
 nodes {
   idRef {
-    id: "54bb15d1666538f00e006d52"
+    id: "54c6c9ef666538a00d004a8e"
   }
-  index: 2
-  text: "She played her first set right here in this club, in \'47.  Her agent then was Armando Hernadez, and he camped in Murdoch\'s waiting room for a week, trying to get him to set up an audition.  But wow, when Sidney heard her sing, that was all it took.  He booker her on an open contract, for as long as she wanted to stay.   Six weeks later, she got her first recording contract and the rest, like they say, is history.   But she never forgets her friends, like you cadn see here tonight.  She could pull down a drekload of nuyen playing at the Dome or some other big hall, but she comes to Seattle and plays a place like Underworld instead.   That\'s class, Chummer.\n\nWhat\'s she really like?  Depends on what day it is, man.  Well, you\'ve probably read teh drek they shovel out on ethe rocker channels.  She\'s got problems, more than most.  One minutes, she\'s the rocker queen to the max, hard and super-hype, on hyperdrive to the nova, O.K.?  The next, she\'s locked up insider herself like some uptight biddy from the burbs.  Like she even talks different, get me?   She\'s not a total brainwipe.  I mean, she doesen\'t forget what she said or did when she changes.   Bug I\'ve seen it before.  There\'s a lot of it in the business.  That lady must have had herself a heavy habit on dreamchips.  I think she\'s gotta be clean, or that drek would have killed her by  now.   But she was jacking some bad stuff once upon a time, Chummer... Take it from someone who knows."
+  index: 1
+  text: "Tellin nods \"Yeah, I do. There\'s a dwarven gentleman who hangs out over by the Beast... middle of the floor, works as a scalper sometimes. He usually has some stuff in reserve for rich gullible customers.\"\n\n\"Careful $(l.man), it can be pricey, just be warned.\""
   branches {
     responseText: ""
-    nextNodeIndex: 1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Tellin pulls a slick telecom out of his pocket, and starts tapping the screen,  \"I\'ll let him know you\'re interested, he\'s usually good for a 10% referral fee.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -282,18 +565,237 @@ nodes {
         string_value: "Anything else?"
       }
     }
+  }
+}
+nodes {
+  idRef {
+    id: "54bb1430666538f00e006d22"
+  }
+  index: 2
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}[50\302\245]{{/CC}} What can you tell me about Mecurial."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 50
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 50
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "54bb35c2666538f00e006ff9"
+    }
+  }
+  branches {
+    responseText: "{{CC}}[50\302\245]{{/CC}} What can you tell me about Max Foley?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 50
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 50
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "54c6ca66666538a00d004ab5"
+    }
+  }
+  branches {
+    responseText: "{{CC}}[50\302\245]{{/CC}} What can you tell me about Hernandez?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 50
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 50
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Telling shrugs, \"I don\'t know, maybe he just couldn\'t handle her career anymore, or it was over money, or artistic differences. Her new manager, Foley, is a sleaze-bag, but he has the right connections to hype a top act the way it oughtta be done. I\'m talking, her name written in fireworks across the sky.\"\n\n\"I know a couple of people called Armando when Maria showed up without him, to find out what was going on. I heard someone even stopped by his place. Hernandez is taking her leaving pretty hard- like, from the bottom of a bottle.\"\n\n\"My guess, Nuyen to nutrisoy, that\'s what Foley wants to talk to you about.\""
+        }
+      }
+    }
+    nextNodeIndex: 8
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "54c6ca6a666538a00d004ab6"
+    }
+  }
+  branches {
+    responseText: "{{CC}}[50\302\245]{{/CC}} What can you tell me about Old Sam?"
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556aca6b393066a810000f02"
+    }
+  }
+  branches {
+    responseText: "Thats enough for now."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Tellin shrugs, \"No problem, I\'m at a lull between customers, what can I do for you?\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
+  }
+  comment: "Rumor Loop"
+}
+nodes {
+  idRef {
+    id: "54bb15d1666538f00e006d52"
+  }
+  index: 3
+  text: "\"Maria Mercurial, the rockstar: Night Tears, Puta, some of the best synth of all time.\"\n\n\"She played her first set right here in this club, in \'47.  Her agent, Armando Hernadez, camped in Murdoch\'s waiting room day in and day out for a week, trying to get him to set up an audition.\"\n\n\"Sidney knows good acts when he hears them, but I think he just humored Armando because the guy wouldn\'t give up. But wow, when Sidney heard Maria sing, that was all it took.  He set her up on an open contract, able to come visit whenever she wants, for as long as she wanted to stay.\"\n\n"
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
+  }
+}
+nodes {
+  idRef {
+    id: "556abb61393066a810000e36"
+  }
+  index: 4
+  text: "\"Six weeks later, she got her first recording contract, and that first single- \'Who Weeps for the Children,\' it shot straight to Super Platinum like a rocket, and stayed there. The rest, like they say, is history.\"\n\n\"Maria never forgets her friends, or her fans, like you can see here tonight.  She could pull down a drekload of nuyen playing at the Dome or some private show, but she comes home to Seattle, she plays Underworld instead.   A thank you for the people who set yu up? That\'s class, Omae.\"\n"
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Tellin smiles \"Pipes like hers, Maria deserves to be a superstar. She\'s been through so much- but she wouldn\'t like me talking about it.\"\n\n\"You here to enjoy the show, to to just show off that you got in?\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
   }
 }
 nodes {
   idRef {
     id: "54c6c8ff666538a00d004a2e"
   }
-  index: 3
-  text: "The man knows the business, better than most, but what a jerk!  he\'s found some hot bands, and helped them make it big, but after a few years, they usually split and find another manager, \'cause he pulls some drek that ticks them off to no end.\n\nStill, Foley is one of the best in the business, no question.  If he\'s looking to sign you on, hit him fo all the nuyen you can.   He oughtta be rollin\' in it."
+  index: 5
+  text: "Tellin shrugs, \"What can I tell you about Max Foley that you can\'t read off a public urinal? Foley knows the business, better than most, but what fragging a jerk!\"\n\n\"He got ahold of the contract for Concrete Dreams somehow, and almost drove the band apart. Ferrocrete was a great album, but easily one of the hardest to listen to start to finish. There were a dozen rumors of people leaving to do solo acts, and it wasn\'t until they fired him that they managed to stay together.\""
   branches {
     responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
+    nextNodeIndex: 6
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -304,88 +806,217 @@ nodes {
       functionName: "Set Variable (string)"
       args {
         call_value {
-          functionName: "Get Variable (string)"
+          functionName: "Get Story Variable (string)"
           args {
-            string_value: "str_TellinText"
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
           }
         }
       }
       args {
-        string_value: "Anything else?"
+        string_value: "\"He was a reality star of some kind, but I\'ve never seen the recordings. He was accused of killing his first wife, but nothing could be proven, so he got acquitted.\"\n\n\"All of that being said, Foley is one of the best in the business, no question.  If he\'s looking to sign you on, hit him for all the nuyen you can. He\'s a jerk, but he\'s a rich jerk.\""
       }
     }
   }
+}
+nodes {
+  idRef {
+    id: "556abda6393066a810000e3d"
+  }
+  index: 6
+  text: "\"Max is a manager, not a talent scout. You generally have two types of management. You have people who find those who are talented, and you have people who take advantage of people who have already proven they\'re talented. Max is very much the second type of manager.\"\n\n\"Rumor has it that he made a pass at Shelia from Shieldwall, and almost ended up dining on his own dismembered member, if you know what I mean.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "556abeee393066a810000e44"
+  }
+  index: 7
+  text: "\"From what I hear, he started a record label here in Seattle after getting forced out of the New York label he was with. Grand Royale, Inc. Or something like that? I don\'t know details about that, it\'s too far from my corner of the world.\"\n\n\"Truth is, he\'s managed to make good investments with some hot bands, but after a few years, they get tired of him, split up, go solo, or find another manager, \'cause he pulls some drek that ticks them off to no end.\"\n"
+  branches {
+    responseText: ""
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "54c6c9c6666538a00d004a70"
   }
-  index: 4
-  text: "A pretty good track record as a manager, and he\'s had some hot bands, but once Maria\'s career took off, he gave the rest of his acts to other agents and worked with her exclusive.  Well, drek, you can see why.  She\'s NovaStar, chummer.\n\nHernandez is a pretty good guy, I guess.   Quiet, unless he\'s putting on the act getting a contract signed.  He can come on pretty strong, He\'s Hispanic, y\'know?  I think he mighta moved here from Aztlan a while back, and he stilld oes the \'machismo\' thing if someone tries to push him around.\n\nI gotta say, I don\'t know what he did to hose his deal with Maria.  Maybe he just couldn\'t do enough for her career.  Her new manager, Foley, is a sleaze-bag, but he has the right connections to hype a top act the way it oughtta be.\n\nI did hear some rumblings on the street taht Hernandez was taking it pretty hard.  Maria leaving to work with Foley, I mean.  Maybe that he was gonna try and do something about it... Run some shadows in on them, y\'know?  Nuyen to nutrisoy, that\'s what Foley wants to talk to you chummers about."
+  index: 8
+  text: "\"Armando isn\'t really a manager as much as he was lucky to hear Maria sing before any of the rest of us, and had the sense to put her on stage. As I heard it, he\'s a music producer who\'s traveled all over the world, London, Hong Kong, Melbourne. I don\'t know what made him settle in Seattle, maybe he missed the smell of Tacoma?\"\n\n\"Hernandez has a good track record as a manager, and he\'s fronted for some hot bands, but once he met Maria, I heard he gave away the contracts for all his other talent, and focused on her career alone. I mean, drek, you can see why. Maria is destined to be a novastar, have her name written in the heavens.\""
   branches {
     responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
+    nextNodeIndex: 9
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54b98095666538b409004df3"
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Variable (string)"
-          args {
-            string_value: "str_TellinText"
-          }
-        }
-      }
-      args {
-        string_value: "Anything else?"
-      }
-    }
   }
 }
 nodes {
   idRef {
-    id: "54c6c9ef666538a00d004a8e"
+    id: "556ac2b1393066a810000e7b"
   }
-  index: 5
-  text: "Actually yeah.   There\'s a gentleman who hangs out over by the Beast... middle of the floor over there... Usually has a few held in reserve... for the discerning customer.  They\'re pricey though... Just be warned."
+  index: 9
+  text: "I\'ve heard that Hernandez can put on quite the \'tough Aztlaner\' act. Scary, if you don\'t know him. He\'s quiet in person, thoughtful and careful. Quiet, unless he\'s putting on the act, getting a contract signed, or sticking up for a friend. I know he moved here from Aztlan a few years ago, but he  still does the whole \'machismo\' thing if someone tries to push him around.\"\n\n\"I gotta say, I don\'t know what he did to hose his deal with Maria, but he fragged her off good. Maria has a temper, what woman doesn\'t, but she\'ll forgive and forget like no one I\'ve ever met. She\'s so angry that I wouldn\'t recommend mentioning his name if you get the chance to be around her. If the rumors are to be believed, it\'s drug-related. Maria has long been rumored to have a BTL habit, but I don\'t know if that connects to this or not. "
   branches {
     responseText: ""
-    nextNodeIndex: 1
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "556ac5fb393066a810000ed4"
+  }
+  index: 10
+  text: "Telling raises an eyebrow at you, \"I know a lot of Sam\'s. Are you interested in the story about the ballerina? Or you probably mean your fixer, Sam Watts?\""
+  branches {
+    responseText: "{{CC}}[50\302\245]{{/CC}} Yeah, tell me about Sam."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 50
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 50
+        }
+      }
+    }
+    nextNodeIndex: 11
+  }
+  branches {
+    responseText: "I\'d rather hear about the ballerina."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Tellin smiles, \"That\'s one story that takes longer than two minutes to tell. I\'ll give you the short version for free. It was the summer after my sophmore year at Uni. I had a friend who got us into Russia for some rock festival, and we spent a weekend drinking vodka so strong I\'m surprised we survived.\"\n\n\"We met these girls, and between my bad russian and my cut ears, we hit it off. I spent most of that summer learning the tongue of Mother Russia, if you know what I mean.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556ac69f393066a810000efa"
+    }
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54b98095666538b409004df3"
   }
-  actions {
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Variable (string)"
-          args {
-            string_value: "str_TellinText"
+}
+nodes {
+  idRef {
+    id: "556ac5fd393066a810000ed7"
+  }
+  index: 11
+  text: "\"Sam Watts used to be a runner. To hear him tell it, he got fragged up on a run, his best friend saved his life, and Sam owes that dude everything.\"\n\n\"I heard from a friend of mine named Sangoma tells it different. There was a runner that betrayed the team, Sam and the two of them killed the guy and his Renraku goons, and got away clean. Sam stayed in town, Sangoma headed for Salish lands for the heat to die down, and I don\'t even know where Sam\'s buddy ended up.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 12
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
+  }
+}
+nodes {
+  idRef {
+    id: "556ac987393066a810000eff"
+  }
+  index: 12
+  text: "\"So Sam, he didn\'t have a team anymore, but he still knew who was who and what was what. What can you do with all that knowledge? You can try and go it on your own, or you can set up people who need things with people who want things, and profit.\" "
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
           }
         }
-      }
-      args {
-        string_value: "Anything else?"
+        args {
+          string_value: "\"One thing you need to know about Sam Watts, is that he\'s crafty. He\'s not above lying, cheating, or stealing to get his way, but he\'s loyal.\"\n\n\"Loyal to friends, loyal to his contacts. He\'s good people, you should do right by him.\""
+        }
       }
     }
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
+  }
+}
+nodes {
+  idRef {
+    id: "5470e817666538c40b000b78"
+  }
+  index: 13
+  text: "$(scene.str_Rumor)"
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
   }
 }
 nodes {
   idRef {
     id: "54bb1b5a666538f00e006d8b"
   }
-  index: 6
-  text: "I don\'t serve many drinks these days, Chummer.   Mostly I watch the tills and make sure nobody\'s skimming."
+  index: 14
+  text: "Tellin shrugs, \"I\'ve been a bartender here for a long time. These days, I don\'t serve many drinks. Mostly I watch the till to make sure nobody\'s skimming, and pick up the occasional semi-inebriated woman.\""
   branches {
     responseText: ""
     nextNodeIndex: 0
@@ -393,6 +1024,41 @@ nodes {
   }
   nodeType: ConversationNodeType_Simple
 }
+nodes {
+  idRef {
+    id: "5470eac2666538c40b000be7"
+  }
+  index: 15
+  text: "$(scene.str_Rumor)"
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b98095666538b409004df3"
+  }
+}
 roots {
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The handsome elf smiles, \"Hello there, my $(l.guy). To what do I owe the honor of your companionship tonight?\"\n\n\"Everyone has head all about $+(story.str_RunnerName), believe me. Anyone with half an ear to listen knows that you\'re hotter than lava.\""
+      }
+    }
+  }
   nextNodeIndex: 0
 }
