@@ -1976,19 +1976,19 @@ triggers {
     ops {
       functionName: "Set Screen Label"
       args {
-        string_value: "Location"
+        string_value: "Objective"
       }
       args {
-        string_value: "Location: U93 Backstage"
+        string_value: "Meet Mr. Johnson backstage"
       }
     }
     ops {
       functionName: "Set Screen Label"
       args {
-        string_value: "Objective"
+        string_value: "Location"
       }
       args {
-        string_value: "Meet Mr. Johnson backstage"
+        string_value: "Location: U93 Backstage"
       }
     }
     ops {
@@ -2118,6 +2118,44 @@ triggers {
         int_value: 5
       }
     }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "547016536665388408000b78"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_junky"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b95a18666538900b00590f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_preen"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -2127,19 +2165,19 @@ triggers {
     ops {
       functionName: "Set Screen Label"
       args {
-        string_value: "Location"
+        string_value: "Objective"
       }
       args {
-        string_value: "Location: U93 Backstage"
+        string_value: "Meet Mr. Johnson backstage"
       }
     }
     ops {
       functionName: "Set Screen Label"
       args {
-        string_value: "Objective"
+        string_value: "Location"
       }
       args {
-        string_value: "Meet Mr. Johnson backstage"
+        string_value: "Location: U93 Backstage"
       }
     }
     ops {
@@ -5315,6 +5353,15 @@ triggers {
     ops {
       functionName: "Set Screen Label"
       args {
+        string_value: "Objective"
+      }
+      args {
+        string_value: "Meet Mr. Johnson backstage."
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
         string_value: "Location"
       }
       args {
@@ -5392,15 +5439,6 @@ triggers {
             int_value: 0
           }
         }
-      }
-    }
-    ops {
-      functionName: "Set Screen Label"
-      args {
-        string_value: "Objective"
-      }
-      args {
-        string_value: "Meet Mr. Johnson backstage."
       }
     }
     ops {
@@ -7882,6 +7920,155 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "Backstage.OccupiedRoom"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5534f7653733613010004440"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Compare Actor Gender"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Gender"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5470165c6665388408000b7a"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Drek Bro... Occupied!"
+      }
+      args {
+        float_value: 85
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 8
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556b84d5663136e013004252"
+  }
+  elseActions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5470165c6665388408000b7a"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Two for one?  My lucky day!"
+      }
+      args {
+        float_value: 85
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 8
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
   name: "Backstage.MaxFoley(Intro)"
   events {
     ops {
@@ -8455,6 +8642,117 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "5466d1bc613131f810006123"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Berlin_AR 1 AK98"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5470165c6665388408000b7a"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Berlin_SMG 1 Uzi III"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "547016536665388408000b78"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Berlin_Sh 1 Street Sweeper"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b95a18666538900b00590f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -15057,9 +15355,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -34
+    x: -36
     y: 0
-    z: 229
+    z: 231
   }
   orientation: ORIENTATION_S
   displayName: "Ego"
@@ -15175,11 +15473,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -34
+    x: -86
     y: 0
-    z: 218
+    z: 279
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_E
   GeneralTags: "isBadGuy"
   displayName: "Thug"
   idRef {
@@ -15262,9 +15560,6 @@ characters {
       }
     }
     equipment {
-      prefab_name: "SMG 1 Uzi III"
-    }
-    equipment {
       prefab_name: "Player_SamuraiStarter"
     }
     team_id: "Civilians"
@@ -15282,11 +15577,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -34
+    x: -83
     y: 0
-    z: 220
+    z: 254
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_E
   GeneralTags: "isBadGuy"
   displayName: "Thug"
   idRef {
@@ -15327,7 +15622,7 @@ characters {
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
-        is_fearless: 0
+        is_fearless: 1
       }
       skills {
         ranged_combat: -1
@@ -15370,9 +15665,6 @@ characters {
     }
     equipment {
       prefab_name: "SamuraiTrenchcoat"
-    }
-    equipment {
-      prefab_name: "AR 1 AK98"
     }
     team_id: "Civilians"
     char_name: "Skidmark"
@@ -16394,11 +16686,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -34
+    x: -87
     y: 0
-    z: 219
+    z: 285
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_W
   GeneralTags: "isBadGuy"
   displayName: "Thug"
   idRef {
@@ -16486,9 +16778,6 @@ characters {
     equipment {
       prefab_name: "Grenade 1 (Flash)"
     }
-    equipment {
-      prefab_name: "Sh 1 Street Sweeper"
-    }
     team_id: "Civilians"
     char_name: "Jericho"
     GeneralTags: "isBadGuy"
@@ -16516,7 +16805,7 @@ characters {
   }
   interactionRoot {
     isEnabled: true
-    interactionRadius: 3
+    interactionRadius: 4
     interactionIcon: InteractionIcon_Conversation
     interaction_info_text: "Speak with Tellin?"
   }
@@ -17181,9 +17470,9 @@ characters {
   gridPoint {
     x: -103
     y: 0
-    z: 141
+    z: 139
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_E
   displayName: "LoneStar"
   idRef {
     id: "556ad745663136fc0c00069d"
@@ -17723,6 +18012,14 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "iGetAwayProgession"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_Bartender"
     typeName: "int"
   }
 }
