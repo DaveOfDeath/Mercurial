@@ -6654,7 +6654,7 @@ triggers {
         }
       }
       args {
-        string_value: "Fuck off. I\'m busy."
+        string_value: "Frag off. I\'m busy."
       }
       args {
         float_value: 0
@@ -6783,7 +6783,7 @@ triggers {
         }
       }
       args {
-        string_value: "Really getting tired of your shit."
+        string_value: "Really getting tired of your drek."
       }
       args {
         float_value: 0
@@ -7041,7 +7041,7 @@ triggers {
         }
       }
       args {
-        string_value: "You\'re gonna get shot if you keep dat shit up!"
+        string_value: "You\'re gonna get shot if you keep dat drek up!"
       }
       args {
         float_value: 0
@@ -8718,7 +8718,7 @@ triggers {
         }
       }
       args {
-        string_value: "A Fellow decker, eh?   Well, I guess you\'ll be needing this.   No one should enter the Matrix without one..."
+        string_value: "A fellow console cowboy?   Well, I guess you\'ll be needing this, no one should enter the Matrix without one."
       }
       args {
         float_value: 85
@@ -8806,7 +8806,7 @@ triggers {
         }
       }
       args {
-        string_value: "Omae, be cool, or the Star will notice me over here!"
+        string_value: "Omae, be cool! The Star is gonna notice me over here with you hovering!"
       }
       args {
         float_value: 85
@@ -8981,7 +8981,7 @@ triggers {
         }
       }
       args {
-        string_value: "Good luck out there..."
+        string_value: "Good luck out there, $(story.str_RunnerName)."
       }
       args {
         float_value: 0
@@ -9213,7 +9213,7 @@ triggers {
         }
       }
       args {
-        string_value: "What\'re you neighborhood watch?   Back off, \'fore I call my boys..."
+        string_value: "You the neighborhood watch?   Back off, \'fore I call my boys."
       }
       args {
         float_value: 85
@@ -14273,7 +14273,7 @@ triggers {
         }
       }
       args {
-        string_value: "Hoi $(l.name), my chummer... Your boy Sam gave me a call... Said you might be interested in patching up some old tech... Nobody mentioned just how bad this place was gonna be though... "
+        string_value: "The thin blonde decker looks into the darkness of the safehouse, calling out \"You alive in there?  I heard some sounds of fighting, so I hung back.\"\n\n\"Your chummer Sam gave me a call, said you needed help patching up old tech.  Nobody mentioned just how bad this place was gonna be though...\" "
       }
     }
     ops {
@@ -14491,7 +14491,7 @@ triggers {
         string_value: "Objective1"
       }
       args {
-        string_value: "Answer the Vid-Phone"
+        string_value: "Answer the Telecom"
       }
     }
   }
@@ -16895,7 +16895,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "Hiring Runners"
@@ -17297,59 +17297,6 @@ triggers {
       functionName: "Teleport Actor"
       args {
         call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Random Point Within Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "54fc54f2663136a005007617"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
           functionName: "All Actors on Team"
           args {
             call_value {
@@ -17420,12 +17367,120 @@ triggers {
       }
     }
     ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "54b289eb6131317007006115"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Arrow"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
       functionName: "Teleport Camera To Actor"
       args {
         call_value {
           functionName: "Get Map Item (Player)"
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "537091876465657412003ce2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -18796,7 +18851,7 @@ triggers {
         }
       }
       args {
-        string_value: "Hoi Chummer... you got a problem?"
+        string_value: "Hoi, Chummer. You got a problem?"
       }
     }
   }
@@ -18857,7 +18912,7 @@ triggers {
         }
       }
       args {
-        string_value: "What a dump..."
+        string_value: "What a wreck."
       }
     }
   }
@@ -18918,7 +18973,7 @@ triggers {
         }
       }
       args {
-        string_value: "I know you?   You look pretty familiar to me..."
+        string_value: "You look familiar to me, do I know you?"
       }
     }
   }
@@ -18979,7 +19034,7 @@ triggers {
         }
       }
       args {
-        string_value: "Stay safe out there... Bad vibes in the air tonight..."
+        string_value: "Bad vibes in the air tonight."
       }
     }
   }
@@ -19040,7 +19095,7 @@ triggers {
         }
       }
       args {
-        string_value: "Hear about Ronnie and Razor\'s team?   \'Da Star raided thier spot!"
+        string_value: "Stay safe out there."
       }
     }
   }
@@ -19101,7 +19156,7 @@ triggers {
         }
       }
       args {
-        string_value: "Drek... Hope those Star ain\'t gonna try and raid us again..."
+        string_value: "Those Star better not try and raid us again..."
       }
     }
   }
@@ -19162,7 +19217,7 @@ triggers {
         }
       }
       args {
-        string_value: "Blazes it\'s cold out here.   Wish I could go somewhere warm..."
+        string_value: "This weather is trash. Wish I could get dry and warm."
       }
     }
   }
@@ -19223,7 +19278,7 @@ triggers {
         }
       }
       args {
-        string_value: "Evening friend."
+        string_value: "Good night."
       }
     }
   }
@@ -19345,7 +19400,7 @@ triggers {
         }
       }
       args {
-        string_value: "Have you even been through a bigger dump than this?"
+        string_value: "What a dump!"
       }
     }
   }
@@ -19406,7 +19461,7 @@ triggers {
         }
       }
       args {
-        string_value: "Know where I can score some Nitro?"
+        string_value: "Where I can score some Nitro?"
       }
     }
   }
@@ -19528,7 +19583,7 @@ triggers {
         }
       }
       args {
-        string_value: "Star has been leaning on this area hard- I guess they\'re looking for a team who never made it home."
+        string_value: "Lonestar has been leaning on this area hard- I wonder why."
       }
     }
   }
@@ -19589,7 +19644,7 @@ triggers {
         }
       }
       args {
-        string_value: "Been to Kane\'s gun shop?  It\'s not wise to go around these parts unarmed."
+        string_value: "Load up at Kane\'s gunshop. Not wise to walk around unarmed."
       }
     }
   }
@@ -19650,7 +19705,7 @@ triggers {
         }
       }
       args {
-        string_value: "Big Jim gets in a helluva mood if you mess with his stuff..."
+        string_value: "Don\'t mess with his stuff, or Big Jim will go into a rage."
       }
     }
   }
@@ -19711,7 +19766,7 @@ triggers {
         }
       }
       args {
-        string_value: "See that wierd spirit thing?  Just hanging out in the alley?   Creeps me out..."
+        string_value: "That weird spirit in the alley keeps people away- creeps me out."
       }
     }
   }
@@ -19772,7 +19827,7 @@ triggers {
         }
       }
       args {
-        string_value: "I haven\'t seen Dr. Knoles in weeks... I think her droids finally did her in..."
+        string_value: "Haven\'t seen the Doc in a while. I wonder if that drone or her assistants did her in..."
       }
     }
   }
@@ -21852,7 +21907,7 @@ triggers {
         }
       }
       args {
-        string_value: " [PLACE HOLDER]\nBounty Investagion\n     Incomplete"
+        string_value: "That\'s going to take a while, I should find something to do in the mean time."
       }
       args {
         float_value: 255
@@ -27608,9 +27663,9 @@ regions {
 regions {
   name: "LonestarCordon"
   position {
-    x: -17
-    y: 32
-    width: 8
+    x: -14
+    y: 31
+    width: 9
     height: 7
   }
   enabledAtStart: true
@@ -28118,7 +28173,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Lonestar/HumanFemaleLonestarCaptain"
+    prefab_name: "Seattle:Lonestar/OrkLoneStarCaptain"
     character_sheet_id: "Lonestar_Lv1_Captain"
     equipment_sheet_id: "Lonestar_Lv1_Captain_Gear"
     character_mod {
@@ -28145,7 +28200,7 @@ characters {
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
-      filename: "npc_humanfemale_muller"
+      filename: "pc_orkmale_01_soldier"
     }
     karma: 44
   }
@@ -28165,7 +28220,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Lonestar/OrkLoneStarCaptain"
+    prefab_name: "Seattle:Lonestar/HumanMaleLonestarGuard"
     character_sheet_id: "Lonestar_Lv1_Ork_Shotgun"
     equipment_sheet_id: "Lonestar_Lv1_Shotgun_Gear"
     character_mod {
@@ -28196,7 +28251,7 @@ characters {
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
-      filename: "pc_orkmale_10_blue"
+      filename: "generic_humanmale_lonestarguard01"
     }
     karma: 33
   }
@@ -28995,7 +29050,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Story/MagicDealer"
+    prefab_name: "Seattle:Standard/DwarfFemaleAdept"
     character_sheet_id: "BaseCivilian"
     equipment_sheet_id: "Merchant_Magic_Low"
     character_mod {
@@ -29070,9 +29125,9 @@ characters {
     pc_spawn_number: -1
     hiring_type: HiringType_None
     portrait {
-      filename: "NPC_ElfMale_MagicDealer"
+      filename: "pc_dwarffemale_04c_visseral"
     }
-    karma: 25
+    karma: 6
     hiring_cost_override: 500
   }
 }
@@ -31444,9 +31499,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -8
+    x: 14
     y: 0
-    z: 31
+    z: 25
   }
   orientation: ORIENTATION_S
   GeneralTags: "isCivilian"
