@@ -1,4 +1,77 @@
 triggers {
+  name: "Map Start [FRESH Add \302\245]"
+  events {
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "FRESH"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Nuyen"
+      args {
+        int_value: 1875
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 10
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557252db6631368807005983"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "Map Start  [Fresh PlayThru]"
   events {
     ops {
@@ -35,33 +108,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Add Actor Karma"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        int_value: 10
-      }
-    }
-    ops {
-      functionName: "Add Nuyen"
-      args {
-        int_value: 1250
-      }
-    }
     ops {
       functionName: "Set Waypoint on Prop"
       args {
@@ -29501,8 +29547,8 @@ characters {
         quickness: -2
         strength: -4
         hp: -24
-        ap: -1
-        armor: -2
+        ap: 0
+        armor: 0
         morale: 0
         discipline: 0
         awareness: 0
@@ -29528,7 +29574,7 @@ characters {
       prefab_name: "Claw Swipe"
     }
     team_id: "Civilians"
-    char_name: "Dog"
+    char_name: "Feral Dog"
     GeneralTags: "isDog"
     enabled_at_start: false
     pc_spawn_number: -1
