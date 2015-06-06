@@ -1169,7 +1169,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "General.ActivateFlashLight"
+  name: "General.DeactivateFlashLight"
   events {
     ops {
       functionName: "On Region Enter"
@@ -1185,109 +1185,23 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "AND"
-      args {
-        call_value {
-          functionName: "Comparison (bool)"
-          args {
-            call_value {
-              functionName: "Get Variable (bool)"
-              args {
-                string_value: "bFlashLight_On"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "bool"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Comparison (Actor)"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "Berlin:cyberware"
-          }
-          args {
-            string_value: "Cyberware_Electronic_On"
-          }
-        }
-      }
-      args {
-        float_value: 5
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
+      functionName: "Comparison (bool)"
       args {
         call_value {
           functionName: "Get Variable (bool)"
           args {
             string_value: "bFlashLight_On"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -1304,22 +1218,34 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
+      functionName: "Comparison (Actor)"
       args {
         call_value {
-          functionName: "Get Map Item (Event)"
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "eFlashLight"
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
           }
         }
       }
     }
   }
-  isActive: true
-  idRef {
-    id: "54f224a6663136941400222e"
-  }
-  elseActions {
+  actions {
     ops {
       functionName: "Play Sound"
       args {
@@ -1411,6 +1337,160 @@ triggers {
         }
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "54f224a6663136941400222e"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "General.ActivateFlashLight"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54f22ecc6631369414002233"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bFlashLight_On"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "Berlin:cyberware"
+          }
+          args {
+            string_value: "Cyberware_Electronic_On"
+          }
+        }
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bFlashLight_On"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eFlashLight"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5573700d663136c004004056"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
@@ -4244,7 +4324,7 @@ regions {
   position {
     x: 6
     y: -19
-    width: 1
+    width: 2
     height: 6
   }
   enabledAtStart: false
@@ -5163,6 +5243,8 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
+}
+character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
