@@ -17954,7 +17954,7 @@ triggers {
         string_value: "This street is temporarily under curfew. Go home, get inside, and stay off the street."
       }
       args {
-        float_value: 0
+        float_value: 255
       }
       args {
         float_value: 0
@@ -17963,16 +17963,30 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 0
+        float_value: 128
       }
       args {
-        float_value: 5
+        float_value: 8
       }
       args {
         float_value: 3
       }
       args {
         float_value: 0
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
       }
     }
     ops {
@@ -33247,107 +33261,37 @@ characters {
     interactionRadius: 1
     prerequisites {
       ops {
-        functionName: "OR"
+        functionName: "Comparison (bool)"
         args {
           call_value {
-            functionName: "Comparison (string)"
+            functionName: "Get Story Variable (bool)"
             args {
-              call_value {
-                functionName: "Get Story Variable (string)"
-                args {
-                  string_value: "542848a8633464d816001ad5"
-                }
-                args {
-                  string_value: "str_SpawnPoint"
-                }
-              }
+              string_value: "542848a8633464d816001ad5"
             }
             args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "IsOrIsNot"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              string_value: "FRESH"
+              string_value: "bool_HotelSubQuestCleared"
             }
           }
         }
         args {
           call_value {
-            functionName: "AND"
+            functionName: "Get Preset Value (int)"
             args {
-              call_value {
-                functionName: "Comparison (bool)"
-                args {
-                  call_value {
-                    functionName: "Get Story Variable (bool)"
-                    args {
-                      string_value: "542848a8633464d816001ad5"
-                    }
-                    args {
-                      string_value: "bool_HotelSubQuestCleared"
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (int)"
-                    args {
-                      string_value: "IsOrIsNot"
-                    }
-                    args {
-                      int_value: 1
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (int)"
-                    args {
-                      string_value: "bool"
-                    }
-                    args {
-                      int_value: 0
-                    }
-                  }
-                }
-              }
+              string_value: "IsOrIsNot"
             }
             args {
-              call_value {
-                functionName: "Comparison (string)"
-                args {
-                  call_value {
-                    functionName: "Get Story Variable (string)"
-                    args {
-                      string_value: "542848a8633464d816001ad5"
-                    }
-                    args {
-                      string_value: "str_SpawnPoint"
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (int)"
-                    args {
-                      string_value: "IsOrIsNot"
-                    }
-                    args {
-                      int_value: 1
-                    }
-                  }
-                }
-                args {
-                  string_value: "DOGHOUSE-RETURN"
-                }
-              }
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
             }
           }
         }
