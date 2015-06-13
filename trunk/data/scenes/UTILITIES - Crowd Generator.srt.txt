@@ -3569,16 +3569,110 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: " "
+  name: "WUB WUB"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557bb0c566313644110011f9"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "i_MUZAK"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+      args {
+        int_value: 10
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Stop Music"
+    }
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "i_MUZAK"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "iSHUFFLE"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "54e982db663136e0120015b8"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "i_MUZAK"
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "NewTrigger"
   events {
   }
   conditions {
   }
   actions {
   }
-  isActive: false
+  isActive: true
   idRef {
-    id: "54e982db663136e0120015b8"
+    id: "557bb11166313644110011fa"
   }
   elseActions {
   }
@@ -12051,10 +12145,19 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "i_MUZAK"
+    typeName: "int"
+  }
+}
 mapEvents: "rejigger"
 mapEvents: "eRandomAction"
 mapEvents: "Woo!"
 mapEvents: "iFart"
+mapEvents: "iSHUFFLE"
 worldMapLocation {
   filename: ""
   location {
