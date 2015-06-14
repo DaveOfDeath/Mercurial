@@ -7,7 +7,7 @@ nodes {
     id: "553c6c8d6631361801007dd4"
   }
   index: 0
-  text: "{{GM}}As you glimpse the scene, you see Maria backed into a corner, surrounded by thugs. One has his head blown off, and several have ballistic impacts on their armor. Maria is holding her PISTOL with the slide locked back, but she doesn\'t seem to notice, she keeps pulling the trigger and pointing at the goons between her and her tormentor.{{/GM}}\n\n\"You remember us, don\'t you Maria? We\'re friends - we both know Max. Don\'t try to fight us, see what I have here for you?\"\n\nYou can\'t see what the woman has in her hand, but it buzzes as she holds it. That can\'t be a good sign."
+  text: "{{GM}}As you glimpse the scene, you see Maria backed into a corner, surrounded by thugs. One has his head blown off, and several have ballistic impacts on their armor. Maria is holding her Browning with the slide locked back, but she doesn\'t seem to notice, she keeps pulling the trigger and pointing at the goons surrounding her and her tormentor.{{/GM}}\n\n\"You remember us, don\'t you Maria? We\'re old friends - we both know Max. Don\'t try to fight us, see what I have here for you?\"\n\nYou can\'t see what the woman has in her hand, but it buzzes as she holds it. That can\'t be a good sign."
   branches {
     responseText: ""
     conditions {
@@ -101,16 +101,8 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 6
     comment: "Armando"
-  }
-  branches {
-    responseText: ""
-    nextNodeIndex: -1
-  }
-  branches {
-    responseText: ""
-    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -162,7 +154,7 @@ nodes {
     id: "553c6cfa6631361801007dd9"
   }
   index: 1
-  text: "Maria continues to pull the trigger, and shakes her head no \"No, I don\'t want it... I don\'t like it, the world gets grey... I don\'t want it anymore... Armando helped me kick it...\"\n\nHotada continues to hold it out the Maria, and you can see that Maria is temped."
+  text: "Maria continues to pull the trigger, and shakes her head no \"No, I don\'t want it... I don\'t like it, the world, it gets gray...\"\n\n\"I, I don\'t need it anymore... Armando helped me kick it the habit.\"\n\nHotada continues to hold it out the Maria, and you can see that Maria is temped."
   branches {
     responseText: ""
     nextNodeIndex: 2
@@ -177,18 +169,14 @@ nodes {
     id: "553c6d296631361801007ddc"
   }
   index: 2
-  text: "Armando is weak... He just couldn\'t afford the good stuff like you needed..."
+  text: "Hotada moves slightly toward Maria, the buzzing object still in her hand, \"You remember, don\'t you? Armando has been dealing BTL chips, just not as good as this one. Armando is weak... He just couldn\'t afford the good stuff like you need.\""
   branches {
-    responseText: "Yo... Bitch... Get the fuck away from my client!"
+    responseText: "{{CC}}Interrupt{{/CC}}"
     nextNodeIndex: 3
   }
   branches {
-    responseText: "I\'m here Maria.   As for your friends, it\'s time for you to leave.   You can use the door, or some extra thick trashbags, but you\'re out.   Now."
-    nextNodeIndex: 4
-  }
-  branches {
     responseText: "{{CC}}Wait{{/CC}}"
-    nextNodeIndex: 5
+    nextNodeIndex: 4
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -200,74 +188,17 @@ nodes {
     id: "553c6da16631361801007dee"
   }
   index: 3
-  text: "{{GM}}The Yazuka lady jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\nMax... you said $(l.he) wouldn\'t be back for hours... Clearly our faith in you was misplaced.   Take $(l.him) out!"
+  text: "{{GM}}The Yazuka woman jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\n\"Max, you said the $(l.boy) and $(l.his) team wouldn\'t be back for at least an hour. Clearly our faith in you was misplaced.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 11
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "55059e936131313023007217"
   }
   actions {
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eStartCombat"
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "553c6e156631361801007df0"
-  }
-  index: 4
-  text: "{{GM}}A now familiar expression comes over Maria\'s face, indicating she\'s gone Amazon again.   Gone in an instant is the crying weak woman, replaced by the hardened street samurai.{{/GM}}\n\n{{CC}}She lashes out, kicking whatever was in Hotodas hand away, and turns to you... {{/CC}}  \n\n\"It\'s about time, $(l.name).   We\'ve got some trash to take out.\""
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5532ef7f663136200f000bee"
-  }
-  actions {
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "5532ef7f663136200f000bee"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_attack_unarmed_kick"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55059e936131313023007217"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_hitreaction"
-          }
-        }
-      }
-    }
     ops {
       functionName: "Send Event"
       args {
@@ -285,11 +216,15 @@ nodes {
   idRef {
     id: "553c6f0b6631361801007df2"
   }
-  index: 5
-  text: "Take it, Maria... Become the starlet we\'re all expecting to find..."
+  index: 4
+  text: "Hotada leans forward, voice as a whisper that seems to reach your ears. \n\nYou realize, with a start, that Hotada is using some kind of mind-control magic to influence Maria.\n\n\"Take it, Maria, my beautiful friend.\" Hotada whispers in her ear, \"Armando wants you to have it, Max wants you to have it; I can see in your eyes that you want it... Take it, and become the star we\'ve all been expecting...\""
   branches {
-    responseText: ""
-    nextNodeIndex: 6
+    responseText: "{{CC}}Wait{{/CC}}"
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "{{CC}}Interrupt{{/CC}}"
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -300,69 +235,10 @@ nodes {
   idRef {
     id: "553c6f336631361801007df6"
   }
-  index: 6
-  text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nShe reaches out and takes the small chip from Hotoda."
+  index: 5
+  text: "{{CC}}Maria is visibly trembing. She reaches out and takes the small chip from Hotoda, letting it buzz in her hand.{{/CC}}"
   branches {
     responseText: "{{CC}}Start Combat{{/CC}}"
-    actions {
-      ops {
-        functionName: "Display Text over Actor"
-        args {
-          call_value {
-            functionName: "Get Map Item (Actor)"
-            args {
-              string_value: "55059e936131313023007217"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "TextPopupStyle"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          string_value: "Get $(l.him)!   Max you told us $(l.he) wouldn\'t be back for hours!"
-        }
-        args {
-          float_value: 255
-        }
-        args {
-          float_value: 0
-        }
-        args {
-          float_value: 0
-        }
-        args {
-          float_value: 128
-        }
-        args {
-          float_value: 7
-        }
-        args {
-          float_value: 3
-        }
-        args {
-          float_value: 0
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
-            args {
-              string_value: "eStartCombat"
-            }
-          }
-        }
-      }
-    }
     nextNodeIndex: -1
   }
   branches {
@@ -412,11 +288,11 @@ nodes {
   idRef {
     id: "553c6cfa6631361801007dd9"
   }
-  index: 7
-  text: "Maria continues to pull the trigger, and shakes her head no \"No, I don\'t want it... I don\'t like it, the world gets grey... I don\'t want it anymore... Armando helped me kick it...\"\n\nHotada continues to hold it out the Maria, and you can see that Maria is temped."
+  index: 6
+  text: "Maria continues to pull the trigger, and shakes her head no \"No, I don\'t want it... I don\'t like it, the world, it gets gray...\"\n\n\"I, I don\'t need it anymore... Armando helped me kick it the habit.\"\n\nHotada continues to hold it out the Maria, and you can see that Maria is temped."
   branches {
     responseText: ""
-    nextNodeIndex: 8
+    nextNodeIndex: 7
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -427,11 +303,11 @@ nodes {
   idRef {
     id: "5560b10b613131fc1b000db9"
   }
-  index: 8
+  index: 7
   text: "\"Maria, NO!\" Armando shouts, rushing into the room with fear painted on his face."
   branches {
     responseText: ""
-    nextNodeIndex: 9
+    nextNodeIndex: 8
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -439,7 +315,41 @@ nodes {
   }
   actions {
     ops {
-      functionName: "No Effect"
+      functionName: "Order Actor to Move To (Actor)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5532f1186631360007001367"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
     }
     ops {
       functionName: "Suspend Team\'s Turn"
@@ -472,19 +382,11 @@ nodes {
   idRef {
     id: "553c6d296631361801007ddc"
   }
-  index: 9
+  index: 8
   text: "\"Armando?\" Maria asks, shaking her head to clear the haze."
   branches {
-    responseText: "Get away from my client!"
-    nextNodeIndex: 10
-  }
-  branches {
-    responseText: "I\'m here Maria.   As for your friends, it\'s time for you to leave.   You can use the door, or some extra thick trashbags, but you\'re out.   Now."
-    nextNodeIndex: 11
-  }
-  branches {
     responseText: "{{CC}}Wait{{/CC}}"
-    nextNodeIndex: 12
+    nextNodeIndex: 9
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -493,99 +395,13 @@ nodes {
 }
 nodes {
   idRef {
-    id: "553c6da16631361801007dee"
-  }
-  index: 10
-  text: "{{GM}}The Yazuka lady jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\nMax... you said $(l.he) wouldn\'t be back for hours... Clearly our faith in you was misplaced.   Take $(l.him) out!"
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "55059e936131313023007217"
-  }
-  actions {
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eStartCombat"
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "553c6e156631361801007df0"
-  }
-  index: 11
-  text: "{{GM}}A now familiar expression comes over Maria\'s face, indicating she\'s gone Amazon again.   Gone in an instant is the crying weak woman, replaced by the hardened street samurai.{{/GM}}\n\n{{CC}}She lashes out, kicking whatever was in Hotoda\'s hand away, and turns to you... {{/CC}}  \n\n\"It\'s about time, $(l.name).   We\'ve got some trash to take out.\""
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5532ef7f663136200f000bee"
-  }
-  actions {
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "5532ef7f663136200f000bee"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_attack_unarmed_kick"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55059e936131313023007217"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_hitreaction"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eStartCombat"
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
     id: "553c6f0b6631361801007df2"
   }
-  index: 12
+  index: 9
   text: "Take it, Maria... Become the starlet we\'re all expecting to find..."
   branches {
     responseText: ""
-    nextNodeIndex: 13
+    nextNodeIndex: 10
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -596,10 +412,10 @@ nodes {
   idRef {
     id: "553c6f336631361801007df6"
   }
-  index: 13
+  index: 10
   text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nShe reaches out and takes the small chip from Hotoda."
   branches {
-    responseText: "{{CC}}Start Combat{{/CC}}"
+    responseText: "{{CC}}Interrupt{{/CC}}"
     actions {
       ops {
         functionName: "Display Text over Actor"
@@ -659,10 +475,11 @@ nodes {
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 3
+    auxiliaryLink: true
   }
   branches {
-    responseText: "{{CC}}Let Maria Insert the Chip.{{/CC}}"
+    responseText: "{{CC}}Wait{{/CC}}"
     actions {
       ops {
         functionName: "Send Event"
@@ -708,25 +525,38 @@ nodes {
   idRef {
     id: "557c95e5393066e00a00079e"
   }
-  index: 14
+  index: 11
   text: "Hotada leers at you, clearly not as cowed as you\'d hoped when confronted by armed resistance.\n\n\"This is not an eventuality that was unforseen,\" she says, and nods."
   branches {
     responseText: ""
-    nextNodeIndex: 15
+    nextNodeIndex: 12
     comment: "Blight on Team"
   }
   branches {
     responseText: ""
-    nextNodeIndex: 17
+    nextNodeIndex: 14
     comment: "Blight not on team"
   }
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eBlightTurn"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
     id: "557c978e393066e00a0007a1"
   }
-  index: 15
+  index: 12
   text: "Blight adjusts the lapels of his coat, chucks the brim of his hat, and says \"I think that\'s my cue, mate.\""
   branches {
     responseText: "What?"
@@ -749,7 +579,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 16
+    nextNodeIndex: 13
   }
   branches {
     responseText: "How much money did they offer you?"
@@ -768,10 +598,11 @@ nodes {
           }
         }
         args {
+          string_value: "\"It\'s not about the money, it\'s about sticking it to every piss-ant $(l.guy) who thinks he can run a team better than me.\"\n\n\"It\'s about power- REAL power, and people recognizing my potential.\"\n\n\"Mostly, it\'s about betraying you, and seeing the look on your stupid face when I do it.\""
         }
       }
     }
-    nextNodeIndex: 16
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   branches {
@@ -791,10 +622,11 @@ nodes {
           }
         }
         args {
+          string_value: "Blight laughs, a cold dark sound. There\'s something hollow about him, and it only seems more pronounced at this moment. \n\n\"Why will I regret it? If I had a camera, I would take a picture of your stupid face and that wounded look, and send it out on my fraggin Christmas cards.\""
         }
       }
     }
-    nextNodeIndex: 16
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   branches {
@@ -814,10 +646,81 @@ nodes {
           }
         }
         args {
+          string_value: "\"Here\'s the thing, $(story.RunnerName). You don\'t know True Power, not like I do, and not like Hotada and her friends do.\"\n\nBlight tips his hat to his new boss, and laughs, a cold dark sound that feels more hollow and alien than ever, \"No offense to my new boss here, but she\'s just a means to an end. She put me in touch with people who got what I need.\""
         }
       }
     }
-    nextNodeIndex: 16
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Maria, we need your help!"
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Comparison (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_NPC_Status_Hernandez"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 2
+                }
+              }
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Comparison (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_Story_Maria"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 17
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -829,11 +732,146 @@ nodes {
   idRef {
     id: "557ca1e2393066e00a000866"
   }
-  index: 16
+  index: 13
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: ""
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Comparison (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_NPC_Status_Hernandez"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 5
+                }
+              }
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Comparison (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_Story_Maria"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 4
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Maria, we need your help!"
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Comparison (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_NPC_Status_Hernandez"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 2
+                }
+              }
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Comparison (int)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (int)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "int_Story_Maria"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 3
+                }
+              }
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 17
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   comment: "Blight Betrayal"
@@ -842,7 +880,7 @@ nodes {
   idRef {
     id: "557c9797393066e00a0007a4"
   }
-  index: 17
+  index: 14
   text: "One of the yakuza goons turns around, and you recognize the man in the stylish new suit.\n\nBlight smiles, and wearing new sunglasses, says \"You had your chance to hire me, mate, and now I work for the competition.\""
   branches {
     responseText: ""
@@ -861,11 +899,11 @@ nodes {
           }
         }
         args {
-          string_value: "\"What\'s the problem?\" Blight asks innocently, \"Cat got your tongue?\"\n\n\"We all play the game, I just chose to join the winning side.\""
+          string_value: "\"What\'s the problem?\" Blight asks innocently, \"Cat got your tongue?\"\n\n\"We all play the game, me and my friends just decided to join up with some more powerful friends on the winning side.\""
         }
       }
     }
-    nextNodeIndex: 16
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -877,21 +915,311 @@ nodes {
   idRef {
     id: "557c95d7393066e00a00079b"
   }
-  index: 18
-  text: ""
+  index: 15
+  text: "{{GM}}Hotada, wounded and clearly worried about the outcome of this battle, makes a break for the door.{{/GM}}\n\n\"No survivors!\" She orders her chromed soldiers, \"Stay here until they\'re all dead!\""
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "Evaluate Actor Consciousness"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "5564ee04393066500e006ad8"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Consciousness"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Play Animation From Manifest"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "5564ee04393066500e006ad8"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Animation)"
+            args {
+              string_value: "Seattle:General/standing_use_medkit"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Blight stirs, a spirit seeming to prop him up and heal him. You were sure he was dead, but now he\'s still moving.\nYou wonder if he was really dead... or is not something worse.\n\n\"One to you, Runner,\" Blight says, and turns to leave with the help of his spirits. Several stay behind to fight you, and to protect his back."
+        }
+      }
+    }
+    nextNodeIndex: 16
+    comment: " Blight Dead"
+  }
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "Evaluate Actor Consciousness"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "5564ee04393066500e006ad8"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Consciousness"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    comment: "Blight Alive"
+  }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55059e936131313023007217"
+  }
+}
+nodes {
+  idRef {
+    id: "557d02ec393066540100537e"
+  }
+  index: 16
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "Evaluate Actor Consciousness"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "5564ee04393066500e006ad8"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Consciousness"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Frag that, Bitch!\" Blight shouts at the yakuza shaman, \"YOU can stay here to die!\"\n\nWith that, Blight makes a run for the door, leaving his spirits to block your following."
+        }
+      }
+    }
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5564ee04393066500e006ad8"
+  }
+  comment: "Blight Response"
+}
+nodes {
+  idRef {
+    id: "553c6e156631361801007df0"
+  }
+  index: 17
+  text: "{{GM}}A now familiar expression comes over Maria\'s face, indicating she\'s shifted personalities.  Instantly gone is the girl who was crying; replaced by the Amazon street samurai, the steel resolve you\'ve seen within the woman.{{/GM}}\n\n{{CC}}Maria lashes out, kicking whatever was in Hotoda\'s hand away, ignoring it as it skitters across the floor. Maria turns to you, and shouts.{{/CC}}  \n\"It\'s about time, $(l.name).   We\'ve got some fragging trash to take out!\""
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5532ef7f663136200f000bee"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5532ef7f663136200f000bee"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_attack_unarmed_kick"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e936131313023007217"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_hitreaction"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eStartCombat"
+          }
+        }
+      }
+    }
+  }
 }
 roots {
   nextNodeIndex: 0
-  comment: "INTRO"
+  comment: "BETRAYAL"
 }
 roots {
   responseText: ""
-  nextNodeIndex: 14
+  nextNodeIndex: 11
   comment: "Blight"
 }
 roots {
   responseText: ""
-  nextNodeIndex: 18
+  nextNodeIndex: 15
   comment: "FLEEING"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 17
+  hideIfUnavailable: true
+  onlyOnce: true
+  idRef {
+    id: "557cfabf39306654010050f7"
+  }
+  comment: "Maria goes Amazon"
 }
