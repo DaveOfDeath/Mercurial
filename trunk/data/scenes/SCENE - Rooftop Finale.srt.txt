@@ -25,6 +25,23 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Environmental Effect Amount"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "EnvironmentalEffects"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 999
+      }
+    }
+    ops {
       functionName: "Apply Condition Status Effect to Actor"
       args {
         call_value {
@@ -227,17 +244,58 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isDragon"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Send Event After Delay"
       args {
         call_value {
           functionName: "Get Map Item (Event)"
           args {
-            string_value: "eFightTheDragon"
+            string_value: "eDragonArrive"
           }
         }
       }
       args {
-        float_value: 5
+        float_value: 3
       }
     }
   }
@@ -280,6 +338,322 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "Dragon.Arrival"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eDragonArrive"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "Berlin:creatures"
+          }
+          args {
+            string_value: "Dragon_RoarFree"
+          }
+        }
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop with Speed"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "557bf6f9663136c010003150"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (3D)"
+          args {
+            float_value: 35
+          }
+          args {
+            float_value: 0
+          }
+          args {
+            float_value: -22
+          }
+        }
+      }
+      args {
+        float_value: 20
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonUpdate"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557cf82d663136a41200003a"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Dragon.Landing"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eDragonUpdate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Point Component (float)"
+          args {
+            call_value {
+              functionName: "Current Location of Prop"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Prop)"
+                  args {
+                    string_value: "557bf6f9663136c010003150"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "VectorComponent"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        float_value: -25
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Apply Camera Shake"
+      args {
+        float_value: 4
+      }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "557bf6f9663136c010003150"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (2D)"
+          args {
+            float_value: 37
+          }
+          args {
+            float_value: -67
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "Snarl"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eFightTheDragon"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "557cf906663136a41200003b"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557cf906663136a41200003b"
+  }
+  elseActions {
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonUpdate"
+          }
+        }
+      }
+      args {
+        float_value: 0.05
+      }
+    }
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fu"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Point Component (float)"
+          args {
+            call_value {
+              functionName: "Current Location of Prop"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Prop)"
+                  args {
+                    string_value: "557bf6f9663136c010003150"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "VectorComponent"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
 }
 triggers {
   name: "Dragon.Activate"
@@ -334,6 +708,68 @@ triggers {
           functionName: "Get Map Item (Trigger)"
           args {
             string_value: "557cd832663136d00c0059eb"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "557cfed1663136e40e004cae"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -605,6 +1041,69 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isTarget"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isTarget"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Random Actor within Area"
+              args {
+                call_value {
+                  functionName: "Area: Region"
+                  args {
+                    call_value {
+                      functionName: "Get Map Item (Region)"
+                      args {
+                        string_value: "557cc3b9663136d00c0059e2"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Play Sound"
       args {
         call_value {
@@ -732,17 +1231,12 @@ triggers {
       functionName: "Cause Damage"
       args {
         call_value {
-          functionName: "All Actors Within Area"
+          functionName: "All Actors With Tag"
           args {
             call_value {
-              functionName: "Area: Region"
+              functionName: "Get Map Item (SenseTagList)"
               args {
-                call_value {
-                  functionName: "Get Map Item (Region)"
-                  args {
-                    string_value: "557cc3b9663136d00c0059e2"
-                  }
-                }
+                string_value: "isTarget"
               }
             }
           }
@@ -789,6 +1283,72 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isTarget"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "557bdeac663136ac0900500f"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_hitreaction_bigfront"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play FX on Actor"
+      args {
+        string_value: "CriticalSquibRedBlood"
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Get Map Item (SenseTagList)"
+                  args {
+                    string_value: "isTarget"
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Actor)"
+                  args {
+                    string_value: "557bdeac663136ac0900500f"
+                  }
+                }
+              }
+            }
+          }
+          args {
           }
         }
       }
@@ -874,6 +1434,33 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isTarget"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
           }
         }
       }
@@ -1050,10 +1637,10 @@ triggers {
         call_value {
           functionName: "Get Map Item (Sound)"
           args {
-            string_value: "creatures"
+            string_value: "Berlin:creatures"
           }
           args {
-            string_value: "CP_FlameBreath"
+            string_value: "Dragon_Fire"
           }
         }
       }
@@ -1653,48 +2240,15 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Play Sound"
       args {
         call_value {
           functionName: "Get Map Item (Sound)"
           args {
-            string_value: "creatures"
+            string_value: "Berlin:creatures"
           }
           args {
-            string_value: "BasiliskHurt"
+            string_value: "Dragon_Roar"
           }
         }
       }
@@ -1782,6 +2336,48 @@ triggers {
         float_value: 20
       }
     }
+    ops {
+      functionName: "Move Prop with Speed"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "557ce7a4663136d00c0059f5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (3D)"
+          args {
+            float_value: 32
+          }
+          args {
+            float_value: 0
+          }
+          args {
+            float_value: 50
+          }
+        }
+      }
+      args {
+        float_value: 20
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eEndGame"
+          }
+        }
+      }
+      args {
+        float_value: 3
+      }
+    }
   }
   isActive: true
   idRef {
@@ -1792,23 +2388,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: " "
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "557cd627663136d00c0059e9"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "NewTrigger"
+  name: "Debugger.KillDragon"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -1823,6 +2403,42 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "DEBUGGERMODE"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -1885,6 +2501,66 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "557d02cc663136e40e004cb0"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "---=== END GAME TRIGGERS ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "557d02cc663136e40e004cb1"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "EndGame.Eval"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEndGame"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "End Story With Epilogue"
+      args {
+        string_value: "Epilogue_Bad"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557d02d6663136e40e004cb2"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
 regions {
   name: "cRooftop"
   position {
@@ -1913,15 +2589,15 @@ regions {
     z: -0.75
   }
   directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
+    r: 0.27450982
+    g: 0.26274511
+    b: 0.38431373
     a: 1
   }
   ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
+    r: 0.20392157
+    g: 0.20392157
+    b: 0
     a: 1
   }
   ambience_template: ""
@@ -1991,6 +2667,44 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "DEBUGGERMODE"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     interactionIcon: InteractionIcon_Generic
     interaction_info_text: ""
   }
@@ -2027,7 +2741,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Core/TrollMale"
+    prefab_name: "Seattle:Objects/InvisibleActor"
     character_sheet_id: "Lvl6_Elf_Mage"
     character_mod {
       stats {
@@ -2181,6 +2895,111 @@ characters {
     pc_spawn_number: 3
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 41
+    y: 0
+    z: -15
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isMorgan"
+  displayName: "Assassin"
+  idRef {
+    id: "557cfed1663136e40e004cae"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Security/HumanMaleExecSecurity"
+    character_sheet_id: "Lvl6_Merc_Human_Assassin"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 2
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: -6
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 90
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 2
+        close_combat: -2
+        throwing_weapons: -5
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 1
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 3
+        rifle: 0
+        shotgun: 0
+        smg: -3
+        edged: -3
+        unarmed: 3
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_RandomAll
+      vulnerabilities {
+        normal: VulnerabilityLevel_Default
+        magic: VulnerabilityLevel_Less
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+        disarm: VulnerabilityLevel_Immune
+        mental: VulnerabilityLevel_Less
+      }
+    }
+    equipment {
+      prefab_name: "Berlin_Pi 2 Ares Predator (Errant)"
+    }
+    team_id: "Civilians"
+    char_name: "Kyle Morgan"
+    GeneralTags: "isMorgan"
+    pc_spawn_number: -1
+    hiring_type: HiringType_None
+    cyberware_eyes: "Vision Magnification Eyes 2"
+    cyberware_jack: "Cerebral Booster"
+    cyberware_body: "Berlin_Suprathyroid (Bioware)"
+    portrait {
+      filename: "backer_humanmale_winterhawk_dralastairstone"
+    }
+    description_bio: "Kyle is one of the world\'s premier assassins. Never heard of him? That\'s just proof of how good he is."
+    karma: 156
+    hiring_cost_override: 1000
+  }
+}
 variables {
   int_value: 1
   variableref_value {
@@ -2197,10 +3016,22 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  float_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fu"
+    typeName: "float"
+  }
+}
 mapEvents: "eBreathWeapon"
 mapEvents: "eClawSwipe"
 mapEvents: "eFightTheDragon"
 mapEvents: "eDragonAttacks"
+mapEvents: "eDragonArrive"
+mapEvents: "eDragonUpdate"
+mapEvents: "eClawedReaction"
+mapEvents: "eEndGame"
 senseTags: "isTarget"
 worldMapLocation {
   filename: ""
@@ -2263,6 +3094,8 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
+}
+character_roster {
 }
 show_hiring_screen_on_scene_load: true
 scene_hiring_prerequisites {
