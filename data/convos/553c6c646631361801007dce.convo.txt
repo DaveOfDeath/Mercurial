@@ -1,7 +1,7 @@
 idRef {
   id: "553c6c646631361801007dce"
 }
-ui_name: "NPC - Hotoda [Betrayal]"
+ui_name: "Betrayal - Hotoda"
 nodes {
   idRef {
     id: "553c6c8d6631361801007dd4"
@@ -475,7 +475,7 @@ nodes {
   index: 9
   text: "\"Armando?\" Maria asks, shaking her head to clear the haze."
   branches {
-    responseText: "Yo... Bitch... Get the fuck away from my client!"
+    responseText: "Get away from my client!"
     nextNodeIndex: 10
   }
   branches {
@@ -704,12 +704,194 @@ nodes {
     }
   }
 }
+nodes {
+  idRef {
+    id: "557c95e5393066e00a00079e"
+  }
+  index: 14
+  text: "Hotada leers at you, clearly not as cowed as you\'d hoped when confronted by armed resistance.\n\n\"This is not an eventuality that was unforseen,\" she says, and nods."
+  branches {
+    responseText: ""
+    nextNodeIndex: 15
+    comment: "Blight on Team"
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: 17
+    comment: "Blight not on team"
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "557c978e393066e00a0007a1"
+  }
+  index: 15
+  text: "Blight adjusts the lapels of his coat, chucks the brim of his hat, and says \"I think that\'s my cue, mate.\""
+  branches {
+    responseText: "What?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Blight shrugs, and you notice the cut of his fine new suit. This one is armored, and expensive looking. \n\n\"You wouldn\'t believe what they\'re paying me, $+(l.name). More than you could ever afford, even if you wanted.\"\n\n\"For that amount of money and power, I\'d turn on my own family, and I don\'t even like you that well.\""
+        }
+      }
+    }
+    nextNodeIndex: 16
+  }
+  branches {
+    responseText: "How much money did they offer you?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "You\'re going to regret this decision."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What did they offer you, power?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5564ee04393066500e006ad8"
+  }
+}
+nodes {
+  idRef {
+    id: "557ca1e2393066e00a000866"
+  }
+  index: 16
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Blight Betrayal"
+}
+nodes {
+  idRef {
+    id: "557c9797393066e00a0007a4"
+  }
+  index: 17
+  text: "One of the yakuza goons turns around, and you recognize the man in the stylish new suit.\n\nBlight smiles, and wearing new sunglasses, says \"You had your chance to hire me, mate, and now I work for the competition.\""
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"What\'s the problem?\" Blight asks innocently, \"Cat got your tongue?\"\n\n\"We all play the game, I just chose to join the winning side.\""
+        }
+      }
+    }
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5564ee04393066500e006ad8"
+  }
+}
+nodes {
+  idRef {
+    id: "557c95d7393066e00a00079b"
+  }
+  index: 18
+  text: ""
+  nodeType: ConversationNodeType_Simple
+}
 roots {
   nextNodeIndex: 0
   comment: "INTRO"
 }
 roots {
   responseText: ""
-  nextNodeIndex: -1
+  nextNodeIndex: 14
+  comment: "Blight"
+}
+roots {
+  responseText: ""
+  nextNodeIndex: 18
   comment: "FLEEING"
 }
