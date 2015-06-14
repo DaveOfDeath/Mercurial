@@ -234,7 +234,134 @@ nodes {
     }
   }
   branches {
+    responseText: "{{CC}}5\302\245{{/CC}} What\'ve you heard lately?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 5
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eGenerateRumor"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"That\'s the word on the street. Well, as street as I get. Anything else for you?\""
+        }
+      }
+    }
+    nextNodeIndex: 13
+  }
+  branches {
     responseText: "Hey darling.   You heard any good rumors lately?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Gender"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Gender"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Send Event"
@@ -265,7 +392,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 13
+    nextNodeIndex: 14
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -352,7 +479,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -446,65 +573,6 @@ nodes {
       id: "556ab8af393066a810000d16"
     }
     auxiliaryLink: true
-  }
-  branches {
-    responseText: "{{CC}}5\302\245{{/CC}} What\'ve you heard?"
-    conditions {
-      ops {
-        functionName: "Evaluate Nuyen"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          int_value: 5
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 5
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
-            args {
-              string_value: "eGenerateRumor"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"That\'s the word on the street. Well, as street as I get. Anything else for you?\""
-        }
-      }
-    }
-    nextNodeIndex: 15
   }
   branches {
     responseText: "Nothing, thanks."
@@ -997,7 +1065,7 @@ nodes {
 }
 nodes {
   idRef {
-    id: "5470e817666538c40b000b78"
+    id: "5470eac2666538c40b000be7"
   }
   index: 13
   text: "$(scene.str_Rumor)"
@@ -1013,22 +1081,9 @@ nodes {
 }
 nodes {
   idRef {
-    id: "54bb1b5a666538f00e006d8b"
+    id: "5470e817666538c40b000b78"
   }
   index: 14
-  text: "Tellin shrugs, \"I\'ve been a bartender here for a long time. These days, I don\'t serve many drinks. Mostly I watch the till to make sure nobody\'s skimming, and pick up the occasional semi-inebriated woman.\""
-  branches {
-    responseText: ""
-    nextNodeIndex: 0
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
-    id: "5470eac2666538c40b000be7"
-  }
-  index: 15
   text: "$(scene.str_Rumor)"
   branches {
     responseText: ""
@@ -1039,6 +1094,19 @@ nodes {
   sourceInSceneRef {
     id: "54b98095666538b409004df3"
   }
+}
+nodes {
+  idRef {
+    id: "54bb1b5a666538f00e006d8b"
+  }
+  index: 15
+  text: "Tellin shrugs, \"I\'ve been a bartender here for a long time. These days, I don\'t serve many drinks. Mostly I watch the till to make sure nobody\'s skimming, and pick up the occasional semi-inebriated woman.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
 }
 roots {
   actions {

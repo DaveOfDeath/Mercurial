@@ -264,7 +264,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 12
+    nextNodeIndex: 13
     onlyOnce: true
     idRef {
       id: "551f598b663136680d00078d"
@@ -336,7 +336,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 18
     onlyOnce: true
     idRef {
       id: "551f5988663136680d00078c"
@@ -471,7 +471,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 10
     auxiliaryLink: true
   }
   branches {
@@ -598,7 +598,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 10
     auxiliaryLink: true
   }
   branches {
@@ -725,7 +725,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 10
     auxiliaryLink: true
   }
   branches {
@@ -852,7 +852,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 10
     auxiliaryLink: true
   }
   branches {
@@ -911,11 +911,11 @@ nodes {
           }
         }
         args {
-          string_value: "The dwarf takes a moment to eye you lustfully, \"I could certainly use a little back door nasty in my life, that\'s for sure.\" \n\nHe takes his commlink out of his pocket, tapping it against yours to leave his personal information. "
+          string_value: "The dwarf takes a moment to eye you lustfully, \"I could certainly use a little back door nasty in my life, that\'s for sure.\" \n\nHe takes his commlink out of his pocket, tapping it against yours to leave his personal information. \n\n\"500\302\245 and a date..\""
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 10
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1063,7 +1063,34 @@ nodes {
   index: 5
   text: "The dwarf\'s face goes stone solid, and his cheek twitches. You seem to have hit a sore spot. \n\n\"Real fraggin\' funny, Fragger,\" Aaron snaps his fingers, \"You know what? I just remembered that my good friend Shedeem wanted these, so I\'m afraid my passes are commited elsewhere. Better luck next time, chummer, maybe you can find some on the top shelf.\""
   branches {
-    responseText: "{{CC}}1000\302\245{{/CC}} How about we double the price?"
+    responseText: "{{CC}}500\302\245 More{{/CC}} How about we double the price?"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 500
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+    }
     nextNodeIndex: 6
   }
   branches {
@@ -1276,15 +1303,15 @@ nodes {
     nextNodeIndex: 11
   }
   branches {
-    responseText: "No, I\'d rather just pay for the passes."
-    nextNodeIndex: 1
-    auxiliaryLink: true
+    responseText: "No favors.   Just the cash."
+    nextNodeIndex: 12
   }
   branches {
     responseText: "No, I\'ll find another way."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  comment: "ExitLoop"
 }
 nodes {
   idRef {
@@ -1347,17 +1374,76 @@ nodes {
 }
 nodes {
   idRef {
-    id: "54bb2385666538f00e006eb5"
+    id: "557d211f663136ac080017df"
   }
   index: 12
+  text: "\"You drive a hard bargain.   I\'ll keep you in my book, and if it does come up, I may reach out.\"  He starts reluctantly, \"But I guess a deals a deal.\""
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54bb1eed666538f00e006e26"
+  }
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_BackStagePasses"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective"
+      }
+      args {
+        string_value: "Head backstage."
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "54bb2385666538f00e006eb5"
+  }
+  index: 13
   text: "Aaron whistles, and lets you get the cash out of your pocket before he pulls the tickets out of his. \n\n\"You must be some uber fan, desperate to get back stage. Mercurial is good people- one of us, a kid from the street.\"\n\nAaron hands you the passes, and then asks \"You\'re not one of those murder groupies type, are you?\""
   branches {
     responseText: "Whatever gets those passes in my hand, and your mouth shut."
-    nextNodeIndex: 13
+    nextNodeIndex: 14
   }
   branches {
     responseText: "Hardly.   Didn\'t even know he was here until I walked up."
-    nextNodeIndex: 14
+    nextNodeIndex: 15
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1368,7 +1454,7 @@ nodes {
   idRef {
     id: "54bb26d2666538f00e006ec6"
   }
-  index: 13
+  index: 14
   text: "Aaron shrugs, and stuffs the tickets back in his pocket. \"You got an attitude problem, I got a rep to protect myself... Maybe I should just hold onto these?\""
   branches {
     responseText: "What\'s worse, a damaged reputation?   Or a damaged spine?"
@@ -1384,15 +1470,15 @@ nodes {
   idRef {
     id: "54bb2703666538f00e006eca"
   }
-  index: 14
+  index: 15
   text: "Aaron blinks at you, \"He? Mercurial is a woman. Maria Mercurial.\""
   branches {
     responseText: "Yeah, what of it?"
-    nextNodeIndex: 15
+    nextNodeIndex: 16
   }
   branches {
     responseText: "No.   Just a driver."
-    nextNodeIndex: 16
+    nextNodeIndex: 17
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1403,11 +1489,11 @@ nodes {
   idRef {
     id: "54c6ce39666538a00d004b49"
   }
-  index: 15
+  index: 16
   text: "\"Whatever. Your cred is good, you\'re fine with me.\""
   branches {
     responseText: "Fine."
-    nextNodeIndex: 17
+    nextNodeIndex: 18
     auxiliaryLink: true
   }
   branches {
@@ -1424,7 +1510,7 @@ nodes {
   idRef {
     id: "54c6cea2666538a00d004b51"
   }
-  index: 16
+  index: 17
   text: "Aaron snorts, and looks away \"Yeah, sure Pal. You wanna play it close to the vest, no problem.   You\'re paying good nuyen for the passes, and I guess I ain\'t got nothing else for ya.\"\n\n\"Get lost, don\'t harsh my mellow.\""
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1483,7 +1569,7 @@ nodes {
   idRef {
     id: "54bb229a666538f00e006e95"
   }
-  index: 17
+  index: 18
   text: "\"Done,\" the dwarf nods, sliding his hands into his pockets. \n\n{{GM}}You have the passes, and you\'re on your way.{{/GM}}"
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1542,7 +1628,7 @@ nodes {
   idRef {
     id: "551f5a79663136680d00085f"
   }
-  index: 18
+  index: 19
   text: "The surly dwarfs stares you down, and asks \"Do I know you, $+(l.man)? Kick rocks!\""
   branches {
     responseText: "{{CC}}Walk Away{{/CC}}"
@@ -1642,7 +1728,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 18
+  nextNodeIndex: 19
   comment: "Aaron Unknown"
 }
 roots {
