@@ -3370,6 +3370,61 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "Bridges.ChangeLightColor"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eBoom!"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iLightColor"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eChangeLight"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557de882663136c00e005144"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "Bridges.Boom"
   events {
     ops {
@@ -3517,6 +3572,28 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iLightColor"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Apply Camera Shake"
       args {
         float_value: 2.75
@@ -3550,7 +3627,7 @@ triggers {
         }
       }
       args {
-        float_value: 0.6
+        float_value: 0.25
       }
     }
   }
@@ -3575,6 +3652,84 @@ triggers {
   conditions {
   }
   actions {
+    ops {
+      functionName: "Clone Prop"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Prop to Actor"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iLightColor"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isColor"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Prop to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iBombDMG"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     ops {
       functionName: "Stop Sound"
       args {
@@ -3706,6 +3861,47 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eBridgeFall"
+          }
+        }
+      }
+      args {
+        float_value: 0.15
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Prop to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isLight"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
           }
         }
       }
@@ -5673,10 +5869,19 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iLightColor"
+    typeName: "int"
+  }
+}
 mapEvents: "eChangeFloors"
 mapEvents: "eBoom!"
 mapEvents: "eBridgeFall"
 mapEvents: "eCivilianSaved"
+mapEvents: "eChangeLight"
 worldMapLocation {
   filename: ""
   location {

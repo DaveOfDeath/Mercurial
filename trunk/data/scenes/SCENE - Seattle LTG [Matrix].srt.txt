@@ -1,4 +1,706 @@
 triggers {
+  name: "--=== FreeMove Setup Triggers ===--"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "557df3d2663136c00e005183"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "FreeMove.FollowerSetup"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "MATRIX-DOGHOUSE"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "551a1f15666538a008005a80"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55400fef66313648070059d4"
+  }
+  elseActions {
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "551a1d31666538a008005a7e"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "FreeMove.PC0 [PLAYER DECKER]"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 10
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "557df897663136c00e005188"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "557e1de0663136ac130043c7"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557df3ce663136c00e005181"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "     PC-DECKER [SPAWN ARROW]"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_SilverARO"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor Reference)"
+          args {
+            string_value: "55204e5c6631362c10000719"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Follower"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557df897663136c00e005188"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "     PC-DECKER [SPAWN NEBEL]"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor Reference)"
+          args {
+            string_value: "55204e586631362c10000718"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Follower"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557e1de0663136ac130043c7"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "557df77e663136c00e005185"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "FreeMove.PC0 [NON-DECKER]"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        int_value: 10
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "557e1f14663136ac130043c8"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "557e1f14663136ac130043c9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557df7ff663136c00e005186"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "     NON PC-DECKER [SPAWN ARROW]"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_SilverARO"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor Reference)"
+          args {
+            string_value: "55204e5c6631362c10000719"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557e1f14663136ac130043c8"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "     NON PC-DECKER [SPAWN NEBEL]"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor Reference)"
+          args {
+            string_value: "55204e586631362c10000718"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557e1f14663136ac130043c9"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "557df3d2663136c00e005182"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "--=== General Scene Scripts ===--"
   events {
   }
@@ -362,6 +1064,17 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eBuildTeamAtLocation"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -473,495 +1186,6 @@ triggers {
   isActive: true
   idRef {
     id: "551f6aff663136680d000980"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "   Silver Arrow (Spawner)"
-  events {
-    ops {
-      functionName: "On Map Start"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_SilverARO"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Activate Actor Spawner"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor Reference)"
-          args {
-            string_value: "55204e5c6631362c10000719"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Item from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "Pi 1 Ceska Black Scorpion (Silencer)"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5519dbce666538d80f0032d9"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isOnTeam"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54cdabd0613131700e000879"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "554c26cc663136b00c000a3f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54cdab17613131700e000876"
-  }
-  elseActions {
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "54cdabd0613131700e000879"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "      SilverArrow [Is Leader]"
-  events {
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        int_value: 10
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrix_Leader"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "554c26cc663136b00c000a3f"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "   Nebel (Spawner)"
-  events {
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_NPC_Status_Nebel"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Activate Actor Spawner"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor Reference)"
-          args {
-            string_value: "55204e586631362c10000718"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Item from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "SMG 1 Uzi III (Silencer)"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5519dbd5666538d80f0032da"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isOnTeam"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrix_Follower"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "54cdabd0613131700e000879"
   }
   elseActions {
   }
@@ -1572,7 +1796,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "54f12557663136dc1600231f"
   }
@@ -2011,6 +2235,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557df35b663136c00e00517c"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557df32a663136c00e00517a"
+          }
+        }
+      }
+    }
   }
   conditions {
   }
@@ -2021,7 +2267,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Event)"
           args {
-            string_value: "ePlayerDies"
+            string_value: "eSafeJackOut"
           }
         }
       }
@@ -7817,13 +8063,18 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Start Conversation"
+      functionName: "Start Conversation Between Actors"
       args {
         call_value {
           functionName: "Get Map Item (Conversation)"
           args {
             string_value: "551a0d12666538d80f00335c"
           }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
         }
       }
       args {
@@ -8643,7 +8894,10 @@ triggers {
   name: "Penthouse.OnMapLoad"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eBuildTeamAtLocation"
+      }
     }
   }
   conditions {
@@ -8917,7 +9171,10 @@ triggers {
   name: "Penthouse.OnMapLoad [NON PLAYER]"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eBuildTeamAtLocation"
+      }
     }
   }
   conditions {
@@ -9096,6 +9353,32 @@ triggers {
       }
     }
     ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Leader"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
@@ -9210,12 +9493,45 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Camera To Actor"
+      functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "55204e5c6631362c10000719"
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557df32a663136c00e00517a"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54d540356665384405007986"
           }
         }
       }
@@ -9308,6 +9624,51 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Leader"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Activate Actor Spawner By Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isValidCharacter"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Change Actor Team"
       args {
         call_value {
@@ -9435,6 +9796,30 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Attach Region to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55400d6966313648070059cc"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
           }
         }
       }
@@ -9443,23 +9828,28 @@ triggers {
       functionName: "Teleport Actor near Actor"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "All Actors on Team"
           args {
             call_value {
-              functionName: "Get Map Item (SenseTagList)"
+              functionName: "Get Preset Value (string)"
               args {
-                string_value: "isOnTeam"
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
               }
             }
           }
           args {
             call_value {
-              functionName: "Get Preset Value (int)"
+              functionName: "Nothing Selected"
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
               args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
+                string_value: "Matrix"
               }
             }
           }
@@ -9609,27 +9999,23 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Add Tag to Actor"
+      functionName: "Set Region Enabled"
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "isMatrix_Leader"
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
           }
         }
       }
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Map Item (Region)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
+            string_value: "55204ec86631362c1000071c"
           }
         }
       }
@@ -9661,138 +10047,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Attach Region to Actor"
       args {
         call_value {
@@ -9812,15 +10066,150 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Actor near Actor"
+      functionName: "Change Actor Team"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "Specific Actor"
           args {
             call_value {
-              functionName: "Get Map Item (SenseTagList)"
+              functionName: "Get Map Item (Actor)"
               args {
-                string_value: "isOnTeam"
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
               }
             }
           }
@@ -9835,6 +10224,14 @@ triggers {
               }
             }
           }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
         }
       }
       args {
@@ -9842,7 +10239,15 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55400d6966313648070059cc"
+              }
+            }
+          }
         }
       }
       args {
@@ -9869,68 +10274,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Region Enabled"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55204ec86631362c1000071c"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Teleport Camera To Actor"
       args {
         call_value {
-          functionName: "Nearest Tagged Actor to Actor"
+          functionName: "Get Map Item (Actor)"
           args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isMatrix_Leader"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "5556c5fe663136f40d007665"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Current Location of Prop"
-          args {
-            call_value {
-              functionName: "Get Map Item (Prop)"
-              args {
-                string_value: "54d540356665384405007986"
-              }
-            }
+            string_value: "55204e5c6631362c10000719"
           }
         }
       }
@@ -11634,10 +11983,13 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Doghouse.OnMapLoad [PLAYER]"
+  name: "DogHouse.OnMapLoad"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eBuildTeamAtLocation"
+      }
     }
   }
   conditions {
@@ -11710,7 +12062,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Actor"
+      functionName: "Teleport Actor near Point"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -11725,6 +12077,9 @@ triggers {
           args {
           }
         }
+      }
+      args {
+        int_value: 1
       }
       args {
         call_value {
@@ -11798,7 +12153,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "54d540356665384405007986"
+            string_value: "54cd8ee9613131700e0007d2"
           }
         }
       }
@@ -11820,7 +12175,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "54cd8ee9613131700e0007d2"
+            string_value: "54d540356665384405007986"
           }
         }
       }
@@ -11898,17 +12253,20 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "54cd48d0613131bc1e0024d3"
+    id: "557e313f663136ac130043cf"
   }
   elseActions {
   }
   is_oneshot: true
 }
 triggers {
-  name: "Doghouse.OnMapLoad [NON PLAYER]"
+  name: "DogHouse.OnMapLoad [NON PLAYER]"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eBuildTeamAtLocation"
+      }
     }
   }
   conditions {
@@ -12070,7 +12428,7 @@ triggers {
             string_value: "FacingDirection"
           }
           args {
-            int_value: 7
+            int_value: 1
           }
         }
       }
@@ -12087,23 +12445,27 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Interactable Object"
+      functionName: "Add Tag to Actor"
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
+            string_value: "isMatrix_Leader"
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Map Item (InteractableObject)"
+          functionName: "Specific Actor"
           args {
-            string_value: "54d540356665384405007986"
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
           }
         }
       }
@@ -12126,6 +12488,28 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "54cd8ee9613131700e0007d2"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54d540356665384405007986"
           }
         }
       }
@@ -12201,12 +12585,45 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Camera To Actor"
+      functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "55204e5c6631362c10000719"
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557df35b663136c00e00517c"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54d5504f6665387407006c71"
           }
         }
       }
@@ -12214,14 +12631,14 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "554c276a663136b00c000a40"
+    id: "557e313f663136ac130043d0"
   }
   elseActions {
   }
   is_oneshot: true
 }
 triggers {
-  name: "Doghouse.TeamManagment [PLAYER]"
+  name: "DogHouse.TeamManagment"
   events {
     ops {
       functionName: "On Region Enter"
@@ -12299,6 +12716,66 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Leader"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Change Actor Team"
       args {
         call_value {
@@ -12365,43 +12842,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Change Actor Control"
       args {
         call_value {
@@ -12431,33 +12871,14 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Actor near Actor"
+      functionName: "Attach Region to Actor"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "Get Map Item (Region)"
           args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isOnTeam"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
+            string_value: "55400d6966313648070059cc"
           }
         }
-      }
-      args {
-        int_value: 1
       }
       args {
         call_value {
@@ -12472,6 +12893,54 @@ triggers {
           }
         }
       }
+    }
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Nothing Selected"
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55400d6966313648070059cc"
+              }
+            }
+          }
+        }
+      }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -12479,7 +12948,7 @@ triggers {
             string_value: "FacingDirection"
           }
           args {
-            int_value: 1
+            int_value: 7
           }
         }
       }
@@ -12512,7 +12981,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Region)"
           args {
-            string_value: "55205c9b6631362c10000768"
+            string_value: "55204ec86631362c1000071c"
           }
         }
       }
@@ -12520,14 +12989,14 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "55205c886631362c10000767"
+    id: "557e313f663136ac130043d1"
   }
   elseActions {
   }
   is_oneshot: false
 }
 triggers {
-  name: "Doghouse.TeamManagment [NON PLAYER]"
+  name: "DogHouse.TeamManagment [NON PLAYER]"
   events {
     ops {
       functionName: "On Region Enter"
@@ -12600,6 +13069,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55205c9b6631362c10000768"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Add Tag to Actor"
       args {
         call_value {
@@ -12652,138 +13143,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Attach Region to Actor"
       args {
         call_value {
@@ -12803,15 +13162,150 @@ triggers {
       }
     }
     ops {
-      functionName: "Teleport Actor near Actor"
+      functionName: "Change Actor Team"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "Specific Actor"
           args {
             call_value {
-              functionName: "Get Map Item (SenseTagList)"
+              functionName: "Get Map Item (Actor)"
               args {
-                string_value: "isOnTeam"
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
               }
             }
           }
@@ -12826,6 +13320,14 @@ triggers {
               }
             }
           }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
         }
       }
       args {
@@ -12833,7 +13335,15 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55400d6966313648070059cc"
+              }
+            }
+          }
         }
       }
       args {
@@ -12843,7 +13353,7 @@ triggers {
             string_value: "FacingDirection"
           }
           args {
-            int_value: 0
+            int_value: 7
           }
         }
       }
@@ -12860,68 +13370,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Region Enabled"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55205c9b6631362c10000768"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Teleport Camera To Actor"
       args {
         call_value {
-          functionName: "Nearest Tagged Actor to Actor"
+          functionName: "Get Map Item (Actor)"
           args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isMatrix_Leader"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "5556c5fe663136f40d007665"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Current Location of Prop"
-          args {
-            call_value {
-              functionName: "Get Map Item (Prop)"
-              args {
-                string_value: "54d5504f6665387407006c71"
-              }
-            }
+            string_value: "55204e5c6631362c10000719"
           }
         }
       }
@@ -12929,7 +13383,7 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "554c2840663136b00c000a41"
+    id: "557e313f663136ac130043d2"
   }
   elseActions {
   }
@@ -13704,891 +14158,6 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "FreeMove.FollowerSetup"
-  events {
-    ops {
-      functionName: "On Map Start"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 4
-          }
-        }
-      }
-      args {
-        int_value: 10
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor Ignored by AI"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor In Passive Mode"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor In Passive Mode"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5519fd09666538d80f00330d"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5519fd09666538d80f00330d"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor In Passive Mode"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5519fd09666538d80f00330d"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55400fef66313648070059d4"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "FreeMove.Setup [ PLAYER is DECKER ]"
-  events {
-    ops {
-      functionName: "On Actor Alive"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Actor\'s Persona"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 4
-          }
-        }
-      }
-      args {
-        int_value: 10
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Attach Region to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55400d6966313648070059cc"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-    }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrix_Leader"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrix_Follower"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrix_Follower"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Control"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55400d9566313648070059cd"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "FreeMove.Setup [ PLAYER isNOT Decker ]"
-  events {
-    ops {
-      functionName: "On Actor Alive"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55204e5c6631362c10000719"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        int_value: 10
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrix_Leader"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Attach Region to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55400d6966313648070059cc"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55204e5c6631362c10000719"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor Ignored by AI"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "554c2b7c663136b00c000a42"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
   name: "FreeMove.Setup [ ESP ]"
   events {
     ops {
@@ -14926,39 +14495,6 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bInCombat"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Evaluate Tag for Actor"
       args {
         call_value {
@@ -14988,6 +14524,39 @@ triggers {
           functionName: "Get Map Item (SenseTagList)"
           args {
             string_value: "isMatrix_Leader"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bInCombat"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -15738,6 +15307,12 @@ triggers {
     ops {
       functionName: "On Host Jacked Out"
     }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eSafeJackOut"
+      }
+    }
   }
   conditions {
     ops {
@@ -15973,6 +15548,12 @@ triggers {
   events {
     ops {
       functionName: "On Host Jacked Out"
+    }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eSafeJackOut"
+      }
     }
   }
   conditions {
@@ -16519,6 +16100,159 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "557e207a663136ac130043ca"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "NewTrigger"
+  events {
+    ops {
+      functionName: "On Actor Clicked"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isMatrix_Leader"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Leader"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isMatrix_Follower"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Follower"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "557e2d34663136ac130043cc"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Doghouse"
   position {
@@ -16593,16 +16327,16 @@ regions {
     z: -0.75
   }
   directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   }
   ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   }
   ambience_template: ""
   combat_music: ""
@@ -17964,7 +17698,7 @@ regions {
     b: 0
     a: 1
   }
-  visible_at_start: false
+  visible_at_start: true
   is_closet: false
   is_teleporter_region: false
   directional_light_dir {
@@ -19182,10 +18916,10 @@ characters {
       prefab_name: "PR Medic 1"
     }
     equipment {
-      prefab_name: "CyberdeckVirtuaX"
+      prefab_name: "PR NPC Decker Blaster 1"
     }
     equipment {
-      prefab_name: "PR NPC Decker Blaster 1"
+      prefab_name: "CyberdeckKraftwerk1"
     }
     team_id: "Civilian"
     char_name: "Gummy Bear"
@@ -19614,7 +19348,7 @@ characters {
   name: "chars_icon_playerIcon"
   gridPoint {
     x: 132
-    y: 0
+    y: 1
     z: 22
   }
   orientation: ORIENTATION_N
@@ -19711,7 +19445,7 @@ characters {
   name: "chars_icon_playerIcon"
   gridPoint {
     x: 52.6
-    y: 0
+    y: 1
     z: 88.6
   }
   orientation: ORIENTATION_W
@@ -20273,7 +20007,7 @@ characters {
         rifle: -2
         smg: 2
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Player"
       vulnerabilities {
       }
     }
@@ -20293,7 +20027,7 @@ characters {
       prefab_name: "PR Blaster 1"
     }
     team_id: "Civilian"
-    char_name: "Nebel"
+    char_name: "Nebel "
     GeneralTags: "isNebel"
     enabled_at_start: false
     pc_spawn_number: -1
@@ -20327,8 +20061,7 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    dummyInteraciton {
-    }
+    interactionIcon: InteractionIcon_Generic
     interaction_info_text: ""
   }
   lod: 0
@@ -21039,11 +20772,14 @@ mapEvents: "eRemoveTeam"
 mapEvents: "eCombatStart"
 mapEvents: "eCombatEnd"
 mapEvents: "eJackOut"
+mapEvents: "eBuildTeamAtLocation"
+mapEvents: "eSafeJackOut"
 senseTags: "MainGuy"
 senseTags: "isAware"
 senseTags: "isOnTeam"
 senseTags: "isMatrix_Follower"
 senseTags: "isMatrix_Leader"
+senseTags: "isValidCharacter"
 goals {
   name: "Hacking Hernandez"
   type: GoalType_Secondary
