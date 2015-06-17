@@ -2355,6 +2355,7 @@ props {
     z: -141.29999
   }
   orientation: ORIENTATION_N
+  displayName: "obj_SideDoor"
   idRef {
     id: "54412dfe3733612c0a005a9c"
   }
@@ -2785,20 +2786,14 @@ props {
 props {
   name: "syndicate_building_fortressDoor02"
   gridPoint {
-    x: -31.099998
-    y: 1
-    z: -158
+    x: -30.699999
+    y: 1.5
+    z: -157.6
   }
   orientation: ORIENTATION_W
   displayName: "obj_FrontDoors"
   idRef {
     id: "5580f84f663136a80b005ed7"
-  }
-  interactionRoot {
-    isEnabled: true
-    interactionRadius: 1
-    interactionIcon: InteractionIcon_Door
-    interaction_info_text: "Enter Taetzel Building?"
   }
   lod: 0
 }
@@ -62115,7 +62110,7 @@ props {
   gridPoint {
     x: 190.98
     y: 4
-    z: -5.5999985
+    z: -4.5999985
   }
   orientation: ORIENTATION_S
   idRef {
@@ -62598,6 +62593,7 @@ props {
     z: -32
   }
   orientation: ORIENTATION_S
+  displayName: "obj_SewerAccess"
   idRef {
     id: "5449c660373361200400383d"
   }
@@ -71165,13 +71161,43 @@ props {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    doorPoint {
-      doorState: false
-      aiOnlyDoor: false
-      doorSound: "ElevatorDing"
-      doorSoundBundle: "props"
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "b_ElevatorCrash"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
     }
-    interaction_info_text: ""
+    interactionIcon: InteractionIcon_Door
+    interaction_info_text: "Use Elevator?"
   }
   lod: 0
 }
@@ -71255,19 +71281,50 @@ props {
     z: -21.099998
   }
   orientation: ORIENTATION_W
+  displayName: "obj_Elevator1_GF"
   idRef {
     id: "544a46fe3733611006002d28"
   }
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    doorPoint {
-      doorState: false
-      aiOnlyDoor: false
-      doorSound: "ElevatorDing"
-      doorSoundBundle: "props"
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "b_ElevatorCrash"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
     }
-    interaction_info_text: ""
+    interactionIcon: InteractionIcon_Door
+    interaction_info_text: "Use Elevator?"
   }
   lod: 0
 }
@@ -71279,19 +71336,50 @@ props {
     z: -18.099998
   }
   orientation: ORIENTATION_W
+  displayName: "obj_Elevator2_GF"
   idRef {
     id: "544a47043733611006002d29"
   }
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    doorPoint {
-      doorState: false
-      aiOnlyDoor: false
-      doorSound: "ElevatorDing"
-      doorSoundBundle: "props"
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "b_ElevatorCrash"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
     }
-    interaction_info_text: ""
+    interactionIcon: InteractionIcon_Door
+    interaction_info_text: "Use Elevator?"
   }
   lod: 0
 }
@@ -110260,9 +110348,9 @@ props {
       dispalyTime: 8
       fadeTime: 3
       inspectText: "Apparently someone was tasked with prying up this flooring- a task which they nearly completed. You can imagine an angry worker doing almost all of this job, and then finding out that he was fired before finishing, and giving his boss/this flooring the finger before leaving the building, never to return."
-      disableAfterInteracting: false
+      disableAfterInteracting: true
     }
-    interaction_info_text: "Flooring"
+    interaction_info_text: "Examine Flooring?"
   }
   lod: 0
 }
@@ -129326,6 +129414,42 @@ props {
   orientation: ORIENTATION_E
   idRef {
     id: "5581039b66313680000057e2"
+  }
+  lod: 0
+}
+props {
+  name: "system_invisible_nonsolidProp"
+  gridPoint {
+    x: -31.9
+    y: 1
+    z: -155.5
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_FrontDoorInteractable"
+  idRef {
+    id: "5581e3c1663136ac0b005911"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 2
+    prerequisites {
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_Door
+    interaction_info_text: "Enter Taetzel?"
   }
   lod: 0
 }
