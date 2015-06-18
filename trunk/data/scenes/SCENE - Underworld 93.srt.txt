@@ -8550,53 +8550,26 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 0
+        float_value: 2
       }
     }
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Play Animation From Manifest"
       args {
         call_value {
           functionName: "Get Map Item (Actor)"
           args {
-            string_value: "558185c83231376c1c005610"
+            string_value: "54701bad666538ac03001cec"
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Animation)"
           args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 2
+            string_value: "Seattle:General/standing_idle_preen"
           }
         }
-      }
-      args {
-        string_value: "Sob.."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 4
       }
     }
   }
@@ -11239,7 +11212,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Region)"
           args {
-            string_value: "5470264a6665384809001364"
+            string_value: "55819c3e323137581c001e19"
           }
         }
       }
@@ -11792,7 +11765,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "5470264a6665384809001364"
+                string_value: "55819c3e323137581c001e19"
               }
             }
           }
@@ -11822,7 +11795,7 @@ triggers {
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "55787c4f323137040b005130"
   }
@@ -12595,7 +12568,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "5470264a6665384809001364"
+                string_value: "55819c3e323137581c001e19"
               }
             }
           }
@@ -12666,52 +12639,6 @@ triggers {
           functionName: "Get Preset Value (int)"
           args {
             string_value: "PlayerOrAI"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Order Actor to Move To (Region)"
-      args {
-        call_value {
-          functionName: "All Actors With Tag"
-          args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isSecurityGuy"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55788db13231377427007b79"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
           }
           args {
             int_value: 1
@@ -14316,6 +14243,105 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: "   Enable.Exit"
+  events {
+    ops {
+      functionName: "On Freemove Mode Enter"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bol_EnableExit"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "548654d5666538ec0e007ad3"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "548654d5666538ec0e007ad3"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55819a52323137581c00153f"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 triggers {
   name: "Backstage.WaypointRemoval"
@@ -17536,6 +17562,52 @@ regions {
   is_camera_region: false
   idRef {
     id: "558188933231376c1c0056dd"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rReinforcements"
+  position {
+    x: -78
+    y: 248
+    width: 5
+    height: 3
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55819c3e323137581c001e19"
   }
   highlight_color {
     r: 0
@@ -21046,6 +21118,14 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "bol_IntroConvComplete"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bol_EnableExit"
     typeName: "bool"
   }
 }
