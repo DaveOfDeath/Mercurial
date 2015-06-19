@@ -7,7 +7,7 @@ nodes {
     id: "537092a86465657412003cf9"
   }
   index: 0
-  text: "The decker who greets you at the door seems familiar- you think you met him before, one of Old Sam\'s contacts, a tech or something.\n\nThe decker has a bright and cheery disposition, and smiles as he says \"Hoi chummer! I don\'t know if you remember me,  $(l.name), but Sam gave me a call.  I had to hang back a little... heard some unfriendly combat.\""
+  text: "The decker who greets you at the door seems familiar- you think you met him before, one of Old Sam\'s contacts, a tech or something.\n\nThe decker has a bright and cheery disposition, and smiles as he says \"Hoi chummer! I don\'t know if you remember me,  $(l.name), but Sam gave me a call.  I heard some unfriendly fighting-type noises, so I hung back until things go quiet again.\""
   branches {
     responseText: ""
     nextNodeIndex: 1
@@ -40,7 +40,7 @@ nodes {
           }
         }
         args {
-          string_value: "The decker laughs, \"Oh chummer, you wound me!\"\n\nHe pantomimes being stabbed in the chest for a moment, and then goes back to tinkering with the keypad on the front door.\n\n\"It\'s okay, I didn\'t remember who you were, either, until Sam described you. I\'m Silver Arrow, friendly neighborhood decker, fixer, and repairman!\""
+          string_value: "The decker laughs, \"Oh chummer, you wound me!\" He pantomimes being stabbed in the chest for a moment, and then goes back to tinkering with the keypad on the front door.\n\n\"It\'s okay, I didn\'t remember who you were, either, until Sam described you. I\'m Silver Arrow, friendly neighborhood decker, fixer-upper, and repairman!\""
         }
       }
     }
@@ -158,7 +158,7 @@ nodes {
           }
         }
         args {
-          string_value: "Silver Arrow looks confused, \"Sorry, chummer, but squishy organic bits really aren\'t my area of expertise- I\'m a decker, chumlichen, not a meat grinder.\"\n\nLooking at the bodies, and waving a hand in front of his face for the smell, \"But we do need to move them. Where do you want me to take them? Just put them out with the trash?\""
+          string_value: "Silver Arrow looks confused, \"Sorry, chummer, but squishy organic bits really aren\'t my area of expertise- I\'m a decker, chumlichen, not a meat grinder.\"\n\nLooking at the bodies, Silver Arrow waves a hand in front of his face for the smell. \"But we do need to move them. Where do you want me to take them?\""
         }
       }
     }
@@ -169,65 +169,6 @@ nodes {
       id: "55026e02663136cc12003465"
     }
     comment: "Squishy Organic Bits Loop"
-  }
-  branches {
-    responseText: "Talk to {{CC}}Silver Arrow{{/CC}}."
-    conditions {
-      ops {
-        functionName: "Comparison (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_Story_Arrow"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          int_value: 1
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Hoi, chummer! I know they might not look like much, but with you leading them, you\'ve got a decent team here!"
-        }
-      }
-    }
-    nextNodeIndex: 10
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "550260886631361804002c5f"
-    }
-    comment: "Story 1"
   }
   branches {
     responseText: "{{CC}}Walk away.{{/CC}}"
@@ -304,7 +245,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 12
+    nextNodeIndex: 10
     hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
@@ -362,7 +303,7 @@ nodes {
           }
         }
         args {
-          string_value: "Silver Arrow punches in a complicated passcode into the keypad by the door, as he punches buttons and navigates menus, he talks to you, \"Resetting protocols is easy, like changing your password, chummer. Keeps the old tenants out, gives you a fresh set of keys for you and your new friends.\"\n\nGlancing at the bodies on the ground, Silver Arrow adds, \"and keeps old enemies out.\""
+          string_value: "Silver Arrow punches in a complicated passcode into the keypad by the door, as he punches buttons and navigates menus, he talks to you.\n\n\"Resetting protocols is easy, like changing your password, chummer. Keeps the old tenants out, gives you a fresh set of keys for you and your new friends.\"\n\nGlancing at the bodies on the ground, Silver Arrow adds, \"keeps old enemies out, too.\""
         }
       }
     }
@@ -373,6 +314,34 @@ nodes {
       id: "556e79b6613131580c0048f9"
     }
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "I don\'t think anything here works."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Silver Arrow laughs, \"Of course not, chummer,\" he says, pulling the cover back off the door and showing you the inside of it. \n\n\"Look at this ancient tech- see that number right there: SERETECH2021?\' Silver Arrow waits a second for you to recognize the name before continuing. \n\n\"The 2021 here was the manufacture date. Jarman was president, the USofA still existed, and neither of us were born. This tech is older than you-- and me-- by about ten years.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556e79bd613131580c0048fb"
+    }
   }
   branches {
     responseText: "I don\'t care about bells and whistles, can you just fix it so the doors lock?"
@@ -395,39 +364,11 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 8
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "556e79b9613131580c0048fa"
-    }
-  }
-  branches {
-    responseText: "I don\'t think anything here works."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow laughs, \"Of course not, chummer,\" he says, pulling the cover back off the door and showing you the inside of it. \n\n\"Look at this ancient tech- see that number right there: SERETECH2021?\' Silver Arrow waits for you to recognize the name. \n\n\"Seretech was the first real megacorp, the governmetn gave it permission to care more about the profit margin than people. It\'s part of Yamatetsu now, bought and sold.\"\n\n\"The 2021 here was the manufacture date. Jarman was president, the USofA still existed, and neither of us were born. This tech is older than you- and by about ten years.\""
-        }
-      }
-    }
-    nextNodeIndex: 4
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "556e79bd613131580c0048fb"
     }
   }
   nodeType: ConversationNodeType_Simple
@@ -438,9 +379,160 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55139541613131e81b00536b"
+    id: "542568056465651c16004de8"
   }
   index: 3
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "I didn\'t buy the tech, it was just here."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "I didn\'t ask for lip, just fix it."
+    nextNodeIndex: 7
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
+  comment: "Old Convo Loop"
+}
+nodes {
+  idRef {
+    id: "542568ce6465651c16004dec"
+  }
+  index: 4
+  text: "Silver Arrow clucks his tongue while he puts the panel back on, and says \"Chummer! $(l.name), Oh chummer, my chummer! I\'m the tech with hands of gold, why didn\'t you just ask me?\""
+  branches {
+    responseText: "If you can fix this, I might listen next time you say we need an upgrade."
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Deckers always want some wiz tech, that costs premium. I\'m not made of nuyen."
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "I don\'t like expensive, bossy deckers. Stop saying \'chummer,\' and get to work."
+    nextNodeIndex: 7
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
+}
+nodes {
+  idRef {
+    id: "5425691f6465651c16004df0"
+  }
+  index: 5
+  text: "Silver Arrow stops his efforts gesturing with some small tool you\'re not familiar with, \"Chummer, that\'s the problem. If you want to avoid problems like this, you have to pay for top-tier tech and expert help.\"\n\nMuttering to himself, Silver Arrow continues, \"Seriously, whatever chiphead wired this forgot to reset the safety protocols- basically, he set it so he couldn\'t lock himself out of the flat, but anyone with half a brain could crack the door. It\'s even set to the default code,\" Silver Arrow looks at you, and shakes his head. "
+  branches {
+    responseText: "Okay, that\'s great- you can fix it, right?"
+    nextNodeIndex: 6
+  }
+  branches {
+    responseText: "Less fragging lip, more fixing things."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SilverAroTag"
+            }
+          }
+        }
+        args {
+          string_value: "Fine. What else?"
+        }
+      }
+    }
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
+}
+nodes {
+  idRef {
+    id: "55025e196631361804002adc"
+  }
+  index: 6
+  text: "Silver Arrow smiles, looking happy to have his talents appreciated. \"Of course, Chummer!\"\n\n\"That\'s why Sam called me, that\'s what I\'m here for!\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Silver Arrow smiles, clearly pleased with you as his new friend, \"What else can I do for you, chummer?\""
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55025ec76631361804002b2d"
+  }
+  index: 7
+  text: "Silver Arrow\'s normally cheerful expression fades, sinking to a deadpan. \"Well, $+(l.honorific) $+(l.name), I guess we know how the power dynamic in this relationship is going to work out.\"\n\n\"You\'re lucky that Sam has already paid me, otherwise I\'d find something else to do.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54b289eb6131317007006115"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "With a strained smile, and while avoiding eye contact, Silver Arrow takes extra time repairing the door panel, and asks in an overly polite and formal tone, \"Will there be anything else, $+(l.sir)?\""
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55139541613131e81b00536b"
+  }
+  index: 8
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "2015? Who\'s into ancient tech now?"
@@ -463,7 +555,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 8
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -492,7 +584,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 8
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -521,7 +613,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 8
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -559,7 +651,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "Okay, that\'s all well and good, but what about the tech?"
+    responseText: "Okay, that\'s all well and good, but what about this tech?"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -589,157 +681,6 @@ nodes {
   }
   nodeType: ConversationNodeType_Simple
   comment: "Car Talk Loop"
-}
-nodes {
-  idRef {
-    id: "542568056465651c16004de8"
-  }
-  index: 4
-  text: "$(story.str_NPCIntroText)"
-  branches {
-    responseText: "I didn\'t buy the tech, it was just here."
-    nextNodeIndex: 5
-  }
-  branches {
-    responseText: "I didn\'t ask for lip, just fix it."
-    nextNodeIndex: 8
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54b289eb6131317007006115"
-  }
-  comment: "Old Convo Loop"
-}
-nodes {
-  idRef {
-    id: "542568ce6465651c16004dec"
-  }
-  index: 5
-  text: "Silver Arrow clucks his tongue while he puts the panel back on, and says \"Chummer, $(l.name), chummer, my chummer! I\'m the tech with hands of gold, why didn\'t you just ask me?\""
-  branches {
-    responseText: "If you can fix this, I might listen next time you say we need an upgrade."
-    nextNodeIndex: 7
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "You always want some wizzer tech, and it costs a premium. I\'m not made of nuyen."
-    nextNodeIndex: 6
-  }
-  branches {
-    responseText: "I don\'t like expensive, bossy deckers. Stop saying \'chummer,\' and get to work."
-    nextNodeIndex: 8
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54b289eb6131317007006115"
-  }
-}
-nodes {
-  idRef {
-    id: "5425691f6465651c16004df0"
-  }
-  index: 6
-  text: "Silver Arrow stops his efforts gesturing with some small tool you\'re not familiar with, \"Chummer, that\'s the  problem. If you want to avoid problems like this, you have to pay for top-tier tech and expert help. Which is why you\'re lucky that I\'m here!\"\n\nMuttering to himself, Silver Arrow continues, \"Seiously, whatever chiphead wired this forgot to reset the safety protocols- basically, he set it so he couldn\'t lock himself out of the flat, but anyone with half a brain could crack the door. It\'s even set to the default code.\" Silver Arrow looks at you, and shakes his head. "
-  branches {
-    responseText: "Okay, that\'s great- you can fix it, right?"
-    nextNodeIndex: 7
-  }
-  branches {
-    responseText: "Less fragging lip, more fixing things."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_SilverAroTag"
-            }
-          }
-        }
-        args {
-          string_value: "Fine. What else?"
-        }
-      }
-    }
-    nextNodeIndex: 8
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54b289eb6131317007006115"
-  }
-}
-nodes {
-  idRef {
-    id: "55025e196631361804002adc"
-  }
-  index: 7
-  text: "Silver Arrow smiles, looking happy to have his talents appreciated. \"Of course, Chummer!\"\n\n\"That\'s why Sam called me, that\'s what I\'m here for!\""
-  branches {
-    responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  actions {
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_NPCIntroText"
-          }
-        }
-      }
-      args {
-        string_value: "Silver Arrow smiles, clearly pleased with you as his new friend, \"What else can I do for you, chummer?\""
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "55025ec76631361804002b2d"
-  }
-  index: 8
-  text: "Silver Arrow\'s normally cheerful expression fades, sinking to a deadpan. \"Well, $+(l.honorific) $+(l.name), I guess we know how the power dynamic in this relationship is going to work out.\"\n\n\"You\'re lucky that Sam has already paid me, otherwise I\'d find something else to do.\""
-  branches {
-    responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54b289eb6131317007006115"
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_NPCIntroText"
-          }
-        }
-      }
-      args {
-        string_value: "With a strained smile, and while avoiding eye contact, Silver Arrow takes extra time repairing the door panel, and asks in an overly polite and formal tone, \"Will there be anything else, $+(l.sir)?\""
-      }
-    }
-  }
 }
 nodes {
   idRef {
@@ -781,7 +722,7 @@ nodes {
           }
         }
         args {
-          string_value: "Silver Arrow looks shocked, his mouth hanging open at your decision. \n\n\"Wow, that\'s cold, chummer. Not to mention, like, a million times more dangerous. It might attract wildlife like the ones you discovered in here.\"\n\n\"Prolly won\'t make you friends in the neighborhood, if you just leave the corpses in the alleyway to attract devil rats, and stray dogs.\""
+          string_value: "Silver Arrow looks shocked, his mouth hanging open at your decision. \n\n\"Wow, that\'s cold, chummer. Not to mention, like, a million times more dangerous. It might attract wildlife like what I heard you \'discover\' in here.\"\n\n\"Prolly won\'t make you friends in the neighborhood, if you just leave the corpses in the alleyway to attract devil rats and stray dogs.\""
         }
       }
     }
@@ -827,7 +768,7 @@ nodes {
           }
         }
         args {
-          string_value: "Silver Arrow shrugs, \"It\'s usually frowned upon to call the Brass in on your business; but hell, Chummer.  If it gets them out of the neighborhood and off our collective back, I think you\'ll earn a little goodwil with the localsl.\"\n\n\"If you\'re new to the area, and want to make friends, that\'s not a bad idea.\""
+          string_value: "Silver Arrow shrugs, \"It\'s usually frowned upon to call the Brass in on your business; but hell, Chummer.  If it gets them out of the neighborhood and off our collective back, I think that will earn you a lot goodwill with the localsl.\"\n\n\"If you\'re new to this area, and want to make friends quickly, that\'s not a bad idea.\""
         }
       }
     }
@@ -873,7 +814,7 @@ nodes {
           }
         }
         args {
-          string_value: "Silver Arrow nods, \"I like the secondhand tech at Nightengale\'s better, and they pay more for good organics, but unless you\'re good friends with one ot their doctors, I don\'t think Nightengales does anonymous pickups.\"\n\nTapping a finger on his lips, Silver Arrow adds, \"I know the dwarf at Organ Grinders in Touristville. Up in Auburn, he\'s discrete and does great quiet disposals. The guys has a creepy jack-o-lantern smile, but really a nice enough guy.\" "
+          string_value: "Silver Arrow nods, \"I like the secondhand tech at Nightengale\'s better, and they pay more for good organics; but unless you\'re good friends with one of their Doctors I don\'t think they do anonymous pickups.\"\n\nTapping a finger on his lips, Silver Arrow adds, \"I know the dwarf at Organ Grinders in Touristville, up in Redmond. He\'s discrete and does disposals. The dwarf has a creepy jack-o-lantern smile, but really a nice enough guy.\" "
         }
       }
     }
@@ -968,7 +909,7 @@ nodes {
           }
         }
         args {
-          string_value: "Silver Arrow nods with your words, pulling the commlink from his pocket and making a note of the name. \"I\'ll try and track down this Hung Lee, chummer, but you have to understand that he won\'t answer if he doesn\'t know me.\"\n\n\"If I can\'t get ahold of him, or get him to call me back, I can always check with the street doc around the corner here- it\'s like a block away, and in a bad part of town. I\'m sure he\'s used to getting rid of bodies!\"\n\n\"Plus, that drone can dispose of bodies in like two minutes! It\'s sick looking!\""
+          string_value: "Silver Arrow nods with your words, pulling the commlink from his pocket and making a note of the name. \"I\'ll try and track down this Hung Lee, chummer.\"\n\n\"If I can\'t get ahold of him, or get him to call me back, I can always check with the street doc around the corner here- it\'s like a block away, and in a bad part of town. I\'m sure she\'s used to getting rid of bodies!\"\n\n\"Plus, that drone can chop up a body in like two minutes! I saw a Matrix feed of it, once, it\'s sick looking!\""
         }
       }
     }
@@ -985,306 +926,43 @@ nodes {
 }
 nodes {
   idRef {
-    id: "551f130a613131641c0035ea"
+    id: "556fd7136131314008004670"
   }
   index: 10
-  text: "$(story.str_NPCIntroText)"
-  branches {
-    responseText: "See anyone that looks worth hiring?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow beams proudly, \"Johnson put together quite a team here- techs, mages, and hired guns!\" \n\n\"The finest team to do crime that you could imagine!\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    hideIfUnavailable: true
-  }
-  branches {
-    responseText: "Okay, so let\'s go meet everyone."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"I always like to walk up to new people and say:\""
-        }
-      }
-    }
-    nextNodeIndex: 0
-    auxiliaryLink: true
-  }
+  text: "Silver Arrow whistles through his teeth, \"Ooh, I just remembered- Sam wanted me to shoot him off a message when I found out if you were alive or not. He made me memorize a whole speech in case these guys had geeked you, about how \'that was a test and they totally passed, and how would they like some work\'? Crazy stuff, right?\"\n\nSilver Arrow pulls a telecom from his pocket, dials it and sends a quick message before going back to work."
   nodeType: ConversationNodeType_Simple
-  comment: "Stuffer Shack Loop"
+  actions {
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
-    id: "551f17d5613131641c003657"
+    id: "551f130a613131641c0035ea"
   }
   index: 11
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "What about the decker?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow laughs, \"Chummer, oh chummer! I\'m a decker, and I\'m standing right here!\"\n\nHe puts an arm around you, and says \"Since we\'re becoming fast friends, you don\'t need to hire another decker- and I don\'t trust the look of her, anyway.\"\n\nSilver Arrow nods, as though that problem was solved."
-        }
-      }
-    }
-    nextNodeIndex: 11
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "551f18ea613131641c003673"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "How about the troll with the big gun?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow looks appraisingly at the troll, \"She has a corporate look to her- be careful, you never can trust a suit, chummer.\"\n\nAfter a moment, he adds \"Looks like she knows her security, though.\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "What about that guy in the suit?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow nods in the direction of the guy with the suit, \"I know that he has a sense of style, and I\'ve heard him call himself Blue Night. He\'s big on respect and style, chummer, what an addition to the team!\"\n\n\"Oh, and he\'s a mage or shaman or something.\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "Who brought a priest?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow shakes his head \"Not me, chummer, I only bring priests to confession.\"\n\n\"Got to be a reason he\'s here, though. It\'s not like there\'s a convent nearby and he just happened to wander in on accident.\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "What about the Amerind girl with the axe?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow looks over his shoulder at the young Amerind woman, \"I don\'t know about Indians, chummer. They\'re like \'indian givers,\' right?\n\nI don\'t know what that means, but it doesn\'t sound good.\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "The ork over there has a drone, I think that makes him the rigger."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Silver Arrow nods \"Yeah, chummer, and you know me, I love my tech. I like him already!\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "The dwarf with the heavy weapons looks like he knows how to take care of himself."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"I don\'t know chummer, I think he stinks,\" Silver Arrow sniffs the air, \"like, literally stinks.\"\n\nYou test the air, and what you thought was just the stink of day-old cheese at the back room of the Stuffer Shack does contain a decidedly unpleasant aroma.  "
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "The elf with the cyberware?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"You know I love my tech, chummer,\" Silver Arrow says, nervously trying not to stare at the elf on the south end of the room, standing in the corner by himself.\n\n\"He gives me the creeps.\""
-        }
-      }
-    }
-    nextNodeIndex: 11
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "I\'ve heard enough..."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Fair enough, Chummer."
-        }
-      }
-    }
-    nextNodeIndex: 10
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  comment: "Team Loop"
-}
-nodes {
-  idRef {
-    id: "556fd7136131314008004670"
-  }
-  index: 12
-  text: "Silver Arrow whistles through his teeth, \"Ooh, I just remembered- Sam wanted me to shoot him off a message when I found out if you were alive or not. He made me memorize a whole speech in case these guys had geeked you, about how \'that was a test and they totally passed, and how would they like some work\'? Crazy stuff, right. That Sam, what a chummer.\"\n\nSilver Arrow pulls a telecom from his pocket, dials it and sends a quick message before going back to work."
-  nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
-    id: "551f130a613131641c0035ea"
-  }
-  index: 13
-  text: "$(story.str_NPCIntroText)"
-  branches {
     responseText: "See anyone that looks worth hiring?"
     actions {
       ops {
@@ -1305,7 +983,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
   }
   branches {
@@ -1329,7 +1007,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1403,7 +1081,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 16
+    nextNodeIndex: 14
   }
   nodeType: ConversationNodeType_Simple
   comment: "Stuffer Shack Loop"
@@ -1412,7 +1090,7 @@ nodes {
   idRef {
     id: "551f17d5613131641c003657"
   }
-  index: 14
+  index: 12
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "What about the decker?"
@@ -1435,7 +1113,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1464,7 +1142,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1493,7 +1171,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1522,7 +1200,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1551,7 +1229,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1580,7 +1258,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1609,7 +1287,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1638,7 +1316,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 12
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1667,7 +1345,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 13
+    nextNodeIndex: 11
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -1678,7 +1356,7 @@ nodes {
   idRef {
     id: "5532be8d396630001b00161b"
   }
-  index: 15
+  index: 13
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Where did you get the name Silver Arrow?"
@@ -1701,7 +1379,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1730,7 +1408,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1759,7 +1437,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1788,7 +1466,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1817,7 +1495,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1846,7 +1524,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 15
+    nextNodeIndex: 13
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1879,7 +1557,7 @@ nodes {
   idRef {
     id: "5532be39396630001b001618"
   }
-  index: 16
+  index: 14
   text: "$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
 }
@@ -1887,7 +1565,7 @@ nodes {
   idRef {
     id: "551f0dda613131641c003534"
   }
-  index: 17
+  index: 15
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "We\'re working tonight, do you really think you should be drinking?"
@@ -1910,7 +1588,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1939,7 +1617,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1994,11 +1672,11 @@ nodes {
           }
         }
         args {
-          string_value: "\"I know chummer, I know. Make sure they get dumped so you don\'t come home to a stinking pile of corpses. \n\n\"I\'ll go buy air fresheners, too, chummer! Anything else?\""
+          string_value: "\"I know chummer, I know. Make sure they get dumped so you don\'t come home to a stinking pile of corpses.\" \n\n\"I\'ll go buy air fresheners, too, chummer! Anything else?\""
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2058,7 +1736,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2114,11 +1792,11 @@ nodes {
           }
         }
         args {
-          string_value: "\"No problem chummer!\"\n\n\"I already put in a call to a guyI sort of know of, up in Redmond. He works for Organ Grinders, and he keeps important jobs off the books. \n\n\"I\'ll meet up with him, and we\'ll get this sorted out.\""
+          string_value: "\"No problem chummer!\"\n\n\"I already put in a call to a guy I sort of know, up in Redmond. He works for Organ Grinders, and he keeps important jobs off the books.\"\n\n\"I\'ll get this sorted out.\""
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2178,7 +1856,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 17
+    nextNodeIndex: 15
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2247,7 +1925,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 18
+    nextNodeIndex: 16
   }
   branches {
     responseText: "Tell Sam I\'m on my way to the meet."
@@ -2270,7 +1948,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 18
+    nextNodeIndex: 16
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2338,7 +2016,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 19
+    nextNodeIndex: 17
   }
   nodeType: ConversationNodeType_Simple
   comment: "Post-Shack Loop"
@@ -2347,7 +2025,7 @@ nodes {
   idRef {
     id: "551f0dda613131641c003534"
   }
-  index: 18
+  index: 16
   text: "$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
   comment: "Exit Phrase"
@@ -2356,7 +2034,7 @@ nodes {
   idRef {
     id: "551f0dda613131641c003534"
   }
-  index: 19
+  index: 17
   text: "$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
   comment: "Exit Phrase"
@@ -2365,7 +2043,7 @@ nodes {
   idRef {
     id: "5556dd23663136f40d007712"
   }
-  index: 20
+  index: 18
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Anyone paying too much attention?"
@@ -2388,7 +2066,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2417,7 +2095,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2446,7 +2124,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 21
+    nextNodeIndex: 19
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2474,7 +2152,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 20
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2502,7 +2180,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2521,7 +2199,7 @@ nodes {
   idRef {
     id: "550265ff663136cc12002c54"
   }
-  index: 21
+  index: 19
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Where did you dump them?"
@@ -2574,7 +2252,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2634,7 +2312,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2700,7 +2378,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2766,7 +2444,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2782,11 +2460,11 @@ nodes {
   idRef {
     id: "556e80f4613131580c004b94"
   }
-  index: 22
+  index: 20
   text: "Silver Arrow looks at the crowd that came in with you, swallowing. \n\n\"I thought we were just going to hang out, I didn\'t know you\'d be bringing a team back so quick. I only got a six-pack of soybeer.\""
   branches {
     responseText: "It\'s a little more complicated than that."
-    nextNodeIndex: 23
+    nextNodeIndex: 21
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -2794,11 +2472,11 @@ nodes {
   idRef {
     id: "556e80f6613131580c004b97"
   }
-  index: 23
+  index: 21
   text: "Silver Arrow does a quick headcout, and looks at you. \"There aren\'t enough beds here, chummer, where is everyone going to sleep?\"\n\n\"I-- uh...\" Silver Arrow freezes, and you realize at this point that he\'s seen Maria and recognized who she is. A decker with a tech fetish, his mind implodes for almost a full minute before he can continue."
   branches {
     responseText: "Yup, we got hired to protect Maria Mercurial; and her manager."
-    nextNodeIndex: 20
+    nextNodeIndex: 18
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -2807,8 +2485,8 @@ nodes {
   idRef {
     id: "556e86ad613131580c004ca2"
   }
-  index: 24
-  text: "{{GM}}PLACEHOLDER!{{/GM}}"
+  index: 22
+  text: "{{GM}}This is where we would introduce the idea that Silver Arrow, your good chummer, would want you to be his backup while he meets Sam\'s friends, the ones with the Silver Arrow engine for rebuilding a 2015 supercar.{{/GM}}\n\nIt\'s a trap!"
   nodeType: ConversationNodeType_Simple
 }
 roots {
@@ -2883,7 +2561,7 @@ roots {
         }
       }
       args {
-        string_value: "The decker looks around the entrance at the dark, stinking, and wrecked safehouse, \"He said you would probably need help getting your safehouse set up.\"\n\n\"Something about old tech? I know old tech, so he gave me a call. Don\'t worry about paying me, Sam is working out a favor for me.\"\n\n\"No one said this place was going to be this wrecked, though.\""
+        string_value: "The decker looks around the entrance at the dark, stinking safehouse, \"Sam said you would probably need help getting your safehouse set up.\"\n\n\"Something about old tech? I know old tech, so he gave me a call. Don\'t worry about paying me, Sam is working out a favor for me.\"\n\n\"No one said anything about the place being this wrecked, though.\""
       }
     }
   }
@@ -2942,11 +2620,11 @@ roots {
         }
       }
       args {
-        string_value: "Silver Arrow beams in that youthfully optimistic way, and says \"Hoi, chummer!\"\n\n\"I know you have a whole room full of people to talk to, but thanks for chatting with me!\"\n\n\"These guys might not look like much, but with you leading them, you\'ve got a the makings of a great team here!\""
+        string_value: "Silver Arrow beams in that youthfully optimistic way, and says \"Hoi, chummer!\"\n\n\"I know you have a whole room full of people to talk to, but thanks for chatting with me!\"\n\n\"These guys might not look like much, but with you leading them, you\'ve got the makings of a great team here!\""
       }
     }
   }
-  nextNodeIndex: 13
+  nextNodeIndex: 11
   hideIfUnavailable: true
   onlyOnce: true
   idRef {
@@ -3005,7 +2683,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 17
+  nextNodeIndex: 15
   hideIfUnavailable: true
   onlyOnce: true
   idRef {
@@ -3064,7 +2742,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 20
+  nextNodeIndex: 18
   hideIfUnavailable: true
   onlyOnce: true
   idRef {
@@ -3123,6 +2801,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 24
+  nextNodeIndex: 22
   comment: "Arrow Story 4"
 }

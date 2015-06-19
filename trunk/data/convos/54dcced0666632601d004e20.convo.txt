@@ -38,35 +38,6 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "What\'s the deal with your commlink? "
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "The dwarf looks embarrassed, and guiltily shoves his hands in his pockets, yelping and pulling his left hand out again. The cheap commlink is smoking, and hits the ground only to erupt with sparks. \n\n\342\200\234Uh, mis disculpas,\342\200\235 the dwarf stammers, \342\200\234I have a habit of burning through the tech muy rapido.\342\200\235\n"
-        }
-      }
-    }
-    nextNodeIndex: 0
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "5536ece461313168140051a5"
-    }
-    auxiliaryLink: true
-  }
-  branches {
     responseText: "Were you just looking at porn on your phone?"
     actions {
       ops {
@@ -161,6 +132,35 @@ nodes {
   }
   index: 1
   text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Enano?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sucio smiles, \"I-- how you say,\" gesturing with his hands, indicating someone of his height, or at least someone being smashed.\n\n\"Es corto... Dwarfo?\" Sucio looks at a loss.\n\n\"Una feliz \'dwarf-o\', sexo dos mujeres,\" Sucio says with a smile, happily retreating back to Spanish."
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55839e2161313128190050f5"
+    }
+    auxiliaryLink: true
+  }
   branches {
     responseText: "I meant in a professional capacity."
     conditions {
@@ -335,7 +335,7 @@ nodes {
           }
         }
         args {
-          string_value: "Sucio eyes the weapon the dwarf carries, and nods \"The cv88, es beautiful weapon, but nothing beats the AK-97,\" Sucio shows off his well-maintained machine gun. \n\n\"No puntilla, just hard machine. Common, no rastro--\" Sucio gestures, drawing an imaginary line through the air around the room and back to himself, \"back to me.\"\n\n\"Easy find parts, cartridge, y municion.\" \nThat was the best half-Spanish-mangled-English sales pitch for a gun you\'ve ever heard."
+          string_value: "Sucio eyes the weapon the troll carries, nodding \"CV88, es beautiful weapon, but nothing beat AK-97,\" Sucio shows off his well-maintained machine gun. \n\n\"No puntilla, just hard machine. Common, no rastro--\" Sucio gestures, drawing an imaginary line through the air around the room and back to himself, \"back to me. Easy find parts, cartridge, y municion.\" \n\nThat was the best half-Spanish-mangled-English sales pitch for a gun you\'ve ever heard."
         }
       }
     }
@@ -485,6 +485,11 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55839f4061313128190050f6"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -504,11 +509,16 @@ nodes {
           }
         }
         args {
-          string_value: "Sucio pulls a commlink out of his pocket, pops the plastic loop around it, and starts plugging keys away. \n\nHe begins to giggle at whatever he can see onscreen, but at least he has the volume turned down."
+          string_value: "Sucio pulls a commlink out of his pocket, pops the plastic loop around it, and turns it on, wiating for it to start up before he starts punching keys away. \n\nHe begins to giggle at whatever he can see onscreen, but at least he has the volume turned down."
         }
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55839f4c61313128190050f7"
+    }
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1462,15 +1472,15 @@ roots {
 roots {
   conditions {
     ops {
-      functionName: "Comparison (bool)"
+      functionName: "Comparison (int)"
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Story Variable (int)"
           args {
-            string_value: "bool"
+            string_value: "542848a8633464d816001ad5"
           }
           args {
-            int_value: 0
+            string_value: "int_Story_Sucio"
           }
         }
       }
@@ -1478,7 +1488,7 @@ roots {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "Comparison Ops"
           }
           args {
             int_value: 0
@@ -1486,15 +1496,7 @@ roots {
         }
       }
       args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
+        int_value: 1
       }
     }
   }
@@ -1504,20 +1506,110 @@ roots {
   idRef {
     id: "557104df613131241d003464"
   }
-  comment: "Story 0ld"
-}
-roots {
-  responseText: ""
-  nextNodeIndex: -1
   comment: "Story 1"
 }
 roots {
   responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Sucio"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
   nextNodeIndex: -1
   comment: "Story 2"
 }
 roots {
   responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Sucio"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
   nextNodeIndex: -1
   comment: "Story 3"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Sucio"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
+  }
+  nextNodeIndex: -1
+  comment: "Story 4"
 }
