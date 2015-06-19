@@ -188,7 +188,7 @@ nodes {
     id: "553c6da16631361801007dee"
   }
   index: 3
-  text: "{{GM}}The Yazuka woman jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\n\"Max, you said the $(l.boy) and $(l.his) team wouldn\'t be back for at least an hour. Clearly our faith in you was misplaced.\""
+  text: "{{GM}}The Yazuka woman jumps at the sound of your voice, clearly not expecting to be interupted.{{/GM}}\n\n\"Max, you said the $(l.boy) and this team of $(l.his) wouldn\'t be back in time to interfere. Clearly our faith in you was misplaced.\""
   branches {
     responseText: ""
     nextNodeIndex: 11
@@ -398,7 +398,7 @@ nodes {
     id: "553c6f0b6631361801007df2"
   }
   index: 9
-  text: "Take it, Maria... Become the starlet we\'re all expecting to find..."
+  text: "Hotada leans forward, voice as a whisper that seems to reach your ears. \n\nYou realize, with a start, that Hotada is using some kind of mind-control magic to influence Maria.\n\n\"Take it, Maria, my beautiful friend.\" Hotada whispers in her ear, \"Armando wants you to have it, Max wants you to have it; I can see in your eyes that you want it... Take it, and become the star we\'ve all been expecting...\""
   branches {
     responseText: ""
     nextNodeIndex: 10
@@ -413,7 +413,7 @@ nodes {
     id: "553c6f336631361801007df6"
   }
   index: 10
-  text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nShe reaches out and takes the small chip from Hotoda."
+  text: "{{CC}}Maria is visibly trembing from across the room... Her will power isn\'t going to hold any longer.{{/CC}}\n\nMaria reaches out and takes the small chip from Hotoda, toying with it in her hands."
   branches {
     responseText: "{{CC}}Interrupt{{/CC}}"
     actions {
@@ -721,6 +721,11 @@ nodes {
       }
     }
     nextNodeIndex: 17
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55836d0c393066480d00078d"
+    }
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -874,6 +879,9 @@ nodes {
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5564ee04393066500e006ad8"
+  }
   comment: "Blight Betrayal"
 }
 nodes {
@@ -881,7 +889,7 @@ nodes {
     id: "557c9797393066e00a0007a4"
   }
   index: 14
-  text: "One of the yakuza goons turns around, and you recognize the man in the stylish new suit.\n\nBlight smiles, and wearing new sunglasses, says \"You had your chance to hire me, mate, and now I work for the competition.\""
+  text: "One of the yakuza goons turns around, and you recognize the man in the stylish new suit.\n\nBlight smiles, and wearing new sunglasses, says \"You had your chance to hire me, Mate, and now I work for the competition.\""
   branches {
     responseText: ""
     actions {
@@ -1024,7 +1032,27 @@ nodes {
         }
       }
     }
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Blight looks at the dire situation facing him, and says \"Frag that, you\'re the losing team!\"\n\n\"One point to you, $(story.str_RunnerName), I\'ll catch you never.\"\n\nSummoning one of his spirit friends to cover his escape, Blight runs out the hallway after Hotada."
+        }
+      }
+    }
+    nextNodeIndex: 16
+    auxiliaryLink: true
     comment: "Blight Alive"
   }
   nodeType: ConversationNodeType_Simple
