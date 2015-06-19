@@ -10,6 +10,55 @@ nodes {
   text: "At the bar, you see a handsome man in an expensive-looking tailored suit, holding a drink and nodding along with the music.\n\nHe looks you over quickly, seeming to file you away, and asks \"Alright or what?\" \n\nHis accent is odd, sing-song vowels and rolled \'r\'s that make it very distinctive."
   branches {
     responseText: "{{CC}}Socialite{{/CC}} Maria is the best. I saw her show last year, one of my favorites."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 16
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -30,6 +79,11 @@ nodes {
       }
     }
     nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55836e9d393066480d00080a"
+    }
   }
   branches {
     responseText: "{{CC}}Academic{{/CC}} Is that a Welsh accent I detect?"
@@ -233,7 +287,7 @@ nodes {
   index: 3
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "Hello Kyle, I\'m $+(s.name)."
+    responseText: "Hello Kyle, I\'m $+(story.str_RunnerName)."
     actions {
       ops {
         functionName: "Set Variable (string)"
