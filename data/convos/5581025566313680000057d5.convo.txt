@@ -8,6 +8,45 @@ nodes {
   }
   index: 0
   text: "{{GM}}His heavy Spanish accent makes his words nearly impossible to understand.{{/GM}}\n\nYou don\'t belong here, Kitten.   Take them.   No surivivors."
+  branches {
+    responseText: "{{CC}}Throw Unstable Grenade{{/CC}} Here, pretty boy... Catch!"
+    actions {
+      ops {
+        functionName: "Play Animation From Manifest"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Animation)"
+            args {
+              string_value: "Seattle:General/standing_throw"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event After Delay"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eMixacopotecDowned"
+            }
+          }
+        }
+        args {
+          float_value: 1.5
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "5580f9c966313680000057d4"
