@@ -1182,6 +1182,12 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eDropPlayer [FRONT]"
+      }
+    }
   }
   conditions {
     ops {
@@ -1270,7 +1276,36 @@ triggers {
   }
   elseActions {
     ops {
-      functionName: "Suspend Team\'s Turn"
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iLiftSet"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "558e2e11663136a40d0003d6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
       args {
         call_value {
           functionName: "Get Preset Value (string)"
@@ -1283,13 +1318,21 @@ triggers {
         }
       }
       args {
-        int_value: 2
-      }
-      args {
         call_value {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "558e2e11663136a40d0003d6"
           }
         }
       }
@@ -1323,21 +1366,98 @@ triggers {
       }
     }
     ops {
-      functionName: "Apply Camera Shake"
+      functionName: "Send Event After Delay"
       args {
-        float_value: 10
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDropPlayer [FRONT]"
+          }
+        }
       }
       args {
-        float_value: 3
+        float_value: 1
       }
     }
     ops {
-      functionName: "Fade Camera Out"
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
       args {
-        float_value: 2
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "558e108d663136a40d00037f"
+          }
+        }
       }
       args {
-        float_value: 0
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "558e2e11663136a40d0003d6"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "558e2e11663136a40d0003d6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
       }
     }
     ops {
@@ -1346,7 +1466,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "uncrashed"
+            string_value: "isFrontDoors"
           }
         }
       }
@@ -1387,7 +1507,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "crash"
+            string_value: "isFrontCrashed"
           }
         }
       }
@@ -1415,20 +1535,6 @@ triggers {
           functionName: "Get Preset Value (int)"
           args {
             string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Alarm State"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
           }
           args {
             int_value: 1
@@ -1480,7 +1586,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "556028f56131310011002618"
+                string_value: "558e075b663136a40d00037e"
               }
             }
           }
@@ -1510,7 +1616,43 @@ triggers {
       }
     }
     ops {
-      functionName: "Cause Damage Over Time"
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDropPlayer [FRONT]"
+          }
+        }
+      }
+      args {
+        float_value: 2.5
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/dying_idle"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Cause Damage"
       args {
         call_value {
           functionName: "All Actors on Team"
@@ -1547,7 +1689,7 @@ triggers {
         }
       }
       args {
-        int_value: 4
+        int_value: 15
       }
       args {
         call_value {
@@ -1561,7 +1703,15 @@ triggers {
         }
       }
       args {
-        int_value: 5
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
       }
     }
     ops {
@@ -8290,6 +8440,98 @@ regions {
   loop_default_music: false
   no_fow_in_region: false
 }
+regions {
+  name: "Front_ElevatorCrash"
+  position {
+    x: 180
+    y: -21
+    width: 2
+    height: 4
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "558e075b663136a40d00037e"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "cFrontLiftCrash"
+  position {
+    x: 214
+    y: -14
+    width: 5
+    height: 9
+  }
+  enabledAtStart: true
+  is_camera_region: true
+  idRef {
+    id: "558e2e43663136a40d0003d7"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 patrolRoutes {
   name: "pVanRoute"
   pathType: 1
@@ -10622,6 +10864,212 @@ characters {
     karma: 182
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 148
+    y: 0
+    z: -102
+  }
+  orientation: ORIENTATION_S
+  displayName: "EnemyDecker"
+  idRef {
+    id: "558e10fb663136a40d000390"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Security/DwarfMaleExecSecurity"
+    character_sheet_id: "Lvl3_Dwarf_Rigger"
+    character_mod {
+      stats {
+        body: 0
+        quickness: -2
+        strength: -2
+        charisma: 0
+        intelligence: 1
+        willpower: -1
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 6
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: -3
+        biotech: 0
+        dodge: 1
+        etiquette_corporate: 3
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: -3
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Berlin_CyberdeckVirtuaX"
+    }
+    equipment {
+      prefab_name: "PR NPC Decker Blaster 1"
+    }
+    equipment {
+      prefab_name: "PR NPC Decker Killjoy 1"
+    }
+    equipment {
+      prefab_name: "PR Medic 1"
+    }
+    equipment {
+      prefab_name: "PR Shield 1"
+    }
+    equipment {
+      prefab_name: "PR Sniffer 1"
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Shield"
+    }
+    equipment {
+      prefab_name: "Berlin_ESP Kamikaze"
+    }
+    team_id: "Civilians"
+    char_name: "Blackstone"
+    pc_spawn_number: -1
+    hiring_type: HiringType_Hireable
+    cyberware_jack: "Datajack"
+    portrait {
+      filename: "pc_dwarfmale_05c_dashing"
+    }
+    karma: 3
+    hiring_cost_override: 1700
+    hiring_tag: "Rigger"
+    id: "sc_blackstone"
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 218
+    y: 0
+    z: -9
+  }
+  orientation: ORIENTATION_N
+  displayName: "Watcher"
+  idRef {
+    id: "558e2e11663136a40d0003d6"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 90
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "FrontLift"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+    is_prop_character: true
+  }
+}
 variables {
   bool_value: false
   variableref_value {
@@ -10702,6 +11150,14 @@ variables {
     typeName: "string"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iLiftSet"
+    typeName: "int"
+  }
+}
 mapEvents: "eRiggerBackGate"
 mapEvents: "eUnusedMatrix"
 mapEvents: "eResetTrogWagon"
@@ -10710,7 +11166,8 @@ mapEvents: "eRunnerSpotted"
 mapEvents: "eFrontDoor"
 mapEvents: "eSideDoor"
 mapEvents: "eMixacopotecDowned"
-mapEvents: "eDropPlayer"
+mapEvents: "eDropPlayer [FRONT]"
+mapEvents: "eDropPlayer [REAR]"
 senseTags: "isAware"
 worldMapLocation {
   filename: ""
