@@ -1,4 +1,84 @@
 triggers {
+  name: "OnMapLoad.Boyo"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Compare Actor Gender"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Gender"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_diminutive"
+          }
+        }
+      }
+      args {
+        string_value: "girl"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "558f21fd393066a40c000bb0"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "str_diminutive"
+          }
+        }
+      }
+      args {
+        string_value: "boy"
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
   name: "OnSceneLoad-Doghouse"
   events {
     ops {
@@ -1243,6 +1323,52 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55059e936131313023007217"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Get $(l.him)!   Max you told us $(l.he) wouldn\'t be back for hours!"
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
       functionName: "Change Actor Team"
       args {
         call_value {
@@ -1941,32 +2067,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isYakuzaSoldier"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5564ee04393066500e006ad8"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
   }
   is_oneshot: false
 }
@@ -2342,6 +2442,50 @@ triggers {
           functionName: "Get Map Item (Region)"
           args {
             string_value: "553c63a86631365006007a8c"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5505a9326131313023007224"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5505a9326131313023007224"
           }
         }
       }
@@ -3279,7 +3423,7 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Evaluate Tag for Actor"
+      functionName: "Evaluate If Actor is Inside Region"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -3299,7 +3443,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "HasOrHasNot"
+            string_value: "AreOrAreNot"
           }
           args {
             int_value: 1
@@ -3308,46 +3452,9 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Get Map Item (Region)"
           args {
-            string_value: "isHotoda"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Evaluate Tag for Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55059e856131313023007215"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HasOrHasNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isDouchebag"
+            string_value: "553c7bc96631361801007e40"
           }
         }
       }
@@ -10081,6 +10188,14 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "str_diminutive"
+    typeName: "string"
+  }
+}
 mapEvents: "eStartCombat"
 mapEvents: "eEndCombat"
 mapEvents: "eMariaChips"
@@ -10153,9 +10268,7 @@ team_affiliations {
 scene_dimensions {
   dimension_name: "Default"
 }
-character_roster {
-}
-show_hiring_screen_on_scene_load: false
+show_hiring_screen_on_scene_load: true
 scene_hiring_prerequisites {
   prereq_description: ""
   prereq_conditions {
