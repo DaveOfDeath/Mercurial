@@ -4,23 +4,114 @@ idRef {
 ui_name: "NPC - Nebel"
 nodes {
   idRef {
-    id: "54dcd122666632601d004e4f"
+    id: "54dcd367666632601d004e56"
   }
   index: 0
-  text: "$(story.str_NPCIntroText)"
+  text: "{{GM}}The woman before you is slick and attractive. She regards you with a playful gaze, tapping out a rhythm on the cyberdeck strapped to her back. She is chewing gum and watching the other occupants of the room with an amused expression.{{/GM}}"
   branches {
-    responseText: "Talk to {{CC}}Nebel{{/CC}}."
-    conditions {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "558f5722393066f0070040a5"
+  }
+  index: 1
+  text: "{{GM}}The playful hacker looks you over once, and then looks at the others in the group.{{/GM}}\n\n\"Hey there,\" she says with a smile on her lips, \"I reviewed the RSVP list for this shindig tonight, I don\'t remember a $(l.guy) like you being on it. People call me Nebel.\""
+  branches {
+    responseText: ""
+    actions {
       ops {
-        functionName: "Comparison (int)"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Story Variable (string)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_Story_Nebel"
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"So, either,\" the woman ticks off reasons on her fingers, \"someone nice sent me a hooker-o-gram, you\'re very good friends with someone in here, you want something, or you\'re looking for a little payback.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "558f5b8b393066f0070040b2"
+  }
+  index: 2
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Uninvited guest, I\'m afraid."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel laughs \"Your secret is safe with me.\"\n\n\"So, are you here for sightseeing, or more serious work? Are you going to murder one of these rubes?\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f5dd3393066f0070040c8"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Decking 2{{/CC}} That\'s a nice deck you got there. Kraftwerk?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 5
             }
           }
         }
@@ -31,127 +122,139 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 0
+              int_value: 3
             }
           }
         }
         args {
-          int_value: 0
+          int_value: 2
         }
       }
     }
     actions {
       ops {
-        functionName: "Set Variable (int)"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Story Variable (string)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_NPC_Status_Nebel"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          int_value: 2
+          string_value: "The woman looks you over, impressed. \n\n\"Just the case is a Kraftwerk, all the components are custom. One I lifted out of Fuchi\'s R&D a couple weeks ago, and it\'s hotter than anything I\'ve ever seen.\"\n\n\"I haven\'t seen you around the LTG, have I?\""
         }
       }
     }
-    nextNodeIndex: 1
+    nextNodeIndex: 2
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
-      id: "550dbd7a6631360810007201"
+      id: "558f5d7d393066f0070040c7"
     }
-    comment: "Story 0"
+    auxiliaryLink: true
   }
   branches {
-    responseText: "Talk to {{CC}}Nebel{{/CC}}."
-    conditions {
+    responseText: "I could be Mister Johnson."
+    actions {
       ops {
-        functionName: "Comparison (int)"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Story Variable (string)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_Story_Nebel"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          int_value: 1
+          string_value: "Nebel shrugs \"I could be a sherpa, but I\'m not.\"\n\n\"Johnson was a New Yorker, fat balding Fuchi exec looking to recover some stolen property before his rivals found out about it.\"\n\nNebel shrugs \"I heard one of his rivals found out about it, and greased the exec at the airport with his own hitter before the goon could cover his tracks.\""
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 3
     hideIfUnavailable: true
-    comment: "Story 1"
+    onlyOnce: true
+    idRef {
+      id: "558f5f2e393066f0070040f2"
+    }
   }
   branches {
-    responseText: "Talk to {{CC}}Nebel{{/CC}}."
-    conditions {
+    responseText: "What are you doing here?"
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f5f31393066f0070040f3"
+    }
+  }
+  branches {
+    responseText: "{{CC}}Cha 4{{/CC}} You are way too cute to be slumming it here."
+    actions {
       ops {
-        functionName: "Comparison (int)"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Story Variable (string)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_Story_Nebel"
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          int_value: 2
+          string_value: "A quick glance at the list has about every filthy thing you can imagine listed under \'DOs,\' with only the truly repulsive listed under \'MAYBEs,\' and only the illegal or revolting under \'DON\'Ts\'.\n\nThere could be a letter to a steamy matrix forum in your future."
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 5
     hideIfUnavailable: true
-    comment: "Story 2"
+    onlyOnce: true
+    idRef {
+      id: "558f5f35393066f0070040f4"
+    }
   }
   branches {
-    responseText: "Talk to {{CC}}Nebel{{/CC}}."
+    responseText: "{{CC}}Str 3{{/CC}} I\'m more of a physical type, but I could use a good brain on my team."
     conditions {
       ops {
-        functionName: "Comparison (int)"
+        functionName: "Compare Actor Attribute"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Map Item (Player)"
             args {
-              string_value: "542848a8633464d816001ad5"
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
             }
             args {
-              string_value: "int_Story_Luna"
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 2
             }
           }
         }
@@ -162,7 +265,7 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 0
+              int_value: 3
             }
           }
         }
@@ -171,36 +274,1213 @@ nodes {
         }
       }
     }
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel\'s lips part slightly, and she seems to be breathing rapidly. She touches your arm, traces the line of your bicep, and feels the muscles of your chest.\n\nClearly she\'s turned on, and she answers \"You can have my brain, my lips-- anything you want for as long as you can stand it.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
     hideIfUnavailable: true
-    comment: "Story 3"
+    onlyOnce: true
+    idRef {
+      id: "558f5f38393066f0070040f5"
+    }
+    auxiliaryLink: true
   }
   branches {
-    nextNodeIndex: -1
-    comment: "Story 1"
+    responseText: "I don\'t know that you\'re my type."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel shrugs \"If you\'re into the unwilling thing, I can roleplay, but no restraints that I can\'t get out of on my own-- no handcuffs or anything that needs a key.\"\n\n\"My safe word is Admiralty.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f5f3c393066f0070040f6"
+    }
+    auxiliaryLink: true
   }
   branches {
-    responseText: "Walk away."
+    responseText: "Nice talking to you. {{CC}}Leave{{/CC}}"
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
-  comment: "Nebel Introduction"
+  comment: "Nebel Main Loop"
 }
 nodes {
   idRef {
-    id: "54dcd367666632601d004e56"
+    id: "558f6065393066f0070040ff"
   }
-  index: 1
-  text: "{{GM}}The playful hacker looks you over once, and then looks at the others in the group.{{/GM}}\n\n\"Hey there, $+(l.man),\" she says with a smile on her lips, \"I reviewed the guest list for this thing tonight, I don\'t remember you being on it.\""
+  index: 3
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "You seem to know a lot about this."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel shrugs and leans forward, smiling at you. \n\n\"I\'m in the information business- if I didn\'t know information, I wouldn\'t be very good at my job.\"\n\n\"These fragmooks? I\'ll keep them on my list in case I need backup. I don\'t usually work with a team,\" she lays a significant glance in your direction, \"but special high-intensity one-on-one pairings.\"\n\n\"If you\'re into the team thing, I could be down for that, though.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f648a393066f007004135"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "So Mr Johnson isn\'t coming at all?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel shakes her head \'no.\'\n\n\"Last I heard, killed and stuffed in a toilet stall at an airport, so they probably won\'t even find the body until some janitor comes and unlocks the bathroom to get him out of there.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Decking 2{{/CC}} Is this connected to that hot Fuchi chip in your deck?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 5
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel looks at you lustily, licking her lips, and letting out a little moan. \"God, you\'re clever, too? Intelligence is such a turn-on for me.\"\n\n\"My safeword is Admiralty, what\'s yours?\""
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f6557393066f007004137"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "So, if you knew he wouldn\'t be here, why did you show up?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel shrugs \"I like to people-watch,\" she says, gesturing at the room full of individuals, \"and until I can crack the new Truman simsense feed for more free porn, I\'ve been really bored.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f642c393066f007004134"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "If he\'s not coming, I don\'t have to feel bad about trying to poach a team."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel laughs loudly, an odd sound at a clandestine meeting in the middle of the night.\n\n\"Unapologetic? I think I like you already.\""
+        }
+      }
+    }
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Mr Johnson Loop"
+}
+nodes {
+  idRef {
+    id: "558f5f45393066f0070040f8"
+  }
+  index: 4
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "What\'s up with the troll woman?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Troll woman?\" Nebel snorts, \"Anyone with ten years in security training is a dude, I don\'t care what plumbing you have between your legs.\"\n\n\"Dude used to work for Ares, still getting used to life in the shadows.\"\n\n"
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f6bd5393066f00700414d"
+    }
+    auxiliaryLink: true
+    comment: "Gunner"
+  }
+  branches {
+    responseText: "Guy in the suit over hthere?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel leans back, looking at the shaman in the suit, \"It should be a rule- if a guy is staring at your ass that much, and talking to himself, but not playing with himself? You don\'t want to know what he\'s thinking.\"\n\n\"Fragger gives me the creeps, I\'ll just stay over here and hope Shiver shoots him.\" "
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71de393066f007004279"
+    }
+    auxiliaryLink: true
+    comment: "Blight"
+  }
+  branches {
+    responseText: "The elf?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Shiver? Oh my God, he\'s like the cutest serial killer that I\'ve ever met! The guy is-- no joke, Tir Tairngire royalty. Also, wanted for murder, but that\'s just because he killed a bunch of people.\" \n\n\"Oddly enough, brass haven\'t been able to catch our well-connected killer. Could be his friends, or the cyberware he\'s supposed to have crammed in his head.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71e3393066f00700427a"
+    }
+    auxiliaryLink: true
+    comment: "Shiver"
+  }
+  branches {
+    responseText: "Who is the rigger?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Leonard? He\'s a former cop. Too dirty for Lonestar, doesn\'t that say something? Goes by Jefe now.\"\n\n\"It says pretty fragging dirty, to me. I wouldn\'t let that guy in me if he was the last man on earth. A girl\'s gotta have standards.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71e6393066f00700427b"
+    }
+    auxiliaryLink: true
+    comment: "Jefe"
+  }
+  branches {
+    responseText: "The Amerind?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel crosses her arms under her breasts, staring across the room at the young Amerind.\n\n\"I don\'t know her. She\'s new in town, doesn\'t have a big technical footprint. Some tribes don\'t keep good census records, and even if they did, knowing that \'Bear with Wide Canyon\' is going  by \'Liane\' now isn\'t something that\'s easy to track.\"\n\n\"I just tell everyone that she\'s a cocktease.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71ea393066f00700427c"
+    }
+    auxiliaryLink: true
+    comment: "Luna"
+  }
+  branches {
+    responseText: "The priest."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel frowns, still managing to look attractive. \n\n\"Two things I don\'t have time for- a sexy $(story.str_ Sexism) who wants a relationship before getting carnal, and stupid bible bashers.\"\n\nNodding in the direction of the priest, Nebel continues \"I\'ll let you guess which category he falls under.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71ee393066f00700427d"
+    }
+    auxiliaryLink: true
+    comment: "Padre"
+  }
+  branches {
+    responseText: "What\'s the dwarf--"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel stops you-- \"Not with your dick and a road cone for a rubber.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71f4393066f00700427e"
+    }
+    auxiliaryLink: true
+    comment: "Sucio"
+  }
+  branches {
+    responseText: "What\'s your deal?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel unzips the front of her combat vest, showing off some impressive breasts and dark skin. \"I\'m an open book, ya read?\"\n\nAt the statments of shock from your left, Nebel glares at the priest, and zips back up. \"Oh, keep your bible, preacher, I got nothing for you.\"\n\nSighing, Nebel says \"Some guys ruin it for everyone. I\'ve run into plenty of them in London and Hong Kong, but none worse than them religiosity folks.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f71f8393066f00700427f"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Anyone you don\'t have gossip about?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel laughs \"Not likely, I trade in information, so it\'s in my best interest to know who\'s new to the scene, who really is \'talented\' or just a faker packing a sock in the front of their jeans.\"\n\n\"You know, important information that people want to know.\"\n\n\"I got this new $(l.race) that I\'ve got my eye on-- cute, might be bangable if they\'re into enough weird stuff.\""
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7333393066f00700430b"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I think that\'s all the gossip I can handle for the night."
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Runner Rumors Loop"
+}
+nodes {
+  idRef {
+    id: "558f793f393066f0070043be"
+  }
+  index: 5
+  text: "Nebel slides her commlink out of her pocket, and pings your personal network with an invite. \n\n\"Here\'s a list of my DOs, DON\'Ts, and MAYBEs. Look those over, and let\'s talk later.\""
   branches {
     responseText: ""
-    nextNodeIndex: 0
+    nextNodeIndex: 2
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
 }
-roots {
+nodes {
+  idRef {
+    id: "558f7b38393066f00700459c"
+  }
+  index: 6
+  text: "$(story.str_NPCIntroText)"
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "558f7b5c393066f0070045dc"
+  }
+  index: 7
+  text: "$(story.str_NPCIntroText)"
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "558f5c1c393066f0070040b4"
+  }
+  index: 8
+  text: "{{GM}}Nebel wipes fresh red blood away from her nostril as she slides your datajack out. You can\'t smell the burning of electronics, but you know what dumpshock looks like. Her hands are shaky, and her speech is slurred.{{/GM}}\n\n\"Sorry, Boss,\" she says weakly, \"there was some sort of trap on that account-- I tried to crack the file, but I got dumped. I think maybe I need to go lie down for a while.\""
+  nodeType: ConversationNodeType_Simple
   actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Nebel"
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "558f7bd9393066f00700461d"
+  }
+  index: 9
+  text: "{{GM}}Nebel stands by your bed, half-dressed and looking small without her trademark bravado.{{/GM}}\n\n\"Hey, boss,\" she says weakly."
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I don\'t know about you, but being this close to death always makes me super horny.\"\n\n\"I mean-- not like causative, but just getting nearly geeked always makes me want to plow anything that moves until I can\'t think straight, and then drink, rinse, and repeat.\"\n\n\"Let\'s say: you and I get naked and messy.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "558f7c16393066f007004620"
+  }
+  index: 10
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "You want to have sex right now?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Yes,\" she says, \"right now- this moment, this second, as soon as you can get those clothes off and get inside of me.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e4a393066f00700462e"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I could be into that."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You\'ll be into a lot of things tonight; just let me know your safeword...\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e4d393066f00700462f"
+    }
+    auxiliaryLink: true
+    comment: "Sex=Yes"
+  }
+  branches {
+    responseText: "Sure, let\'s set some ground rules first..."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"No fisting-- other than that I\'m pretty much up for anything...\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e50393066f007004630"
+    }
+    auxiliaryLink: true
+    comment: "Sex=Yes"
+  }
+  branches {
+    responseText: "Yes, let\'s do that."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"It feels good to say \'Yes,\' doesn\'t it? I have an idea- neither one of us says \'no\' to anything...\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e54393066f007004631"
+    }
+    auxiliaryLink: true
+    comment: "Sex=Yes"
+  }
+  branches {
+    responseText: "\"Admiralty\" is your safeword, right?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel laughs \"Yes, but I\'m not going to need it tonight...\""
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e57393066f007004632"
+    }
+    auxiliaryLink: true
+    comment: "Sex=Yes"
+  }
+  branches {
+    responseText: "Are you sure you aren\'t just feeling vulnerable?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Of course I\'m feeling vulnerable-- that\'s the whole  idea. I\'m feeling vulnerable, and I want someone inside me so I can get back to normal.\"\n\n\"But you had to go be the good $(l.guy), didn\'t you? Had to ask about my feelings, make sure I\'m okay. Sure I can\'t bribe you with anything?\""
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e5a393066f007004633"
+    }
+  }
+  branches {
+    responseText: "A troll like me?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Race"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Race"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I heard an interesting rumor that equated horn size to phallic length.\"\n\nBiting her fingernails, she looks at you lustily, \"I wanted to get some hands-on time for my research.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e5e393066f007004634"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "You like elves?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Race"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Race"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel laughs, playing with your ears, \"I think these will work great to hold onto.\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e61393066f007004635"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "You\'re into dwarves?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Race"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Race"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel laughs \"What, you\'ve never thought about being with a bigger woman?\"\n\n\"Little hands, dextrous fingers, what\'s not to like?\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e64393066f007004636"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Ork-play, huh?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Race"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Race"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Nebel shrugs \"Just because I\'m pretty, I can\'t be into any of the rough stuff?\""
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e67393066f007004637"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I don\'t think that\'s a good idea."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I agree, it\'s a terrible idea, and there\'s less than a 1% chance it turns into any sort of relationship. I\'ll wear you out, or you\'ll get tired of me, and then we\'ll move on.\"\n\n\"Just this one night, tonight, we\'re both here, and it\'s the perfect opportunity to get some strange. I don\'t know, maybe get one of the others jealous?\""
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "558f7e6b393066f007004638"
+    }
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Betrayal Loop"
+}
+nodes {
+  idRef {
+    id: "558f7e37393066f00700462d"
+  }
+  index: 11
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "I think maybe you could convince me..."
+    nextNodeIndex: 12
+    comment: "Sex=Yes"
+  }
+  branches {
+    responseText: "No."
+    nextNodeIndex: 13
+  }
+  branches {
+    responseText: "I don\'t think it\'s a good idea."
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Nebel Rejection Confirm"
+}
+nodes {
+  idRef {
+    id: "558f7f17393066f0070046aa"
+  }
+  index: 12
+  text: "$(story.str_NPCIntroText)"
+  nodeType: ConversationNodeType_Simple
+  comment: "Exit Line"
+}
+nodes {
+  idRef {
+    id: "558f8203393066f0070047c1"
+  }
+  index: 13
+  text: "Nebel sighs, touching your arm, caressing your neck. \"I really wish,\" she says, \"that you had said \'yes\' instead of \'no.\' It would have made it much easier to leave afterwards.\"\n\nA wave of dizzyness hits you, and you notice that Nebel stuck a TranqPatch to your exposed skin. She moves her other hand, revealing a second patch. \n\n\"This isn\'t a lethal dose, I just want you quiet so the others will think that I wore you out.\" Triggering a small remote, a sound system starts making sex sounds.\n\n\"Really-- you would have enjoyed it more the other way. At least then you could say I screwed you.\""
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/decking_dizzy_dumpshock"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Nebel"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
     ops {
       functionName: "Set Variable (string)"
       args {
@@ -234,4 +1514,211 @@ roots {
     }
   }
   nextNodeIndex: 0
+  hideIfUnavailable: true
+  onlyOnce: true
+  idRef {
+    id: "550dbd7a6631360810007201"
+  }
+  comment: "Story 0"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The woman before you is slick and attractive. She regards you with a playful gaze, tapping out a rhythm on the cyberdeck strapped to her back."
+      }
+    }
+  }
+  nextNodeIndex: 6
+  hideIfUnavailable: true
+  comment: "Story 1"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The woman before you is slick and attractive. She regards you with a playful gaze, tapping out a rhythm on the cyberdeck strapped to her back."
+      }
+    }
+  }
+  nextNodeIndex: 7
+  hideIfUnavailable: true
+  comment: "Story 2"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  nextNodeIndex: 8
+  hideIfUnavailable: true
+  comment: "Story 3 - Betrayal Setup"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_Nebel"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "The woman before you is slick and attractive. She regards you with a playful gaze, tapping out a rhythm on the cyberdeck strapped to her back."
+      }
+    }
+  }
+  nextNodeIndex: 9
+  hideIfUnavailable: true
+  comment: "Story 4 - Seduction"
 }
