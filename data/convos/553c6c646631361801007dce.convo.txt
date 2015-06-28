@@ -1151,7 +1151,7 @@ nodes {
           }
         }
         args {
-          string_value: "Blight stirs, a spirit seeming to prop him up and heal him. You were sure he was dead, but now he\'s still moving.\nYou wonder if he was really dead... or is not something worse.\n\n\"One to you, Runner,\" Blight says, and turns to leave with the help of his spirits. Several stay behind to fight you, and to protect his back."
+          string_value: "Blight stirs, a spirit seeming to prop him up and heal him. You were sure he was dead, but now he\'s still moving.\nYou wonder if he was really dead... or is not something worse.\n\n\"One to you, $(story.str_RunnerName),\" Blight says, and turns to leave with the help of his spirits. Several stay behind to fight you, and to protect his back."
         }
       }
       ops {
@@ -1503,62 +1503,59 @@ nodes {
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: ""
-    conditions {
-      ops {
-        functionName: "Evaluate Actor Consciousness"
-        args {
-          call_value {
-            functionName: "Specific Actor"
-            args {
-              call_value {
-                functionName: "Get Map Item (Actor)"
-                args {
-                  string_value: "5564ee04393066500e006ad8"
-                }
-              }
-            }
-            args {
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Consciousness"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"Frag that, Bitch!\" Blight shouts at the yakuza shaman, \"YOU can stay here to die!\"\n\nWith that, Blight makes a run for the door, leaving his spirits to block your following."
-        }
-      }
-    }
-    nextNodeIndex: 14
-    auxiliaryLink: true
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "5564ee04393066500e006ad8"
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5564ee04393066500e006ad8"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Frag that, Bitch,  YOU can stay here to die!"
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+    }
   }
   comment: "Blight Response"
 }
