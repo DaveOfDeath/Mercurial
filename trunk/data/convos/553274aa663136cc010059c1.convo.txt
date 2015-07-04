@@ -6954,6 +6954,11 @@ nodes {
       }
     }
     nextNodeIndex: 90
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55974519663136240e003e43"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -7038,7 +7043,7 @@ nodes {
           call_value {
             functionName: "Get Map Item (Actor)"
             args {
-              string_value: "54701bad666538ac03001cec"
+              string_value: "55059e856131313023007215"
             }
           }
         }
@@ -7108,7 +7113,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (Actor)"
                 args {
-                  string_value: "54701bad666538ac03001cec"
+                  string_value: "55059e856131313023007215"
                 }
               }
             }
@@ -7160,6 +7165,17 @@ nodes {
             }
             args {
               string_value: "ScreamAsylum"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eCheckForDragonFlyOver"
             }
           }
         }
@@ -7232,6 +7248,11 @@ nodes {
       }
     }
     nextNodeIndex: 91
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "559744f5663136240e003e3f"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -7256,6 +7277,11 @@ nodes {
       }
     }
     nextNodeIndex: 91
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "559744f9663136240e003e40"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -7329,11 +7355,21 @@ nodes {
       }
     }
     nextNodeIndex: 91
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "559744fe663136240e003e41"
+    }
     auxiliaryLink: true
   }
   branches {
     responseText: "How does Maria figure into this?"
     nextNodeIndex: 92
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55974501663136240e003e42"
+    }
   }
   branches {
     responseText: "Enough about Hotada. Tell me something worth keeping you alive for."
@@ -7571,7 +7607,7 @@ nodes {
           call_value {
             functionName: "Get Map Item (Actor)"
             args {
-              string_value: "54701bad666538ac03001cec"
+              string_value: "55059e856131313023007215"
             }
           }
         }
@@ -7641,7 +7677,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (Actor)"
                 args {
-                  string_value: "54701bad666538ac03001cec"
+                  string_value: "55059e856131313023007215"
                 }
               }
             }
@@ -7697,6 +7733,17 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eCheckForDragonFlyOver"
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: -1
   }
@@ -7742,6 +7789,24 @@ nodes {
   }
   index: 96
   text: "Max sobs in relief, \"You won\'t regret this, you won\'t! I\'ll go get everything, and come right back here! I\'ve never felt so alive, being given a second chance like this!\"\n\nMax gets up from the floor, and breaks into an awkward fat guy run as he reaches the door."
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eMaxExit"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    comment: "Exit Max"
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -7750,6 +7815,24 @@ nodes {
   }
   index: 97
   text: "Max sobs in relief, \"You won\'t regret this, you won\'t! I\'ll go get everything, and come right back here! I\'ve never felt so alive, being given a second chance like this!\"\n\nMax gets up from the floor, and breaks into an awkward fat guy run as he reaches the door."
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eMaxExit"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    comment: "Exit Max"
+  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -7757,8 +7840,65 @@ nodes {
     id: "5552d6426131319010004522"
   }
   index: 98
-  text: "Just outside the doorway, you hear Max shout, \"Hey, not mEEE, am I righ--AAAAHHHHHHHH!!!\"\n\nA roar and the burning flash of dragon fire interrupts Max Foley\'s catchphrase, and the rest of the sounds that Max makes can\'t rightly be called \'talking.\' Or anything other than \'horrifying.\'\n\nThe fire is spreading, this place is in trouble."
+  text: "Just outside the doorway, you hear Max shout, \"Hey, not mEEE, am I righ--AAAAHHHHHHHH!!!\"\n\nA roar and the burning flash of dragon fire interrupts Max Foley\'s catchphrase, and the rest of the sounds that Max makes can\'t rightly be called \'talking.\' Or anything other than \'horrifying.\'\n\n\n{{CC}}The fire is spreading, this place is in trouble.{{/CC}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e856131313023007215"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
 }
 roots {
   responseText: ""
@@ -8388,7 +8528,7 @@ roots {
             string_value: "Comparison Ops"
           }
           args {
-            int_value: 2
+            int_value: 0
           }
         }
       }
