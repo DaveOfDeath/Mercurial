@@ -456,6 +456,39 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -1557,7 +1590,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "Runner.RunnersMoveIntoPlace"
@@ -1821,6 +1854,28 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5493b424666538100a000469"
           }
         }
       }
@@ -2109,10 +2164,21 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "     Runner.Death"
+  name: "     Runner.Hurt"
   events {
     ops {
-      functionName: "On Actor Death"
+      functionName: "On Actor Damage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HPOrAP"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
     }
   }
   conditions {
@@ -2153,42 +2219,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Nearest Tagged Actor to Actor"
-              args {
-                call_value {
-                  functionName: "Get Map Item (SenseTagList)"
-                  args {
-                    string_value: "isRunner"
-                  }
-                }
-              }
-              args {
-                call_value {
-                  functionName: "Triggering Target Actor"
-                }
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Variable (int)"
       args {
         call_value {
@@ -2211,12 +2241,441 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
+      functionName: "Trigger: Run Alternate Trigger"
       args {
         call_value {
-          functionName: "Get Map Item (Event)"
+          functionName: "Get Map Item (Trigger)"
           args {
-            string_value: "eRandomChat"
+            string_value: "5591d7443231379c1c00344c"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7eb3231379c1c00344d"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7f43231379c1c00344e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7f43231379c1c00344f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7fb3231379c1c003450"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7fb3231379c1c003451"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7fb3231379c1c003452"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d7fb3231379c1c003453"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d8023231379c1c003454"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5591d8023231379c1c003455"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -2231,14 +2690,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.1"
+  name: "          Chat.01"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -2277,7 +2730,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -2337,37 +2790,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -2380,14 +2806,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.2"
+  name: "          Chat.02"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -2426,7 +2846,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -2486,37 +2906,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -2529,14 +2922,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.3"
+  name: "          Chat.03"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -2575,7 +2962,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -2635,37 +3022,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -2678,14 +3038,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.4"
+  name: "          Chat.04"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -2724,7 +3078,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -2784,37 +3138,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -2827,14 +3154,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.5"
+  name: "          Chat.05"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -2873,7 +3194,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -2915,7 +3236,7 @@ triggers {
         }
       }
       args {
-        string_value: "I never liked him anyway."
+        string_value: "Those fraggin\' gangers are late!"
       }
       args {
         float_value: 0
@@ -2933,37 +3254,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -2976,14 +3270,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.6"
+  name: "          Chat.06"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -3022,7 +3310,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -3082,37 +3370,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -3125,14 +3386,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.7"
+  name: "          Chat.07"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -3171,7 +3426,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -3231,37 +3486,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -3274,14 +3502,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.8"
+  name: "          Chat.08"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -3320,7 +3542,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -3380,37 +3602,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -3423,14 +3618,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "          Chat.9"
+  name: "          Chat.09"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -3469,7 +3658,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -3529,37 +3718,10 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isChatting"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -3574,12 +3736,6 @@ triggers {
 triggers {
   name: "          Chat.10"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eRandomChat"
-      }
-    }
   }
   conditions {
     ops {
@@ -3618,7 +3774,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isChatting"
+                string_value: "isRunner"
               }
             }
           }
@@ -3660,7 +3816,7 @@ triggers {
         }
       }
       args {
-        string_value: "He had such a bright future!"
+        string_value: "Fuck! I forgot my medkit!"
       }
       args {
         float_value: 0
@@ -3678,35 +3834,60 @@ triggers {
         float_value: 3
       }
       args {
-        float_value: 3
+        float_value: 0.1
       }
       args {
         float_value: 0
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "5591d8023231379c1c003455"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Combat.Start"
+  events {
     ops {
-      functionName: "Remove Tag from Actor"
+      functionName: "On Turn Mode Enter"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Get Preset Value (string)"
           args {
-            string_value: "isChatting"
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
           }
         }
       }
       args {
         call_value {
-          functionName: "All Actors"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -3714,7 +3895,7 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "5591d8023231379c1c003455"
+    id: "559aba7d323137581c004c2c"
   }
   elseActions {
   }
@@ -3926,7 +4107,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "5591cf5b3231379c1c003440"
+                string_value: "5591cf733231379c1c003443"
               }
             }
           }
@@ -3979,7 +4160,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "5591cf733231379c1c003443"
+                string_value: "5591cf5b3231379c1c003440"
               }
             }
           }
@@ -4159,7 +4340,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "5591cf643231379c1c003441"
+                string_value: "5591cf813231379c1c003444"
               }
             }
           }
@@ -4265,7 +4446,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "5591cf813231379c1c003444"
+                string_value: "5591cf643231379c1c003441"
               }
             }
           }
@@ -4303,7 +4484,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isWave1"
+                string_value: "isWave2"
               }
             }
           }
@@ -4343,7 +4524,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isWave1"
+                string_value: "isWave2"
               }
             }
           }
@@ -4536,7 +4717,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isWave1"
+                string_value: "isWave3"
               }
             }
           }
@@ -4576,7 +4757,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isWave1"
+                string_value: "isWave3"
               }
             }
           }
@@ -4617,7 +4798,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Runner.EnableMikeSearch"
+  name: "Runner.Dead"
   events {
     ops {
       functionName: "On Actor Death"
@@ -4625,17 +4806,24 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "Evaluate Tag for Actor"
       args {
         call_value {
-          functionName: "Triggering Target Actor"
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+          args {
+          }
         }
       }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "HasOrHasNot"
           }
           args {
             int_value: 1
@@ -4644,11 +4832,110 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "5493a72b666538100a0003ef"
+            string_value: "isRunner"
           }
         }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RunnerDead"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "559aaba4323137581c004c2b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5493ab97666538100a0003f5"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "     Runner.EnableSearch"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "int_RunnerDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
       }
     }
   }
@@ -4724,11 +5011,11 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "5493ab97666538100a0003f5"
+    id: "559aaba4323137581c004c2b"
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "Runner.SearchMike"
@@ -4900,6 +5187,58 @@ triggers {
   isActive: true
   idRef {
     id: "5493a9d5666538100a0003f4"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Combat.End"
+  events {
+    ops {
+      functionName: "On Turn Mode Enter"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559abc14323137581c004c2d"
   }
   elseActions {
   }
@@ -5795,7 +6134,7 @@ regions {
     id: "5493b2e9666538100a000467"
   }
   highlight_color {
-    r: 0
+    r: 1
     g: 0
     b: 0
     a: 1
@@ -7107,6 +7446,7 @@ characters {
       filename: "pc_humanfemale_10_combatmage"
     }
     karma: 78
+    persistent_body: true
   }
 }
 characters {
@@ -7202,6 +7542,7 @@ characters {
       filename: "npc_humanmale_alnur"
     }
     karma: 88
+    persistent_body: true
   }
 }
 characters {
@@ -7855,7 +8196,7 @@ characters {
     equipment {
       prefab_name: "Berlin_HealthPack"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
     GeneralTags: "isWave1"
@@ -7864,6 +8205,7 @@ characters {
       filename: ""
     }
     karma: 68
+    persistent_body: true
   }
 }
 characters {
@@ -7952,7 +8294,7 @@ characters {
     equipment {
       prefab_name: "Berlin_HealthPack"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
     GeneralTags: "isWave1"
@@ -7961,6 +8303,7 @@ characters {
       filename: ""
     }
     karma: 68
+    persistent_body: true
   }
 }
 characters {
@@ -7972,7 +8315,7 @@ characters {
   }
   orientation: ORIENTATION_N
   GeneralTags: "isExtra"
-  GeneralTags: "isWave1"
+  GeneralTags: "isWave2"
   displayName: "3"
   idRef {
     id: "5591cdeb3231379c1c003439"
@@ -8049,15 +8392,16 @@ characters {
     equipment {
       prefab_name: "Berlin_HealthPack"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
-    GeneralTags: "isWave1"
+    GeneralTags: "isWave2"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
     karma: 68
+    persistent_body: true
   }
 }
 characters {
@@ -8069,7 +8413,7 @@ characters {
   }
   orientation: ORIENTATION_N
   GeneralTags: "isExtra"
-  GeneralTags: "isWave1"
+  GeneralTags: "isWave2"
   displayName: "4"
   idRef {
     id: "5591ce083231379c1c00343a"
@@ -8146,15 +8490,16 @@ characters {
     equipment {
       prefab_name: "Berlin_HealthPack"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
-    GeneralTags: "isWave1"
+    GeneralTags: "isWave2"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
     karma: 68
+    persistent_body: true
   }
 }
 characters {
@@ -8243,7 +8588,7 @@ characters {
     equipment {
       prefab_name: "Sh 1 Ganger Shotgun"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
     GeneralTags: "isWave1"
@@ -8252,6 +8597,7 @@ characters {
       filename: ""
     }
     karma: 68
+    persistent_body: true
   }
 }
 characters {
@@ -8263,7 +8609,7 @@ characters {
   }
   orientation: ORIENTATION_N
   GeneralTags: "isExtra"
-  GeneralTags: "isWave1"
+  GeneralTags: "isWave2"
   displayName: "6"
   idRef {
     id: "5591ce3c3231379c1c00343c"
@@ -8340,15 +8686,16 @@ characters {
     equipment {
       prefab_name: "Sh 1 Ganger Shotgun"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
-    GeneralTags: "isWave1"
+    GeneralTags: "isWave2"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
     karma: 68
+    persistent_body: true
   }
 }
 characters {
@@ -8360,7 +8707,7 @@ characters {
   }
   orientation: ORIENTATION_N
   GeneralTags: "isExtra"
-  GeneralTags: "isWave1"
+  GeneralTags: "isWave3"
   displayName: "7"
   idRef {
     id: "5591ce413231379c1c00343d"
@@ -8420,8 +8767,8 @@ characters {
         rifle: 0
         shotgun: 0
         smg: 0
-        edged: 0
-        unarmed: 0
+        edged: 1
+        unarmed: -1
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
@@ -8435,17 +8782,18 @@ characters {
       prefab_name: "Berlin_HealthPack"
     }
     equipment {
-      prefab_name: "Berlin_Sword 2 Axe"
+      prefab_name: "Berlin_Sword 1 Baseball Bat"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Ganger"
     GeneralTags: "isExtra"
-    GeneralTags: "isWave1"
+    GeneralTags: "isWave3"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
     karma: 54
+    persistent_body: true
   }
 }
 characters {
@@ -8457,7 +8805,7 @@ characters {
   }
   orientation: ORIENTATION_N
   GeneralTags: "isExtra"
-  GeneralTags: "isWave1"
+  GeneralTags: "isWave3"
   displayName: "8"
   idRef {
     id: "5591ce963231379c1c00343e"
@@ -8540,15 +8888,16 @@ characters {
     equipment {
       prefab_name: "Berlin_Spell Heal 2"
     }
-    team_id: "Civilians"
+    team_id: "FutureGangers"
     char_name: "Street Mage"
     GeneralTags: "isExtra"
-    GeneralTags: "isWave1"
+    GeneralTags: "isWave3"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
     karma: 50
+    persistent_body: true
   }
 }
 variables {
@@ -8655,11 +9004,20 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "int_RunnerDead"
+    typeName: "int"
+  }
+}
 mapEvents: "eMaxLeaves"
 mapEvents: "eSummonRunners"
 mapEvents: "eWaves"
 mapEvents: "eRandomChat"
-senseTags: "isChatting"
+senseTags: "isWave2"
+senseTags: "isWave3"
 goals {
   name: "Protect Mercurial"
   type: GoalType_Primary
@@ -8719,12 +9077,14 @@ team_affiliations {
   affiliation: 1
   affiliation: 1
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Gangers"
   affiliation: 1
   affiliation: 0
   affiliation: 1
+  affiliation: 0
   affiliation: 0
 }
 team_affiliations {
@@ -8733,9 +9093,19 @@ team_affiliations {
   affiliation: 1
   affiliation: 0
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Civilians"
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+}
+team_affiliations {
+  team_name: "FutureGangers"
+  affiliation: 0
   affiliation: 0
   affiliation: 0
   affiliation: 0
@@ -8756,6 +9126,13 @@ hiring_maximum_karma: 8
 roster_overrides {
   roster_entries {
     reference_id: "MERCURIAL_Crew_Blight_Lv1"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_ElJefe_Lv1"
     hiring_conditions {
     }
     hiring_cost: -1
@@ -8783,7 +9160,28 @@ roster_overrides {
     content_pack_source: "542848a8633464d816001ad5"
   }
   roster_entries {
+    reference_id: "MERCURIAL_Crew_Padre_Lv1"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
     reference_id: "MERCURIAL_Crew_Shiver_Lv1"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_SilverArrow_Lv1"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Sucio_Lv1"
     hiring_conditions {
     }
     hiring_cost: -1
