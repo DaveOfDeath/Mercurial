@@ -150,7 +150,16 @@ triggers {
         string_value: "Goal"
       }
       args {
-        string_value: "GOAL: Clear the roof."
+        string_value: "GOAL: Secure the Building."
+      }
+    }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Goal2"
+      }
+      args {
+        string_value: "GOAL: Evict the Cutters."
       }
     }
     ops {
@@ -337,6 +346,113 @@ triggers {
         int_value: -1
       }
     }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "esplode"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Save Civilians"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Evict Cutters"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -357,6 +473,31 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iCiviliansSaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
   }
   actions {
     ops {
@@ -385,20 +526,155 @@ triggers {
     id: "556929a6663136ac0a003591"
   }
   elseActions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Save Civilians"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
   }
   is_oneshot: false
 }
 triggers {
-  name: " "
+  name: "PC0 Death"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Is Downed"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "You Died!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "556511b9393066a80e000b52"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: ""
   events {
   }
   conditions {
   }
   actions {
   }
-  isActive: false
+  isActive: true
   idRef {
-    id: "556511b9393066a80e000b52"
+    id: "559b193c6131311c19006fb6"
   }
   elseActions {
   }
@@ -2640,6 +2916,94 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "GangersEvicted"
+  events {
+    ops {
+      functionName: "On Actor Start Turn"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Evict Cutters"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559b19976131311c19006fb7"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: " "
   events {
   }
@@ -3290,7 +3654,7 @@ triggers {
         }
       }
       args {
-        string_value: "[PLACEHOLDER]\n\nThe trip down and out of the hotel is quiet... as you\'d expect.   It seems like the neighorhoods faith in you wasn\'t misplaced.\n\nThe curses from the gangers still stuck on the other side of the bridge hint that this many not be over... but for now... Job well done."
+        string_value: "The trip out through the hotel is much less exciting than the trip in- the flurry of explosions and the falling bridge that the Cutters set up was quite a thrill. You hear a few sworn promises and insults-- this may not be the last you ever hear from the Cutters.\n\nYou head back downstairs in the dark, apparently someone set off a bomb and knocked out the power, to the building. Could have been anyone. \n\nYou could grumble about the stairs, but you\'re lucky to be alive. I guess the Neighborhood has a new hero after all.\n\n"
       }
     }
     ops {
@@ -3614,6 +3978,90 @@ triggers {
       }
       args {
         int_value: 1
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "559b14936131311c19006fad"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55651216393066a80e000b53"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "esplode"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "trash"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
       }
     }
     ops {
@@ -4394,7 +4842,7 @@ regions {
   position {
     x: -17
     y: 113
-    width: 2
+    width: 4
     height: 6
   }
   enabledAtStart: false
@@ -5882,6 +6330,24 @@ mapEvents: "eBoom!"
 mapEvents: "eBridgeFall"
 mapEvents: "eCivilianSaved"
 mapEvents: "eChangeLight"
+goals {
+  name: "Save Civilians"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "The manager asked you to save his employees, make sure they were clear of the building. Any civilians should be rescued, and escorted out of the building."
+}
+goals {
+  name: "Evict Cutters"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "Kick the gangers loose, protect the innocent."
+}
+goals {
+  name: "You Died!"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "Here you are, you had everyone thinking you were this big hero- fooling everyone, maybe even yourself. When you get to Heaven, Ronnie and Razor are going to laugh at you. Assuming, of course, that there is such a place as Heaven, and that you\'ll be going there. According to one devoted Catholic priest, that may not be the case."
+}
 worldMapLocation {
   filename: ""
   location {
@@ -5893,7 +6359,7 @@ mapName: "SCENE - Hotel"
 parentStory: ""
 scene_title: "Investigating the Coronot Hotel"
 scene_subtitle: "Map By \'GEEKED\'"
-scene_synopsis: "[PLACEHOLDER]\n\nThe Coronot Hotel\'s manager has asked you to clear the Cutter gang from the roof of the hotel, and destroy their bridge.   Apparently this task would\'ve normally fallen to Reggie and Ronald, the previous tenants from the doghouse, but now it appears that it\'s your job to plug the power vacuum. \n\nSo, clear the cutters, remove a bridge, and secure the neighborhood."
+scene_synopsis: "The Coronot Hotel\'s manager pounded on your door in a panic, said the Cutters had gotten onto the roof of his building somehow.  His tenants have been evacuated, he asked you to get his employees to safety and push the Cutters back out of the building.\n\nGabriel is the head of security for the building, and he was apparently trying to stall the gang while the others got out. This is the sort of task that Ronnie and Razor did for the locals, part-time enforcers and protectors of the people. It falls to you now, to fill this job and plug the power vacuum before someone worse comes along. \n\nSave the employees, make sure the tenants are out, get rid of the Cutters. Not like you were in the middle of anything else."
 scene_image: "marialoading"
 scene_continue_button_skip: false
 scene_restore_runner_health: true
