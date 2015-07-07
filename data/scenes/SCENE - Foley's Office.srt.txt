@@ -326,7 +326,7 @@ triggers {
             string_value: "FacingDirection"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -394,6 +394,25 @@ triggers {
           args {
             string_value: "54fc8d976131317c02001bf9"
           }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isUndamaged"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
         }
       }
     }
@@ -578,6 +597,25 @@ triggers {
       }
     }
     ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54fc8d976131317c02001bda"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_flirty"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
@@ -595,6 +633,17 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "5532e399663136200f000b9e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "559c236d6131311c19006fe8"
           }
         }
       }
@@ -694,7 +743,7 @@ triggers {
         }
       }
       args {
-        string_value: "Empty.   Someone clearly wanted what was in here.\n\nWhatever secrets were in here are long gone."
+        string_value: "Empty.   Someone clearly wanted the secrets hidden in here."
       }
       args {
         float_value: 0
@@ -825,7 +874,7 @@ triggers {
         }
       }
       args {
-        string_value: "The screen is flickering, and covered with random looking error messages.   \n\nLooks like some decker has had their way with this system already."
+        string_value: "The screen is flickering and covered with random  error messages.   \n\nLooks like some decker has had their way with this system already."
       }
       args {
         float_value: 0
@@ -920,7 +969,7 @@ triggers {
         }
       }
       args {
-        string_value: "Took... *Cough* everything... Guys in suits *cough, cough*... Said... Said... "
+        string_value: "Took... *Cough* everything... Guys in armor *cough, cough*...Said... "
       }
       args {
         float_value: 0
@@ -1399,6 +1448,151 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "Desk.Search [Visit]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54fc8d976131317c02001bf9"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Betrayal"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54fc8d976131317c02001bf9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "After a few minutes of poking around in the laughable security of the computer system, you discover a file named \"passwords.\"\n\nIn the file you find an entry \"SafeCode: 07252013\""
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54fc8d976131317c02001bf9"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sCode"
+          }
+        }
+      }
+      args {
+        string_value: "[ PassCode - 07/25/2013 ]"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5532e5f3663136200f000bb2"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "Safe.Opened [Cracked]"
   events {
     ops {
@@ -1575,151 +1769,6 @@ triggers {
   isActive: true
   idRef {
     id: "5532e510663136200f000bae"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "Desk.Search [Visit]"
-  events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54fc8d976131317c02001bf9"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_Betrayal"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Display Text over Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "54fc8d976131317c02001bf9"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        string_value: "After a few minutes of poking around in the laughable security of the computer system, you discover a file named \"passwords.\"\n\nIn the file you find an entry \"SafeCode: 07252013\""
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 7
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "54fc8d976131317c02001bf9"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Variable (string)"
-          args {
-            string_value: "sCode"
-          }
-        }
-      }
-      args {
-        string_value: "[ PassCode - 07/25/2013 ]"
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "5532e5f3663136200f000bb2"
   }
   elseActions {
   }
@@ -2105,16 +2154,261 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: " "
+  name: ""
   events {
   }
   conditions {
   }
   actions {
   }
-  isActive: false
+  isActive: true
   idRef {
-    id: "55334c9f663136480b002354"
+    id: "559c0d396131311c19006fc4"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Investigate"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0b236131311c19006fbc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0b716131311c19006fbe"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0e196131311c19006fc8"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0e976131311c19006fca"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0f436131311c19006fcc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0bbf6131311c19006fc0"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iInvestigate"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559c0d446131311c19006fc6"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "IknowWhenToSteal"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0ff86131311c19006fd0"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "559c0ff86131311c19006fd0"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0b716131311c19006fbe"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559c0f976131311c19006fce"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "andwhennotto!"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c0b716131311c19006fbe"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54fc8d976131317c02001bda"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Hey, don\'t touch that!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559c26ce6131311c19006fe9"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "559c0d426131311c19006fc5"
   }
   elseActions {
   }
@@ -2233,7 +2527,7 @@ triggers {
         }
       }
       args {
-        string_value: "[ PLACE HOLDER ]\n\nThe return trip is quiet and uneventful..."
+        string_value: "You spend the ride back to the Doghouse deep in thought. Max, it seems, is playing a long game-- capitalizing on Maria\'s contract being up in the air using Maria\'s star status to further his own interests.\n\nA question lingers in your mind; did he already have the poster and the gold record, Or did he go out and get those after Maria talked to him?\n\nIf he just went out and paid for them, he\'s an opportunist at best. If he already had them, it shows almost psychic foresight and planning- or something is up, and he\'s in on it. "
       }
     }
   }
@@ -2298,11 +2592,177 @@ triggers {
         }
       }
       args {
-        string_value: "[ PLACE HOLDER ]\n\nThe return trip is quiet and uneventful..."
+        string_value: "The ride back to the penthouse is quiet, and no one feels like talking. The raid on Max\'s office had been carried out in a brutal but efficient fashion. You pass several squad cars headed toward the building- someone must have finally found it and called it in to Lonestar.\n\nYou can\'t stop picturing the secretary, dead; she had been killed first, while still sitting at her desk. You don\'t know how the janitor fit into it- maybe they needed him for access, maybe he just came to look into the noise. As soon as the team was inside, they took everything from the desk, server, and safe, and left.\n\nBrutal but effective, and it means that whoever was behind this plot involving Maria, Max, and Hotada is still out there."
       }
     }
   }
   is_oneshot: false
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "559c18d26131311c19006fe1"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Server.Pre-Betrayal"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c217a6131311c19006fe3"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text In Popup"
+      args {
+        string_value: "This server holds the digital information that Max has put out about the record label- tour schedules, release parties, government compliance figures.\n\nHidden somewhere on this machine is all the information he wants kept private- those files are encrypted and hidden away, useless without the encryption key or a decker good enough to crack it. "
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: " Lowball Records Node Server"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559c21846131311c19006fe4"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Server.Post-Betrayal"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "559c236d6131311c19006fe8"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_FoleyHacked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text In Popup"
+      args {
+        string_value: "This server held the digital information that Max had published about the record label- tour schedules, release parties, government compliance figures.\n\nWhoever hit this office didn\'t have a decker, but they did manage to extract the chip core and pull the physical memory. They probably took it back to have a decker work on cracking its secrets. What they probably don\'t know is that most physical copies have a copy stored on the matrix, just in case someone spills beer into the server or a physical problem wipes it out. Max\'s data is still out there, should someone go looking for it."
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: " Lowball Records Node Server"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "559c23526131311c19006fe6"
+  }
+  elseActions {
+    ops {
+      functionName: "Display Text In Popup"
+      args {
+        string_value: "This server held the digital information that Max had published about the record label- tour schedules, release parties, government compliance figures.\n\nWhoever hit this office wasn\'t quick enough, because you already wiped out the information stored here- all of Max\'s public records, and every dirty secret he had stored on his server. \n\nWith Max dead, that information won\'t work as blackmail against him, but it is still probably worth nuyen to someone."
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: " Lowball Records Node Server"
+      }
+    }
+  }
+  is_oneshot: true
 }
 regions {
   name: "cFoleysOffice"
@@ -2716,11 +3176,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -24
+    x: -18
     y: 0
-    z: -5
+    z: -2
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_N
   displayName: "Corpse"
   idRef {
     id: "5532cf74663136200f000b07"
@@ -2819,6 +3279,14 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iInvestigate"
+    typeName: "int"
+  }
+}
 mapEvents: "eRemoveJanitor"
 mapEvents: "eSydneyLeaves"
 worldMapLocation {
@@ -2882,6 +3350,8 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
+}
+character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
