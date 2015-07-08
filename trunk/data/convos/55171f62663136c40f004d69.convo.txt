@@ -7,7 +7,7 @@ nodes {
     id: "55171f79663136c40f004d6f"
   }
   index: 0
-  text: "Unauthorized Presence detected: You must vacate the area immediately."
+  text: "{{GM}}The stiff IC that patrols here doesn\'t speak, but triggers a recorded voice above you. {{/GM}}\n\nUNAUTHORIZED PRESENCE DETECED. YOU WILL VACATE THIS AREA. YOU HAVE ONE SECOND TO COMPLY."
   branches {
     responseText: "{{CC}}Attack{{/CC}} Vacate this!"
     actions {
@@ -78,6 +78,28 @@ nodes {
             functionName: "Get Map Item (SceneDimension)"
             args {
               string_value: "Matrix"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Trigger"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Trigger)"
+            args {
+              string_value: "55172066663136c40f004d7d"
             }
           }
         }
