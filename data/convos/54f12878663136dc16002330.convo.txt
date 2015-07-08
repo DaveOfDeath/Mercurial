@@ -7,65 +7,25 @@ nodes {
     id: "54f1288a663136dc16002336"
   }
   index: 0
-  text: "Hey friend... what can I do for you?"
+  text: "The man pauses in reading his digital feed to look over at you. \"Hey Coder, what can I do for you?\""
   branches {
     responseText: "What is it that you do here?"
-    conditions {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bool_DeckerStore"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
     actions {
       ops {
-        functionName: "Set Variable (bool)"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Variable (bool)"
+            functionName: "Get Story Variable (string)"
             args {
-              string_value: "bool_DeckerStore"
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
+          string_value: "The squat computer expert pauses reading his digital newspaper, and answers you \"\"I\'m just the resident code salesman. I front a group of deckers known as the Hacker House. They crack the programs and add features, I sell the resulting programs to men and women of the matrix for a small fee.\""
         }
       }
     }
@@ -73,7 +33,7 @@ nodes {
     hideIfUnavailable: true
   }
   branches {
-    responseText: "You have any programs or ESP\'s for sale?"
+    responseText: "You have any programs or anything for sale?"
     conditions {
       ops {
         functionName: "Comparison (bool)"
@@ -106,6 +66,25 @@ nodes {
               int_value: 1
             }
           }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The persona smiles, nods, and brings out a list of wares. \"A customer and the best sort of introduction. I have a plethora of digital suites available for you to choose from.\""
         }
       }
     }
@@ -121,13 +100,37 @@ nodes {
   sourceInSceneRef {
     id: "54f0a2546131313017001962"
   }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_TalkedtoGolbauer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
     id: "54f128de663136dc1600233b"
   }
   index: 1
-  text: "Friend, I stock a wide selection of data programs that a entrepreneur of digital systems like yourself might just find handy.    Interested? "
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}View Wares{{/CC}}  Yeah, lets see what you\'ve got..."
     actions {
@@ -153,17 +156,17 @@ nodes {
   sourceInSceneRef {
     id: "54f0a2546131313017001962"
   }
+  comment: "Golbauer Loop"
 }
 nodes {
   idRef {
     id: "54f12982663136dc1600233f"
   }
   index: 2
-  text: "Rookie move, friend.   You can always use more programs... but who am I to argue with you... clearly you MUST be some sort of expert in digital warfare..."
+  text: "\"That sounds like a n00b move to me. A decker is only as good as his code, and you can always use more code. Who am I to argue with you? Clearly you\'re some sort of expert in digital warfare.\"\n\n\"If you change your mind, I\'ll be right here.\""
   branches {
     responseText: ""
-    nextNodeIndex: 0
-    auxiliaryLink: true
+    nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -171,5 +174,40 @@ nodes {
   }
 }
 roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_TalkedtoGolbauer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
   nextNodeIndex: 0
 }
