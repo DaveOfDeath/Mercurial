@@ -2,7 +2,7 @@ triggers {
   name: "OnMapLoad.GenderDeragatoryTerm"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "On Curtains Up"
     }
   }
   conditions {
@@ -55,6 +55,47 @@ triggers {
         string_value: "girl"
       }
     }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "scorched"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -73,6 +114,47 @@ triggers {
       }
       args {
         string_value: "boy"
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "scorched"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
       }
     }
   }
@@ -1404,6 +1486,39 @@ triggers {
   conditions {
   }
   actions {
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
     ops {
       functionName: "Display Text over Actor"
       args {
@@ -2830,6 +2945,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bInvestigatedVan"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Display Text over Prop"
       args {
         call_value {
@@ -2870,28 +3007,6 @@ triggers {
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bInvestigatedVan"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
       }
     }
   }
@@ -4739,10 +4854,7 @@ triggers {
               functionName: "Current Location of Actor"
               args {
                 call_value {
-                  functionName: "Get Map Item (Player)"
-                  args {
-                    int_value: 0
-                  }
+                  functionName: "Active Actor"
                 }
               }
             }
@@ -5390,6 +5502,66 @@ triggers {
           }
           args {
             float_value: 104
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "trash"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "scorched"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -10399,7 +10571,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -11017,7 +11189,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -11089,7 +11261,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -11161,7 +11333,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -11233,7 +11405,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -11305,7 +11477,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -11377,7 +11549,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Watchers"
     char_name: "BreathWeapon"
     GeneralTags: "isCamera"
     pc_spawn_number: -1
@@ -12227,6 +12399,7 @@ team_affiliations {
   affiliation: 1
   affiliation: 1
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Gangers"
@@ -12234,11 +12407,13 @@ team_affiliations {
   affiliation: 0
   affiliation: 1
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "LoneStar"
   affiliation: 1
   affiliation: 1
+  affiliation: 0
   affiliation: 0
   affiliation: 0
 }
@@ -12248,11 +12423,18 @@ team_affiliations {
   affiliation: 0
   affiliation: 0
   affiliation: 0
+  affiliation: 0
+}
+team_affiliations {
+  team_name: "Watchers"
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
 }
 scene_dimensions {
   dimension_name: "Default"
-}
-character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
