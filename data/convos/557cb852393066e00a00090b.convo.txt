@@ -87,6 +87,55 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Academic{{/CC}} Is that a Welsh accent I detect?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 19
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -159,6 +208,52 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Cha 3{{/CC}}  That\'s an interesting accent."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -491,6 +586,35 @@ nodes {
   index: 7
   text: "$(story.str_NPCIntroText)"
   branches {
+    responseText: "No deal, Morgan."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Kyle shouts over the rain, \"I\'m sorry to hear you say that, but I\'m not really surprised. We\'re all just playing our roles in this thing, aren\'t we?\"\n\n\"You\'re the noble protector, I\'m the evil corporate goon, Maria here is the beautiful virginal princess being rescued from the castle.\"\n\n\"It\'s not as simple as all of that. If you\'re willing to deal, I\'ll bring you back to my Employers and we\'ll get you a deal- the deal of a lifetime.\"\n\n"
+        }
+      }
+    }
+    nextNodeIndex: 7
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "557cf0993930665401004ec2"
+    }
+    auxiliaryLink: true
+  }
+  branches {
     responseText: "Name a price."
     conditions {
       ops {
@@ -637,35 +761,6 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "No deal, Morgan."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Kyle shouts over the rain, \"I\'m sorry to hear you say that, but I\'m not really surprised. We\'re all just playing our roles in this thing, aren\'t we?\"\n\n\"You\'re the noble protector, I\'m the evil corporate goon, Maria here is the beautiful virginal princess being rescued from the castle.\"\n\n\"It\'s not as simple as all of that. If you\'re willing to deal, I\'ll bring you back to my Employers and we\'ll get you a deal- the deal of a lifetime.\"\n\n"
-        }
-      }
-    }
-    nextNodeIndex: 7
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "557cf0993930665401004ec2"
-    }
-    auxiliaryLink: true
-  }
-  branches {
     responseText: "I\'m stalling, Kyle, you realize that, right?"
     actions {
       ops {
@@ -747,13 +842,50 @@ nodes {
   index: 9
   text: "{{CC}}From above, you feel the roar of a dragon, feel the air rumble with its approach, and you hear a voice shout in your head.{{/CC}}\n\n{{CC}}Kyle, Get down! BLAST YOU, Get out of the way!{{/CC}}\n\nKyle shouts over the rain and wind noise, \"I believe that I\'ve already introduced you to Perianwyr?\" Morgan moves a half-step between you and Maria.\n\nThe roof shudders as the dragon lands on it."
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a210356631365809003fe6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: 3
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonArrive"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+  }
 }
 nodes {
   idRef {
     id: "557cf6673930665401004f6e"
   }
   index: 10
-  text: "Kyle Morgan looks at you, unbelieving.\n\n\"You were this fresh kid, this $(l.boy) that no one knew and that no one would trust to do anything.\"\n\n\"Max got lucky when he hired you- but he and Hotada got what they deserved, and now... I think so am I.\"\n\n\"Siwrne dda!\" Kyle shouts, and moves to attack you--"
+  text: "Kyle Morgan looks at you, unbelieving.\n\n\"You were this fresh kid, this $(l.man) that no one knew and that no one would trust to do anything.\"\n\n\"Max got lucky when he hired you- but he and Hotada got what they deserved, and now... I think so am I.\"\n\n\"Siwrne dda!\" Kyle shouts, and moves to attack you--"
   nodeType: ConversationNodeType_Simple
 }
 roots {
