@@ -3259,6 +3259,36 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "Doghouse.RunnerStash"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55059a3d6131313023006ee6"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Open Equip Screen"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a23e6066313658090042d9"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: " "
   events {
   }
@@ -4545,6 +4575,31 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_MariaUsesBTLChip"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Play FX on Actor"
       args {
         string_value: "JessicaDummyBuffHitReaction"
@@ -4617,20 +4672,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event After Delay"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eStartCombat"
-          }
-        }
-      }
-      args {
-        float_value: 3
-      }
-    }
-    ops {
       functionName: "Display Text over Actor"
       args {
         call_value {
@@ -4671,6 +4712,20 @@ triggers {
       }
       args {
         float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eStartCombat"
+          }
+        }
       }
       args {
         float_value: 3
@@ -6285,6 +6340,85 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "isKilled.Player"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive the Betrayal"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a223ff6631365809004101"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "Kill_NPC.MaxFoley"
   events {
     ops {
@@ -7879,693 +8013,6 @@ triggers {
   elseActions {
   }
   is_oneshot: false
-}
-triggers {
-  name: "DEBUGGER"
-  events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55059a3d6131313023007064"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "b_Debugger"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "scorched"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "trash"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Ambient Light Color"
-      args {
-        float_value: 216
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (CameraRegion)"
-          args {
-            string_value: "55059b8161313130230071e7"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "b_Debugger"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "559a2c8f6131312016004571"
-  }
-  elseActions {
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "scorched"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "trash"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "b_Debugger"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "DEBUGGER"
-  events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55059a3d6131313023006fb2"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "b_Debugger"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "scorched"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "trash"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Ambient Light Color"
-      args {
-        float_value: 216
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (CameraRegion)"
-          args {
-            string_value: "55059b8161313130230071e7"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "b_Debugger"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "559a2f7b6131312016004577"
-  }
-  elseActions {
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "scorched"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "trash"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "b_Debugger"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "DEBUGGER"
-  events {
-    ops {
-      functionName: "On Map Start"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "DEBUGGERMODE"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55059a3d6131313023006fb2"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55059a3d6131313023007064"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "559a3061613131201600457a"
-  }
-  elseActions {
-  }
-  is_oneshot: true
 }
 regions {
   name: "rDogHouseStreetEnter"
@@ -12362,6 +11809,12 @@ mapEvents: "eBlightTurn"
 mapEvents: "eHotadaExit"
 mapEvents: "eMaxExit"
 mapEvents: "eCheckForDragonFlyOver"
+goals {
+  name: "Survive the Betrayal"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "What\'s the matter?  Yak\'s got your tongue?"
+}
 worldMapLocation {
   filename: ""
   location {

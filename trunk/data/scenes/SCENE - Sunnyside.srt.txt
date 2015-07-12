@@ -17483,6 +17483,101 @@ triggers {
   }
   is_oneshot: true
 }
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "55a225436631365809004129"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Player.Death"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a225406631365809004128"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "cSunnySide"
   position {
@@ -24734,6 +24829,12 @@ goals {
   type: GoalType_Secondary
   status: GoalStatus_Hidden
   description: "Took out the trash."
+}
+goals {
+  name: "Survive"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "Your corpse hits the floor, ending the chances that you\'ll ever know what happened..."
 }
 worldMapLocation {
   filename: ""

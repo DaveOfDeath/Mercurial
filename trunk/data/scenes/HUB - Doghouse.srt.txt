@@ -770,12 +770,14 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Specified Point (2D)"
+          functionName: "Current Location of Prop"
           args {
-            float_value: 105
-          }
-          args {
-            float_value: -14
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "542b8fc53733615806005dec"
+              }
+            }
           }
         }
       }
@@ -917,6 +919,23 @@ triggers {
             }
           }
         }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        int_value: 0
       }
     }
   }
@@ -1304,6 +1323,23 @@ triggers {
             int_value: 1
           }
         }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        int_value: 0
       }
     }
   }
@@ -25817,7 +25853,7 @@ triggers {
       }
     }
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "Hotel.Return"
@@ -29703,9 +29739,9 @@ characters {
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
-      filename: ""
+      filename: "pc_orkmale_00b"
     }
-    karma: 9
+    karma: 8
     persistent_body: true
   }
 }
@@ -35515,6 +35551,14 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "bTalkedToSnout"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bMed-MIDDoor"
     typeName: "bool"
   }
 }

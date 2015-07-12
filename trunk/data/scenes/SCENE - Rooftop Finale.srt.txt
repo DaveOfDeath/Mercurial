@@ -15,6 +15,226 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "General.SpawnLocation"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "ROOF-SPAWN3"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a20dbe6631365809003f3b"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a20d076631365809003f39"
+  }
+  elseActions {
+    ops {
+      functionName: "Teleport Actor near Point"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a20e0f6631365809003f3c"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
   name: "General.MapLoad"
   events {
     ops {
@@ -38,7 +258,7 @@ triggers {
         }
       }
       args {
-        int_value: 99
+        int_value: 999
       }
     }
     ops {
@@ -239,17 +459,42 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event After Delay"
+      functionName: "Set Waypoint on Actor"
       args {
         call_value {
-          functionName: "Get Map Item (Event)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "eDragonArrive"
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
           }
         }
       }
       args {
-        float_value: 3
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_KyleMorgan"
+          }
+        }
+      }
+      args {
+        int_value: 1
       }
     }
   }
@@ -260,6 +505,235 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "General.TripWire"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a20a1b6631365809003f34"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "557cfed1663136e40e004cae"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "557cb852393066e00a00090b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a210356631365809003fe6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a20e546631365809003f3d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "General.PlayerDeath"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a224c26631365809004127"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: " "
@@ -307,6 +781,76 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Prop)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "557cfed1663136e40e004cae"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a2121f6631365809004091"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Move Prop with Speed"
       args {
         call_value {
@@ -341,6 +885,59 @@ triggers {
           functionName: "Get Map Item (Event)"
           args {
             string_value: "eDragonUpdate"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a210356631365809003fe6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a210ac6631365809003fe8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 7
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -514,6 +1111,90 @@ triggers {
           functionName: "Get Map Item (Trigger)"
           args {
             string_value: "557cf906663136a41200003b"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a210356631365809003fe6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -1319,7 +2000,7 @@ triggers {
         }
       }
       args {
-        float_value: 0.75
+        float_value: 0.85
       }
     }
     ops {
@@ -2470,7 +3151,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "EndGame.Eval"
+  name: "EndGame.Eval [Happy Ending]"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -2480,6 +3161,114 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_MercurialDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_MariaUsesBTLChip"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -2492,6 +3281,253 @@ triggers {
   isActive: true
   idRef {
     id: "557d02d6663136e40e004cb2"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55a21df466313658090040d0"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "EndGame.Eval [Maria BurnOut]"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_MercurialDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (bool)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (bool)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "bool_HernandezDead"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "bool"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (bool)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (bool)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "bool_MariaUsesBTLChip"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "bool"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "End Story With Epilogue"
+      args {
+        string_value: "Epilogue_Unhappy"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a21df466313658090040d0"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55a21df666313658090040d1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "EndGame.Eval [Unhappy Ending]"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "End Story With Epilogue"
+      args {
+        string_value: "Epilogue_Bad"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a21df666313658090040d1"
   }
   elseActions {
   }
@@ -2589,12 +3625,150 @@ regions {
   loop_default_music: false
   no_fow_in_region: false
 }
+regions {
+  name: "rFinaleTripLine"
+  position {
+    x: 25
+    y: -25
+    width: 1
+    height: 46
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55a20a1b6631365809003f34"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rBattleStart"
+  position {
+    x: 32
+    y: -13
+    width: 7
+    height: 9
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55a20bc86631365809003f36"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "cHoldingPen"
+  position {
+    x: 30
+    y: 54
+    width: 6
+    height: 6
+  }
+  enabledAtStart: true
+  is_camera_region: true
+  idRef {
+    id: "55a20bd96631365809003f37"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 35
+    x: 33
     y: 0
-    z: -11
+    z: 56
   }
   orientation: ORIENTATION_W
   idRef {
@@ -2763,18 +3937,18 @@ characters {
     karma: 79
     hiring_cost_override: 1000
     is_prop_character: false
-    hide_floaties: true
+    hide_floaties: false
     has_fist: false
   }
 }
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 34
+    x: 32
     y: 0
-    z: -7
+    z: 56
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_W
   idRef {
     id: "557cdf79663136d00c0059ed"
   }
@@ -2792,11 +3966,11 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 31
+    x: 32
     y: 0
-    z: -13
+    z: 57
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_W
   idRef {
     id: "557cdf7b663136d00c0059ee"
   }
@@ -2814,11 +3988,11 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 39
+    x: 33
     y: 0
-    z: -13
+    z: 57
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_W
   idRef {
     id: "557cdf7d663136d00c0059ef"
   }
@@ -2836,9 +4010,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 41
+    x: 34
     y: 0
-    z: -15
+    z: -6
   }
   orientation: ORIENTATION_N
   GeneralTags: "isMorgan"
@@ -3001,6 +4175,92 @@ characters {
     has_fist: true
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 32
+    y: 0
+    z: -6
+  }
+  orientation: ORIENTATION_S
+  displayName: "Watcher"
+  idRef {
+    id: "55a210356631365809003fe6"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/InvisibleActor"
+    character_sheet_id: "BaseCivilian"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Camera"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 6
+  }
+}
 variables {
   int_value: 1
   variableref_value {
@@ -3026,6 +4286,12 @@ mapEvents: "eDragonUpdate"
 mapEvents: "eClawedReaction"
 mapEvents: "eEndGame"
 senseTags: "isTarget"
+goals {
+  name: "Survive"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "You failed to survive..."
+}
 worldMapLocation {
   filename: ""
   location {
@@ -3037,7 +4303,7 @@ mapName: "SCENE - Rooftop Finale"
 parentStory: ""
 scene_title: "Taetzel Building Rooftop"
 scene_subtitle: "The End!"
-scene_synopsis: ""
+scene_synopsis: "[PLACEHOLDER]\n\nSome meaningful stuff about the end of the game being in sight."
 scene_image: "marialoading"
 scene_continue_button_skip: false
 scene_restore_runner_health: true
@@ -3090,7 +4356,7 @@ scene_dimensions {
 }
 character_roster {
 }
-show_hiring_screen_on_scene_load: true
+show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
   prereq_conditions {
@@ -3112,56 +4378,56 @@ roster_overrides {
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_Gunner"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_Luna"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_Nebel"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_Padre"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_Shiver"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_SilverArrow"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
   roster_entries {
     reference_id: "NPC_Sucio"
     hiring_conditions {
     }
     hiring_cost: -1
-    content_pack_source: "542848a8633464d816001ad5"
+    content_pack_source: ""
   }
 }
 use_hiring_cost_warning: false

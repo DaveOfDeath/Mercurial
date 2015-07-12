@@ -1,3 +1,82 @@
+triggers {
+  name: "Player.Death"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a22597663136580900412a"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "cSewers"
   position {
@@ -131,6 +210,12 @@ characters {
     enabled_at_start: true
     pc_spawn_number: 0
   }
+}
+goals {
+  name: "Survive"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "Seriously?  You\'re gonna let them kill you down here?"
 }
 worldMapLocation {
   filename: ""

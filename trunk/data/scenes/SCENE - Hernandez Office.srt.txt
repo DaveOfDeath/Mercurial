@@ -4297,6 +4297,226 @@ triggers {
   }
   is_oneshot: true
 }
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55a2231f66313658090040fe"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "---=== Survival Triggers ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55a2231f66313658090040ff"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Fight.KillHernandez"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Compare Actor Team"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54f23a876631369414002247"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a2231b66313658090040fd"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Fight.PlayerDeath"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a223b76631365809004100"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "cHernandez"
   position {
@@ -4777,10 +4997,10 @@ characters {
         drone_control: 0
         biotech: 0
         dodge: 1
-        etiquette_corporate: 0
+        etiquette_corporate: 1
         etiquette_security: 0
         etiquette_gang: 0
-        etiquette_socialite: 0
+        etiquette_socialite: 1
         chi_casting: 0
         etiquette_shadowrunner: 0
         etiquette_street: 0
@@ -4790,7 +5010,7 @@ characters {
         pistol: 3
         rifle: 0
         shotgun: 0
-        smg: 0
+        smg: -1
         edged: 0
         unarmed: 0
         spirit_control: 0
@@ -5298,6 +5518,12 @@ variables {
 mapEvents: "eGoUpstairs"
 mapEvents: "eGoDownstairs"
 mapEvents: "eFlashLight"
+goals {
+  name: "Survive"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "You failed to survive."
+}
 worldMapLocation {
   filename: ""
   location {
@@ -5359,6 +5585,8 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
+}
+character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {

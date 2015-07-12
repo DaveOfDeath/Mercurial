@@ -46589,6 +46589,7 @@ props {
     z: -24
   }
   orientation: ORIENTATION_E
+  GeneralTags: "isRoofTop"
   displayName: "obj_28th_UP2"
   idRef {
     id: "54464a03373361c016005889"
@@ -46603,7 +46604,7 @@ props {
           call_value {
             functionName: "Get Variable (bool)"
             args {
-              string_value: "bStairsAvailable"
+              string_value: "bJorgeDead"
             }
           }
         }
@@ -46631,8 +46632,11 @@ props {
         }
       }
     }
-    interactionIcon: InteractionIcon_Warp
-    interaction_info_text: "Go upstairs?"
+    transitionPoint {
+      scene_name: "SCENE - Rooftop Finale"
+      confirmation_text: "Head up onto the roof, and confront the mastermind?"
+    }
+    interaction_info_text: "Go up to the roof?"
   }
   lod: 0
 }
@@ -47144,6 +47148,7 @@ props {
     z: -37
   }
   orientation: ORIENTATION_E
+  GeneralTags: "isRoofTop"
   displayName: "obj_28th_UP1"
   idRef {
     id: "54464a03373361c0160058b4"
@@ -47158,7 +47163,7 @@ props {
           call_value {
             functionName: "Get Variable (bool)"
             args {
-              string_value: "bStairsAvailable"
+              string_value: "bJorgeDead"
             }
           }
         }
@@ -47186,8 +47191,11 @@ props {
         }
       }
     }
-    interactionIcon: InteractionIcon_Warp
-    interaction_info_text: "Go upstairs?"
+    transitionPoint {
+      scene_name: "SCENE - Rooftop Finale"
+      confirmation_text: "Head up onto the roof, and confront the mastermind?"
+    }
+    interaction_info_text: "Go up to the roof?"
   }
   lod: 0
 }
@@ -47371,6 +47379,7 @@ props {
     z: -42
   }
   orientation: ORIENTATION_S
+  GeneralTags: "isRoofTop"
   displayName: "obj_28th_UP3"
   idRef {
     id: "54464a03373361c0160058c8"
@@ -47385,7 +47394,7 @@ props {
           call_value {
             functionName: "Get Variable (bool)"
             args {
-              string_value: "bStairsAvailable"
+              string_value: "bJorgeDead"
             }
           }
         }
@@ -47413,8 +47422,11 @@ props {
         }
       }
     }
-    interactionIcon: InteractionIcon_Warp
-    interaction_info_text: "Go upstairs?"
+    transitionPoint {
+      scene_name: "SCENE - Rooftop Finale"
+      confirmation_text: "Head up onto the roof, and confront the mastermind?"
+    }
+    interaction_info_text: "Go up to the roof?"
   }
   lod: 0
 }
@@ -129469,7 +129481,6 @@ props {
     z: -34
   }
   orientation: ORIENTATION_E
-  GeneralTags: "isBasliskOpen"
   displayName: "obj_BossOffice"
   idRef {
     id: "5584bf29663136ec130057d4"
@@ -134967,7 +134978,10 @@ props {
             functionName: "Specific Actor"
             args {
               call_value {
-                functionName: "Triggering Actor"
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "55a094c4663136fc0a000d5d"
+                }
               }
             }
             args {
@@ -135099,18 +135113,39 @@ props {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
+    doorPoint {
+      doorState: false
+      aiOnlyDoor: false
+      doorSound: "DoorSlide"
+      doorSoundBundle: "props"
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "asylum_wall_bar01"
+  gridPoint {
+    x: -282.6
+    y: 0
+    z: -36.7
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_Roof1"
+  idRef {
+    id: "55a2079a6631365809003f2f"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
     prerequisites {
       ops {
-        functionName: "Evaluate Actor Consciousness"
+        functionName: "Comparison (bool)"
         args {
           call_value {
-            functionName: "Specific Actor"
+            functionName: "Get Variable (bool)"
             args {
-              call_value {
-                functionName: "Triggering Actor"
-              }
-            }
-            args {
+              string_value: "bJorgeDead"
             }
           }
         }
@@ -135118,10 +135153,21 @@ props {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "Consciousness"
+              string_value: "IsOrIsNot"
             }
             args {
-              int_value: 0
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
             }
           }
         }
@@ -135130,7 +135176,127 @@ props {
     doorPoint {
       doorState: false
       aiOnlyDoor: false
-      doorSound: "DoorSlide"
+      doorSound: "DoorSwing"
+      doorSoundBundle: "props"
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "asylum_wall_bar01"
+  gridPoint {
+    x: -282.8
+    y: 0
+    z: -23.5
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_Roof2"
+  idRef {
+    id: "55a207006631365809003f2b"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bJorgeDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    doorPoint {
+      doorState: false
+      aiOnlyDoor: false
+      doorSound: "DoorSwing"
+      doorSoundBundle: "props"
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "asylum_wall_bar01"
+  gridPoint {
+    x: -300.6
+    y: 0
+    z: -40.7
+  }
+  orientation: ORIENTATION_E
+  displayName: "obj_Roof3"
+  idRef {
+    id: "55a207316631365809003f2c"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bJorgeDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    doorPoint {
+      doorState: false
+      aiOnlyDoor: false
+      doorSound: "DoorSwing"
       doorSoundBundle: "props"
     }
     interaction_info_text: ""
