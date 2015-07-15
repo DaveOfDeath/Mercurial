@@ -535,6 +535,25 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isInIntro"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
       functionName: "Teleport Actor"
       args {
         call_value {
@@ -619,21 +638,24 @@ triggers {
       }
     }
     ops {
-      functionName: "Delete Props by Tag"
+      functionName: "Move Prop"
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Get Map Item (Prop)"
           args {
-            string_value: "isInIntro"
+            string_value: "54cc82866131314c190068d8"
           }
         }
       }
       args {
-        float_value: -1
-      }
-      args {
         call_value {
-          functionName: "Everywhere"
+          functionName: "Specified Point (2D)"
+          args {
+            float_value: 105
+          }
+          args {
+            float_value: -14
+          }
         }
       }
     }
@@ -759,30 +781,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "54cc82866131314c190068d8"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Current Location of Prop"
-          args {
-            call_value {
-              functionName: "Get Map Item (Prop)"
-              args {
-                string_value: "542b8fc53733615806005dec"
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Kill Actor"
       args {
         call_value {
@@ -886,6 +884,23 @@ triggers {
             string_value: "542848a8633464d816001ad5"
           }
           args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
             string_value: "int_Story_Arrow"
           }
         }
@@ -919,23 +934,6 @@ triggers {
             }
           }
         }
-      }
-    }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
-          }
-        }
-      }
-      args {
-        int_value: 0
       }
     }
   }
@@ -1525,6 +1523,45 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HotelSubQuest"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eve_HotelSubQuest_Assign"
+          }
+        }
+      }
+      args {
+        float_value: 5
+      }
+    }
+    ops {
       functionName: "Activate Actor Spawner By Tag"
       args {
         call_value {
@@ -1585,70 +1622,9 @@ triggers {
         call_value {
           functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "55230ccc6131317c0a007ff7"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
             string_value: "55230ccc6131317c0a007ff8"
           }
         }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_HotelSubQuest"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event After Delay"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eve_HotelSubQuest_Assign"
-          }
-        }
-      }
-      args {
-        float_value: 5
       }
     }
     ops {
@@ -3062,6 +3038,53 @@ triggers {
         int_value: 0
       }
     }
+    ops {
+      functionName: "Compare Actor Specialization"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "BaseOrCurrent"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "ActorSpecializations"
+          }
+          args {
+            int_value: 8
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
   }
   actions {
     ops {
@@ -3102,7 +3125,7 @@ triggers {
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "54cc79de6131314c190068a2"
   }
@@ -23532,7 +23555,7 @@ triggers {
       }
     }
   }
-  isActive: true
+  isActive: false
   idRef {
     id: "552dbfd7663136a805006cfb"
   }
@@ -25491,28 +25514,6 @@ triggers {
   actions {
     ops {
       functionName: "Clear All Waypoints"
-    }
-    ops {
-      functionName: "Enable/Disable Interactable Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55230ccc6131317c0a007ff7"
-          }
-        }
-      }
     }
     ops {
       functionName: "Set Waypoint on Prop"
@@ -28177,9 +28178,9 @@ regions {
 regions {
   name: "rDarkenStreets"
   position {
-    x: 104
-    y: -14
-    width: 4
+    x: 100
+    y: -31
+    width: 5
     height: 1
   }
   enabledAtStart: true
