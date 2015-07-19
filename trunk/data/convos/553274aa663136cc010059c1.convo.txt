@@ -2790,6 +2790,25 @@ nodes {
         }
       }
     }
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_MaxAdvance"
+            }
+          }
+        }
+        args {
+          int_value: 7500
+        }
+      }
+    }
     nextNodeIndex: 34
     onlyOnce: true
     idRef {
@@ -3787,6 +3806,62 @@ nodes {
   index: 43
   text: "{{GM}}Max seems a bit lost... perhaps he\'s not used to being under fire.{{/GM}}\n\n\"What\'s on your mind, $(l.name)?\""
   branches {
+    responseText: "Wait, did I ever tell you my name?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max  freezes up, and then seems to melt as he relaxes, sighing. \"Oh, you had mne scared there, I thought you were going to kill me or something.\"\n\n\"You\'re quite the so-and-so in certain circles. Your friend, Sam, he\'s been talking you up to anyone who will listen, so when I needed a deniable asset, my secretary knew your name,\" Max gestures as though that explains everything."
+        }
+      }
+    }
+    nextNodeIndex: 44
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5552b5f46131319010004396"
+    }
+  }
+  branches {
+    responseText: "Let\'s get out of here before a security goon with an arrest quota to fill shows up."
+    nextNodeIndex: 47
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Okay, so what\'s the deal here, really?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"The deal here?\" Max looks at you quizzically, and then at Newt\'s busted van, and then at Maria, and then back at you, \"you were there for it- those thugs attacked us, tried to kill us, you fought them off, then we escaped. I\'m not sure what more you want to know, am I right?\""
+        }
+      }
+    }
+    nextNodeIndex: 45
+  }
+  branches {
     responseText: "{{CC}}Cha 3{{/CC}} 7,500\302\245 a piece, and you know that\'s a bargain."
     conditions {
       ops {
@@ -3856,7 +3931,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 44
+    nextNodeIndex: 46
     onlyOnce: true
     idRef {
       id: "554fdba0613131741b000a17"
@@ -3913,7 +3988,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 55
+    nextNodeIndex: 57
     onlyOnce: true
     idRef {
       id: "554fdb9e613131741b000a16"
@@ -3970,7 +4045,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 55
+    nextNodeIndex: 57
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -3978,34 +4053,17 @@ nodes {
     }
     auxiliaryLink: true
   }
-  branches {
-    responseText: "Wait, did I ever tell you my name?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Max  freezes up, and then seems to melt as he relaxes, sighing. \"Oh, you had mne scared there, I thought you were going to kill me or something.\"\n\n\"You\'re quite the so-and-so in certain circles. Your friend, Sam, he\'s been talking you up to anyone who will listen, so when I needed a deniable asset, my secretary knew your name,\" Max gestures as though that explains everything."
-        }
-      }
-    }
-    nextNodeIndex: 59
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "5552b5f46131319010004396"
-    }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54701bad666538ac03001cec"
   }
+}
+nodes {
+  idRef {
+    id: "554fddda613131741b000a1b"
+  }
+  index: 44
+  text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Okay, so what\'s the deal here, really?"
     actions {
@@ -4027,27 +4085,70 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 60
+    nextNodeIndex: 44
+    auxiliaryLink: true
   }
   branches {
-    responseText: "Let\'s get out of here before a security goon with an arrest quota to fill shows up."
-    nextNodeIndex: 45
+    responseText: "Let\'s get out of there before a security goon with an arrest quota to fill shows up."
+    nextNodeIndex: 47
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54701bad666538ac03001cec"
   }
+  comment: "Getting to Know you Loop"
+}
+nodes {
+  idRef {
+    id: "554fddda613131741b000a1b"
+  }
+  index: 45
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Wait, did I ever tell you my name?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max  freezes up, and then seems to melt as he relaxes, sighing. \"Oh, you had mne scared there, I thought you were going to kill me or something.\"\n\n\"You\'re quite the so-and-so in certain circles. Your friend, Sam, he\'s been talking you up to anyone who will listen, so when I needed a deniable asset, my secretary knew your name,\" Max gestures as though that explains everything."
+        }
+      }
+    }
+    nextNodeIndex: 45
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Let\'s get out of there before a security goon with an arrest quota to fill shows up."
+    nextNodeIndex: 47
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54701bad666538ac03001cec"
+  }
+  comment: "Deali-o Loop"
 }
 nodes {
   idRef {
     id: "5486518b666538ec0e007a85"
   }
-  index: 44
+  index: 46
   text: "Max shakes his head \'no,\' and tries to avoid eye contact- ending up looking at the corpses of the gangers who attacked you. He swallows slowly, and says \"You are worth the extra price... Am I right?\"\n\nAlthough he\'s smiling, you get the feeling that he\'s hurting at how much you\'re costing him."
   branches {
     responseText: ""
-    nextNodeIndex: 45
+    nextNodeIndex: 47
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4058,7 +4159,7 @@ nodes {
   idRef {
     id: "548651a7666538ec0e007a88"
   }
-  index: 45
+  index: 47
   text: "Tellin sighs, looking exasperated, and says, \"Now that that\'s over with, you\'ll want to see about make a hasty exit,  Lonestar is sweeping the club and locking everything down- they\'ll be here in sixty seconds, less if you\'re not lucky.\""
   branches {
     responseText: "{{CC}}Weapon{{/CC}} I\'m glad I kept this then..."
@@ -4132,7 +4233,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 46
+    nextNodeIndex: 48
     hideIfUnavailable: true
   }
   branches {
@@ -4185,7 +4286,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 54
+    nextNodeIndex: 56
     hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
@@ -4197,11 +4298,11 @@ nodes {
   idRef {
     id: "5486527d666538ec0e007a91"
   }
-  index: 46
+  index: 48
   text: "{{GM}}Newt glares at you, clearly annoyed that you bypassed the security office and smuggled in a weapon.{{/GM}}\n\n\"I guess you got lucky;  If I see you around here again, chummer... You might not be so lucky.\""
   branches {
     responseText: "So how do we get out of here?"
-    nextNodeIndex: 47
+    nextNodeIndex: 49
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4212,11 +4313,11 @@ nodes {
   idRef {
     id: "548652f4666538ec0e007a96"
   }
-  index: 47
+  index: 49
   text: "Max looks panicked, and says \"I have my limo here, but it\'s on GridGuide, and will lock down when security tries to flag it,\" Max finally picks up his glass again, draining it.\n\n\"We\'ll have to find something else,\" Max says finally, looking terrified at finding an escape route in the next sixty seconds. You hear Lonestar coming up the stairs, calling for anyone up here to lay down on the ground with your hands behind your head."
   branches {
     responseText: ""
-    nextNodeIndex: 48
+    nextNodeIndex: 50
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4227,15 +4328,15 @@ nodes {
   idRef {
     id: "5552afed613131901000432d"
   }
-  index: 48
+  index: 50
   text: "{{GM}}Newt grimages, and tosses you his keys.{{/GM}}\n\n\"Bus ain\'t gonna cut it, take my van to get out of here before Eagle security catches you. Just keep Maria safe, okay? As far as rocker divas go, she\'s my favorite.\"  \n\nMaria seems out of it, but Newt continues, \"Bulldog Stepvan in alley; Lime green, purple dragon. Just here through the exit, down the fire escape.\" \n\nNewt puts a far troll fist with bone protruding out of the knuckles under your nose, and his voice drops to a growl, \"You get one scratch on my baby, and I\'ll frag you up good... got it Chummer?\""
   branches {
     responseText: "Not a scratch, you got it.   You\'re saving my hoop, I owe you one."
-    nextNodeIndex: 49
+    nextNodeIndex: 51
   }
   branches {
     responseText: "I can\'t vouch for the miscreants in Seattle... those drek-heads like to aim for shiny objects."
-    nextNodeIndex: 53
+    nextNodeIndex: 55
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4246,11 +4347,11 @@ nodes {
   idRef {
     id: "548653af666538ec0e007a9d"
   }
-  index: 49
+  index: 51
   text: "Newt shakes his head, leading Maria toward the door \"Not you, $(l.race), this is for her.\""
   branches {
     responseText: ""
-    nextNodeIndex: 50
+    nextNodeIndex: 52
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4261,11 +4362,11 @@ nodes {
   idRef {
     id: "5552b1446131319010004340"
   }
-  index: 50
+  index: 52
   text: "Max\'s hands are shaking, and he\'s paler than usual, his voice high and squeaky as he leads Maria toward the exit, \"Newt, Tellin, can you try and delay security? We\'ll need whatever headstart you can give us.\"\n\nLeading Maria, Max\'s demeanor changes, and he says \"Maria, Darling, you and I need to get out of here with some help from our new friends...\" "
   branches {
     responseText: ""
-    nextNodeIndex: 51
+    nextNodeIndex: 53
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4276,7 +4377,7 @@ nodes {
   idRef {
     id: "548653cb666538ec0e007aa0"
   }
-  index: 51
+  index: 53
   text: "{{GM}}Maria Mercurial, nova hot rockstar and living anarchist amazon, is starry-eyed and has a doe-like expression that  gives you the impression that she hasn\'t got a clue what\'s happening on the planet right now, much less in this building or the room.{{/GM}}\n\nMaria responds to Max\'s manners and voice, and quietly answers, \"Okay Max... Let\'s go.\""
   branches {
     responseText: "What\'s the deal?  One second she\'s spraying lead, and now she\'s catatonic?"
@@ -4315,7 +4416,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 52
+    nextNodeIndex: 54
     hideIfUnavailable: true
   }
   branches {
@@ -4438,7 +4539,7 @@ nodes {
   idRef {
     id: "5486560f666538ec0e007b29"
   }
-  index: 52
+  index: 54
   text: "Max sighs, careful not to raise his voice around Maria, \"We haven\'t got the time right now, so that\'s a story for another day. Can we please leave before security finds us and beats a confession out of us, am I right?\""
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4520,11 +4621,11 @@ nodes {
   idRef {
     id: "54865420666538ec0e007aa2"
   }
-  index: 53
+  index: 55
   text: "{{GM}}Newt stares you down, giving you the evil eye and looks like he\'s considering taking his keys back.{{/GM}}\n\n\"Tell you what, fish, you keep campaigning for this ass-whupping, you gonna get elected.\""
   branches {
     responseText: ""
-    nextNodeIndex: 50
+    nextNodeIndex: 52
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -4536,11 +4637,11 @@ nodes {
   idRef {
     id: "548652bd666538ec0e007a93"
   }
-  index: 54
+  index: 56
   text: "{{GM}}Newt hands you your checked gear.{{/GM}}\n\nI took the liberty of retrieving it for you.   You don\'t have time to get up front."
   branches {
     responseText: "Thanks.   But how do we get out of here?"
-    nextNodeIndex: 47
+    nextNodeIndex: 49
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -4552,7 +4653,7 @@ nodes {
   idRef {
     id: "548651d6666538ec0e007a8a"
   }
-  index: 55
+  index: 57
   text: "Max spits out his cigar, clearly surprised at your demand. \"What? Are you trying to bleed me dry?\"\n\n\"You think rockers are made of money? Sure, the stars get posh treatment, but you know who pays for that? Managers like me, am I right?\"\n\nMax notices the bodies of the attackers where they still lie, and he swallows, \"Fragging fine, I\'ll push it up to 1,500\302\245 a day.   That\'s 7,500\302\245 for each of your team members, minus your advance, the rest payable at the end of the five days. Deal?\""
   branches {
     responseText: "7,500\302\245, Agreed. "
@@ -4575,15 +4676,15 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 56
+    nextNodeIndex: 58
   }
   branches {
     responseText: "7500\302\245 is fine, but I want mine up front."
-    nextNodeIndex: 57
+    nextNodeIndex: 59
   }
   branches {
     responseText: "This concert brought in how much tonight? Don\'t give me that drek about being poor."
-    nextNodeIndex: 57
+    nextNodeIndex: 59
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -4595,11 +4696,11 @@ nodes {
   idRef {
     id: "554043bf613131c00c006cec"
   }
-  index: 56
+  index: 58
   text: "Max takes your hand and shakes it with an iron grip, \"Deal,\" he says with a sense of finality, and you know that he means it.\n\nWhen he releases your hand, you wonder if you should have asked for more... and if you are going to be able to get the sleazy feeling off of your skin."
   branches {
     responseText: ""
-    nextNodeIndex: 45
+    nextNodeIndex: 47
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -4612,16 +4713,16 @@ nodes {
   idRef {
     id: "5552b4b4613131901000436e"
   }
-  index: 57
+  index: 59
   text: "Max pauses before taking your deal, and you can hear hesitation in his voice. He\'s staring at the dead gangers, so you know he\'s seriously considering your offer. \"I only have five thousand on me, will you take that as a good faith payment until I can get to my safe?\""
   branches {
     responseText: "Yes."
-    nextNodeIndex: 56
+    nextNodeIndex: 58
     auxiliaryLink: true
   }
   branches {
     responseText: "No, I\'ll take that rolex, too."
-    nextNodeIndex: 58
+    nextNodeIndex: 60
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -4651,11 +4752,11 @@ nodes {
   idRef {
     id: "5552b52c6131319010004377"
   }
-  index: 58
+  index: 60
   text: "Max\'s eye twitches, and you hear an officer call out through a loudspeaker \"Lay down and prepare for processing, SINless criminal scum!\"\n\n\"Fine, take the fragging watch,\" he says, taking it off and passing it to you. Do we have a deal?\""
   branches {
     responseText: ""
-    nextNodeIndex: 56
+    nextNodeIndex: 58
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -4681,88 +4782,6 @@ nodes {
       }
     }
   }
-}
-nodes {
-  idRef {
-    id: "554fddda613131741b000a1b"
-  }
-  index: 59
-  text: "$(story.str_NPCIntroText)"
-  branches {
-    responseText: "Okay, so what\'s the deal here, really?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"The deal here?\" Max looks at you quizzically, and then at Newt\'s busted van, and then at Maria, and then back at you, \"you were there for it- those thugs attacked us, tried to kill us, you fought them off, then we escaped. I\'m not sure what more you want to know, am I right?\""
-        }
-      }
-    }
-    nextNodeIndex: 59
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "Let\'s get out of there before a security goon with an arrest quota to fill shows up."
-    nextNodeIndex: 45
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54701bad666538ac03001cec"
-  }
-  comment: "Getting to Know you Loop"
-}
-nodes {
-  idRef {
-    id: "554fddda613131741b000a1b"
-  }
-  index: 60
-  text: "$(story.str_NPCIntroText)"
-  branches {
-    responseText: "Wait, did I ever tell you my name?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Max  freezes up, and then seems to melt as he relaxes, sighing. \"Oh, you had mne scared there, I thought you were going to kill me or something.\"\n\n\"You\'re quite the so-and-so in certain circles. Your friend, Sam, he\'s been talking you up to anyone who will listen, so when I needed a deniable asset, my secretary knew your name,\" Max gestures as though that explains everything."
-        }
-      }
-    }
-    nextNodeIndex: 60
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "Let\'s get out of there before a security goon with an arrest quota to fill shows up."
-    nextNodeIndex: 45
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "54701bad666538ac03001cec"
-  }
-  comment: "Deali-o Loop"
 }
 nodes {
   idRef {
@@ -5443,93 +5462,6 @@ nodes {
   index: 79
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "Some more people just tried to kill us."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Max nods, gesturing with his telecom, \"Yes, I heard the racket while I was on my call.\"\n\n\"Terribly distracting,\" Max says, trying not to look in the direction of the corpses, \"On the plus side, this is a rough neighborhood, so not a lot of people to ask questions, am I right?\""
-        }
-      }
-    }
-    nextNodeIndex: 79
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "556a6314393066f80900817e"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "Care to tell me a little more about this \'contract dispute\'?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "A little bit of Max\'s return composure melts away, and he\'s looking nervous again. \n\n\"I don\'t know what to tell you, $(l.man). Hernandez got fired, and apparently isn\'t taking it lying down.\"\n\nMax clears his throat, and adds in a voice too low to carry to Maria, \"I\'ve gave Maria the girlfriend\'s lines: \'you\'re better off without him,\' and \'he doesn\'t know what he\'s missing,\' but in this case he may actually be crazy enough to come after her. Crazy, am I right?\""
-        }
-      }
-    }
-    nextNodeIndex: 79
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "5560009e6131310011000e75"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "What was that you mentioned about deckers?"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Max looks over at the entrance of Yoshiro\'s, and hunches his shoulders, \"I\'d prefer to talk about it once we get somewhere a little less public, but I, uh...\"\n\nMax lowers his voice to a conspiratorial whisper, and adds, \"I have a need for some matrix skullduggery, and there\'s a good bit of cred in it for you, too.\""
-        }
-      }
-    }
-    nextNodeIndex: 79
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "556003b96131310011000e87"
-    }
-    auxiliaryLink: true
-  }
-  branches {
     responseText: "I checked on it, they\'re going to quote repairs on Newt\'s van."
     conditions {
       ops {
@@ -5594,6 +5526,118 @@ nodes {
     auxiliaryLink: true
   }
   branches {
+    responseText: "Some more people just tried to kill us."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max nods, gesturing with his telecom, \"Yes, I heard the racket while I was on my call.\"\n\n\"Terribly distracting,\" Max says, trying not to look in the direction of the corpses, \"On the plus side, this is a rough neighborhood, so not a lot of people to ask questions, am I right?\""
+        }
+      }
+    }
+    nextNodeIndex: 79
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556a6314393066f80900817e"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'ll take that advance now, if you don\'t mind."
+    actions {
+      ops {
+        functionName: "Add Nuyen"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_MaxAdvance"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 80
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556000a26131310011000e76"
+    }
+  }
+  branches {
+    responseText: "Care to tell me a little more about this \'contract dispute\'?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "A little bit of Max\'s returned composure melts away, and he\'s looking nervous again. \n\"I don\'t know what to tell you, $(l.man). Hernandez got fired, and apparently isn\'t taking it lying down.\"\n\nMax clears his throat, and adds in a voice too low to carry to Maria, \"I\'ve gave Maria the girlfriend\'s lines: \'you\'re better off without him,\' and \'he doesn\'t know what he\'s missing,\' but in this case he may actually be crazy enough to come after her. Crazy, am I right?\""
+        }
+      }
+    }
+    nextNodeIndex: 79
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5560009e6131310011000e75"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What was that you mentioned about deckers?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max looks over at the entrance of Yoshiro\'s, and hunches his shoulders, \"I\'d prefer to talk about it once we get somewhere a little less public, but I, uh...\"\n\nMax lowers his voice to a conspiratorial whisper, and adds, \"I have a need for some matrix skullduggery, and there\'s a good bit of cred in it for you, too.\""
+        }
+      }
+    }
+    nextNodeIndex: 79
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "556003b96131310011000e87"
+    }
+    auxiliaryLink: true
+  }
+  branches {
     responseText: "What is this place?"
     actions {
       ops {
@@ -5639,7 +5683,7 @@ nodes {
           }
         }
         args {
-          string_value: "Max shrugs, \"We can take a taxi, or a bus. My limo is locked down, I just checked on it, and I can\'t pay for the taxi because all of my cred is going to you for the advance.\"\n\nMax holds out his palms, seeming to anticipate that you wouldn\'t like that sentence, \"I mean that it\'s all the cred I have on me- I have more in my safe, and more on cards, but I can\'t use those or visit my office without Hernandez hearing about it.\""
+          string_value: "Max shrugs, \"We can take a taxi, or a bus-- my limo is locked down. I just checked on it, and I can\'t pay for the taxi because all of my cred is going to you for the advance.\"\n\nMax holds out his palms, seeming to anticipate that you wouldn\'t like that sentence, \"I mean that it\'s all the cred I have on me- I have more in my safe, and more on cards, but I can\'t use those or visit my office without Hernandez hearing about it.\""
         }
       }
     }
@@ -5758,34 +5802,37 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "I\'ll take that advance now, if you don\'t mind."
+    responseText: "That\'s it, Max. I\'m out."
     actions {
       ops {
-        functionName: "Add Nuyen"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Story Variable (int)"
+            functionName: "Get Story Variable (string)"
             args {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "int_MaxAdvance"
+              string_value: "str_NPCIntroText"
             }
           }
         }
+        args {
+          string_value: "Max blanches at your statment, color draining from his face. \"Are you serious?\"\n\n\"You\'ve got to be fragging kidding me- you\'re quite the joker, am I right?\"\n\nMax laughs, a forced and nervous sound."
+        }
       }
     }
-    nextNodeIndex: 80
-    hideIfUnavailable: true
+    nextNodeIndex: 81
     onlyOnce: true
     idRef {
-      id: "556000a26131310011000e76"
+      id: "55aaea916131312c0c005d44"
     }
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "549311956665387404005995"
   }
+  comment: "Max Base Loop - 2nd Yoshiro\'s"
 }
 nodes {
   idRef {
@@ -5838,9 +5885,811 @@ nodes {
 }
 nodes {
   idRef {
-    id: "553274cc663136cc010059c8"
+    id: "55aaea6f6131312c0c005d42"
   }
   index: 81
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Yeah, I\'m just messing with you."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max continues to laugh, a forced and nervous sound that grows slightly warmer as he goes on.\n\n\"Oh, you fragging $(l.guy), $(story.str_RunnerName). I can\'t believe you, I nearly had an embolism!\"\n\nMax mops his face with a fancy kerchief, but doesn\'t seem to relax. Although his tone is jovial, you believe you just gave him the scare of a lifetime."
+        }
+      }
+    }
+    nextNodeIndex: 79
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaec6e6131312c0c005d62"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Hernandez, the cops, and all these fraggers out for my blood? You\'re on your own."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You can\'t leave me, $(l.man)! Are you serious? All these sharks are out for blood, and we hired YOU to protect us!\""
+        }
+      }
+    }
+    nextNodeIndex: 81
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaec736131312c0c005d63"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "How about you convince me to stay?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max\'s brow furrows until he understands what you\'re asking. \"Oh, you want to renegotiate now?\"\n\n\"If you want to play hardball, I\'ll play Hardball.\""
+        }
+      }
+    }
+    nextNodeIndex: 81
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaec856131312c0c005d64"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Time to play hardball."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_MaxAdvance"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Okay,\" Max removes his hat briefly, smoothing thinning hair over his pate before putting the hat back on. \n\n\"You know we need you, we know we need you- it\'s not longer a potentially dangerous mission, you\'ll want hazard pay. How does 2,000\302\245 a day sound?\""
+        }
+      }
+    }
+    nextNodeIndex: 82
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaec896131312c0c005d65"
+    }
+  }
+  branches {
+    responseText: "Time to play hardball."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_MaxAdvance"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 83
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaec896131312c0c005d65"
+    }
+  }
+  branches {
+    responseText: "No, I\'m serious. We\'re in way over our heads. {{CC}}Quit{{/CC}}."
+    actions {
+      ops {
+        functionName: "End Story With Epilogue"
+        args {
+          string_value: "Epilogue_Bugout"
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaec8f6131312c0c005d66"
+    }
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Quitters Loop"
+}
+nodes {
+  idRef {
+    id: "55aaf7986131312c0c005f45"
+  }
+  index: 82
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Yeah, that will work."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max takes the hankerchief out of his pocket, and mops off his face. \"You\'ll break my bank, but it\'ll be worth it, to stay alive and one step ahead of our enemies.\"\n\n\"You realize that I don\'t have any money on me to pay you, of course, but I\'ll bleed nuyen to get you paid.\""
+        }
+      }
+    }
+    nextNodeIndex: 79
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Cha 5{{/CC}} Try harder."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add Item to Stash"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Berlin_BuMoNAGold"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Item to Stash"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Berlin_BuMoNAGold"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Item to Stash"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Berlin_BuMoNAGold"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You\'re bleeding me dry!\" Max shouts, looking to the clouds above as if they had any answers. \n\nInspiration strikes, and Max looks at you, suddenly full of energy, \"How about this? I have a docwagon through the Company, and pays for three Gold resuscitations a year- how \'bout I pass those along to you? Three docwagon bracelets, enough to keep you and your team alive through the worst of this?\"\n\nMax takes the wristband off and passes it to you, watching your face, expectantly."
+        }
+      }
+    }
+    nextNodeIndex: 82
+    onlyOnce: true
+    idRef {
+      id: "554fdb9a613131741b000a15"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "No, I\'m out. {{CC}}Quit{{/CC}}."
+    actions {
+      ops {
+        functionName: "End Story With Epilogue"
+        args {
+          string_value: "Epilogue_Bugout"
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaf8f76131312c0c005f49"
+    }
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Hardball Negotiations (after payout)"
+}
+nodes {
+  idRef {
+    id: "55aaf7986131312c0c005f45"
+  }
+  index: 83
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Yeah, that will work."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Max takes the handkerchief out of his pocket, and wipes his brow. \"You\'ll break my bank, but it\'ll be worth it, to stay alive and one step ahead of our enemies.\"\n\n\"We\'ll get you your advance, and settle this up when the heat dies down, deal?\"\n\nMax mops his face with the handkerchief, and breathes out a sigh of relief."
+        }
+      }
+    }
+    nextNodeIndex: 79
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Cha 4{{/CC}} An extra 2,500\302\245 each sounds good. You\'re well aware that we\'re worth it."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_MaxAdvance"
+            }
+          }
+        }
+        args {
+          int_value: 7500
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Fine,\" Max says, stuffing hands in his pockets in defeat, \"You get a fifty percent increase, but your advance is still only 7,500\302\245, because that\'s all I have on me.\"\n\n\"Once things settle down, and I can get to the bank or my office without Hernadez\'s goons geeking me, I\'ll get you the rest. Deal?\""
+        }
+      }
+    }
+    nextNodeIndex: 83
+    onlyOnce: true
+    idRef {
+      id: "554fdba0613131741b000a17"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Cha 5{{/CC}} Try harder."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add Item to Stash"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Berlin_BuMoNAGold"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Item to Stash"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Berlin_BuMoNAGold"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Item to Stash"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Berlin_BuMoNAGold"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You\'re bleeding me dry!\" Max shouts, looking to the clouds above as if they had any answers. \n\nInspiration strikes, and Max looks at you, suddenly full of energy, \"How about this? I have a docwagon through the Company, and pays for three Gold resuscitations a year- how \'bout I pass those along to you? Three docwagon bracelets, enough to keep you and your team alive through the worst of this?\"\n\nMax takes the wristband off and passes it to you, watching your face expectantly."
+        }
+      }
+    }
+    nextNodeIndex: 83
+    onlyOnce: true
+    idRef {
+      id: "554fdb9a613131741b000a15"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Cha 6{{/CC}} How about you double it, since I just jumped out of the pan and onto the burner for your."
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 6
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_MaxAdvance"
+            }
+          }
+        }
+        args {
+          int_value: 7500
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"You\'re bleeding me dry!\" Max shouts, knocking off his hat and pulling at his thinning hair, actually managing to pull a handful free. \n\nMax stares at the handful of hair in disbelief, and picks up his hat, placing it gingerly back on his head.\"Fine, FINE! You get your ten thousand nuyen, but I still only have certified credsticks for seventy-five hundred on me- is that enough for an advance, or do you want to cut my pinkie off or something?\""
+        }
+      }
+    }
+    nextNodeIndex: 83
+    onlyOnce: true
+    idRef {
+      id: "554fdb9e613131741b000a16"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "No, I\'m out. {{CC}}Quit{{/CC}}."
+    actions {
+      ops {
+        functionName: "End Story With Epilogue"
+        args {
+          string_value: "Epilogue_Bugout"
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaf8f76131312c0c005f49"
+    }
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Hardball Negotiations (before payout)"
+}
+nodes {
+  idRef {
+    id: "553274cc663136cc010059c8"
+  }
+  index: 84
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "I\'ll take that advance, now, Max."
@@ -5924,7 +6773,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5953,7 +6802,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5982,7 +6831,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5993,6 +6842,42 @@ nodes {
   branches {
     responseText: "Any suggestions on what to do next?"
     conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HotelSubQuestCleared"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
       ops {
         functionName: "Comparison (string)"
         args {
@@ -6040,7 +6925,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     hideIfUnavailable: true
     auxiliaryLink: true
     comment: "DH - Initial Return"
@@ -6066,7 +6951,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     auxiliaryLink: true
   }
   branches {
@@ -6090,7 +6975,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6119,7 +7004,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 81
+    nextNodeIndex: 84
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6141,48 +7026,8 @@ nodes {
   idRef {
     id: "553274ec663136cc010059ca"
   }
-  index: 82
+  index: 85
   text: "$(story.str_NPCIntroText)"
-  branches {
-    responseText: "I asked her about Hernadez."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Oh Lord... Now I know why she stormed off like so.    Hernandez is a helluva topic for our girl.  Let me guess... She didn\'t want to talk about him, and told you to come find me, Am I right?"
-        }
-      }
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_HubSubQuest"
-            }
-          }
-        }
-        args {
-          int_value: 1
-        }
-      }
-    }
-    nextNodeIndex: 83
-  }
   branches {
     responseText: "I\'ll take that advance, now, Max."
     conditions {
@@ -6265,7 +7110,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 82
+    nextNodeIndex: 85
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6274,8 +7119,58 @@ nodes {
     auxiliaryLink: true
   }
   branches {
+    responseText: "I asked her about Hernadez."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Oh Lord... Now I know why she stormed off like so.    Hernandez is a helluva topic for our girl.  Let me guess... She didn\'t want to talk about him, and told you to come find me, Am I right?"
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_HubSubQuest"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 86
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab702d6131312c0c008078"
+    }
+  }
+  branches {
     responseText: "Talk to you later, Max."
     nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab70516131312c0c00807c"
+    }
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -6287,7 +7182,7 @@ nodes {
   idRef {
     id: "55327793663136cc010059ef"
   }
-  index: 83
+  index: 86
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Pretty much."
@@ -6310,7 +7205,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 83
+    nextNodeIndex: 86
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6356,7 +7251,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 84
+    nextNodeIndex: 87
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6384,7 +7279,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 82
+    nextNodeIndex: 85
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab704c6131312c0c00807b"
+    }
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -6397,11 +7297,11 @@ nodes {
   idRef {
     id: "55327a4c663136cc01005a0b"
   }
-  index: 84
+  index: 87
   text: "Max gives an overdramatic sigh, and shrugs, \"Where do I even start?  Hernandez is a special kind of bastard.   He spent years worming his way into Maria\'s graces. He was a low-rent act, and he has that story about saving our darling Maria from a brothel, but that\'s just the tame media version. I heard it firsthand that he spent years \'working\' those same brothels looking for talent."
   branches {
     responseText: ""
-    nextNodeIndex: 85
+    nextNodeIndex: 88
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -6412,11 +7312,11 @@ nodes {
   idRef {
     id: "55327a5d663136cc01005a0e"
   }
-  index: 85
+  index: 88
   text: "\"But Maria is something special, right? So he found her, heard her sing, and she had some problems. Once he\'d set his claws into her, he must\'ve realized that she was too hot an act for him to retain on normal means.  So he did a little digging on our girl. He already knew she was an addict, so he found her drug of choice, and put it just close enough to keep her around if he needed her.\"\n\nMax is really wound up now, telling a good story. His eyes are alive, and he gestures with his hands."
   branches {
     responseText: ""
-    nextNodeIndex: 86
+    nextNodeIndex: 89
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -6427,7 +7327,7 @@ nodes {
   idRef {
     id: "55327ab0663136cc01005a11"
   }
-  index: 86
+  index: 89
   text: "Max shrugs, \"We all have skeletons in our closet, right? You and I are no different. But Maria\'s addictive tendencies are the stuff of rumor and legend, she\'s been clean for years. So how could he keep her around? It couldn\'t be with low-level CalHots, those cheap BTLs burned into subgrade silicon by poor little metahuman children in sweatshops.\"\n\n\"He needed something good, something she couldn\'t resist, something she couldn\'t get anywhere else. But where can you find it? You can\'t just ask a chip dealer for his best stock, you have to find the right supplier, so Hernandez started dealing to find the perfect chip for Maria. I\'m sure you\'ve heard of Dreamchips? Ten times as potent, that\'s what he was after.\"\n\n\"Of course, that\'s the way this business sometimes goes, I\'m just sad to see it happen to someone as special as Maria.\""
   branches {
     responseText: ""
@@ -6450,7 +7350,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 87
+    nextNodeIndex: 90
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -6461,7 +7361,7 @@ nodes {
   idRef {
     id: "55327c7b663136cc01005a17"
   }
-  index: 87
+  index: 90
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "BTLs?"
@@ -6484,7 +7384,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 87
+    nextNodeIndex: 90
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6548,7 +7448,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 88
+    nextNodeIndex: 91
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6576,7 +7476,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 87
+    nextNodeIndex: 90
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6642,12 +7542,22 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 87
+    nextNodeIndex: 90
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab70446131312c0c008079"
+    }
     auxiliaryLink: true
   }
   branches {
     responseText: "That\'ll do for now... Thanks Max."
     nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab70486131312c0c00807a"
+    }
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -6659,11 +7569,11 @@ nodes {
   idRef {
     id: "5552e1fa613131901000497e"
   }
-  index: 88
+  index: 91
   text: "Max is clearly uncomfortable with the subject, but continues when he\'s sure Maria can\'t overhear him. \"Maria\'s mind was shattered. It\'s not uncommon, in BTL addicts, it creats a couple of different \'people\' if you will, all inside Maria\'s head.\n\nMax ticks off the personas on his fingers, \"You\'ve met her as the Rock Star... I call it her Amazon personality: full of shouting, gunfire and flying fists.\""
   branches {
     responseText: ""
-    nextNodeIndex: 89
+    nextNodeIndex: 92
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -6671,7 +7581,7 @@ nodes {
   idRef {
     id: "5552e1fd6131319010004981"
   }
-  index: 89
+  index: 92
   text: "Max shrugs, \"Typically once she\'s off stage, she reverts to what I call the \'Secretary,\' she\'s a little repressed, but sexually adventurous and flirty, down for almost anything. She does almost all of her songwriting in this mode. She can also speak fluent English, Spanish, and Japanese in this personality. Cunning linguist, am I right?\""
   branches {
     responseText: ""
@@ -6694,7 +7604,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 87
+    nextNodeIndex: 90
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -6703,7 +7613,7 @@ nodes {
   idRef {
     id: "554039d8613131c00c006b95"
   }
-  index: 90
+  index: 93
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "We\'ll get to that. First, I want you to tell me who is responsible, and where they are right now."
@@ -6756,7 +7666,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 90
+    nextNodeIndex: 93
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6781,7 +7691,7 @@ nodes {
           }
         }
         args {
-          string_value: "Max cringes, \"Who, Sumiko? Yeah, Hotada is a real witch, and I mean that in every possible way.\"\n\n\"Sumiko Hotada was some sort of corporate suit, and she left it for the lucrative racket of organized crime, deciding that there was better profit margins in the Yakuza. She likes hurting people, so not a lot of people question her twice.\"\n\nMax tugs at his collar, clearly reliving an unhappy memory."
+          string_value: "Max cringes, \"Who, Sumiko? Yeah, Hotoda is a real witch, and I mean that in every possible way.\"\n\n\"Sumiko Hotoda was some sort of corporate suit, and she left it for the lucrative racket of organized crime. She likes hurting people, so not a lot of people question her twice.\"\n\nMax tugs at his collar, clearly reliving an unhappy memory."
         }
       }
       ops {
@@ -6802,7 +7712,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 91
+    nextNodeIndex: 94
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6896,7 +7806,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 93
+    nextNodeIndex: 96
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6924,7 +7834,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 90
+    nextNodeIndex: 93
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6949,11 +7859,11 @@ nodes {
           }
         }
         args {
-          string_value: "Max sobs, \"No, but if I didn\'t pry them apart, Hotada was going to cut my dick or my head or something off! She burned my place down, and then threatened to burn me if I didn\'t find a way to do it!\"\n\n\"I fragging had to, I didn\'t have a choice!\""
+          string_value: "Max sobs, \"No, but if I didn\'t pry them apart, Hotoda was going to cut my dick or my head or something off! She burned my place down, and then threatened to burn me if I didn\'t find a way to do it!\"\n\n\"I fragging had to, I didn\'t have a choice!\""
         }
       }
     }
-    nextNodeIndex: 90
+    nextNodeIndex: 93
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6978,11 +7888,11 @@ nodes {
           }
         }
         args {
-          string_value: "Max sobs, covering his head with his hands. You see the puddle of urine on the floor growing.\n\n\"I\'ll give you anything- everything! I owe you for protecting us, Hotada tried to geek me at U93!\"\n\n\"I have blackmail in my safe, and sex tapes- famous women, you wouldn\'t believe how famous they are, or the nasty drek they\'ll do! I have blackmail against a UCAS Senator, and three corporate executives, and do you know how bad an executive has to be before they\'re afraid of the corporation finding out? I have all of that, and my life savings, all of that is yours, if you let me walk away!\"\n\nMax watches you with baited breath, between fingers held protectively across his face."
+          string_value: "Max sobs, covering his head with his hands. You see the puddle of urine on the floor growing. \"I\'ll give you everything!  I have blackmail in my safe, and sex tapes- famous women, you wouldn\'t believe how famous they are, or the nasty drek they\'ll do! I have blackmail against a UCAS Senator, and three corporate executives, and do you know how bad an executive has to be before they\'re afraid of the corporation finding out? I have all of that, and my life savings!\" Max watches you with baited breath, between fingers held protectively across his face."
         }
       }
     }
-    nextNodeIndex: 95
+    nextNodeIndex: 98
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -7204,7 +8114,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 97
+    nextNodeIndex: 100
   }
   nodeType: ConversationNodeType_Simple
   comment: "Base loop"
@@ -7213,10 +8123,10 @@ nodes {
   idRef {
     id: "55403ab8613131c00c006b9c"
   }
-  index: 91
+  index: 94
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "Hotada? Where have I heard that name before?"
+    responseText: "Hotoda? Where have I heard that name before?"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -7232,11 +8142,11 @@ nodes {
           }
         }
         args {
-          string_value: "Max cringes, \"Sumiko Hotada? I have no idea where you may have heard it, but she\'s had her fingers in a lot of small jobs for the Yakuza.\"\n\nMax shudders, and continues, \"They won\'t let a woman run anything important, but she\'s been impressing them with her ruthlessness and cruelty. She\'s a shaman, so she has a lot of weight to throw around.\""
+          string_value: "Max cringes, \"Sumiko Hotoda? I have no idea where you may have heard it, but she\'s had her fingers in a lot of small jobs for the Yakuza.\"\n\nMax shudders, and continues, \"They won\'t let a woman run anything important, but she\'s been impressing them with her ruthlessness and cruelty. She\'s a shaman, so she has a lot of weight to throw around.\""
         }
       }
     }
-    nextNodeIndex: 91
+    nextNodeIndex: 94
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -7265,7 +8175,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 91
+    nextNodeIndex: 94
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -7343,7 +8253,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 91
+    nextNodeIndex: 94
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -7353,7 +8263,7 @@ nodes {
   }
   branches {
     responseText: "How does Maria figure into this?"
-    nextNodeIndex: 92
+    nextNodeIndex: 95
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -7361,7 +8271,7 @@ nodes {
     }
   }
   branches {
-    responseText: "Enough about Hotada. Tell me something worth keeping you alive for."
+    responseText: "Enough about Hotoda. Tell me something worth keeping you alive for."
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -7377,11 +8287,11 @@ nodes {
           }
         }
         args {
-          string_value: "Max holds his hands out, begging, praying for a chance to prove himself, \"You gotta fragging believe me, I don\'t know,\"\n\nA lightbulb goes on, and you can see Max remember something, \"Oh, OH! You won\'t fragging believe this, but I remember Hotada saying once that Maria was just part of something bigger- and one of her lackeys mentioned New Horizons.\"\n\n\"Yeah, fragging New Horizons, the construction company is involved in this somehow!\""
+          string_value: "Max holds his hands out, begging, praying for a chance to prove himself, \"You gotta fragging believe me, I don\'t know,\"\n\nA lightbulb goes on, and you can see Max remember something, \"Oh, OH! You won\'t fragging believe this, but I remember Hotoda saying once that Maria was just part of something bigger- and one of her lackeys mentioned New Horizons.\"\n\n\"Yeah, fragging New Horizons, the construction company is involved in this somehow!\""
         }
       }
     }
-    nextNodeIndex: 90
+    nextNodeIndex: 93
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -7391,8 +8301,8 @@ nodes {
   idRef {
     id: "5552cf006131319010004504"
   }
-  index: 92
-  text: "Max sobs, a deep sad sound, and spittle drips from his lips \"I don\'t fragging know,\" Max whines, \"Hotada showed up, torched my place, and started cutting my throat while telling me what I had to do to stay alive. I\'ve been sleeping at my office, and I had to find some way to convince Maria to leave Hernandez.\"\n\n\"Maria\'s temper is almost as famous as she is.\""
+  index: 95
+  text: "Max sobs, a deep sad sound, and spittle drips from his lips \"I don\'t fragging know,\" Max whines, \"Hotoda showed up, torched my place, and started cutting my throat while telling me what I had to do to stay alive. I\'ve been sleeping at my office, and I had to find some way to convince Maria to leave Hernandez.\"\n\n\"Maria\'s temper is almost as famous as she is.\""
   branches {
     responseText: ""
     actions {
@@ -7410,11 +8320,11 @@ nodes {
           }
         }
         args {
-          string_value: "Max seems to come a little alive at this point, almost like a mastermind finally getting to tell the hero his plan- if the matermind was sitting in a puddle of tears and urine and sobbing about his plan, \"Hernandez was like a big brother to her, she\'d never leave him, so I had to come up with a plan to get them apart. I found out she hated BTLs, and it was easy from there to frame up some evidence, and then just wait for Maria to find it.\""
+          string_value: "Max seems to come a little alive at this point, almost like a mastermind finally getting to tell the hero his plan- if the matermind was sitting in a puddle of tears and urine and sobbing.\n\n\"Hernandez was like a big brother to her, she\'d never leave him, so I had to come up with a plan to get them apart. I found out she hated BTLs, and it was easy from there to frame up some evidence, and then just wait for Maria to find it.\""
         }
       }
     }
-    nextNodeIndex: 91
+    nextNodeIndex: 94
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -7423,11 +8333,11 @@ nodes {
   idRef {
     id: "5540519b613131c00c006d3c"
   }
-  index: 93
-  text: "Max shudders at the mention of the Yakuza, \"Hotada is Yakua, yes, but not high up. The Yakuza don\'t like women much more than the Zaibatsu Corporate world.\"\n\nMax shrugs, \"I guess it\'s a small comfort, that they hate her as much as she hates us.\"\n\nHe pauses, wiping away a tear, and correcting himself, \"hated her, I guess?\"  "
+  index: 96
+  text: "Max shudders at the mention of the Yakuza, \"Hotoda is Yakua, yes, but not high up. The Yakuza don\'t like women much more than the Zaibatsu Corporate world.\"\n\nMax shrugs, \"I guess it\'s a small comfort, that they hate her as much as she hates us.\""
   branches {
     responseText: ""
-    nextNodeIndex: 94
+    nextNodeIndex: 97
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -7435,7 +8345,7 @@ nodes {
   idRef {
     id: "55404c85613131c00c006cf4"
   }
-  index: 94
+  index: 97
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "How are the Yakuza involved?"
@@ -7454,15 +8364,20 @@ nodes {
           }
         }
         args {
-          string_value: "Max holds his hands in front of his face, \"I don\'t know how much, I only dealt with Hotada. I think they gave her this project to let her prove herself.\"\n\n\"They sent her to do this to protect something else, a construction racket, Horizons or something like that?\""
+          string_value: "Max holds his hands in front of his face, \"I don\'t know how much, I only dealt with Hotoda. I think they gave her this project to let her prove herself.\"\n\n\"They sent her to do this to protect something else, a construction racket, Horizons or something like that?\""
         }
       }
     }
-    nextNodeIndex: 94
+    nextNodeIndex: 97
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab0bdb6131312c0c006b4f"
+    }
     auxiliaryLink: true
   }
   branches {
-    responseText: "Who was Hotada\'s kyodai?"
+    responseText: "Who was Hotoda\'s kyodai?"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -7482,7 +8397,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 94
+    nextNodeIndex: 97
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab0c0b6131312c0c006b50"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -7506,7 +8426,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 94
+    nextNodeIndex: 97
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab0c156131312c0c006b51"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -7530,7 +8455,12 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 90
+    nextNodeIndex: 93
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ab0c196131312c0c006b52"
+    }
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -7540,7 +8470,7 @@ nodes {
   idRef {
     id: "5552d51b6131319010004518"
   }
-  index: 95
+  index: 98
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Kill Max{{/CC}}  Goodbye Max, am I right?"
@@ -7757,7 +8687,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 96
+    nextNodeIndex: 99
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -7765,7 +8695,7 @@ nodes {
   idRef {
     id: "5552d5f1613131901000451f"
   }
-  index: 96
+  index: 99
   text: "Max sobs in relief, \"You won\'t regret this, you won\'t! I\'ll go get everything, and come right back here! I\'ve never felt so alive, being given a second chance like this!\"\n\nMax gets up from the floor, and breaks into an awkward fat guy run as he reaches the door."
   branches {
     responseText: ""
@@ -7791,7 +8721,7 @@ nodes {
   idRef {
     id: "5552d5f1613131901000451f"
   }
-  index: 97
+  index: 100
   text: "Max sobs in relief, \"You won\'t regret this, you won\'t! I\'ll go get everything, and come right back here! I\'ve never felt so alive, being given a second chance like this!\"\n\nMax gets up from the floor, and breaks into an awkward fat guy run as he reaches the door."
   branches {
     responseText: ""
@@ -7817,8 +8747,8 @@ nodes {
   idRef {
     id: "5552d6426131319010004522"
   }
-  index: 98
-  text: "Just outside the doorway, you hear Max shout, \"Hey, not mEEE, am I righ--AAAAHHHHHHHH!!!\"\n\nA roar and the burning flash of dragon fire interrupts Max Foley\'s catchphrase, and the rest of the sounds that Max makes can\'t rightly be called \'talking.\' Or anything other than \'horrifying.\'\n\n\n{{CC}}The fire is spreading, this place is in trouble.{{/CC}}"
+  index: 101
+  text: "Just outside the doorway, you hear Max shout, \"Hey, not mEEE, am I righ--AAAAHHHHHHHH!!!\"\n\nA roar and the burning flash of dragon fire interrupts Max Foley\'s catchphrase, and the rest of the sounds that Max makes can\'t rightly be called \'talking.\' Or anything other than \'horrifying.\'\n\n{{CC}}The fire is spreading, this place is in trouble.{{/CC}}"
   branches {
     responseText: ""
     nextNodeIndex: -1
@@ -8372,7 +9302,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 81
+  nextNodeIndex: 84
   comment: "Max\'s Keeping it Real Conversation"
 }
 roots {
@@ -8426,7 +9356,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 82
+  nextNodeIndex: 85
   comment: "Maria Stormed Off"
 }
 roots {
@@ -8480,7 +9410,7 @@ roots {
       }
     }
   }
-  nextNodeIndex: 90
+  nextNodeIndex: 93
   comment: "Post-Betrayal"
 }
 roots {
@@ -8515,6 +9445,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 98
+  nextNodeIndex: 101
   comment: "Fire Exit"
 }
