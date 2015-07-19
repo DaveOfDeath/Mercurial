@@ -9,80 +9,7 @@ nodes {
   index: 0
   text: "{{GM}}This 90MP file is Max\'s personal accounting, which he keeps secret from everyone, including his accountant. The file is labeled \'Little Black Book.\' {{/GM}}\n\nPersonal wealth estimated by screamsheets and the finances on his public records to be in the millions, show here to be less than two hundred grand. Total. Max also notes about five hundred grand in gambling debts to a loan shark that Max notes as \'Toroshi.\'\n\n\"Max\'s last entry reads: Mrs Foley\'s little boy is saved! Toroshi said my debts would be forgiven if I did a little favor for him!\"\n\nMax\'s Account balance: $(story.int_AccountFoley)\302\245"
   branches {
-    responseText: "{{CC}}Steal{{/CC}} Drain Foley\'s account"
-    conditions {
-      ops {
-        functionName: "Comparison (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_AccountFoley"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 2
-            }
-          }
-        }
-        args {
-          int_value: 0
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Add Nuyen"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_AccountFoley"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_AccountFoley"
-            }
-          }
-        }
-        args {
-          int_value: 0
-        }
-      }
-    }
-    nextNodeIndex: 0
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "559c94d66131318400003f21"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "{{CC}}Steal{{/CC}} Send Foley\'s money to Hernandez and Maria."
+    responseText: "{{GM}}Send Foley\'s money to Hernandez\'s account and download the account file.{{/GM}}"
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -183,20 +110,8 @@ nodes {
           int_value: 0
         }
       }
-    }
-    nextNodeIndex: 0
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "559c94d66131318400003f21"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "Download the account information."
-    actions {
       ops {
-        functionName: "Add Item to Actor"
+        functionName: "Add Item to Team"
         args {
           call_value {
             functionName: "Get Map Item (Item)"
@@ -207,16 +122,12 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Specific Actor"
+            functionName: "Get Preset Value (string)"
             args {
-              call_value {
-                functionName: "Get Map Item (Player)"
-                args {
-                  int_value: 0
-                }
-              }
+              string_value: "FactionList"
             }
             args {
+              int_value: 0
             }
           }
         }
@@ -230,6 +141,212 @@ nodes {
               int_value: 0
             }
           }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "559c94d66131318400003f21"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{GM}}Download the uncertified nuyen and account file.{{/GM}}"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_FoleyOffice_LittleBlackBook"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_AccountFoley"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add Item to Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_FoleyOffice_LittleBlackBook"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Item to Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_LTG-FOLEY_WAD"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_AccountFoley"
+            }
+          }
+        }
+        args {
+          int_value: 0
         }
       }
     }
@@ -275,6 +392,50 @@ nodes {
               int_value: 0
             }
           }
+        }
+      }
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 15
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
         }
       }
     }
@@ -361,6 +522,94 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 18
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 15
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 5
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
     }
     actions {
       ops {
@@ -411,7 +660,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "Send Max\'s account information to the IRS."
+    responseText: "{{GM}}Send Max\'s account information to the IRS.{{/GM}}"
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -443,9 +692,14 @@ nodes {
       }
     }
     nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55aaeb3b353733a811007748"
+    }
   }
   branches {
-    responseText: "Send Max\'s account information to the IRS."
+    responseText: "{{GM}}Send Max\'s account information to the IRS.{{/GM}}"
     conditions {
       ops {
         functionName: "Comparison (int)"
@@ -484,31 +738,26 @@ nodes {
     }
   }
   branches {
-    responseText: "{{CC}}Log Off{{/CC}}"
+    responseText: "{{GM}}Go Back.{{/GM}}"
     actions {
       ops {
-        functionName: "Add Item to Actor"
+        functionName: "Start Conversation Between Actors"
         args {
           call_value {
-            functionName: "Get Map Item (Item)"
+            functionName: "Get Map Item (Conversation)"
             args {
-              string_value: "item_FoleyEvidence"
+              string_value: "551a0d12666538d80f00335c"
             }
           }
         }
         args {
           call_value {
-            functionName: "Specific Actor"
-            args {
-              call_value {
-                functionName: "Get Map Item (Player)"
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-            }
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Triggering Actor"
           }
         }
         args {
@@ -518,13 +767,18 @@ nodes {
               string_value: "WithOrWithout"
             }
             args {
-              int_value: 1
+              int_value: 0
             }
           }
         }
       }
     }
     nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{GM}}Log Off.{{/GM}}"
+    nextNodeIndex: -1
+    hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1216,26 +1470,26 @@ nodes {
     id: "559c997c6131318400003f58"
   }
   index: 3
-  text: "{{GM}}You realize that if you send the information to the government, you\'ll never be able to recover money for Hernandez or Maria, or get your payment.{{/GM}}"
+  text: "You realize that if you send the information to the government, you\'ll never be able to recover money for Hernandez or Maria, or get your payment."
   branches {
     responseText: ""
     nextNodeIndex: 0
     auxiliaryLink: true
   }
-  nodeType: ConversationNodeType_Simple
+  nodeType: ConversationNodeType_GM_Voice
 }
 nodes {
   idRef {
     id: "559c99456131318400003f45"
   }
   index: 4
-  text: "{{GM}}You realize that it would be a bad idea to send Max\'s tax information to the government shortly after you robbed him.{{/GM}}"
+  text: "You realize that it would be a bad idea to send Max\'s tax information to the government shortly after you robbed him."
   branches {
     responseText: ""
     nextNodeIndex: 0
     auxiliaryLink: true
   }
-  nodeType: ConversationNodeType_Simple
+  nodeType: ConversationNodeType_GM_Voice
 }
 roots {
   actions {
