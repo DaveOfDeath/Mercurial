@@ -11062,29 +11062,146 @@ triggers {
       }
     }
     ops {
-      functionName: "Clear Camera Points of Interest"
-    }
-    ops {
       functionName: "Teleport Camera To Actor"
       args {
         call_value {
-          functionName: "Get Random Actor on Team"
+          functionName: "Active Actor"
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a1c975353733201a007d17"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnCameraRegion.cSpawnCloset.TeleportCamera"
+  events {
+    ops {
+      functionName: "On Camera Region Activated"
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54cd4898613131bc1e0024d1"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "OR"
           args {
             call_value {
-              functionName: "Get Preset Value (string)"
+              functionName: "Actor is Jacked in"
               args {
-                string_value: "FactionList"
+                call_value {
+                  functionName: "Get Map Item (Actor)"
+                  args {
+                    string_value: "55204e586631362c10000718"
+                  }
+                }
               }
               args {
-                int_value: 0
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "IsOrIsNot"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
               }
             }
           }
           args {
             call_value {
-              functionName: "Get Map Item (SceneDimension)"
+              functionName: "Actor is Jacked in"
               args {
-                string_value: "Matrix"
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "IsOrIsNot"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Camera To Point"
+      args {
+        call_value {
+          functionName: "Current Location of Actor"
+          args {
+            call_value {
+              functionName: "Get Random Actor on Team"
+              args {
+                call_value {
+                  functionName: "Get Preset Value (string)"
+                  args {
+                    string_value: "FactionList"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (SceneDimension)"
+                  args {
+                    string_value: "Matrix"
+                  }
+                }
               }
             }
           }
@@ -11094,7 +11211,7 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "55a1c975353733201a007d17"
+    id: "55ad84ca353733d013005c4f"
   }
   elseActions {
   }
@@ -12308,6 +12425,137 @@ triggers {
   isActive: true
   idRef {
     id: "55abcece353733a811008587"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "OnRegion.cParadise.SetParadiseHacked"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a1cdd3353733201a007d1b"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Actor is Player Controlled"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Follower"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55a1e54d353733201a007df5"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55a1e4d9353733201a007df4"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55ad8772353733d013005c50"
   }
   elseActions {
   }
@@ -19454,208 +19702,8 @@ triggers {
     }
   }
   conditions {
-    ops {
-      functionName: "Evaluate Tag for Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HasOrHasNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isMatrixNebel"
-          }
-        }
-      }
-    }
   }
   actions {
-    ops {
-      functionName: "Add Item to Team"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "item_LTG-HERNANDEZ_WAD"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "decker"
-          }
-          args {
-            string_value: "Matrix_NodeHackSuccess"
-          }
-        }
-      }
-      args {
-        float_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Hack Status On Matrix Node Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HackIndicatorStatus"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55abbe5c353733a8110084b4"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_AccountHernandez"
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_HernandezHacked"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Goal Status"
-      args {
-        call_value {
-          functionName: "Get Map Item (Goal)"
-          args {
-            string_value: "Hack Federated Banking"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "GoalStatus"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
     ops {
       functionName: "Display Text over Actor"
       args {
@@ -19699,12 +19747,6 @@ triggers {
         float_value: 0
       }
     }
-  }
-  isActive: true
-  idRef {
-    id: "55abc4f9353733a81100857e"
-  }
-  elseActions {
     ops {
       functionName: "Add Item to Team"
       args {
@@ -19872,17 +19914,31 @@ triggers {
       }
     }
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Trigger: Run Alternate Trigger"
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55abc6d1353733a811008581"
+          }
         }
       }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TextPopupStyle"
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
           }
           args {
             int_value: 0
@@ -19890,64 +19946,29 @@ triggers {
         }
       }
       args {
-        string_value: "That\'s a serious amount of nuyen."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 7
-      }
-      args {
-        float_value: 0.5
-      }
-      args {
-        float_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
         call_value {
-          functionName: "Get Story Variable (int)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "542848a8633464d816001ad5"
+            string_value: "WithOrWithout"
           }
           args {
-            string_value: "int_NPC_Status_Nebel"
+            int_value: 0
           }
         }
       }
-      args {
-        int_value: -1
-      }
     }
+  }
+  isActive: true
+  idRef {
+    id: "55abc4f9353733a81100857e"
+  }
+  elseActions {
   }
   is_oneshot: true
 }
 triggers {
-  name: "OnInteraction.Vault7691.NebelBetrayal"
+  name: "RunTrigger.PC0Decker.NebelBetrayal"
   events {
-    ops {
-      functionName: "On Item Interaction"
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55abbe5c353733a8110084b4"
-          }
-        }
-      }
-    }
   }
   conditions {
     ops {
@@ -19998,16 +20019,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Evaluate Tag for Actor"
+      functionName: "Compare Actor Skill"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Map Item (Player)"
           args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
+            int_value: 0
           }
         }
       }
@@ -20015,7 +20032,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "HasOrHasNot"
+            string_value: "BaseOrCurrent"
           }
           args {
             int_value: 0
@@ -20024,11 +20041,28 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "isMatrixNebel"
+            string_value: "ActorSkills"
+          }
+          args {
+            int_value: 5
           }
         }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 0
       }
     }
   }
@@ -20086,7 +20120,7 @@ triggers {
         float_value: 0.5
       }
       args {
-        float_value: 0
+        float_value: 3
       }
     }
     ops {
@@ -21314,7 +21348,7 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "cStarGardensNode"
+  name: "cParadiseGardens"
   position {
     x: -40
     y: -131
@@ -22463,7 +22497,7 @@ regions {
   visible_at_start: false
   is_closet: false
   is_teleporter_region: true
-  linked_teleporter_region: "55a31b4a3537330c070043d2"
+  linked_teleporter_region: "55a1e088353733201a007dec"
   teleport_facing: 2
   teleport_sound_fx: ""
   teleport_sound_volume: 0
