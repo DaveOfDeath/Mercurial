@@ -8253,20 +8253,44 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Variable (int)"
+      functionName: "Remove Item from Team"
       args {
         call_value {
-          functionName: "Get Story Variable (int)"
+          functionName: "Get Map Item (Item)"
           args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
+            string_value: "item_LTG-Little_Bit"
           }
         }
       }
       args {
-        int_value: 0
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
       }
     }
     ops {
@@ -17786,6 +17810,348 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "OnInteraction.ForcePortal.SpawnIC_DisablePuzzle"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ad9f55353733b80a003d8b"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner By Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isLowballIC"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isLowballPuzzle"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55ada064353733b80a003d8e"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Intruder! Intruder!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 0.5
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a99c0c353733980f004665"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a99eb4353733980f004670"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a286ee3537330c07003f21"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a99f62353733980f004676"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55ada5ab353733b80a003d91"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a8424435373338120014e7"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a8441b353733381200150c"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55ada115353733b80a003d90"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "eCombatEnd.Lowball.RemoveFirewall"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCombatEnd"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a286ee3537330c07003f21"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a503f7353733d016003d01"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a99c0c353733980f004665"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a503f7353733d016003d01"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a8424435373338120014e7"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a8441b353733381200150c"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "55ada5ab353733b80a003d91"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: ""
   events {
   }
@@ -19623,6 +19989,238 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "OnRegion.cPUBsriFollower.DisableDarkSetPopText"
+  events {
+    ops {
+      functionName: "On Camera Region Activated"
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "55a321ac3537330c070043d3"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Follower"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sDarkNetPopText"
+          }
+        }
+      }
+      args {
+        string_value: "This strange portal flickers and glows to an unearthly rhythm. But connection isn\'t strong enough to carry two personas."
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55ad91fb353733b80a003d72"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55ad91a6353733b80a003d71"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sDarkNetPopText"
+          }
+        }
+      }
+      args {
+        string_value: "This strange portal flickers and glows to an unearthly rhythm. Who knows where it could lead."
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55ad91fb353733b80a003d72"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnRegion.rDarkPortalToggle.PopText"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55ad8f50353733b80a003d70"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sDarkNetPopText"
+          }
+        }
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 0.5
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55ad975e353733b80a003d7a"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: ""
   events {
   }
@@ -20014,50 +20612,79 @@ triggers {
       }
     }
     ops {
-      functionName: "Compare Actor Skill"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Map Item (Player)"
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Compare Actor Skill"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "BaseOrCurrent"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "ActorSkills"
+              }
+              args {
+                int_value: 5
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
           args {
             int_value: 0
           }
         }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "BaseOrCurrent"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "ActorSkills"
-          }
-          args {
-            int_value: 5
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 0
       }
     }
   }
@@ -20083,7 +20710,7 @@ triggers {
       functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Nearest Tagged Actor to Actor"
+          functionName: "Nearest Tagged Actor to Prop"
           args {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
@@ -20094,7 +20721,10 @@ triggers {
           }
           args {
             call_value {
-              functionName: "Triggering Actor"
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55abbe5c353733a8110084b4"
+              }
             }
           }
         }
@@ -20526,10 +21156,10 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
-  default_music: ""
+  combat_music: "Berlin-Set18-Combat"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -20665,7 +21295,7 @@ regions {
   }
   ambience_template: ""
   combat_music: ""
-  default_music: "Seattle-Set5-Legwork"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
   loop_default_music: true
   no_fow_in_region: false
@@ -20710,10 +21340,10 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
-  default_music: ""
+  combat_music: "Berlin-Set18-Combat"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -20954,10 +21584,10 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
-  default_music: ""
+  combat_music: "Berlin-Set18-Combat"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -21093,9 +21723,9 @@ regions {
   }
   ambience_template: ""
   combat_music: ""
-  default_music: ""
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -21139,9 +21769,9 @@ regions {
   }
   ambience_template: ""
   combat_music: ""
-  default_music: ""
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -21230,10 +21860,10 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
-  default_music: ""
+  combat_music: "Berlin-Set18-Combat"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -21382,10 +22012,10 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
-  default_music: ""
+  combat_music: "Berlin-Set18-Combat"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -21587,10 +22217,10 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
-  default_music: ""
+  combat_music: "Berlin-Set9-Combat"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -22075,7 +22705,7 @@ regions {
     a: 1
   }
   ambience_template: ""
-  combat_music: ""
+  combat_music: "Berlin-Set18-Combat"
   default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
   loop_default_music: true
@@ -22465,7 +23095,7 @@ regions {
   }
   ambience_template: "bar-quiet"
   combat_music: ""
-  default_music: "Berlin-Set3-Legwork"
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
   loop_default_music: true
   no_fow_in_region: false
@@ -23119,9 +23749,9 @@ regions {
   }
   ambience_template: ""
   combat_music: ""
-  default_music: ""
+  default_music: "Seattle-Set3-Legwork"
   loop_combat_music: true
-  loop_default_music: false
+  loop_default_music: true
   no_fow_in_region: false
 }
 regions {
@@ -23433,6 +24063,204 @@ regions {
   default_music: ""
   loop_combat_music: true
   loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rDarkPortalToggle"
+  position {
+    x: 132
+    y: -119
+    width: 17
+    height: 5
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55ad8f50353733b80a003d70"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "tDarkNetEntrance"
+  position {
+    x: 140
+    y: -118
+    width: 1
+    height: 3
+  }
+  enabledAtStart: false
+  is_camera_region: false
+  idRef {
+    id: "55ad91fb353733b80a003d72"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: true
+  linked_teleporter_region: "55ad9408353733b80a003d73"
+  teleport_facing: -1
+  teleport_sound_fx: ""
+  teleport_sound_volume: 0
+  teleport_source_fx: "MatrixESPSpawn"
+  teleport_destination_fx: "MatrixESPSpawn"
+  teleport_pc_only: true
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "tDarkNetExit"
+  position {
+    x: 80
+    y: -78
+    width: 1
+    height: 2
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55ad9408353733b80a003d73"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: true
+  linked_teleporter_region: "55ad91fb353733b80a003d72"
+  teleport_facing: 2
+  teleport_sound_fx: ""
+  teleport_sound_volume: 0
+  teleport_source_fx: "MatrixESPSpawn"
+  teleport_destination_fx: "MatrixESPSpawn"
+  teleport_pc_only: true
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "cDarkNet"
+  position {
+    x: 75
+    y: -93
+    width: 20
+    height: 20
+  }
+  enabledAtStart: true
+  is_camera_region: true
+  idRef {
+    id: "55ad98e7353733b80a003d7c"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: "asylum-busy"
+  combat_music: "Berlin-Knight-Kings-Filtered"
+  default_music: "Seattle-Set3-Legwork"
+  loop_combat_music: true
+  loop_default_music: true
   no_fow_in_region: false
 }
 characters {
@@ -24483,9 +25311,9 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Berlin:Aztechnology/TrollMaleAztechHeavyGuard"
+    prefab_name: "Seattle:Scientist/OrkMaleScientistMask"
     character_sheet_id: "Lvl2_Human_Decker"
-    equipment_sheet_id: "MERCURIAL_LTG_SilverArrowGear_Lv2"
+    equipment_sheet_id: "MERCURIAL_LTG_SilverArrowGear_Lv1"
     character_mod {
       stats {
         body: 0
@@ -25061,6 +25889,39 @@ characters {
         }
         args {
           int_value: -1
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bInCombat"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
         }
       }
     }
@@ -26416,6 +27277,297 @@ characters {
     hide_floaties: true
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 114
+    y: 0
+    z: -242
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isLowballIC"
+  GeneralTags: "isRooted"
+  displayName: "white_ranged_lowball_1"
+  idRef {
+    id: "55ada00c353733b80a003d8c"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
+    character_sheet_id: "IC_Lv1_White_Ranged"
+    equipment_sheet_id: "IC White Ranged Lv1 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 24
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Hostile"
+    char_name: "White IC"
+    GeneralTags: "isLowballIC"
+    GeneralTags: "isRooted"
+    patrolRoute: "Doghouse Firewall"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: ""
+    }
+    dimension_name: "Matrix"
+    karma: 29
+    is_prop_character: false
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 109
+    y: 0
+    z: -249
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isLowballIC"
+  displayName: "white_melee_lowball"
+  idRef {
+    id: "55ada02c353733b80a003d8d"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Matrix/MatrixICE_white_melee"
+    character_sheet_id: "IC_Lv1_White_Melee"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 2
+        force: 0
+        morale: 0
+        discipline: 24
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Matrix Basic Attack (Melee IC Lv 2)"
+    }
+    team_id: "Hostile"
+    char_name: "White IC"
+    GeneralTags: "isLowballIC"
+    patrolRoute: "Doghouse Firewall"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: ""
+    }
+    dimension_name: "Matrix"
+    karma: 29
+    is_prop_character: false
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 118
+    y: 0
+    z: -249
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isLowballIC"
+  GeneralTags: "isRooted"
+  displayName: "white_ranged_lowball_2"
+  idRef {
+    id: "55ada064353733b80a003d8e"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
+    character_sheet_id: "IC_Lv1_White_Ranged"
+    equipment_sheet_id: "IC White Ranged Lv1 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 24
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Hostile"
+    char_name: "White IC"
+    GeneralTags: "isLowballIC"
+    GeneralTags: "isRooted"
+    patrolRoute: "Doghouse Firewall"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: ""
+    }
+    dimension_name: "Matrix"
+    karma: 29
+    is_prop_character: false
+    has_fist: false
+  }
+}
 variables {
   bool_value: false
   variableref_value {
@@ -26606,6 +27758,14 @@ variables {
     scope: TsVariableScope_Scene
     name: "iDeckingSkillChallengeRating"
     typeName: "int"
+  }
+}
+variables {
+  string_value: "This strange portal flickers and glows to an unearthly rhythm. Who knows where it could lead."
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sDarkNetPopText"
+    typeName: "string"
   }
 }
 mapEvents: "ePlayerDies"
