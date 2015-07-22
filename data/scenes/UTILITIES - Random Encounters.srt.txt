@@ -1414,196 +1414,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Add Tag to Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isChecked"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors on Team"
-          args {
-            call_value {
-              functionName: "Get Preset Value (string)"
-              args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Default"
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Detain Actor"
-      args {
-        call_value {
-          functionName: "All Actors on Team of Race"
-          args {
-            call_value {
-              functionName: "Get Preset Value (string)"
-              args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Default"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Race"
-              }
-              args {
-                int_value: 8
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DetainMethod"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
-          functionName: "All Actors on Team of Race"
-          args {
-            call_value {
-              functionName: "Get Preset Value (string)"
-              args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Default"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Race"
-              }
-              args {
-                int_value: 8
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Center of Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "55af1d0d663136100d0008b3"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Enable/Disable Manual Turn Mode"
       args {
         call_value {
@@ -1617,6 +1427,33 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -1625,6 +1462,46 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "NewTrigger"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Nothing Selected"
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55b026696631367814006779"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 regions {
   name: "Camera Region"
@@ -2059,7 +1936,7 @@ characters {
     char_name: "Security"
     GeneralTags: "RdmEnc1"
     GeneralTags: "isSecurity"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     portrait {
       filename: ""
@@ -2157,7 +2034,7 @@ characters {
     char_name: "Security"
     GeneralTags: "RdmEnc1"
     GeneralTags: "isSecurity"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     portrait {
       filename: ""
@@ -2368,6 +2245,7 @@ characters {
     char_name: "Arms Dealer"
     GeneralTags: "isVendor"
     GeneralTags: "RdmEnc1"
+    enabled_at_start: false
     pc_spawn_number: -1
     portrait {
       filename: ""
@@ -2742,6 +2620,8 @@ characters {
     z: 3
   }
   orientation: ORIENTATION_S
+  GeneralTags: "isShiver"
+  GeneralTags: "isUnhired"
   idRef {
     id: "559085ec663136b8110073e6"
   }
@@ -2776,7 +2656,7 @@ characters {
         vision_cone_angle: 0
       }
       skills {
-        ranged_combat: 1
+        ranged_combat: 4
         close_combat: 0
         throwing_weapons: 0
         spellcasting: 0
@@ -2796,7 +2676,7 @@ characters {
         etiquette_academic: 0
       }
       specializations {
-        pistol: 1
+        pistol: 5
         rifle: 0
         shotgun: 0
         smg: 0
@@ -2806,15 +2686,15 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Player"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
     team_id: "Shadowrunners"
     char_name: "Shiver"
-    GeneralTags: "isUnhired"
     GeneralTags: "isShiver"
+    GeneralTags: "isUnhired"
     enabled_at_start: true
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
@@ -2939,7 +2819,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Shadowrunners"
     char_name: "Silver Arrow"
     GeneralTags: "isSilverArrow"
     pc_spawn_number: -1
@@ -3006,7 +2886,7 @@ characters {
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Shadowrunners"
     char_name: "Sucio"
     enabled_at_start: true
     pc_spawn_number: -1
