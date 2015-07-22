@@ -1,0 +1,62 @@
+id: "Shoot (Rifle Burst)"
+
+uirep {
+	icon: "icon_burst"
+	name: "Burst Fire"
+	description: "Two attacks in one action that increases chance of critical. Uses 5 bullets."
+}
+
+anim_action: AnimAction_Attack
+
+ammoCost: 5
+
+apCostMod: 1
+
+hpDamageMod: 0
+
+apDamageMod: 0
+
+accuracyMod: 0
+
+prereqStrings: "TAG.isChecked NOT_EXISTS"
+
+prereqStrings: "Item.FLAG.WEAPON_CUR_AMMO > 5"
+
+damageBucket{
+	successEntries{
+		weight: 0.50
+		value: 2
+	}
+	successEntries{
+		weight: 0.40
+		value: 1.5
+	}
+	successEntries{
+		weight: 0.10
+		value: 1
+	}
+	failureEntries{
+		weight: 1.0
+		value: 1
+	}
+	failureEntries{
+		weight: 0.0
+		value: 0.5
+	}
+}
+
+repetition: 2
+
+offensiveAbility: true
+
+fxrep{
+	preActionFxName: ""
+	actionFxName: "GunBurstFireActionEmpty"
+	postActionFxName: ""
+	hitReactionFxName: "GunBurstHitReaction"
+	missReactionFxName: "GunBurstMissReaction"
+}
+
+toHitFunction: "actorWeaponAttackToHit"
+
+damageFunction: "weaponDamage"
