@@ -71,6 +71,47 @@ triggers {
         call_value {
           functionName: "Get Map Item (SenseTagList)"
           args {
+            string_value: "isBlownUp"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
             string_value: "isCharge"
           }
         }
@@ -344,47 +385,6 @@ triggers {
       }
       args {
         int_value: -1
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "esplode"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
       }
     }
     ops {
@@ -915,6 +915,9 @@ triggers {
         float_value: 0
       }
     }
+    ops {
+      functionName: "Autosave Game"
+    }
   }
   isActive: true
   idRef {
@@ -1054,6 +1057,9 @@ triggers {
       args {
         float_value: 0
       }
+    }
+    ops {
+      functionName: "Autosave Game"
     }
   }
   isActive: true
@@ -1195,6 +1201,9 @@ triggers {
         float_value: 0
       }
     }
+    ops {
+      functionName: "Autosave Game"
+    }
   }
   isActive: true
   idRef {
@@ -1335,6 +1344,9 @@ triggers {
         float_value: 0
       }
     }
+    ops {
+      functionName: "Autosave Game"
+    }
   }
   isActive: true
   idRef {
@@ -1362,6 +1374,9 @@ triggers {
   conditions {
   }
   actions {
+    ops {
+      functionName: "Autosave Game"
+    }
     ops {
       functionName: "Kill Actor"
       args {
@@ -2988,7 +3003,10 @@ triggers {
   name: "GangersEvicted"
   events {
     ops {
-      functionName: "On Actor Start Turn"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eBoom!"
+      }
     }
   }
   conditions {
@@ -3340,6 +3358,49 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Got Gabriels\' explosive kit... Now to evict the cutters.."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
       functionName: "Set Variable (bool)"
       args {
         call_value {
@@ -3368,6 +3429,28 @@ triggers {
           functionName: "Get Map Item (Prop)"
           args {
             string_value: "55650f65393066a80e000b3c"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "556510e8393066a80e000b4d"
           }
         }
       }
@@ -3597,6 +3680,9 @@ triggers {
           }
         }
       }
+    }
+    ops {
+      functionName: "Clear All Waypoints"
     }
   }
   isActive: true
@@ -3939,6 +4025,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Region Visible"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55651216393066a80e000b53"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Enable/Disable Team\'s Turn"
       args {
         call_value {
@@ -4050,27 +4158,17 @@ triggers {
       }
     }
     ops {
-      functionName: "Move Prop"
+      functionName: "Send Event After Delay"
       args {
         call_value {
-          functionName: "Get Map Item (Prop)"
+          functionName: "Get Map Item (Event)"
           args {
-            string_value: "559b14936131311c19006fad"
+            string_value: "eBridgeFall"
           }
         }
       }
       args {
-        call_value {
-          functionName: "Center of Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "55651216393066a80e000b53"
-              }
-            }
-          }
-        }
+        float_value: 0.25
       }
     }
     ops {
@@ -4079,7 +4177,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "esplode"
+            string_value: "isBlownUp"
           }
         }
       }
@@ -4112,39 +4210,6 @@ triggers {
             int_value: 1
           }
         }
-      }
-    }
-    ops {
-      functionName: "Delete Props by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "trash"
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event After Delay"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eBridgeFall"
-          }
-        }
-      }
-      args {
-        float_value: 0.25
       }
     }
   }
@@ -5540,11 +5605,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -25
+    x: -39
     y: 0
-    z: 109
+    z: 110
   }
-  orientation: ORIENTATION_E
+  orientation: ORIENTATION_S
   GeneralTags: "isCutter"
   displayName: "Ganger"
   idRef {
