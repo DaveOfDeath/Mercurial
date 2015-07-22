@@ -4349,7 +4349,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Inteerior.DetainDrones"
+  name: "Interior.DetainDrones"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -4394,66 +4394,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Detain Actor"
-      args {
-        call_value {
-          functionName: "All Actors on Team of Race"
-          args {
-            call_value {
-              functionName: "Get Preset Value (string)"
-              args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Default"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Race"
-              }
-              args {
-                int_value: 8
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DetainMethod"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
     ops {
       functionName: "Teleport Actor"
       args {
@@ -4538,12 +4478,6 @@ triggers {
         }
       }
     }
-  }
-  isActive: true
-  idRef {
-    id: "55578c5c6631360412004eb0"
-  }
-  elseActions {
     ops {
       functionName: "Detain Actor"
       args {
@@ -4599,11 +4533,17 @@ triggers {
             string_value: "DetainMethod"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "55578c5c6631360412004eb0"
+  }
+  elseActions {
     ops {
       functionName: "Teleport Actor"
       args {
@@ -4681,6 +4621,66 @@ triggers {
           functionName: "Get Preset Value (int)"
           args {
             string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Detain Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team of Race"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Race"
+              }
+              args {
+                int_value: 8
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DetainMethod"
           }
           args {
             int_value: 0
@@ -8108,6 +8108,20 @@ triggers {
           }
         }
       }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDetainDrones"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
     }
   }
   isActive: true
@@ -24058,7 +24072,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Extras/HumanMaleBunraku"
+    prefab_name: "Seattle:Extras/HumanFemaleBunraku"
     character_sheet_id: "BaseCivilian"
     character_mod {
       stats {
@@ -24874,7 +24888,7 @@ scene_dimensions {
   initial_alarm_state: 0
   turns_per_round: 3
 }
-show_hiring_screen_on_scene_load: true
+show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
   prereq_conditions {
