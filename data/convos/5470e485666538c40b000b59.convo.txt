@@ -237,12 +237,41 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 2
+              int_value: 4
             }
           }
         }
         args {
-          int_value: 0
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -324,7 +353,36 @@ nodes {
           }
         }
         args {
-          int_value: 10
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -464,7 +522,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "{{CC}}[3\302\245]{{/CC}} Give me a beer."
+    responseText: "{{CC}}[5\302\245]{{/CC}} Give me a shot.  Something hard."
     conditions {
       ops {
         functionName: "Evaluate Nuyen"
@@ -480,7 +538,7 @@ nodes {
           }
         }
         args {
-          int_value: 3
+          int_value: 5
         }
       }
       ops {
@@ -500,7 +558,7 @@ nodes {
               string_value: "Comparison Ops"
             }
             args {
-              int_value: 3
+              int_value: 4
             }
           }
         }
@@ -535,51 +593,6 @@ nodes {
               }
             }
           }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"I think you\'ve had enough. Dying of alcohol poisoning won\'t impress me.\""
-        }
-      }
-    }
-    nextNodeIndex: 0
-    hideIfUnavailable: true
-    auxiliaryLink: true
-    comment: "Drunk"
-  }
-  branches {
-    responseText: "{{CC}}[5\302\245]{{/CC}} Give me a shot.  Something hard."
-    conditions {
-      ops {
-        functionName: "Evaluate Nuyen"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          int_value: 5
         }
       }
     }
@@ -717,6 +730,105 @@ nodes {
     nextNodeIndex: 0
     hideIfUnavailable: true
     auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}[3\302\245]{{/CC}} Give me a beer."
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Bartender"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Actor Attribute"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorAttributes"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I think you\'ve had enough. Dying of alcohol poisoning won\'t impress me.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    auxiliaryLink: true
+    comment: "Drunk"
   }
   branches {
     responseText: "{{CC}}[5\302\245]{{/CC}} Give me a shot.  Something hard."
