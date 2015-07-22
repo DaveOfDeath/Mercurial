@@ -1,0 +1,67 @@
+id:"Aimed Shot (Taser)"
+
+uirep {
+  icon: "icon_aim"
+  name: "Aimed Shot"
+  description: "Increases accuracy by 10%."
+}
+
+anim_action: AnimAction_Attack
+
+apCostMod: 0
+
+hpDamageMod: 0
+
+apDamageMod: 0
+
+accuracyMod: 10
+
+prereqStrings: "Item.FLAG.WEAPON_CUR_AMMO > 0"
+
+prereqStrings: "TAG.isChecked NOT_EXISTS"
+
+prereqStrings: "Item.CORE_SKILL > 2"
+
+damageBucket {
+  successEntries {
+    weight: 0.2
+    value: 2
+  }
+  successEntries {
+    weight: 0.2
+    value: 1.5
+  }
+  successEntries {
+    weight: 0.6
+    value: 1
+  }
+  
+failureEntries {
+    weight: 0.8
+    value: 1
+  }
+  failureEntries {
+    weight: 0.2
+    value: 1
+  }
+}
+
+attackRatingMod: 0
+
+offensiveAbility: true
+
+ammoCost: 1
+
+cooldown: 3
+
+fxrep {
+  preActionFxName: "Berlin:TaserAiming"
+  actionFxName: "Berlin:TaserFireAction"
+  postActionFxName: ""
+  hitReactionFxName: "Berlin:TaserHitReaction"
+  missReactionFxName: "GunMissReaction"
+}
+
+toHitFunction: "actorWeaponAttackToHit"
+
+damageFunction: "weaponDamage"

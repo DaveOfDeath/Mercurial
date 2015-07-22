@@ -1,0 +1,61 @@
+id: "DC Attack (Thrust)"
+
+uirep {
+  icon: "icon_thrust"
+  name: "Thrust"
+  description: "+2 DMG over the weapon\'s base, and pierces up to 2 points of Armor. Ignores the weapon\'s AP damage. -10% to hit."
+}
+anim_action: AnimAction_Attack
+
+apCostMod: 0
+
+hpDamageMod: 2
+
+apDamageMod: -20
+
+accuracyMod: -10
+
+prereqStrings: "TAG.isChecked NOT_EXISTS"
+
+prereqStrings: "Item.CORE_SPECIALIZATION >= 1"
+
+damageBucket {
+  successEntries {
+    weight: 0.25
+    value: 2
+  }
+  successEntries {
+    weight: 0.25
+    value: 1.5
+  }
+  successEntries {
+    weight: 0.5
+    value: 1
+  }
+  failureEntries {
+    weight: 0.3
+    value: 1
+  }
+  failureEntries {
+    weight: 0.7
+    value: 0.5
+  }
+}
+
+attackRatingMod: 0
+
+offensiveAbility: true
+
+rpPenetrate: 2
+
+fxrep {
+  preActionFxName: ""
+  actionFxName: "SwordThrustAction"
+  postActionFxName: ""
+  hitReactionFxName: "SwordHitReaction"
+  missReactionFxName: "SwordMissReaction"
+}
+
+toHitFunction: "actorWeaponAttackToHit"
+
+damageFunction: "weaponDamage"
