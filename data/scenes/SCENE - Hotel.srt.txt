@@ -580,6 +580,18 @@ triggers {
         int_value: 4
       }
     }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Saved"
+      }
+    }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Goal"
+      }
+    }
   }
   is_oneshot: false
 }
@@ -4506,6 +4518,82 @@ triggers {
   isActive: true
   idRef {
     id: "5565135b393066a80e000b55"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Disable.isChecked"
+  events {
+    ops {
+      functionName: "On Actor Alive"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55b083fc663136fc12001830"
   }
   elseActions {
   }
