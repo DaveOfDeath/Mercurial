@@ -9572,7 +9572,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "--===Combat Start/End Universal Catch Script===--"
+  name: "--===Universal Combat Scripts===--"
   events {
   }
   conditions {
@@ -9868,6 +9868,447 @@ triggers {
   isActive: true
   idRef {
     id: "55a2aa0a3537330c070040ee"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnDamage.RipperAttack.TagActor"
+  events {
+    ops {
+      functionName: "On Actor Damage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HPOrAP"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isRipperIC"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Actor is a Persona"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Compare Actor Race"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Race"
+          }
+          args {
+            int_value: 15
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Random (int)"
+                      args {
+                        int_value: 1
+                      }
+                      args {
+                        int_value: 3
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "isRipped"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Apply Condition Status Effect to Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "StatusCondition"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "RipEffect"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "BuffDebuffType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55b05499353733d01b003c62"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnTurnStart.RippedNoStatus.RemoveTag"
+  events {
+    ops {
+      functionName: "On Actor End Turn"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "OR"
+          args {
+            call_value {
+              functionName: "Evaluate Tag for Actor"
+              args {
+                call_value {
+                  functionName: "Specific Actor"
+                  args {
+                    call_value {
+                      functionName: "Triggering Actor"
+                    }
+                  }
+                  args {
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "HasOrHasNot"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    string_value: "isRipped1"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Evaluate Tag for Actor"
+              args {
+                call_value {
+                  functionName: "Specific Actor"
+                  args {
+                    call_value {
+                      functionName: "Triggering Actor"
+                    }
+                  }
+                  args {
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "HasOrHasNot"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    string_value: "isRipped2"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Evaluate Tag for Actor"
+          args {
+            call_value {
+              functionName: "Specific Actor"
+              args {
+                call_value {
+                  functionName: "Triggering Actor"
+                }
+              }
+              args {
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "HasOrHasNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                string_value: "isRipped3"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Actor Has Status Condition"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "StatusCondition"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isRipped1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isRipped2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isRipped3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55b0564f353733d01b003c63"
   }
   elseActions {
   }
@@ -25830,16 +26271,16 @@ characters {
     z: -211
   }
   orientation: ORIENTATION_S
+  GeneralTags: "isRipperIC"
   GeneralTags: "isFoleyOfficeIC"
-  displayName: "white_melee_office_ic"
+  displayName: "white_ripper_office_ic"
   idRef {
     id: "551a0141666538d80f003311"
   }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Matrix/MatrixICE_white_range"
-    character_sheet_id: "IC_Lv1_White_Melee"
-    equipment_sheet_id: "IC White Melee Lv1 Gear"
+    character_sheet_id: "IC_Lv1_White_Ranged"
     character_mod {
       stats {
         body: 0
@@ -25901,8 +26342,12 @@ characters {
       vulnerabilities {
       }
     }
+    equipment {
+      prefab_name: "Matrix Ripper Attack (Melee IC Lv 1)"
+    }
     team_id: "Hostile"
-    char_name: "White IC"
+    char_name: "Ripper IC"
+    GeneralTags: "isRipperIC"
     GeneralTags: "isFoleyOfficeIC"
     enabled_at_start: false
     pc_spawn_number: -1
@@ -26901,7 +27346,8 @@ characters {
   }
   orientation: ORIENTATION_N
   GeneralTags: "isStarKafIC"
-  displayName: "white_melee_starkaf_backdoor"
+  GeneralTags: "isRipperIC"
+  displayName: "white_ripper_starkaf_backdoor"
   idRef {
     id: "5540246166313648070059f7"
   }
@@ -26971,11 +27417,12 @@ characters {
       }
     }
     equipment {
-      prefab_name: "Matrix Basic Attack (Melee IC Lv 2)"
+      prefab_name: "Matrix Ripper Attack (Melee IC Lv 1)"
     }
     team_id: "Hostile"
-    char_name: "White IC"
+    char_name: "Ripper IC"
     GeneralTags: "isStarKafIC"
+    GeneralTags: "isRipperIC"
     patrolRoute: "Doghouse Firewall"
     enabled_at_start: false
     pc_spawn_number: -1
@@ -27913,7 +28360,8 @@ characters {
   }
   orientation: ORIENTATION_W
   GeneralTags: "isParadiseIC"
-  displayName: "white_melee_paradise"
+  GeneralTags: "isRipperIC"
+  displayName: "white_ripper_paradise_ic"
   idRef {
     id: "55adb362353733c4060005a9"
   }
@@ -27983,11 +28431,12 @@ characters {
       }
     }
     equipment {
-      prefab_name: "Matrix Basic Attack (Melee IC Lv 2)"
+      prefab_name: "Matrix Ripper Attack (Melee IC Lv 1)"
     }
     team_id: "Hostile"
-    char_name: "White IC"
+    char_name: "Ripper IC"
     GeneralTags: "isParadiseIC"
+    GeneralTags: "isRipperIC"
     patrolRoute: "Doghouse Firewall"
     enabled_at_start: false
     pc_spawn_number: -1
@@ -28110,7 +28559,7 @@ characters {
   orientation: ORIENTATION_N
   GeneralTags: "isParadiseIC"
   GeneralTags: "isRooted"
-  displayName: "white_ranged_paradise"
+  displayName: "white_ranged_paradise_ic"
   idRef {
     id: "55adb790353733c4060005b2"
   }
