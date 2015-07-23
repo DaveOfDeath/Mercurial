@@ -2109,6 +2109,45 @@ nodes {
           int_value: 5
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Someone is always trying to kill you, Kid. It\'s a hazard of this line of work, believe you me.\"\n\nSam pours to fill a glass that is suddenly empty, and gestures with it for you to continue. \"Why is this time different?\""
+        }
+      }
+      ops {
+        functionName: "Set Waypoint on Prop"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "PrimaryOrSecondary"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Prop)"
+            args {
+              string_value: "54338c0f373361e00f007124"
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: 32
   }
@@ -2122,7 +2161,88 @@ nodes {
   index: 32
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "I think it\'s this talent manager guy, Armando Hernandez."
+    responseText: "I think it\'s Maria\'s former manager, Armando Hernandez."
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Comparison (bool)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (bool)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "bool_HarassHernandez"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "bool"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Comparison (bool)"
+            args {
+              call_value {
+                functionName: "Get Story Variable (bool)"
+                args {
+                  string_value: "542848a8633464d816001ad5"
+                }
+                args {
+                  string_value: "bool_HernandezDead"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "bool"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -2138,7 +2258,7 @@ nodes {
           }
         }
         args {
-          string_value: "Test phrase, why is this ending the conversation?"
+          string_value: "Sam leans back, and asks \"How is Hernandez involved? Directly, indirectly? What makes you think he\'s behind it? \"\n\n\"How does the dragon fit into it? That Yakuza witch? Why Maria?\""
         }
       }
     }
@@ -2148,7 +2268,34 @@ nodes {
     idRef {
       id: "55a9ee896131319005002073"
     }
-    auxiliaryLink: true
+  }
+  branches {
+    responseText: "It may be the guy who hired me."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam snorts, coughing up his drink, \"Yeah, I think you\'re right, the guy who just betrayed and tried to murder you, he may have been involved.\"\n\n\"Kid, sometimes I forget how green you are. No offense, I know you\'re a badass, but that\'s the understatement of the year. Walk me through it, how if Foley involved, and how does it tie together?\""
+        }
+      }
+    }
+    nextNodeIndex: 34
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55a9ee976131319005002076"
+    }
   }
   branches {
     responseText: "It might be the Yakuza."
@@ -2171,7 +2318,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2180,7 +2327,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "It\'s definitely the Yakuza."
+    responseText: "{{CC}}Etiquette: Gang{{/CC}}  It\'s definitely connected to the Yakuza."
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -2200,7 +2347,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2209,7 +2356,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "It may be the guy who hired me."
+    responseText: "It\'s a massive conspiracy involving the Big Eight megacorporations!"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -2229,36 +2376,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55a9ee976131319005002076"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "It\'s probably some massive conspiracy involving one of the Big Eight megacorporations."
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Test phrase, why is this ending the conversation?"
-        }
-      }
-    }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2287,7 +2405,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2316,7 +2434,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2324,14 +2442,966 @@ nodes {
     }
     auxiliaryLink: true
   }
+  branches {
+    responseText: "There\'s this lady named Hotoda."
+    nextNodeIndex: 37
+  }
+  branches {
+    responseText: "There was this trucker that I met earlier tonight- it seemed like a coincidence, but I think he might be involved."
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
   comment: "Investigation Loop"
 }
 nodes {
   idRef {
-    id: "5503e9bc66313678170060d8"
+    id: "55b077f26131314c180022fd"
   }
   index: 33
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "I hope he is, I shot him in the head earlier tonight."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HernandezDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Holy Frag, that\'s cold\" Sam breathes, and tips his glass over, spilling expensive liquor into the carpet, \"for friends lost.\"\n\n\"Okay, so walk me through this: How did Armando Hernandez end up in your crosshairs?\""
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b079596131314c18002400"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Maria said he was a BTL dealer."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam smirks, \"So, you\'ve never dealt or used drugs before? Maria might be straight edge now, but I\'ve heard stories that I really really hope are true.\"\n\n\"Okay, that sounded more pervy than I meant it to, but you know what I mean.\"\n\n\"If you only deal with the nice people, you may run out of runner friends. Good news, you and Padre are going to be very happy together.\""
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b07c856131314c1800284c"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Max said he was trying to kill us to get to Maria."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam shrugs \"Max said, huh? How did I hear him described recently, \'I wouldn\'t piss on him if he was on fire\'?\"\n\nSam looks at you significantly, \"That\'s a harsh statement about someone who actually was on fire at the time.\"\n\n\"Assuming Max was telling the truth, and I don\'t know that I would bet on that number, but if he was, what was Hernandez\'s end game? How does this turn out? How was Hotoda involved, and what\'s up with that fragging dragon?\""
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b07cfe6131314c1800284d"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Maria said she saw evidence of Hernandez\'s drug dealing."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam nods \"Okay-- bad manners to use in front of addicts- that\'s why I don\'t go to interventions, not even when my Mom throws them for me.\"\n\n\"You should be skeptical of evidence- half of what we do is stealing or planting evidence to get the job done.\"\n\n\"Still drug dealing isn\'t the worst thing I\'ve heard of someone doing. Selling out your friends? Unforgiveable, and I\'ll see you burn; but making a little cred getting goods to people who want them? Totally forgiveable.\""
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b07da66131314c1800284f"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Maybe Hotoda was trying to get the contract away from Hernandez?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b07e566131314c18002851"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I don\'t know how the dragon fits into it."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Don\'t strain your brain trying to think like a reptile, my $(l.race).\" Sam says, slapping you on the shoulder. \n\n\"It could have wanted to get out and burn some peasants, like in the old days, or just found out about Firefly getting cancelled. I\'ll admit, unlikely for a dragon to be in this part of town and burning people without a reason.\""
+        }
+      }
+    }
+    nextNodeIndex: 33
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b07e966131314c18002852"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "If it was Hernandez, and he\'s dead, then we\'re in the clear."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam takes a slug of his drink, and whistles, \"That\'s a true optimist there, thinking this could be wrapped up this easy.\"\n\n\"Kid, you make just plain old \'bad luck\' look like a career aspiration. I wouldn\'t hold out hope for your ticket to get that lucky.\""
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b07e9b6131314c18002853"
+    }
+  }
+  branches {
+    responseText: "I think maybe it\'s not Hernandez."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam nods \"Evidence does seem to point toward him being set up.\" \n\nSam gestures with his glass, which is half-filled with green liquid, \"Which doesn\'t mean that he isn\'t involved, but maybe that he\'s a patsy, or just a dirtbag who got taken advantage of.\"\n\n\"Hopefully he was a dirtbag, if you ventilated him.\""
+        }
+      }
+    }
+    nextNodeIndex: 32
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I need to think about this more."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam shrugs, \"Thinking is great, but it doesn\'t pay bills. What do you want to do while you ponder?\"\n\n\"Best thing about being lost in the middle of nowhere, any direction takes you closer to civilization.\""
+        }
+      }
+    }
+    nextNodeIndex: 38
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Hernandez Loop"
+}
+nodes {
+  idRef {
+    id: "55b0802a6131314c18002856"
+  }
+  index: 34
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "I checked out his office at Lowball Records."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_VisitFoleyOffice"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam raises an eyebrow? \"Yeah? Is his secretary hot? I bet she\'s hot.\"\n\n\"Checking out the people you\'re working for as much as the people you\'re working against is good tradecraft, I\'ll applaud you for that.\"\n\n\"What did you learn? Is his secretary into boys? Girls? Did he have a board with his master plan laid out?\""
+        }
+      }
+    }
+    nextNodeIndex: 35
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b080c16131314c18002868"
+    }
+  }
+  branches {
+    responseText: "I hacked Foley\'s node in the Matrix."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HackFoley"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam whistles as he pours himself another double slug of whiskey, \"Decking the private node of your employer. That\'s a bold move.\"\n\n\"I assume that you found something, and you\'re not telling me just to brag. Bragging is a turn-on, but save something for the pillow talk.\""
+        }
+      }
+    }
+    nextNodeIndex: 36
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b083376131314c18002891"
+    }
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Max clearly wasn\'t in charge, or he wouldn\'t be dead."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " Sam nods \"Well, you\'ve sold me on it. Max was definitely eyeball-deep in this drek, but he apparently wasn\'t calling the shots.\"\n\n\"The question is: if Foley wasn\'t in charge, who was?\""
+        }
+      }
+    }
+    nextNodeIndex: 32
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b086356131314c180028c3"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Foley Loop"
+}
+nodes {
+  idRef {
+    id: "55b080b16131314c18002862"
+  }
+  index: 35
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "His secretary, Sydney, is hot. If you\'re into elves."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam snorts into his drink, \"Into elves? Who would want a tall slim woman with sensitive ears, who wants approval that distant father figures never gave her?\"\n\n\"Crazy, right?\"\n\n\"Anyway, you were telling me about all the evidence you found at Foley\'s office?\""
+        }
+      }
+    }
+    nextNodeIndex: 35
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b0816d6131314c1800286f"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He had a lot of Mercurial stuff up on the walls."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam shrugs, \"So do half of the boys and girls of the UCAS. Why is Max different?\""
+        }
+      }
+    }
+    nextNodeIndex: 35
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b081c56131314c18002870"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He had serious memorabilia, the kind that it takes a while to get. "
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam shrugs, \"Okay, so he knew Maria would be on the outs with her manager, got the stuff to play up his connection to her, and as soon as he grabbed her he used her to inflate his own reputation.\"\n\n\"Makes sense to me-- that\'s what a good middleman does.\""
+        }
+      }
+    }
+    nextNodeIndex: 35
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b0820a6131314c18002871"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He had some other blackmail and stuff, too."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam shrugs, \"So do I have, it\'s not a crime.\"\n\n\"Well, it is, but you know what I mean. I\'m not murderingh babies or anything, I\'m extorting money from rich people who want to keep secrets.\"\n\n\"Anything good? We could make a profit off of this?\""
+        }
+      }
+    }
+    nextNodeIndex: 34
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b082cc6131314c18002888"
+    }
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Lowball Loop"
+}
+nodes {
+  idRef {
+    id: "55b083246131314c1800288a"
+  }
+  index: 36
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "He had heavy IC in his system."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam nods, shrugs, and fills his drink.\n\n\"You don\'t put your worthless comic books in the vault, you hide stuff worth real scratch. That makes sense.\""
+        }
+      }
+    }
+    nextNodeIndex: 36
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b084546131314c180028b8"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He had a personal decker, I think he had this guy plant the info in Hernandez\'s system."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Personal decker?\" Sam asks, and pauses for a moment. You hear Silver Arrow walking through the penthouse, saying \'chummer\' to himself over and over.\n\n\"No, but I get what you mean. Nothing worth guarding means no guard, where a guard means there\'s something worth stealing.\""
+        }
+      }
+    }
+    nextNodeIndex: 36
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b0845e6131314c180028b9"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He had this evidence against a UCAS Senator."
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_FoleyEvidence"
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: 36
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b084e76131314c180028bb"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He has this file \"obj_LittleBlackBook,\" that I don\'t know much about."
+    conditions {
+      ops {
+        functionName: "No Condition"
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b085f66131314c180028c2"
+    }
+  }
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: ""
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: " "
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b0858e6131314c180028c0"
+    }
+  }
+  branches {
+    responseText: "There is that recording where Hotoda told him to shut off security and open the door for her goons. That\'s something."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam stares at you, drink forgotten in his hand. \"That is some Grade A Serious Shit.\"\n\n\"Okay, so proof that Hotoda and Foley tied together. How did Maria figure into it? Was she Foley\'s payment, or the target? Why hire you?\"\n\n\"How does the dragon fit into it?\""
+        }
+      }
+    }
+    nextNodeIndex: 34
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b083de6131314c180028ae"
+    }
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Foley Hack"
+}
+nodes {
+  idRef {
+    id: "55b078cb6131314c180023f8"
+  }
+  index: 37
+  text: ""
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5503e9bc66313678170060d8"
+  }
+  index: 38
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Investigate{{/CC}} Bounty on your head"
@@ -2409,7 +3479,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
   }
   branches {
@@ -2488,7 +3558,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -2568,7 +3638,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -2682,7 +3752,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -2745,7 +3815,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 36
+    nextNodeIndex: 41
     hideIfUnavailable: true
     comment: "Post-Betrayal"
   }
@@ -2931,7 +4001,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 37
+    nextNodeIndex: 42
     hideIfUnavailable: true
     comment: "Player"
   }
@@ -3117,7 +4187,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 37
+    nextNodeIndex: 42
     hideIfUnavailable: true
     auxiliaryLink: true
     comment: "Player"
@@ -3383,7 +4453,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -3623,7 +4693,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -3667,7 +4737,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 43
     hideIfUnavailable: true
     comment: "Taeztel Unknown"
   }
@@ -3730,7 +4800,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     hideIfUnavailable: true
     auxiliaryLink: true
     comment: "Tatzel Known"
@@ -3790,7 +4860,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 44
   }
   branches {
     responseText: "I need some time to think..."
@@ -3847,7 +4917,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 40
+    nextNodeIndex: 45
   }
   branches {
     responseText: "DEBUGGER - Confirm Mission"
@@ -3889,7 +4959,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     comment: "DEBUGGER-Confirm Leaving"
   }
@@ -3936,7 +5006,7 @@ nodes {
   idRef {
     id: "5503f1d06631367817006192"
   }
-  index: 34
+  index: 39
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "I asked YOU to look into it."
@@ -4031,7 +5101,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4167,7 +5237,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4303,7 +5373,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4439,7 +5509,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4618,7 +5688,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4719,7 +5789,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -4816,7 +5886,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -4913,7 +5983,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -5010,7 +6080,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -5090,7 +6160,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 35
+    nextNodeIndex: 40
   }
   branches {
     responseText: "Let\'s go take care of that."
@@ -5143,7 +6213,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -5154,7 +6224,7 @@ nodes {
   idRef {
     id: "55601cf4613131001100243b"
   }
-  index: 35
+  index: 40
   text: "Sam grimaces, \"Yeah, but you\'re not going to like it.\"\n\n\"There\'s a troll here in Sunnyside, a low-level scumbag who thinks he\'s a lot smarter than he is. He knows a couple deckers who make him look better than he deserves, but word is still out what a goon he is.\""
   branches {
     responseText: "Troll goon, got it."
@@ -5177,7 +6247,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     auxiliaryLink: true
   }
   branches {
@@ -5236,7 +6306,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 34
+    nextNodeIndex: 39
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -5245,7 +6315,7 @@ nodes {
   idRef {
     id: "5521aefd6131319c15000c58"
   }
-  index: 36
+  index: 41
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Maria gave me this number, but I never got to check up on it."
@@ -5306,7 +6376,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 36
+    nextNodeIndex: 41
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5373,7 +6443,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 36
+    nextNodeIndex: 41
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5445,7 +6515,7 @@ nodes {
   idRef {
     id: "554c1554663136b00c00090e"
   }
-  index: 37
+  index: 42
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Take along {{CC}}Silver Arrow{{/CC}}"
@@ -5519,7 +6589,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     auxiliaryLink: true
   }
   branches {
@@ -5624,7 +6694,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 46
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -5634,7 +6704,7 @@ nodes {
   idRef {
     id: "5562c2136631366810007901"
   }
-  index: 38
+  index: 43
   text: "{{CC}}The phone rings once or twice before being picked up by Maria.{{/CC}}\n\n\"$(l.name)?   That you?   Ghost it\'s good to hear from you...\"\n\n{{CC}}You chat with Maria for several minutes before disconnecting{{/CC}}"
   branches {
     responseText: ""
@@ -5657,7 +6727,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -5669,7 +6739,7 @@ nodes {
   idRef {
     id: "55585935393066fc12000c0d"
   }
-  index: 39
+  index: 44
   text: "$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
 }
@@ -5677,7 +6747,7 @@ nodes {
   idRef {
     id: "5562bd70663136681000725f"
   }
-  index: 40
+  index: 45
   text: "$(story.str_NPCIntroText)"
   nodeType: ConversationNodeType_Simple
 }
@@ -5685,7 +6755,7 @@ nodes {
   idRef {
     id: "5503ecd86631367817006109"
   }
-  index: 41
+  index: 46
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Confirm{{/CC}}"
@@ -5729,7 +6799,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 33
+    nextNodeIndex: 38
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -6082,7 +7152,7 @@ roots {
         }
       }
       args {
-        string_value: "Sam has a \n\n\"Okay, kid,\" he says, settling in for a long story, \"Lay it on me- what the hell is going on here? Got any ideas? Any leads?\"\n"
+        string_value: "Sam has a bottle of expensive liquor under one arm, and a bottle of greenish liquid in his other hand.\n\n\"Okay, kid,\" he says, settling in for a long story, \"I\'ve got whiskey and Absynth, it\'s time for you to catch me the hell up on whatever the frag is going on here.\"\n\n\"I mean, I set you up for a job, and next thing I know the world is coming down around my ears. What the frag happened?\""
       }
     }
   }
@@ -6140,6 +7210,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 33
+  nextNodeIndex: 38
   comment: "Sam\'s Hub"
 }
