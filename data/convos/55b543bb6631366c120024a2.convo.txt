@@ -1,0 +1,572 @@
+idRef {
+  id: "55b543bb6631366c120024a2"
+}
+ui_name: "Sewers - Lucy"
+nodes {
+  idRef {
+    id: "55b543c76631366c120024a8"
+  }
+  index: 0
+  text: "{{GM}}The two quiet down as you approach{{/GM}}\n"
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55b541a26631366c120024a0"
+  }
+}
+nodes {
+  idRef {
+    id: "55b545d2663136ac0b002b1f"
+  }
+  index: 1
+  text: "\"Who are you, and what are you doing down here?\""
+  branches {
+    responseText: "I\'m $(s.name).    And you are?"
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "None of your business. {{CC}}Walk away{{/CC}}."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b545a2663136ac0b002b18"
+  }
+  index: 2
+  text: "Lucy.   And this is Xorban.   But you didn\'t answer my question... what are you doing down here?"
+  branches {
+    responseText: "It\'s personal.  Now you\'d better start answering my questions... What are you doing down here?"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "I\'m looking for a shortcut to the Taetzel building... What are you doing down here?"
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b5469a663136ac0b002b28"
+  }
+  index: 3
+  text: "\"Looking for help, if you can believe it.\" She replies.  \"Our last shipment of medicines, and supplies were stolen in transit by the smugglers up-top.   We need those to get the people from Sunnyside though until this land buyout happens.\""
+  branches {
+    responseText: "I dealt with the smugglers."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_SunnysideGoal1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "I heard rumor of them, but had my hands full. "
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_SunnysideGoal1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b549bc663136ac0b002b7b"
+  }
+  index: 4
+  text: "\"The smugglers topside stole a bunch of our relief supplies in transit.   The crates were marked with GPS trackers, but down here, their signal is scrambled.   We came down to locate them for extraction, but ran into a group of armed people who were intent on keeping them for themselves.    We can\'t do much about that, since Xorban took that round in the shoulder.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b54a42663136ac0b002b7e"
+  }
+  index: 5
+  text: "\"Is this something you might be able to help us with?   We just need someone to tag the crates locations with these.\"  She holds out a handful of small electronic locaters. \"We can have our people gather them once we know where they are... but until then, there\'s not much we can do.\""
+  branches {
+    responseText: "{{CC}}Accept{{/CC}} Sure, I can help."
+    nextNodeIndex: 6
+  }
+  branches {
+    responseText: "{{CC}}Decline{{/CC}} Sorry, I\'ve got things to do."
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b54b1a663136ac0b002b82"
+  }
+  index: 6
+  text: "\"Fantastic!   There are 5 crates down here someplace.   Just mark them, and we can recover them.\""
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Find the Relief Supplies"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateCrateCount"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_SewerCrateGoal"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55b54b50663136ac0b002b84"
+  }
+  index: 7
+  text: "{{GM}}She seems pretty deflated.{{/GM}}\n\n\"I understand.   Thanks for your time.\""
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b54c72663136ac0b002bd1"
+  }
+  index: 8
+  text: "\"Have you found them?\""
+  branches {
+    responseText: "Not yet."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iCratesFound"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 9
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Some... I\'m still looking."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iCratesFound"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iCratesFound"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Sure did.  They\'re all marked for you.   Good luck with the recovery effort."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iCratesFound"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Goal Status"
+        args {
+          call_value {
+            functionName: "Get Map Item (Goal)"
+            args {
+              string_value: "Find the Relief Supplies"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "GoalStatus"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Actor Karma"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "55b541a26631366c120024a0"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_SewerCrateGoal"
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+      ops {
+        functionName: "Remove Screen Label"
+        args {
+          string_value: "Crates"
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b54cef663136ac0b002bf1"
+  }
+  index: 9
+  text: "\"Please don\'t give up... we badly need those supplies.\""
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b54d08663136ac0b002bf3"
+  }
+  index: 10
+  text: "\"We\'re very grateful.   If you can find the rest, that would benefit us immensely.\""
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55b54d2e663136ac0b002bf5"
+  }
+  index: 11
+  text: "You did?   Fantastic!   I\'ll get the crews started on a plan to recover them.   Thank you so much, you have no idea how many lives you\'ve changed with this.\""
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  conditions {
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Find the Relief Supplies"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+  comment: "Quest Giver"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Find the Relief Supplies"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 8
+  hideIfUnavailable: true
+  comment: "Quest Complete"
+}
