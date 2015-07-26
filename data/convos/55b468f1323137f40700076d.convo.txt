@@ -1,7 +1,7 @@
 idRef {
   id: "55b468f1323137f40700076d"
 }
-ui_name: "Hotel - Tammy"
+ui_name: "Hotel - Tammy - Intro"
 nodes {
   idRef {
     id: "55b50d413231370016004e9a"
@@ -66,6 +66,34 @@ nodes {
   }
   index: 2
   text: "Help! Need a suture kit!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "TammyProg"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55b55787323137901b000783"
+  }
+  index: 3
+  text: "I sent your commlink a handshake request so you\'ll know if Nathaniel... if he... if he doesn\'t make it. You\'ll be able to tell how I\'m doing, too, in case those Cutters come back...\n\nHurry! He\'s only got about a minute to live, tops!"
   branches {
     responseText: "I know Biotech!"
     conditions {
@@ -222,7 +250,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 4
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -342,6 +370,30 @@ nodes {
         }
       }
     }
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bSutureKitStarted"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
     hideIfUnavailable: true
     onlyOnce: true
@@ -411,7 +463,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 4
+    nextNodeIndex: 5
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -420,28 +472,12 @@ nodes {
     comment: "Has Suture Kit"
   }
   nodeType: ConversationNodeType_Simple
-  actions {
-    ops {
-      functionName: "Add To Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "TammyProg"
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-    }
-  }
 }
 nodes {
   idRef {
     id: "55b48395323137f407000933"
   }
-  index: 3
+  index: 4
   text: "Use Biotech"
   branches {
     responseText: ""
@@ -541,7 +577,7 @@ nodes {
   idRef {
     id: "55b50cfe3231370016004e75"
   }
-  index: 4
+  index: 5
   text: "You have the suture kit!"
   branches {
     responseText: ""
@@ -639,6 +675,30 @@ roots {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bSutureKitStarted"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
