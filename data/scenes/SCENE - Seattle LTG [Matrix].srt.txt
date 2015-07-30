@@ -3989,7 +3989,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Animation)"
           args {
-            string_value: "Seattle:General/standing_jackin_decking"
+            string_value: "Seattle:General/decking_idle"
           }
         }
       }
@@ -4131,7 +4131,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnLoad.DisableTeam"
+  name: "OnLoad.DisableMatrixTeam"
   events {
     ops {
       functionName: "On Map Start"
@@ -4140,39 +4140,6 @@ triggers {
   conditions {
   }
   actions {
-    ops {
-      functionName: "Enable/Disable Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
     ops {
       functionName: "Enable/Disable Team\'s Turn"
       args {
@@ -5133,6 +5100,57 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55b6d43f353733bc18002890"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -5523,6 +5541,57 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55b6d43f353733bc18002890"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -12865,7 +12934,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnLoad.SetTaetzelFederatedSecurity.Locked"
+  name: "OnLoad.SetTaetzel.Locked"
   events {
     ops {
       functionName: "On Map Start"
@@ -12892,28 +12961,6 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "55a3060e3537330c07004297"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Hack Status On Dummy Matrix Label"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HackIndicatorStatus"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55ab305e353733a811008357"
           }
         }
       }
@@ -26747,6 +26794,163 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "OnLoad.RandomizeVaults.SetStatus"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_LTG_Bank_Alert"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ab305e353733a811008357"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ab3052353733a811008356"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55b838213537333c1b00801c"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55ab0b3d353733a811007bbc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55a5a210353733d016003db0"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: true
+}
+triggers {
   name: "RunTrigger.PC0Decker.NebelBetrayal"
   events {
   }
@@ -26972,8 +27176,61 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
   }
   actions {
+  }
+  isActive: true
+  idRef {
+    id: "55abc8ea353733a811008582"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc06e353733a8110084ba"
+          }
+        }
+      }
+    }
     ops {
       functionName: "Enable/Disable Interactable Object"
       args {
@@ -27062,12 +27319,6 @@ triggers {
       }
     }
   }
-  isActive: true
-  idRef {
-    id: "55abc8ea353733a811008582"
-  }
-  elseActions {
-  }
   is_oneshot: false
 }
 triggers {
@@ -27086,8 +27337,61 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
   }
   actions {
+  }
+  isActive: true
+  idRef {
+    id: "55abcc09353733a811008584"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc0fa353733a8110084c5"
+          }
+        }
+      }
+    }
     ops {
       functionName: "Enable/Disable Interactable Object"
       args {
@@ -27151,7 +27455,7 @@ triggers {
         }
       }
       args {
-        string_value: "There\'s whopping \302\245218 in the account of one Mrs. Parker."
+        string_value: "There\'s whopping \302\245218 in the account of one Rena Parker."
       }
       args {
         float_value: 0
@@ -27175,12 +27479,6 @@ triggers {
         float_value: 0
       }
     }
-  }
-  isActive: true
-  idRef {
-    id: "55abcc09353733a811008584"
-  }
-  elseActions {
   }
   is_oneshot: false
 }
@@ -27200,8 +27498,61 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
   }
   actions {
+  }
+  isActive: true
+  idRef {
+    id: "55abcc40353733a811008585"
+  }
+  elseActions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc069353733a8110084b8"
+          }
+        }
+      }
+    }
     ops {
       functionName: "Enable/Disable Interactable Object"
       args {
@@ -27265,7 +27616,7 @@ triggers {
         }
       }
       args {
-        string_value: "This account has \302\24519.50 and belongs to one Mr. Smart."
+        string_value: "This account has \302\24519.50 and belongs to a Mister Smart."
       }
       args {
         float_value: 0
@@ -27289,12 +27640,6 @@ triggers {
         float_value: 0
       }
     }
-  }
-  isActive: true
-  idRef {
-    id: "55abcc40353733a811008585"
-  }
-  elseActions {
   }
   is_oneshot: false
 }
@@ -27314,120 +27659,39 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
   }
   actions {
-    ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: "Got it!"
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 5
-      }
-      args {
-        float_value: 0.5
-      }
-      args {
-        float_value: 0
-      }
-    }
-    ops {
-      functionName: "Add Item to Team"
-      args {
-        call_value {
-          functionName: "Get Map Item (Item)"
-          args {
-            string_value: "item_LTG-HERNANDEZ_WAD"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "decker"
-          }
-          args {
-            string_value: "Matrix_NodeHackSuccess"
-          }
-        }
-      }
-      args {
-        float_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
+  }
+  isActive: true
+  idRef {
+    id: "55abc4f9353733a81100857e"
+  }
+  elseActions {
     ops {
       functionName: "Set Hack Status On Matrix Node Object"
       args {
@@ -27446,153 +27710,6 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "55abbe5c353733a8110084b4"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_AccountHernandez"
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_HernandezHacked"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Goal Status"
-      args {
-        call_value {
-          functionName: "Get Map Item (Goal)"
-          args {
-            string_value: "Hack Federated Banking"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "GoalStatus"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55abc6d1353733a811008581"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55abc4f9353733a81100857e"
-  }
-  elseActions {
-    ops {
-      functionName: "Enable/Disable Hack Indicator On Matrix Node Object"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55abc069353733a8110084b8"
           }
         }
       }
@@ -27620,15 +27737,15 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Hack Status On Matrix Node Object"
+      functionName: "Enable/Disable Hack Indicator On Matrix Node Object"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "HackIndicatorStatus"
+            string_value: "EnableOrDisable"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -27641,49 +27758,51 @@ triggers {
         }
       }
     }
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "OnLoad.RandomizeVaults"
-  events {
     ops {
-      functionName: "On Map Start"
-    }
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (int)"
+      functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "iVaultPosition"
-          }
+          functionName: "Triggering Actor"
         }
       }
       args {
         call_value {
-          functionName: "Random (int)"
+          functionName: "Get Preset Value (int)"
           args {
-            int_value: 1
+            string_value: "TextPopupStyle"
           }
           args {
-            int_value: 4
+            int_value: 0
           }
         }
       }
+      args {
+        string_value: "Property of Christopher Charles Horatio Xavier King III, Esq... Ok."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 0.5
+      }
+      args {
+        float_value: 0
+      }
     }
   }
-  isActive: true
-  idRef {
-    id: "55b838213537333c1b00801c"
-  }
-  elseActions {
-  }
-  is_oneshot: true
+  is_oneshot: false
 }
 regions {
   name: "cLowballRecords"
@@ -32905,72 +33024,6 @@ characters {
   idRef {
     id: "552014006631360c1300261f"
   }
-  interactionRoot {
-    isEnabled: true
-    interactionRadius: 3
-    prerequisites {
-      ops {
-        functionName: "Comparison (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iSystemShutDownTimer"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          int_value: -1
-        }
-      }
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bInCombat"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
-    interactionIcon: InteractionIcon_Conversation
-    interaction_info_text: "Access Digital Assistant"
-  }
   lod: 0
   character_instance {
     prefab_name: "Berlin:Story/HumanFemaleMonika"
@@ -36187,6 +36240,7 @@ characters {
     z: -184
   }
   orientation: ORIENTATION_N
+  GeneralTags: "isKilledOnStart"
   displayName: "dummy_cam_shadowrunner"
   idRef {
     id: "55b6d43f353733bc18002890"
@@ -36259,6 +36313,7 @@ characters {
     }
     team_id: "LoneStar"
     char_name: "Mr Footage Capture Man"
+    GeneralTags: "isKilledOnStart"
     pc_spawn_number: -1
     ai_ignores: true
     uninjurable: true
