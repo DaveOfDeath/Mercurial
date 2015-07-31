@@ -24600,13 +24600,13 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Order Actor to Move To (Region)"
+      functionName: "Teleport Actor"
       args {
         call_value {
           functionName: "Specific Actor"
           args {
             call_value {
-              functionName: "Triggering Actor"
+              functionName: "Triggering Target Actor"
             }
           }
           args {
@@ -24615,9 +24615,14 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Center of Region"
           args {
-            string_value: "55b589573537332811005b2d"
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55b589573537332811005b2d"
+              }
+            }
           }
         }
       }
@@ -24629,6 +24634,17 @@ triggers {
           }
           args {
             int_value: 7
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -24659,7 +24675,7 @@ triggers {
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "55b586983537332811005b2b"
   }
@@ -24892,6 +24908,28 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55b586983537332811005b2b"
           }
         }
       }
