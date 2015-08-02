@@ -4,128 +4,51 @@ idRef {
 ui_name: "LTG - Hernandez Digital Secretary"
 nodes {
   idRef {
-    id: "5520176b6631360c1300267b"
+    id: "55bd8b143537335003003d02"
   }
   index: 0
-  text: "$(story.str_NPCIntroText)"
+  text: "Welcome to Federated Banking. How may I be of service today?"
   branches {
-    responseText: "{{CC}}Inquiry{{/CC}} Whats is this node?"
-    conditions {
-      ops {
-        functionName: "Evaluate If Actor is Inside Region"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Matrix"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "AreOrAreNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Region)"
-            args {
-              string_value: "55201e306631360c130027e0"
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"This area houses the firewall system control node.   Access is restricted for all unauthorized personnel.\""
-        }
-      }
-    }
-    nextNodeIndex: 0
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "559c4ec36131318400003d2b"
-    }
-    auxiliaryLink: true
+    responseText: ""
+    nextNodeIndex: 1
   }
-  branches {
-    responseText: "{{CC}}Lower Firewall{{/CC}} Access and disable firewall protocol."
-    conditions {
-      ops {
-        functionName: "Comparison (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "sUserName"
-            }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "552014006631360c1300261f"
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "552014006631360c1300261f"
           }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          string_value: "%Unknown Patron%"
         }
       }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_talking"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55bd8b833537335003003d07"
+  }
+  index: 1
+  text: ""
+  branches {
+    responseText: "{{CC}}500\302\245{{/CC}} Open Account."
+    conditions {
       ops {
-        functionName: "Evaluate If Actor is Inside Region"
+        functionName: "Evaluate If Actor Has Item"
         args {
           call_value {
             functionName: "All Actors on Team"
@@ -155,7 +78,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "Matrix"
+                  string_value: "Default"
                 }
               }
             }
@@ -165,7 +88,7 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "AreOrAreNot"
+              string_value: "HasOrHasNot"
             }
             args {
               int_value: 0
@@ -174,22 +97,110 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Region)"
+            functionName: "Get Map Item (Item)"
             args {
-              string_value: "55201e306631360c130027e0"
+              string_value: "item_LTG-BANK_ACCOUNT"
             }
           }
+        }
+      }
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_LTG-BANK_ADMIN"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 500
         }
       }
     }
     actions {
       ops {
-        functionName: "Enable/Disable Trigger"
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+      ops {
+        functionName: "Add Item to Team"
         args {
           call_value {
-            functionName: "Get Preset Value (int)"
+            functionName: "Get Map Item (Item)"
             args {
-              string_value: "EnableOrDisable"
+              string_value: "item_LTG-BANK_ACCOUNT"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
             }
             args {
               int_value: 0
@@ -198,20 +209,9 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Trigger)"
-            args {
-              string_value: "552021a06631362c10000314"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Enable/Disable Trigger"
-        args {
-          call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "EnableOrDisable"
+              string_value: "WithOrWithout"
             }
             args {
               int_value: 1
@@ -220,173 +220,36 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Trigger)"
+            functionName: "Get Map Item (SceneDimension)"
             args {
-              string_value: "54e954d1663136c414003b08"
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "aFederatedStateChange"
             }
           }
         }
       }
     }
     nextNodeIndex: 1
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55201c446631360c13002700"
-    }
-    comment: "ADMIN"
+    auxiliaryLink: true
   }
   branches {
-    responseText: "{{CC}}Lower Firewall{{/CC}} Access firewall protocol and disable."
-    conditions {
-      ops {
-        functionName: "Comparison (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "sUserName"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          string_value: "%Unknown Patron%"
-        }
-      }
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bHernandezShutDownWarned"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 2
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55201c406631360c130026ff"
-    }
-    comment: "GUEST-1"
-  }
-  branches {
-    responseText: "{{CC}}Lower Firewall{{/CC}} Access firewall protocol and disable."
-    conditions {
-      ops {
-        functionName: "Comparison (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "sUserName"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          string_value: "%Unknown Patron%"
-        }
-      }
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bHernandezShutDownWarned"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 3
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55201c3c6631360c130026fe"
-    }
-    comment: "GUEST-2"
-  }
-  branches {
-    responseText: "{{CC}}Decking - 4{{/CC}} Spoof the system."
+    responseText: "{{CC}}Decking: $(scene.sDeckingSkillChallengeRating){{/CC}} Spoof the system."
     conditions {
       ops {
         functionName: "Compare Actor Skill"
         args {
           call_value {
-            functionName: "Get Map Item (Player)"
-            args {
-              int_value: 0
-            }
+            functionName: "Triggering Actor"
           }
         }
         args {
@@ -423,36 +286,16 @@ nodes {
           }
         }
         args {
-          int_value: 4
-        }
-      }
-      ops {
-        functionName: "Comparison (string)"
-        args {
           call_value {
-            functionName: "Get Variable (string)"
+            functionName: "Get Variable (int)"
             args {
-              string_value: "sUserName"
+              string_value: "iDeckingSkillChallengeRating"
             }
           }
         }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          string_value: "%Unknown Patron%"
-        }
       }
       ops {
-        functionName: "Evaluate If Actor is Inside Region"
+        functionName: "Evaluate If Actor Has Item"
         args {
           call_value {
             functionName: "All Actors on Team"
@@ -482,125 +325,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "Matrix"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "AreOrAreNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Region)"
-            args {
-              string_value: "55201e306631360c130027e0"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bHernandezShutDownWarned"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "sUserName"
-            }
-          }
-        }
-        args {
-          string_value: "%System Administrator%"
-        }
-      }
-    }
-    nextNodeIndex: 0
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "552018616631360c13002684"
-    }
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "{{CC}}Silver Arrow{{/CC}} Have teammate spoof the system."
-    conditions {
-      ops {
-        functionName: "Evaluate Tag for Actor"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Matrix"
+                  string_value: "Default"
                 }
               }
             }
@@ -613,106 +338,21 @@ nodes {
               string_value: "HasOrHasNot"
             }
             args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Tag From String"
-            args {
-              string_value: "isSilverArrow"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Comparison (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "sUserName"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          string_value: "%Unknown Patron%"
-        }
-      }
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bHernandezShutDownWarned"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
               int_value: 0
             }
           }
         }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Variable (string)"
+            functionName: "Get Map Item (Item)"
             args {
-              string_value: "sUserName"
+              string_value: "item_LTG-BANK_ADMIN"
             }
           }
         }
-        args {
-          string_value: "%System Administrator%"
-        }
       }
-    }
-    nextNodeIndex: 4
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "5520185a6631360c13002682"
-    }
-  }
-  branches {
-    responseText: "{{CC}}Nebel{{/CC}} Have teammate spoof the system."
-    conditions {
       ops {
-        functionName: "Evaluate Tag for Actor"
+        functionName: "Evaluate If Actor Has Item"
         args {
           call_value {
             functionName: "All Actors on Team"
@@ -734,7 +374,7 @@ nodes {
                   string_value: "AllOrAny"
                 }
                 args {
-                  int_value: 1
+                  int_value: 0
                 }
               }
             }
@@ -742,7 +382,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "Matrix"
+                  string_value: "Default"
                 }
               }
             }
@@ -755,73 +395,15 @@ nodes {
               string_value: "HasOrHasNot"
             }
             args {
-              int_value: 1
+              int_value: 0
             }
           }
         }
         args {
           call_value {
-            functionName: "Tag From String"
+            functionName: "Get Map Item (Item)"
             args {
-              string_value: "isNebel"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Comparison (string)"
-        args {
-          call_value {
-            functionName: "Get Variable (string)"
-            args {
-              string_value: "sUserName"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          string_value: "%Unknown Patron%"
-        }
-      }
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Variable (bool)"
-            args {
-              string_value: "bHernandezShutDownWarned"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 1
+              string_value: "item_LTG-BANK_ACCOUNT"
             }
           }
         }
@@ -829,236 +411,76 @@ nodes {
     }
     actions {
       ops {
-        functionName: "Set Variable (string)"
+        functionName: "Set Variable (int)"
         args {
           call_value {
-            functionName: "Get Variable (string)"
+            functionName: "Get Variable (int)"
             args {
-              string_value: "sUserName"
+              string_value: "iSystemShutDownTimer"
             }
           }
         }
         args {
-          string_value: "%System Administrator%"
+          int_value: -3
         }
       }
-    }
-    nextNodeIndex: 5
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "5520185d6631360c13002683"
-    }
-  }
-  branches {
-    responseText: "{{CC}}Exit{{/CC}}"
-    actions {
       ops {
-        functionName: "Play Animation From Manifest"
+        functionName: "Add Item to Team"
         args {
           call_value {
-            functionName: "Get Map Item (Actor)"
+            functionName: "Get Map Item (Item)"
             args {
-              string_value: "552014006631360c1300261f"
+              string_value: "item_LTG-BANK_ADMIN"
             }
           }
         }
         args {
           call_value {
-            functionName: "Get Map Item (Animation)"
+            functionName: "Get Preset Value (string)"
             args {
-              string_value: "Seattle:General/standing_idle"
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "aFederatedStateChange"
             }
           }
         }
       }
     }
-    nextNodeIndex: 6
+    nextNodeIndex: 2
   }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-}
-nodes {
-  idRef {
-    id: "55201b116631360c130026e4"
-  }
-  index: 1
-  text: "The program stutters on the command, but responds, \"Access granted, >>@$(&--system corrupt\nError. Reset protocol node>>error$(&*^@\nProcessing request...   Firewall protocol disabled. \n\n\"System will shut down and reset in one minute. \n\n\"Will there be anything else, %System Administrator%?\""
   branches {
-    responseText: ""
-    nextNodeIndex: 0
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bool_HernandezSwitch"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eHernandezFirewallOverride"
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "55201b4a6631360c130026fa"
-  }
-  index: 2
-  text: "The program responds: \"I am sorry, but your access is denied. You have insufficient clearance to access these functions.\n\n\"Any attempt to subvert the system or access restricted features will result in a system shutdown. Federated Banking takes your safety very seriously. Service will be cut off while the system shuts down and reboots.\"\n\n"
-  branches {
-    responseText: ""
-    nextNodeIndex: 0
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bHernandezShutDownWarned"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "55201c516631360c13002720"
-  }
-  index: 3
-  text: "The program responds: \"I am sorry, but your access is denied. You have insufficient clearance to access these functions.\n\n\"Federated Banking takes your safety very seriously. Service will be cut off while the system shuts down and reboots. Please vacate the area immediately.\""
-  nodeType: ConversationNodeType_Simple
-  actions {
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eHernandezShutdown"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "552014006631360c1300261f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_idle"
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "552019176631360c130026a8"
-  }
-  index: 4
-  text: "Silver Arrow smiles and nods \"You got it, chummer.  SysAdmin, coming up!\""
-  branches {
-    responseText: ""
-    nextNodeIndex: 0
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5519dbce666538d80f0032d9"
-  }
-}
-nodes {
-  idRef {
-    id: "552019ee6631360c130026bb"
-  }
-  index: 5
-  text: "Nebel gives you a cocky smile.  \"Child\'s play, chief.  I\'ll get you administrator access.\n\n\"You gotta promise to give me a crack at the node itself.  I\'d like to tangle with the IC protecting the  Next time, give me something hard.\""
-  branches {
-    responseText: ""
-    nextNodeIndex: 0
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "5519dbd5666538d80f0032da"
-  }
-}
-nodes {
-  idRef {
-    id: "552018786631360c13002686"
-  }
-  index: 6
-  text: "The program responds with a smooth, \"Very well, $(l.sir).  Have a pleasant >>error>>$timeofday.\""
-  nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
-    id: "552015616631360c1300265f"
-  }
-  index: 7
-  text: "{{GM}}The program looks up from her desk, with a digitally painted-on smile.{{/GM}}\n\n\"Good day.  How may I assist you?\""
-  branches {
-    responseText: "{{CC}}Log Off{{/CC}} I\'m good, thanks."
+    responseText: "{{GM}}Walk away.{{/GM}}"
     actions {
       ops {
         functionName: "Play Animation From Manifest"
@@ -1087,204 +509,24 @@ nodes {
     id: "552014006631360c1300261f"
   }
 }
-roots {
-  conditions {
-    ops {
-      functionName: "OR"
-      args {
-        call_value {
-          functionName: "Evaluate Goal"
-          args {
-            call_value {
-              functionName: "Get Map Item (Goal)"
-              args {
-                string_value: "Hacking Hernandez"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "GoalStatus"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Evaluate Goal"
-          args {
-            call_value {
-              functionName: "Get Map Item (Goal)"
-              args {
-                string_value: "Hacking Hernandez"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "GoalStatus"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-    }
+nodes {
+  idRef {
+    id: "55bd8e2e3537335003003d1a"
   }
-  actions {
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "552014006631360c1300261f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_idle_talking"
-          }
-        }
-      }
-    }
+  index: 2
+  text: "{{GM}}If there was ever any doubt it was a program sculpted to look like a persona standing at this desk, the swift pucking of the creatures eye and stuffing in a bit of custom code before popping the eye back in place removes it.\n\nThe program\'s easy smile never falters; it\'s gestures and breathing pause for the barest moment, but then resume their facilitating manner.{{/GM}}\n\nThank you for logging in, %SysAdmin%"
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+    auxiliaryLink: true
   }
-  nextNodeIndex: 0
-  comment: "Hernandez Quest Active"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "552014006631360c1300261f"
+  }
 }
 roots {
   responseText: ""
-  conditions {
-    ops {
-      functionName: "OR"
-      args {
-        call_value {
-          functionName: "Evaluate Goal"
-          args {
-            call_value {
-              functionName: "Get Map Item (Goal)"
-              args {
-                string_value: "Hacking Hernandez"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "GoalStatus"
-              }
-              args {
-                int_value: 2
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Evaluate Goal"
-          args {
-            call_value {
-              functionName: "Get Map Item (Goal)"
-              args {
-                string_value: "Hacking Hernandez"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "GoalStatus"
-              }
-              args {
-                int_value: 3
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Play Animation From Manifest"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "552014006631360c1300261f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Animation)"
-          args {
-            string_value: "Seattle:General/standing_idle_talking"
-          }
-        }
-      }
-    }
-  }
-  nextNodeIndex: 7
-  comment: "Hernandez Quest Complete"
+  nextNodeIndex: 0
+  comment: "Test Phase"
 }

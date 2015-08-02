@@ -4164,36 +4164,12 @@ triggers {
           functionName: "Arithmetic (int)"
           args {
             call_value {
-              functionName: "Get Actor Skill"
+              functionName: "Get Story Variable (int)"
               args {
-                call_value {
-                  functionName: "Get Map Item (Actor)"
-                  args {
-                    string_value: "55204e5c6631362c10000719"
-                  }
-                }
+                string_value: "542848a8633464d816001ad5"
               }
               args {
-                call_value {
-                  functionName: "Get Preset Value (int)"
-                  args {
-                    string_value: "BaseOrCurrent"
-                  }
-                  args {
-                    int_value: 1
-                  }
-                }
-              }
-              args {
-                call_value {
-                  functionName: "Get Preset Value (int)"
-                  args {
-                    string_value: "ActorSkills"
-                  }
-                  args {
-                    int_value: 5
-                  }
-                }
+                string_value: "CharacterScaleAmount"
               }
             }
           }
@@ -4209,7 +4185,7 @@ triggers {
             }
           }
           args {
-            int_value: 1
+            int_value: 3
           }
         }
       }
@@ -9973,6 +9949,39 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -10298,6 +10307,39 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -10619,6 +10661,39 @@ triggers {
                 string_value: "55204e5c6631362c10000719"
               }
             }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -10962,6 +11037,28 @@ triggers {
           functionName: "Get Map Item (Event)"
           args {
             string_value: "eCombatEnd"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55a1c991353733201a007d18"
           }
         }
       }
@@ -12289,6 +12386,64 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "eCombatEnd.BurnedStarted.Autosave"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCombatEnd"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd63fa3537335003003ca9"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: ""
   events {
   }
@@ -13534,68 +13689,18 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "OR"
+      functionName: "Evaluate Tag for Actor"
       args {
         call_value {
-          functionName: "OR"
+          functionName: "All Actors on Team"
           args {
             call_value {
-              functionName: "Actor is Jacked in"
+              functionName: "Get Preset Value (string)"
               args {
-                call_value {
-                  functionName: "Get Map Item (Actor)"
-                  args {
-                    string_value: "55204e586631362c10000718"
-                  }
-                }
+                string_value: "FactionList"
               }
               args {
-                call_value {
-                  functionName: "Get Preset Value (int)"
-                  args {
-                    string_value: "IsOrIsNot"
-                  }
-                  args {
-                    int_value: 1
-                  }
-                }
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Actor is Jacked in"
-              args {
-                call_value {
-                  functionName: "Get Map Item (Player)"
-                  args {
-                    int_value: 0
-                  }
-                }
-              }
-              args {
-                call_value {
-                  functionName: "Get Preset Value (int)"
-                  args {
-                    string_value: "IsOrIsNot"
-                  }
-                  args {
-                    int_value: 1
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Actor is Jacked in"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e5c6631362c10000719"
+                int_value: 0
               }
             }
           }
@@ -13603,12 +13708,39 @@ triggers {
             call_value {
               functionName: "Get Preset Value (int)"
               args {
-                string_value: "IsOrIsNot"
+                string_value: "AllOrAny"
               }
               args {
                 int_value: 1
               }
             }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Matrix"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isA"
           }
         }
       }
@@ -13616,31 +13748,23 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Teleport Camera To Point"
+      functionName: "Teleport Camera To Actor"
       args {
         call_value {
-          functionName: "Current Location of Actor"
+          functionName: "Nearest Tagged Actor to Actor"
           args {
             call_value {
-              functionName: "Get Random Actor on Team"
+              functionName: "Tag From String"
               args {
-                call_value {
-                  functionName: "Get Preset Value (string)"
-                  args {
-                    string_value: "FactionList"
-                  }
-                  args {
-                    int_value: 0
-                  }
-                }
+                string_value: "isA"
               }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
               args {
-                call_value {
-                  functionName: "Get Map Item (SceneDimension)"
-                  args {
-                    string_value: "Matrix"
-                  }
-                }
+                int_value: 0
               }
             }
           }
@@ -13653,6 +13777,30 @@ triggers {
     id: "55ad84ca353733d013005c4f"
   }
   elseActions {
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                string_value: "isB"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -15977,10 +16125,10 @@ triggers {
     ops {
       functionName: "Display Image With Caption In Popup"
       args {
-        string_value: "factory/factory_tech_largerobotarm01_s@2x"
+        string_value: "matrix/mitsuhama-nulogo-raw2"
       }
       args {
-        string_value: "Like their physical property, Mitsuhama calls their Matrix a Zero Zone: zero penetration, zero survivors.\n\nDeckers call Mitsuhama\'s Seattle node the \"Black Hole\". All the IC here are as black as the Yakuza hearts that founded the company."
+        string_value: "Mitsuhama calls all their property a Zero Zone: zero penetration, zero survivors. Deckers call Mitsuhama nodes \"Black Holes\". All the IC are as black as the Yakuza hearts that founded the company."
       }
       args {
         call_value {
@@ -16120,10 +16268,10 @@ triggers {
     ops {
       functionName: "Display Image With Caption In Popup"
       args {
-        string_value: "secretlab/secretlab_misc_largecage_s@2x"
+        string_value: "lonestar/lonestar_signs_painted_n"
       }
       args {
-        string_value: "McMillin Correctional Facilities are the largest legal employer in Puyallup. Their Matrix node is largely designed to allow virtual visitors for prisoners in good standing with the gurads (snitches and those that grease the right palms, natch).\n\nOf course, the portal only opens during visiting hours, which are sporatic and of short duration."
+        string_value: "McMillin Correctional Facilities are the largest legal employer in Puyallup. Their Matrix node is largely designed to allow virtual visitors for prisoners in good standing with the gurads (snitches and those that grease the right palms, natch)."
       }
       args {
         call_value {
@@ -16166,7 +16314,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnRegion.TaetzelEntrance.PopUpText"
+  name: "OnRegion.TaetzelEntrance_KnowsTrue.PopUpText"
   events {
     ops {
       functionName: "On Region Enter"
@@ -16339,6 +16487,163 @@ triggers {
   isActive: true
   idRef {
     id: "55a318ae3537330c070043cd"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "OnRegion.TaetzelEntrance_KnowsNot.PopUpText"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a318473537330c070043cc"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Actor is Player Controlled"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Follower"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bInCombat"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Invert Bool"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_KnowsAboutTaetzel"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Image With Caption In Popup"
+      args {
+        string_value: "Taetzel/Taetzel Logo"
+      }
+      args {
+        string_value: "This broken gateway leads to the once-vibrant Taetzel building, center of the neighborhood around Perfekto Polymers, which has closed- gutting the neighborhood.\n\nThis abandoned matrix node appears to be shut down."
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: " The Sad Story of Perfekto Polymers"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bcc1c2353733f4170011e0"
   }
   elseActions {
   }
@@ -18915,50 +19220,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55b819c73537335013005fec"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   is_oneshot: false
 }
@@ -19424,50 +19685,6 @@ triggers {
           functionName: "Get Preset Value (int)"
           args {
             string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55b819c73537335013005fec"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
           }
           args {
             int_value: 0
@@ -21044,50 +21261,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55b819c73537335013005fec"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   isActive: false
   idRef {
@@ -21202,6 +21375,63 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "PASSCODE-FoleySystem"
           }
         }
       }
@@ -21526,6 +21756,106 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "OnLoad.itemPasscode.LockIT"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "PASSCODE-FoleySystem"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Clone Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a286ee3537330c07003f21"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a9b075353733980f00475e"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bc390e3537336c12001874"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "OnRegion.tFoleyOfficeEntrance.Autosave [OFF]"
   events {
     ops {
@@ -21724,15 +22054,92 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (bool)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (bool)"
+          functionName: "Invert Bool"
           args {
-            string_value: "542848a8633464d816001ad5"
+            call_value {
+              functionName: "Get Story Variable (bool)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "bool_FoleyHacked"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Evaluate If Actor Has Item"
+          args {
+            call_value {
+              functionName: "All Actors on Team"
+              args {
+                call_value {
+                  functionName: "Get Preset Value (string)"
+                  args {
+                    string_value: "FactionList"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "AllOrAny"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (SceneDimension)"
+                  args {
+                    string_value: "Default"
+                  }
+                }
+              }
+            }
           }
           args {
-            string_value: "bool_FoleyHacked"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "HasOrHasNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Item)"
+              args {
+                string_value: "PASSCODE-FoleySystem"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
           }
         }
       }
@@ -21740,7 +22147,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "GoalStatus"
           }
           args {
             int_value: 1
@@ -21751,7 +22158,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "bool"
+            string_value: "WithOrWithout"
           }
           args {
             int_value: 0
@@ -21759,8 +22166,6 @@ triggers {
         }
       }
     }
-  }
-  actions {
     ops {
       functionName: "Enable/Disable Trigger"
       args {
@@ -23331,6 +23736,234 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "OnSpawn.GumE_Low.RemoveBasicAttack"
+  events {
+    ops {
+      functionName: "On Actor Alive"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55188c65663136bc0f0068f3"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Matrix Basic Attack (Ranged)"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Remove Item from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Matrix Basic Attack (Ranged)"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bce5c9353733f4170011e1"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "OnSpawn.GumE_Med.RemoveBasicAttack"
+  events {
+    ops {
+      functionName: "On Actor Alive"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55188c65663136bc0f0068f3"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Matrix Basic Attack (Ranged 2)"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Remove Item from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Matrix Basic Attack (Ranged 2)"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bce659353733f4170011e2"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "OnRegion.FoleyITTripwire.ConvoGumE"
   events {
     ops {
@@ -24199,7 +24832,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "OnDamage.GumE25Percent.SwitchGumETeam"
+  name: "OnDamage.GumE25Percent.GumEConvo_Flee"
   events {
     ops {
       functionName: "On Actor Damage"
@@ -24373,120 +25006,34 @@ triggers {
       }
     }
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Start Conversation Between Actors"
       args {
         call_value {
-          functionName: "Triggering Target Actor"
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55b560913537332811005ae4"
+          }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: "Too hot for me!"
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 5
-      }
-      args {
-        float_value: 0.5
-      }
-      args {
-        float_value: 0
-      }
-    }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Random Actor on Team"
           args {
             call_value {
-              functionName: "Triggering Target Actor"
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
             }
           }
           args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Center of Region"
-          args {
             call_value {
-              functionName: "Get Map Item (Region)"
+              functionName: "Get Map Item (SceneDimension)"
               args {
-                string_value: "55b589573537332811005b2d"
+                string_value: "Matrix"
               }
             }
           }
@@ -24494,12 +25041,9 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Actor)"
           args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 7
+            string_value: "55188c65663136bc0f0068f3"
           }
         }
       }
@@ -24507,7 +25051,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TeleportMethod"
+            string_value: "WithOrWithout"
           }
           args {
             int_value: 1
@@ -24525,7 +25069,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnTurnStart.GumERed_Runner.PlayRunsAway"
+  name: "OnTurnStart.GumERed_Runner.RunsAway [ON]"
   events {
     ops {
       functionName: "On Actor Start Turn"
@@ -24597,16 +25141,14 @@ triggers {
         }
       }
     }
-  }
-  actions {
     ops {
-      functionName: "Teleport Actor"
+      functionName: "Evaluate If Actor is Inside Region"
       args {
         call_value {
           functionName: "Specific Actor"
           args {
             call_value {
-              functionName: "Triggering Target Actor"
+              functionName: "Triggering Actor"
             }
           }
           args {
@@ -24615,63 +25157,50 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Center of Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "55b589573537332811005b2d"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 7
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
+            string_value: "AreOrAreNot"
           }
           args {
             int_value: 1
           }
         }
       }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "54e95b41663136e012001371"
+          }
+        }
+      }
     }
+  }
+  actions {
     ops {
-      functionName: "Isolated Team Turn"
+      functionName: "Enforce Actor Current Orders"
       args {
         call_value {
-          functionName: "Get Preset Value (string)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "FactionList"
+            string_value: "EnableOrDisable"
           }
           args {
-            int_value: 3
+            int_value: 0
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Map Item (SceneDimension)"
+          functionName: "Specific Actor"
           args {
-            string_value: "Matrix"
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
           }
         }
-      }
-      args {
-        int_value: 3
       }
     }
   }
@@ -24681,7 +25210,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "OnRegion.RedRunnerT1_GumE.Warp_SpawnLaser"
@@ -24766,6 +25295,49 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Apply Condition Status Effect to Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "StatusCondition"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "GumE_Root"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "BuffDebuffType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
     ops {
       functionName: "Play Animation From Manifest"
       args {
@@ -24956,6 +25528,105 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -25057,7 +25728,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "OnInteract.EncryptedData.AddPrivateData [PAYDATA]"
+  name: "OnInteract.EncryptedData.AddPrivateData_RemoveFirewall"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -25329,6 +26000,109 @@ triggers {
       }
       args {
         string_value: "[ Access Code: 892515 ]"
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a286ee3537330c07003f21"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a503f7353733d016003d01"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a99c0c353733980f004665"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a503f7353733d016003d01"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a9bcb5353733980f004788"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
       }
     }
   }
@@ -25695,7 +26469,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Region)"
           args {
-            string_value: "55b592053537332811005b39"
+            string_value: "55bd62dd3537335003003ca8"
           }
         }
       }
@@ -26507,28 +27281,6 @@ triggers {
         call_value {
           functionName: "Get Map Item (Trigger)"
           args {
-            string_value: "55b598533537332811005b57"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
             string_value: "55b599e33537332811005b59"
           }
         }
@@ -26974,7 +27726,511 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "eCombatEnd.FoleySecurity.RemoveFirewall"
+  name: "OnDeath.NoMatrixPC_GoalOn.Failed"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "AND"
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bc35023537336c12001871"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnDeath.NoMatrixNebel_Goal_On.Failed"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "AND"
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bc35053537336c12001872"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnDeath.NoMatrixSilver_Goal_On.Failed"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "AND"
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e586631362c10000718"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Actor is Jacked in"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55204e5c6631362c10000719"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Don\'t Get Burned!"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bc35093537336c12001873"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eCombatEnd.FoleySecurity.RemoveFirewall [OFF}"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -27003,7 +28259,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Prop)"
               args {
-                string_value: "55a503f7353733d016003d01"
+                string_value: "55a286ee3537330c07003f21"
               }
             }
           }
@@ -27780,38 +29036,6 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: " "
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55abc3d1353733a8110084c6"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "--===Federated Vault Scripts===--"
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55abc514353733a81100857f"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
   name: "OnLoad.RandomizeVaults.SetStatus"
   events {
     ops {
@@ -27894,23 +29118,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Hack Status On Dummy Matrix Label"
+      functionName: "Send Event"
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Event)"
           args {
-            string_value: "HackIndicatorStatus"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (InteractableObject)"
-          args {
-            string_value: "55ab3052353733a811008356"
+            string_value: "aFederatedStateChange"
           }
         }
       }
@@ -27969,29 +29182,144 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "RunTrigger.PC0Decker.NebelBetrayal"
+  name: "eFederatedStateChange.BankGold.SetVaultOpen"
   events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFederatedStateChange"
+      }
+    }
   }
   conditions {
     ops {
-      functionName: "Evaluate If Actor is Inside Region"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Evaluate If Actor Has Item"
           args {
             call_value {
-              functionName: "Get Actor\'s Persona"
+              functionName: "All Actors on Team"
               args {
                 call_value {
-                  functionName: "Get Map Item (Actor)"
+                  functionName: "Get Preset Value (string)"
                   args {
-                    string_value: "55204e586631362c10000718"
+                    string_value: "FactionList"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "AllOrAny"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (SceneDimension)"
+                  args {
+                    string_value: "Default"
                   }
                 }
               }
             }
           }
           args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "HasOrHasNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Item)"
+              args {
+                string_value: "item_LTG-BANK_ADMIN"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Evaluate If Actor Has Item"
+          args {
+            call_value {
+              functionName: "All Actors on Team"
+              args {
+                call_value {
+                  functionName: "Get Preset Value (string)"
+                  args {
+                    string_value: "FactionList"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "AllOrAny"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (SceneDimension)"
+                  args {
+                    string_value: "Default"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "HasOrHasNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Item)"
+              args {
+                string_value: "item_LTG-BANK_ACCOUNT"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
           }
         }
       }
@@ -27999,7 +29327,539 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "AreOrAreNot"
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBank_Red"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBank_Blue"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Ambient Light Color"
+      args {
+        float_value: 200
+      }
+      args {
+        float_value: 200
+      }
+      args {
+        float_value: 99
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54e9513f663136c414003aed"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Directional Light Color"
+      args {
+        float_value: 63
+      }
+      args {
+        float_value: 51
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: -0.5
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        float_value: -0.75
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54e9513f663136c414003aed"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ab3052353733a811008356"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55abbbd8353733a811008460"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bbfea43537336c12001840"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eFederatedStateChange.BankBlue.SetVaultLocked"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFederatedStateChange"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_LTG-BANK_ACCOUNT"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_LTG-BANK_ADMIN"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBank_Gold"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBank_Blue"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Ambient Light Color"
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 122
+      }
+      args {
+        float_value: 157
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54e9513f663136c414003aed"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Directional Light Color"
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 127
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: -0.5
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        float_value: -0.75
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54e9513f663136c414003aed"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ab3052353733a811008356"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
           }
           args {
             int_value: 1
@@ -28010,124 +29870,297 @@ triggers {
         call_value {
           functionName: "Get Map Item (Region)"
           args {
-            string_value: "5520414c6631362c100006e2"
+            string_value: "55abbbd8353733a811008460"
           }
         }
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "55bc10973537336c1200186f"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eFederatedStateChange.BankRed.SetSecurityOpen"
+  events {
     ops {
-      functionName: "OR"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFederatedStateChange"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
       args {
         call_value {
-          functionName: "Actor is Jacked in"
+          functionName: "Get Variable (int)"
           args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
+            string_value: "iSystemShutDownTimer"
           }
         }
       }
       args {
         call_value {
-          functionName: "Compare Actor Skill"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
+            string_value: "Comparison Ops"
           }
           args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "BaseOrCurrent"
-              }
-              args {
-                int_value: 1
-              }
-            }
+            int_value: 3
           }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
           args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "ActorSkills"
-              }
-              args {
-                int_value: 5
-              }
-            }
+            string_value: "isBank_Gold"
           }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "Comparison Ops"
-              }
-              args {
-                int_value: 2
-              }
-            }
+            string_value: "bool"
           }
           args {
             int_value: 0
           }
         }
       }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (int)"
+      args {
+        float_value: -1
+      }
       args {
         call_value {
-          functionName: "Get Story Variable (int)"
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "542848a8633464d816001ad5"
+            string_value: "DoesOrDoesNot"
           }
           args {
-            string_value: "int_NPC_Status_Nebel"
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBank_Red"
           }
         }
       }
       args {
-        int_value: -1
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
       }
     }
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Set Ambient Light Color"
+      args {
+        float_value: 139
+      }
+      args {
+        float_value: 6
+      }
+      args {
+        float_value: 66
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
       args {
         call_value {
-          functionName: "Nearest Tagged Actor to Prop"
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54e9513f663136c414003aed"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Directional Light Color"
+      args {
+        float_value: 88
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: -0.5
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        float_value: -0.75
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54e9513f663136c414003aed"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ab305e353733a811008357"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55ac1fa1353733d4180033f5"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bc11613537336c12001870"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eFederatedStateChange.NoCard.DisableYourVault"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFederatedStateChange"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
           args {
             call_value {
-              functionName: "Get Map Item (SenseTagList)"
+              functionName: "Get Preset Value (string)"
               args {
-                string_value: "isMatrixNebel"
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
               }
             }
           }
           args {
             call_value {
-              functionName: "Get Map Item (Prop)"
+              functionName: "Get Preset Value (int)"
               args {
-                string_value: "55abbe5c353733a8110084b4"
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
               }
             }
           }
@@ -28137,7 +30170,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TextPopupStyle"
+            string_value: "HasOrHasNot"
           }
           args {
             int_value: 0
@@ -28145,34 +30178,96 @@ triggers {
         }
       }
       args {
-        string_value: "That\'s a lot of nuyen."
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_LTG-BANK_ACCOUNT"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Hack Indicator On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
       }
       args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 7
-      }
-      args {
-        float_value: 0.5
-      }
-      args {
-        float_value: 0
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc073353733a8110084c0"
+          }
+        }
       }
     }
   }
   isActive: true
   idRef {
-    id: "55abc6d1353733a811008581"
+    id: "55bda0513537335003003e42"
+  }
+  elseActions {
+    ops {
+      functionName: "Enable/Disable Hack Indicator On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc073353733a8110084c0"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55abc3d1353733a8110084c6"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "--===Federated Vault Scripts===--"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55abc514353733a81100857f"
   }
   elseActions {
   }
@@ -28221,6 +30316,38 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55bc44343537336c12001875"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -28340,6 +30467,113 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "OnGoal.Position1HackSuccess.Set1679Hacked"
+  events {
+    ops {
+      functionName: "On Goal Update"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc06e353733a8110084ba"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd3871353733f417001642"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "OnVault6917.Position2.VaultConvo.ElseDecoy"
   events {
     ops {
@@ -28382,6 +30616,38 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55bc44343537336c12001875"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -28501,6 +30767,113 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "OnGoal.Position2HackSuccess.Set6917Hacked"
+  events {
+    ops {
+      functionName: "On Goal Update"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc0fa353733a8110084c5"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd38eb353733f417001643"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "OnVault9176.Position3.VaultConvo.ElseDecoy"
   events {
     ops {
@@ -28543,6 +30916,38 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55bc44343537336c12001875"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -28662,6 +31067,113 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "OnGoal.Position2HackSuccess.Set9176Hacked"
+  events {
+    ops {
+      functionName: "On Goal Update"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc069353733a8110084b8"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd3910353733f417001644"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "OnVault7691.Position4.VaultConvo.ElseDecoy"
   events {
     ops {
@@ -28704,6 +31216,38 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55bc44343537336c12001875"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -28819,6 +31363,356 @@ triggers {
         float_value: 0
       }
     }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnGoal.Position2HackSuccess.Set9176Hacked"
+  events {
+    ops {
+      functionName: "On Goal Update"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iVaultPosition"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Hack Federated Banking"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc069353733a8110084b8"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd392d353733f417001645"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "OnYourVault.SetHacked_Disable_Pop-Text"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc073353733a8110084c0"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Can\'t access the deposit yet. Drek."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 0.5
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc073353733a8110084c0"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55abc073353733a8110084c0"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd41e43537335003003ca5"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "eFederatedDegrade.DegradeAndCheckShutdown"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFederatedAccessDegrade"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_LTG-BANK_ADMIN"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSystemShutDownTimer"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "aFederatedStateChange"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55bd47a43537335003003ca6"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
@@ -29080,15 +31974,15 @@ regions {
     z: -0.75
   }
   directional_light_color {
-    r: 0.24705882
-    g: 0.2
-    b: 0
+    r: 0
+    g: 0
+    b: 0.49803922
     a: 1
   }
   ambient_light_color {
-    r: 0.78431374
-    g: 0.78431374
-    b: 0.3882353
+    r: 0.019607844
+    g: 0.43921569
+    b: 0.6156863
     a: 1
   }
   ambience_template: ""
@@ -31567,7 +34461,7 @@ regions {
     width: 2
     height: 1
   }
-  enabledAtStart: true
+  enabledAtStart: false
   is_camera_region: false
   idRef {
     id: "55abbbd8353733a811008460"
@@ -31673,7 +34567,7 @@ regions {
     width: 2
     height: 1
   }
-  enabledAtStart: true
+  enabledAtStart: false
   is_camera_region: false
   idRef {
     id: "55ac1fa1353733d4180033f5"
@@ -32200,52 +35094,6 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "rFoleySecurityTripwire"
-  position {
-    x: 69
-    y: -233
-    width: 6
-    height: 1
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "55b592053537332811005b39"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
   name: "rGumEPub_Target"
   position {
     x: 139
@@ -32349,6 +35197,52 @@ regions {
   is_camera_region: false
   idRef {
     id: "55b832023537333c1b007f90"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rFoleySecurityTripwire"
+  position {
+    x: 69
+    y: -235
+    width: 6
+    height: 3
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55bd62dd3537335003003ca8"
   }
   highlight_color {
     r: 0
@@ -33547,8 +36441,9 @@ characters {
       }
       archetypeName: "Guard - Protect"
       attitude: AttitudeBoss
-      attackRandom: AttackStyle_AllEqual
+      attackRandom: AttackStyle_CycleAll
       vulnerabilities {
+        death: VulnerabilityLevel_Immune
       }
     }
     team_id: "Civilian"
@@ -34042,10 +36937,19 @@ characters {
   idRef {
     id: "552014006631360c1300261f"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: "552015206631360c13002654"
+      turnToFace: true
+    }
+    interaction_info_text: ""
+  }
   lod: 0
   character_instance {
     prefab_name: "Berlin:Story/HumanFemaleMonika"
-    character_sheet_id: "BlitzTrust_Persona_Lv1_Decker"
+    character_sheet_id: "MERCURIAL_LTG_Nebel_Lv1"
     equipment_sheet_id: "MERCURIAL_LTG_NebelGear_Lv1"
     character_mod {
       stats {
@@ -34055,7 +36959,7 @@ characters {
         charisma: 0
         intelligence: 0
         willpower: 0
-        essence: 6
+        essence: 0
         magic: 0
         hp: 0
         ap: 0
@@ -34103,8 +37007,8 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Seek And Destroy"
-      attitude: AttitudeAggressive
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeBoss
       vulnerabilities {
       }
     }
@@ -34118,7 +37022,7 @@ characters {
       filename: "matrix_humanfemale_monika"
     }
     dimension_name: "Matrix"
-    karma: 9
+    karma: 34
     is_prop_character: false
     scale_character_sheet: true
   }
@@ -36696,6 +39600,7 @@ characters {
   orientation: ORIENTATION_S
   GeneralTags: "isRooted"
   GeneralTags: "isFoleyITIC"
+  GeneralTags: "isDelayed"
   displayName: "white_ranged_it_ic1"
   idRef {
     id: "55b55ee53537332811005ae3"
@@ -36770,6 +39675,7 @@ characters {
     char_name: "White IC"
     GeneralTags: "isRooted"
     GeneralTags: "isFoleyITIC"
+    GeneralTags: "isDelayed"
     enabled_at_start: false
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
@@ -37375,7 +40281,7 @@ variables {
   bool_value: false
   variableref_value {
     scope: TsVariableScope_Scene
-    name: "bSwitchAvailable"
+    name: "bNebelBetrays_PC0DeckerOnly"
     typeName: "bool"
   }
 }
@@ -37578,6 +40484,8 @@ mapEvents: "aFollowerTimer"
 mapEvents: "aLeaderSwitch"
 mapEvents: "aRandomExcuse"
 mapEvents: "aGumEvents"
+mapEvents: "aFederatedStateChange"
+mapEvents: "aFederatedAccessDegrade"
 senseTags: "MainGuy"
 senseTags: "isAware"
 senseTags: "isOnTeam"
@@ -37601,6 +40509,12 @@ goals {
   type: GoalType_Secondary
   status: GoalStatus_Hidden
   description: "Find a bit, a little bit, any bit will do..."
+}
+goals {
+  name: "Don\'t Get Burned!"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: "Dumpshock is a Slitch."
 }
 worldMapLocation {
   filename: ""
