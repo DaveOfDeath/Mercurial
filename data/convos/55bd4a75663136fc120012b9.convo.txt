@@ -222,7 +222,128 @@ nodes {
     nextNodeIndex: 8
   }
   branches {
-    responseText: ""
+    responseText: "I already destroyed the Smugglers upstairs... do you really want to be next?"
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_SunnysideGoal1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "I found your boss upstairs... Looks like a fish on the end of a 5,000 volt line?   He\'s cooling his heels in one of Matthew\'s cells.   I suggest you find somewhere else to be."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_GangLeader1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eWalkAway"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Attack{{/CC}} More rif-raff.   Well, I was getting bored anyways."
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eFight"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Suspend Team\'s Turn"
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -234,6 +355,19 @@ nodes {
   index: 1
   text: "Why would he send you without telling me?   Crusher always warns me first... Wait... our production has never been higher.   I think we found one of Matthew\'s little rats...   Get $(l.him) boys!"
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eFight"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
@@ -315,6 +449,19 @@ nodes {
   index: 4
   text: "I requested to be down here.  If you were really from Crush\'s crew you\'d know that.   Looks like we found another one of Matthews spys.   Feed them to the gators."
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eFight"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
@@ -388,6 +535,19 @@ nodes {
   index: 6
   text: "Shit.  Yeah, I would.   I\'ll go up now."
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eWalkAway"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
@@ -396,6 +556,19 @@ nodes {
   index: 7
   text: "But not the first one of Matthew\'s do-gooder to try.   Boys, dump them in the hole..."
   nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eFight"
+          }
+        }
+      }
+    }
+  }
 }
 nodes {
   idRef {
@@ -435,6 +608,19 @@ nodes {
         }
       }
     }
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eWalkAway"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
     hideIfUnavailable: true
   }
@@ -470,14 +656,90 @@ nodes {
         }
       }
     }
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eWalkAway"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
     hideIfUnavailable: true
   }
   branches {
     responseText: "Alive and well upstairs... As you can be, if you leave now."
-    nextNodeIndex: -1
+    nextNodeIndex: 9
   }
   nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55be65ae663136781500662a"
+  }
+  index: 9
+  text: "Cant say the same for you... Boys..."
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eFight"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55be6622663136781500662c"
+  }
+  index: 10
+  text: "No, I don\'t."
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eWalkAway"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55be6639663136781500662e"
+  }
+  index: 11
+  text: "You took out Crush?   Look $(s.man)... I don\'t want no trouble..."
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eWalkAway"
+          }
+        }
+      }
+    }
+  }
 }
 roots {
   nextNodeIndex: 0

@@ -700,6 +700,17 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eMarkCrates"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -890,6 +901,17 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f6262373361180b004025"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -996,6 +1018,17 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f6279373361180b004026"
           }
         }
       }
@@ -1110,6 +1143,17 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f6288373361180b004027"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -1220,6 +1264,17 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f62a6373361180b004028"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -1326,6 +1381,17 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55b51b83663136c812004098"
           }
         }
       }
@@ -6433,6 +6499,14 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Triggering Prop"
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -6591,6 +6665,14 @@ triggers {
           args {
             string_value: "eUpdateCrateCount"
           }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Triggering Prop"
         }
       }
     }
@@ -6755,6 +6837,14 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Triggering Prop"
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -6913,6 +7003,14 @@ triggers {
           args {
             string_value: "eUpdateCrateCount"
           }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Triggering Prop"
         }
       }
     }
@@ -7077,6 +7175,14 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Triggering Prop"
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -7129,6 +7235,95 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "SewerCrates.WayPoints"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateCrateCount"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iCratesFound"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 5
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Screen Label Progress Bar (int)"
+      args {
+        string_value: "Crates"
+      }
+      args {
+        string_value: "Crates Found:"
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iCratesFound"
+          }
+        }
+      }
+      args {
+        int_value: 5
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55b541a26631366c120024a0"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55be5e7d66313678150064e1"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: ""
   events {
   }
@@ -7164,46 +7359,13 @@ triggers {
   name: "DEBUGGER.MarkCrates"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eMarkCrates"
+      }
     }
   }
   conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "DEBUGGERMODE"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
   }
   actions {
     ops {
@@ -7466,6 +7628,336 @@ triggers {
   isActive: true
   idRef {
     id: "55bd4a46663136fc120012b8"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Dealers.Fight"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eFight"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isDruggie"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Hunt And Destroy (Team)"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isDruggie"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55be6675663136781500664d"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Dealers.WalkAway"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eWalkAway"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to Move To (Region)"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isDruggie"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55be67f8663136781500664f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55be6698663136781500664e"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Dealer.Dissapear"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55be67f8663136781500664f"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isDruggie"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55be68686631367815006650"
   }
   elseActions {
   }
@@ -11293,6 +11785,9 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Autosave Game"
+    }
   }
   isActive: true
   idRef {
@@ -11481,6 +11976,52 @@ regions {
   loop_default_music: false
   no_fow_in_region: false
 }
+regions {
+  name: "rDruggieExit"
+  position {
+    x: 31
+    y: 21
+    width: 3
+    height: 4
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55be67f8663136781500664f"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
@@ -11550,9 +12091,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -16
+    x: 43
     y: 0
-    z: 22
+    z: 2
   }
   orientation: ORIENTATION_E
   idRef {
@@ -11860,6 +12401,7 @@ characters {
     z: 28
   }
   orientation: ORIENTATION_E
+  GeneralTags: "isDruggie"
   displayName: "Drug"
   idRef {
     id: "55bd45e2663136fc120012b1"
@@ -11942,6 +12484,7 @@ characters {
     }
     team_id: "Civilians"
     char_name: "Yiiven"
+    GeneralTags: "isDruggie"
     pc_spawn_number: -1
     portrait {
       filename: "pc_elfmale_10a_scoundrel"
@@ -11958,6 +12501,7 @@ characters {
     z: 31
   }
   orientation: ORIENTATION_W
+  GeneralTags: "isDruggie"
   displayName: "Drug"
   idRef {
     id: "55bd4738663136fc120012b2"
@@ -12031,6 +12575,7 @@ characters {
     }
     team_id: "Civilians"
     char_name: "Luskan"
+    GeneralTags: "isDruggie"
     pc_spawn_number: -1
     cyberware_jack: "Berlin_Obvious Cyberskull"
     portrait {
@@ -12110,6 +12655,7 @@ characters {
     z: 33
   }
   orientation: ORIENTATION_S
+  GeneralTags: "isDruggie"
   displayName: "DrugLeader"
   idRef {
     id: "55bd48c8663136fc120012b4"
@@ -12185,6 +12731,7 @@ characters {
     }
     team_id: "Civilians"
     char_name: "Liara"
+    GeneralTags: "isDruggie"
     pc_spawn_number: -1
     portrait {
       filename: "npc_elffemale_dianesilverstar"
@@ -12321,11 +12868,21 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bDeclinedLucy"
+    typeName: "bool"
+  }
+}
 mapEvents: "eUpdateFlashlights"
 mapEvents: "eUpdateCrateCount"
 mapEvents: "eLightDisplayUpdate"
 mapEvents: "eResetPuzzle"
-senseTags: "isBank2On"
+mapEvents: "eMarkCrates"
+mapEvents: "eWalkAway"
+mapEvents: "eFight"
 goals {
   name: "Survive"
   type: GoalType_Primary
