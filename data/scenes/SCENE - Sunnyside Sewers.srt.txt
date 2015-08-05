@@ -453,6 +453,25 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c0e7943733619c0e00749b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_rocking"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -718,7 +737,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "OnMapLoad [Crate Goal Success]"
@@ -798,7 +817,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "onMapStart.CrateEval [1]"
@@ -919,7 +938,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "onMapStart.CrateEval [2]"
@@ -1464,6 +1483,98 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55c255f76631366c150031b2"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Disable.isChecked"
+  events {
+    ops {
+      functionName: "On Actor Alive"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55b083fc663136fc12001830"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: " "
   events {
   }
@@ -1804,6 +1915,34 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "55add5ac6631362008006c79"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "props"
+          }
+          args {
+            string_value: "LadderClimb"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -2334,6 +2473,34 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "55ade24d6631362008006cde"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "props"
+          }
+          args {
+            string_value: "LadderClimb"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -6240,82 +6407,6 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Disable.isChecked"
-  events {
-    ops {
-      functionName: "On Actor Alive"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Evaluate Tag for Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HasOrHasNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isChecked"
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isChecked"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55b083fc663136fc12001830"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
   name: ""
   events {
   }
@@ -7488,6 +7579,475 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "MarkCrateCrateEval [1]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCrateWaypints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_SewerCrate_1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f6262373361180b004025"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c267d26631366c150031fe"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "MarkCrate.CrateEval [2]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCrateWaypints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_SewerCrate_2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f6279373361180b004026"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c267d26631366c150031ff"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "MarkCrate.CrateEval [3]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCrateWaypints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_SewerCrate_3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f6288373361180b004027"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c267d26631366c15003200"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "MarkCrate.CrateEval [4]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCrateWaypints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_SewerCrate_4"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555f62a6373361180b004028"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c267d26631366c15003201"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "MarkCrate.CrateEval [5]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCrateWaypints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_SewerCrate_5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55b51b83663136c812004098"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c267d26631366c15003202"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "MarkCrate.CrateEval [Complete]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCrateWaypints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iCratesFound"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 5
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55b541a26631366c120024a0"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c267d26631366c15003203"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: ""
   events {
   }
@@ -8014,6 +8574,39 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555b5c373733616c10003649"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "555b5c373733616c10003649"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Prop Visible by Tag"
       args {
         call_value {
@@ -8060,7 +8653,29 @@ triggers {
         call_value {
           functionName: "Get Variable (bool)"
           args {
-            string_value: "bLightPuzzle"
+            string_value: "bLightPuzzleA"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLightPuzzleB"
           }
         }
       }
@@ -8160,6 +8775,28 @@ triggers {
         float_value: 5
       }
     }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "555b5c373733616c10003649"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -8181,12 +8818,36 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (bool)"
+      functionName: "Comparison (int)"
       args {
         call_value {
-          functionName: "Get Variable (bool)"
+          functionName: "Arithmetic (int)"
           args {
-            string_value: "bLightPuzzle"
+            call_value {
+              functionName: "Get Variable (int)"
+              args {
+                string_value: "iBankAPower"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Arithmetic Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Variable (int)"
+              args {
+                string_value: "iBankBPower"
+              }
+            }
           }
         }
       }
@@ -8194,23 +8855,15 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "Comparison Ops"
           }
           args {
-            int_value: 1
+            int_value: 4
           }
         }
       }
       args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
+        int_value: 8
       }
     }
   }
@@ -8388,7 +9041,7 @@ triggers {
         call_value {
           functionName: "Get Variable (bool)"
           args {
-            string_value: "bLightPuzzle"
+            string_value: "bLightPuzzleA"
           }
         }
       }
@@ -8494,7 +9147,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Puzzle.Reset"
+  name: "Puzzle.Reset [A]"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -8504,15 +9157,24 @@ triggers {
     }
   }
   conditions {
-  }
-  actions {
     ops {
-      functionName: "Set Variable (bool)"
+      functionName: "Comparison (bool)"
       args {
         call_value {
           functionName: "Get Variable (bool)"
           args {
-            string_value: "bLightPuzzle"
+            string_value: "bLightPuzzleA"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -8523,11 +9185,13 @@ triggers {
             string_value: "bool"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
     }
+  }
+  actions {
     ops {
       functionName: "Set Variable (bool)"
       args {
@@ -8617,100 +9281,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bLight5"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bLight6"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bLight7"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bLight8"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Prop Visible by Tag"
       args {
         call_value {
           functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "isLite"
+            string_value: "isLiteA"
           }
         }
       }
@@ -8828,6 +9404,204 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iBankAPower"
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55be4a0966313648120012af"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Puzzle.Reset [B]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eResetPuzzle"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLightPuzzleB"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLight5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLight6"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLight7"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLight8"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isLiteB"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Prop Visible by Tag"
       args {
         call_value {
@@ -8874,20 +9648,6 @@ triggers {
         call_value {
           functionName: "Get Variable (int)"
           args {
-            string_value: "iBankAPower"
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
             string_value: "iBankBPower"
           }
         }
@@ -8896,6 +9656,28 @@ triggers {
         int_value: 0
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "55c26b7d6631366c15003206"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Puzzle.Reset [Update]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eResetPuzzle"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
     ops {
       functionName: "Send Event"
       args {
@@ -8910,7 +9692,7 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "55be4a0966313648120012af"
+    id: "55c271166631366c1500320f"
   }
   elseActions {
   }
@@ -9401,6 +10183,28 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bLightPuzzleA"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
     ops {
       functionName: "Set Variable (bool)"
       args {
@@ -10788,6 +11592,28 @@ triggers {
         call_value {
           functionName: "Get Variable (bool)"
           args {
+            string_value: "bLightPuzzleB"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
             string_value: "bLight6"
           }
         }
@@ -11838,6 +12664,472 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55c256ad6631366c150031b3"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "---=== CrazyFan Area Triggers ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55c256ad6631366c150031b4"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "CrazyFan.Campfire"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55c253be6631366c150031ae"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Light Transition"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55c0e0223733619c0e007491"
+          }
+        }
+      }
+      args {
+        string_value: "LOOP; Cubic:1:FF8C00; Bounce:10:FFFF00; Cubic:1:FF8C00;"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c256b96631366c150031b5"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.WarpTo"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55b51a74663136c81200408e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55c253be6631366c150031ae"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isFlashLight"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c25c166631366c150031bb"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.WarpFrom"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55c254226631366c150031b0"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55c25bf06631366c150031ba"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isFlashLight"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eCrateWaypints"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c25c7e6631366c150031bc"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.SewerReturn"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55c25bf06631366c150031ba"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "55c25cba6631366c150031bd"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "cSewers"
   position {
@@ -12022,12 +13314,150 @@ regions {
   loop_default_music: false
   no_fow_in_region: false
 }
+regions {
+  name: "rSpawnCrazyFanLocation"
+  position {
+    x: -55
+    y: -77
+    width: 5
+    height: 4
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55c253be6631366c150031ae"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "cCrazyFanArea"
+  position {
+    x: -72
+    y: -96
+    width: 30
+    height: 33
+  }
+  enabledAtStart: true
+  is_camera_region: true
+  idRef {
+    id: "55c2584c6631366c150031b7"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.32941177
+    g: 0.32941177
+    b: 0.15686275
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.19607843
+    g: 0.19607843
+    b: 0.19607843
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rSewerRespawnFromCrazyFan"
+  position {
+    x: 80
+    y: 124
+    width: 4
+    height: 3
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "55c25bf06631366c150031ba"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 46
+    x: 44
     y: 0
-    z: 2
+    z: 1
   }
   orientation: ORIENTATION_E
   idRef {
@@ -12047,7 +13477,7 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 45
+    x: 44
     y: 0
     z: 0
   }
@@ -12091,9 +13521,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 43
+    x: -15
     y: 0
-    z: 2
+    z: 20
   }
   orientation: ORIENTATION_E
   idRef {
@@ -12743,24 +14173,99 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -67.2
+    x: -61.199997
     y: 0
-    z: -31.6
+    z: -76.6
   }
   orientation: ORIENTATION_S
+  displayName: "CrazyFan"
   idRef {
     id: "55c0e7943733619c0e00749b"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    conversationPoint {
+      conversationID: "55c25f626631366c150031be"
+      turnToFace: true
+    }
+    interaction_info_text: "Talk to Kayla"
   }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Homeless/HumanFemaleHomelessJacketBundle"
-    character_sheet_id: "CG Ork Street Samurai"
+    character_sheet_id: "Lvl3_Dwarf_Samurai"
     character_mod {
-      archetypeName: "Non-Combatant"
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 1
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: -4
+        close_combat: 4
+        throwing_weapons: -3
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 1
+        dodge: 1
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 1
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: -2
+        shotgun: 0
+        smg: 0
+        edged: 4
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Protect"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "Sword 1 Crowbar"
     }
     team_id: "Civilians"
-    char_name: "Crazyfan"
+    char_name: "Kayla"
     pc_spawn_number: -1
+    portrait {
+      filename: "pc_humanfemale_07d_darkskin"
+    }
+    karma: 91
   }
 }
 variables {
@@ -12807,7 +14312,7 @@ variables {
   bool_value: false
   variableref_value {
     scope: TsVariableScope_Scene
-    name: "bLightPuzzle"
+    name: "bLightPuzzleA"
     typeName: "bool"
   }
 }
@@ -12899,6 +14404,14 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bLightPuzzleB"
+    typeName: "bool"
+  }
+}
 mapEvents: "eUpdateFlashlights"
 mapEvents: "eUpdateCrateCount"
 mapEvents: "eLightDisplayUpdate"
@@ -12906,6 +14419,7 @@ mapEvents: "eResetPuzzle"
 mapEvents: "eMarkCrates"
 mapEvents: "eWalkAway"
 mapEvents: "eFight"
+mapEvents: "eCrateWaypints"
 goals {
   name: "Survive"
   type: GoalType_Primary
