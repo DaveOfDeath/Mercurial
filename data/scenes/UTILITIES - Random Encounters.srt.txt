@@ -1488,6 +1488,33 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Enable/Disable Manual Turn Mode"
       args {
         call_value {
@@ -1502,26 +1529,46 @@ triggers {
       }
     }
     ops {
-      functionName: "Add Tag to Actor"
+      functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isChecked"
-          }
+          functionName: "Triggering Actor"
         }
       }
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
+            string_value: "TextPopupStyle"
           }
           args {
+            int_value: 0
           }
         }
+      }
+      args {
+        string_value: "Tagged"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
       }
     }
   }
@@ -1531,7 +1578,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "NewTrigger"
