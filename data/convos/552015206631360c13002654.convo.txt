@@ -25,199 +25,6 @@ nodes {
   text: ""
   branches {
     responseText: "I\'d like to open an account."
-    conditions {
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ACCOUNT"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate Nuyen"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          int_value: 500
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 500
-        }
-      }
-      ops {
-        functionName: "Add Item to Team"
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ACCOUNT"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (string)"
-            args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "WithOrWithout"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (SceneDimension)"
-            args {
-              string_value: "Default"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
-            args {
-              string_value: "aFederatedStateChange"
-            }
-          }
-        }
-      }
-    }
     nextNodeIndex: 2
   }
   branches {
@@ -456,6 +263,78 @@ nodes {
       }
     }
     nextNodeIndex: 3
+  }
+  branches {
+    responseText: "{{CC}}Combat{{/CC}} {{GM}}Attack the program.{{/GM}}"
+    actions {
+      ops {
+        functionName: "Assign Conversation to Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Conversation)"
+            args {
+              string_value: "552015206631360c13002654"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "552014006631360c1300261f"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iSystemShutDownTimer"
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "aFederatedStateChange"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
   }
   branches {
     responseText: "{{GM}}Walk away.{{/GM}}"
