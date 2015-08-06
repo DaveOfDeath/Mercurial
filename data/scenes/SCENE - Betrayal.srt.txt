@@ -2128,35 +2128,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Actor Unkillable"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5564ee04393066500e006ad8"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Kill Actor"
       args {
         call_value {
@@ -2264,35 +2235,6 @@ triggers {
     id: "552daa18663136700c001551"
   }
   elseActions {
-    ops {
-      functionName: "Set Actor Unkillable"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5564ee04393066500e006ad8"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
     ops {
       functionName: "Teleport Actor near Actor"
       args {
@@ -6085,6 +6027,120 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "isKilled.Blight"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5564ee04393066500e006ad8"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Blight"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5564ee04393066500e006ad8"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c2b09a663136b00500062f"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "isKilled.Hotoda"
   events {
     ops {
@@ -6619,7 +6675,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89786631361801007e54"
+            string_value: "559a21b3613131001b001d1d"
           }
         }
       }
@@ -6654,7 +6710,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89786631361801007e54"
+            string_value: "559a21b3613131001b001d1d"
           }
         }
       }
@@ -6671,7 +6727,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89786631361801007e54"
+            string_value: "559a21b3613131001b001d1d"
           }
         }
       }
@@ -6706,7 +6762,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89786631361801007e54"
+            string_value: "559a21b3613131001b001d1d"
           }
         }
       }
@@ -6898,7 +6954,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89d46631361801007e57"
+            string_value: "559a21bd613131001b001d1e"
           }
         }
       }
@@ -6950,7 +7006,18 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89d46631361801007e57"
+            string_value: "559a21bd613131001b001d1e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Persistent Dead Bodies"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55059b8161313130230071e7"
           }
         }
       }
@@ -6967,7 +7034,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89d46631361801007e57"
+            string_value: "559a21bd613131001b001d1e"
           }
         }
       }
@@ -7002,7 +7069,18 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89d46631361801007e57"
+            string_value: "559a21bd613131001b001d1e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Persistent Dead Bodies"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55059b8161313130230071e7"
           }
         }
       }
@@ -7019,7 +7097,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "553c89786631361801007e54"
+            string_value: "559a21b3613131001b001d1d"
           }
         }
       }
@@ -7056,7 +7134,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89786631361801007e54"
+            string_value: "559a21b3613131001b001d1d"
           }
         }
       }
@@ -7079,7 +7157,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "553c89d46631361801007e57"
+            string_value: "559a21bd613131001b001d1e"
           }
         }
       }
@@ -7116,7 +7194,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Prop)"
           args {
-            string_value: "553c89d46631361801007e57"
+            string_value: "559a21bd613131001b001d1e"
           }
         }
       }
@@ -11684,6 +11762,7 @@ characters {
     karma: 1
     hiring_cost_override: 500
     hiring_tag: "A shaman with some attitude issues."
+    persistent_body: true
     id: "Mercurial_NPC_Blight"
   }
 }
