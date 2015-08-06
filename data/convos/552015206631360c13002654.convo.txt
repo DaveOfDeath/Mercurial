@@ -4,271 +4,15 @@ idRef {
 ui_name: "LTG - Hernandez Digital Secretary"
 nodes {
   idRef {
-    id: "55c1444b353733a41100337d"
+    id: "5520176b6631360c1300267b"
   }
   index: 0
-  text: "{{GM}}It only takes one look to convince you that the persona standing calmly in the bank\'s lobby is just a sculpted ESP. The vacant stare, the smooth gestures, and the perfect cheeriness with which it greets you give away the simple coding that underlies the smiling face.{{/GM}}\n\nWelcome to Federated Banking, where we put your money to work for you.\n\nHow may we be of service today?"
+  text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: ""
-    nextNodeIndex: 1
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-}
-nodes {
-  idRef {
-    id: "55bd8b833537335003003d07"
-  }
-  index: 1
-  text: ""
-  branches {
-    responseText: "I\'d like to open an account."
-    nextNodeIndex: 2
-  }
-  branches {
-    responseText: "{{CC}}Decking: $(scene.sDeckingSkillChallengeRating){{/CC}} Spoof the system."
+    responseText: "{{CC}}Inquiry{{/CC}} Whats is this node?"
     conditions {
       ops {
-        functionName: "Compare Actor Skill"
-        args {
-          call_value {
-            functionName: "Triggering Actor"
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "BaseOrCurrent"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "ActorSkills"
-            }
-            args {
-              int_value: 5
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iDeckingSkillChallengeRating"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ACCOUNT"
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iSystemShutDownTimer"
-            }
-          }
-        }
-        args {
-          int_value: -3
-        }
-      }
-      ops {
-        functionName: "Add Item to Team"
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (string)"
-            args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "WithOrWithout"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (SceneDimension)"
-            args {
-              string_value: "Default"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
-            args {
-              string_value: "aFederatedStateChange"
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 3
-  }
-  branches {
-    responseText: "{{CC}}Little Bit{{/CC}} Spoof the system."
-    conditions {
-      ops {
-        functionName: "Evaluate If Actor Has Item"
+        functionName: "Evaluate If Actor is Inside Region"
         args {
           call_value {
             functionName: "All Actors on Team"
@@ -298,7 +42,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "Default"
+                  string_value: "Matrix"
                 }
               }
             }
@@ -308,7 +52,7 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "HasOrHasNot"
+              string_value: "AreOrAreNot"
             }
             args {
               int_value: 1
@@ -317,123 +61,9 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Item)"
+            functionName: "Get Map Item (Region)"
             args {
-              string_value: "item_LTG-Little_Bit"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ACCOUNT"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
+              string_value: "55201e306631360c130027e0"
             }
           }
         }
@@ -441,228 +71,61 @@ nodes {
     }
     actions {
       ops {
-        functionName: "Remove Item from Team"
+        functionName: "Set Variable (string)"
         args {
           call_value {
-            functionName: "Get Map Item (Item)"
+            functionName: "Get Story Variable (string)"
             args {
-              string_value: "item_LTG-Little_Bit"
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          call_value {
-            functionName: "Get Preset Value (string)"
-            args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "WithOrWithout"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (SceneDimension)"
-            args {
-              string_value: "Default"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iSystemShutDownTimer"
-            }
-          }
-        }
-        args {
-          int_value: -2
-        }
-      }
-      ops {
-        functionName: "Add Item to Team"
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (string)"
-            args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "WithOrWithout"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (SceneDimension)"
-            args {
-              string_value: "Default"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
-            args {
-              string_value: "aFederatedStateChange"
-            }
-          }
+          string_value: "\"This area houses the firewall system control node.   Access is restricted for all unauthorized personnel.\""
         }
       }
     }
-    nextNodeIndex: 4
-  }
-  branches {
-    responseText: "{{CC}}Combat{{/CC}} {{GM}}Attack the program.{{/GM}}"
-    actions {
-      ops {
-        functionName: "Assign Conversation to Actor"
-        args {
-          call_value {
-            functionName: "Get Map Item (Conversation)"
-            args {
-              string_value: "552015206631360c13002654"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Actor)"
-            args {
-              string_value: "552014006631360c1300261f"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "WithOrWithout"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "EnableOrDisable"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iSystemShutDownTimer"
-            }
-          }
-        }
-        args {
-          int_value: 0
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
-            args {
-              string_value: "aFederatedStateChange"
-            }
-          }
-        }
-      }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "559c4ec36131318400003d2b"
     }
-    nextNodeIndex: -1
+    auxiliaryLink: true
   }
   branches {
-    responseText: "{{GM}}Walk away.{{/GM}}"
-    actions {
-      ops {
-        functionName: "Play Animation From Manifest"
-        args {
-          call_value {
-            functionName: "Get Map Item (Actor)"
-            args {
-              string_value: "552014006631360c1300261f"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Animation)"
-            args {
-              string_value: "Seattle:General/standing_idle_calm"
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: -1
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-}
-nodes {
-  idRef {
-    id: "55c1460f353733a411003391"
-  }
-  index: 2
-  text: "{{GM}}The program nods and gestures with her hand. A stack of forms materializes onto the desk.{{/GM}}\n\nCertainly, $(l.sir). Please take a moment to review our banking policy and allow our system to retrieve your SIN information from your cyberterminal. I assure you it will be kept one-hundred percent confidential.\n\n{{GM}}The program leans towards you and continues speaking, almost apologetically.{{/GM}}\n\nNote that there is a five hundred nuyen deposit required, and that all funds must be verified before they will be available to you."
-  branches {
-    responseText: "{{CC}}500\302\245{{/CC}} {{GM}}Open Account.{{/GM}}"
+    responseText: "{{CC}}Lower Firewall{{/CC}} Access and disable firewall protocol."
     conditions {
       ops {
-        functionName: "Evaluate If Actor Has Item"
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "%Unknown Patron%"
+        }
+      }
+      ops {
+        functionName: "Evaluate If Actor is Inside Region"
         args {
           call_value {
             functionName: "All Actors on Team"
@@ -692,7 +155,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "Default"
+                  string_value: "Matrix"
                 }
               }
             }
@@ -702,7 +165,7 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "HasOrHasNot"
+              string_value: "AreOrAreNot"
             }
             args {
               int_value: 0
@@ -711,118 +174,39 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Item)"
+            functionName: "Get Map Item (Region)"
             args {
-              string_value: "item_LTG-BANK_ACCOUNT"
+              string_value: "55201e306631360c130027e0"
             }
           }
-        }
-      }
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
-            }
-          }
-        }
-      }
-      ops {
-        functionName: "Evaluate Nuyen"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "Comparison Ops"
-            }
-            args {
-              int_value: 3
-            }
-          }
-        }
-        args {
-          int_value: 500
         }
       }
     }
     actions {
       ops {
-        functionName: "Assign Conversation to Actor"
-        args {
-          call_value {
-            functionName: "Get Map Item (Conversation)"
-            args {
-              string_value: "552015206631360c13002654"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Actor)"
-            args {
-              string_value: "552014006631360c1300261f"
-            }
-          }
-        }
+        functionName: "Enable/Disable Trigger"
         args {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "WithOrWithout"
+              string_value: "EnableOrDisable"
             }
             args {
-              int_value: 1
+              int_value: 0
             }
           }
         }
+        args {
+          call_value {
+            functionName: "Get Map Item (Trigger)"
+            args {
+              string_value: "552021a06631362c10000314"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Enable/Disable Trigger"
         args {
           call_value {
             functionName: "Get Preset Value (int)"
@@ -834,31 +218,34 @@ nodes {
             }
           }
         }
-      }
-      ops {
-        functionName: "Remove Nuyen"
-        args {
-          int_value: 500
-        }
-      }
-      ops {
-        functionName: "Add Item to Team"
         args {
           call_value {
-            functionName: "Get Map Item (Item)"
+            functionName: "Get Map Item (Trigger)"
             args {
-              string_value: "item_LTG-BANK_ACCOUNT"
+              string_value: "54e954d1663136c414003b08"
             }
           }
         }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55201c446631360c13002700"
+    }
+    comment: "ADMIN"
+  }
+  branches {
+    responseText: "{{CC}}Lower Firewall{{/CC}} Access firewall protocol and disable."
+    conditions {
+      ops {
+        functionName: "Comparison (string)"
         args {
           call_value {
-            functionName: "Get Preset Value (string)"
+            functionName: "Get Variable (string)"
             args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
+              string_value: "sUserName"
             }
           }
         }
@@ -866,7 +253,32 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "WithOrWithout"
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "%Unknown Patron%"
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bHernandezShutDownWarned"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
             }
             args {
               int_value: 1
@@ -875,35 +287,106 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (SceneDimension)"
+            functionName: "Get Preset Value (int)"
             args {
-              string_value: "Default"
+              string_value: "bool"
             }
-          }
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
             args {
-              string_value: "aFederatedStateChange"
+              int_value: 0
             }
           }
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55201c406631360c130026ff"
+    }
+    comment: "GUEST-1"
   }
   branches {
-    responseText: "{{CC}}Decking: $(scene.sDeckingSkillChallengeRating){{/CC}} Spoof the system."
+    responseText: "{{CC}}Lower Firewall{{/CC}} Access firewall protocol and disable."
+    conditions {
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "%Unknown Patron%"
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bHernandezShutDownWarned"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55201c3c6631360c130026fe"
+    }
+    comment: "GUEST-2"
+  }
+  branches {
+    responseText: "{{CC}}Decking - 4{{/CC}} Spoof the system."
     conditions {
       ops {
         functionName: "Compare Actor Skill"
         args {
           call_value {
-            functionName: "Triggering Actor"
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
           }
         }
         args {
@@ -940,16 +423,36 @@ nodes {
           }
         }
         args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iDeckingSkillChallengeRating"
-            }
-          }
+          int_value: 4
         }
       }
       ops {
-        functionName: "Evaluate If Actor Has Item"
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "%Unknown Patron%"
+        }
+      }
+      ops {
+        functionName: "Evaluate If Actor is Inside Region"
         args {
           call_value {
             functionName: "All Actors on Team"
@@ -979,7 +482,7 @@ nodes {
               call_value {
                 functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "Default"
+                  string_value: "Matrix"
                 }
               }
             }
@@ -989,7 +492,7 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "HasOrHasNot"
+              string_value: "AreOrAreNot"
             }
             args {
               int_value: 0
@@ -998,47 +501,20 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (Item)"
+            functionName: "Get Map Item (Region)"
             args {
-              string_value: "item_LTG-BANK_ADMIN"
+              string_value: "55201e306631360c130027e0"
             }
           }
         }
       }
       ops {
-        functionName: "Evaluate If Actor Has Item"
+        functionName: "Comparison (bool)"
         args {
           call_value {
-            functionName: "All Actors on Team"
+            functionName: "Get Variable (bool)"
             args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
+              string_value: "bHernandezShutDownWarned"
             }
           }
         }
@@ -1046,64 +522,7 @@ nodes {
           call_value {
             functionName: "Get Preset Value (int)"
             args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ACCOUNT"
-            }
-          }
-        }
-      }
-    }
-    actions {
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Variable (int)"
-            args {
-              string_value: "iSystemShutDownTimer"
-            }
-          }
-        }
-        args {
-          int_value: -3
-        }
-      }
-      ops {
-        functionName: "Add Item to Team"
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_LTG-BANK_ADMIN"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (string)"
-            args {
-              string_value: "FactionList"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "WithOrWithout"
+              string_value: "IsOrIsNot"
             }
             args {
               int_value: 1
@@ -1112,35 +531,327 @@ nodes {
         }
         args {
           call_value {
-            functionName: "Get Map Item (SceneDimension)"
+            functionName: "Get Preset Value (int)"
             args {
-              string_value: "Default"
+              string_value: "bool"
             }
-          }
-        }
-      }
-      ops {
-        functionName: "Send Event"
-        args {
-          call_value {
-            functionName: "Get Map Item (Event)"
             args {
-              string_value: "aFederatedStateChange"
+              int_value: 1
             }
           }
         }
       }
     }
-    nextNodeIndex: 3
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          string_value: "%System Administrator%"
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "552018616631360c13002684"
+    }
     auxiliaryLink: true
   }
   branches {
-    responseText: "Let me think about it."
-    nextNodeIndex: 1
-    auxiliaryLink: true
+    responseText: "{{CC}}Silver Arrow{{/CC}} Have teammate spoof the system."
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Matrix"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Tag From String"
+            args {
+              string_value: "isSilverArrow"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "%Unknown Patron%"
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bHernandezShutDownWarned"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          string_value: "%System Administrator%"
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5520185a6631360c13002682"
+    }
   }
   branches {
-    responseText: "{{GM}}Walk away.{{/GM}}"
+    responseText: "{{CC}}Nebel{{/CC}} Have teammate spoof the system."
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Matrix"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Tag From String"
+            args {
+              string_value: "isNebel"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          string_value: "%Unknown Patron%"
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bHernandezShutDownWarned"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Variable (string)"
+            args {
+              string_value: "sUserName"
+            }
+          }
+        }
+        args {
+          string_value: "%System Administrator%"
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5520185d6631360c13002683"
+    }
+  }
+  branches {
+    responseText: "{{CC}}Exit{{/CC}}"
     actions {
       ops {
         functionName: "Play Animation From Manifest"
@@ -1156,13 +867,13 @@ nodes {
           call_value {
             functionName: "Get Map Item (Animation)"
             args {
-              string_value: "Seattle:General/standing_idle_calm"
+              string_value: "Seattle:General/standing_idle"
             }
           }
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 6
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1171,50 +882,116 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55bd8e2e3537335003003d1a"
+    id: "55201b116631360c130026e4"
+  }
+  index: 1
+  text: "The program stutters on the command, but responds, \"Access granted, >>@$(&--system corrupt\nError. Reset protocol node>>error$(&*^@\nProcessing request...   Firewall protocol disabled. \n\n\"System will shut down and reset in one minute. \n\n\"Will there be anything else, %System Administrator%?\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "552014006631360c1300261f"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bool_HernandezSwitch"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eHernandezFirewallOverride"
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55201b4a6631360c130026fa"
+  }
+  index: 2
+  text: "The program responds: \"I am sorry, but your access is denied. You have insufficient clearance to access these functions.\n\n\"Any attempt to subvert the system or access restricted features will result in a system shutdown. Federated Banking takes your safety very seriously. Service will be cut off while the system shuts down and reboots.\"\n\n"
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "552014006631360c1300261f"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHernandezShutDownWarned"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55201c516631360c13002720"
   }
   index: 3
-  text: "{{GM}}If there was ever any doubt it was a program sculpted to look like a persona standing at this desk, the swift pucking of the creatures eye and stuffing in a bit of custom code before popping the eye back in place removes it.\n\nThe program\'s easy smile never falters; it\'s gestures and breathing pause for the barest moment, but then it resumes its facilitating manner.{{/GM}}\n\nThank you for logging in, System Administrator."
-  branches {
-    responseText: "{{GM}}Walk away.{{/GM}}"
-    actions {
-      ops {
-        functionName: "Play Animation From Manifest"
-        args {
-          call_value {
-            functionName: "Get Map Item (Actor)"
-            args {
-              string_value: "552014006631360c1300261f"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Animation)"
-            args {
-              string_value: "Seattle:General/standing_idle_calm"
-            }
+  text: "The program responds: \"I am sorry, but your access is denied. You have insufficient clearance to access these functions.\n\n\"Federated Banking takes your safety very seriously. Service will be cut off while the system shuts down and reboots. Please vacate the area immediately.\""
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eHernandezShutdown"
           }
         }
       }
     }
-    nextNodeIndex: -1
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-  actions {
     ops {
-      functionName: "Assign Conversation to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Conversation)"
-          args {
-            string_value: "552015206631360c13002654"
-          }
-        }
-      }
+      functionName: "Play Animation From Manifest"
       args {
         call_value {
           functionName: "Get Map Item (Actor)"
@@ -1225,23 +1002,9 @@ nodes {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Animation)"
           args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
+            string_value: "Seattle:General/standing_idle"
           }
         }
       }
@@ -1250,12 +1013,52 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55bd8e2e3537335003003d1a"
+    id: "552019176631360c130026a8"
   }
   index: 4
-  text: "{{GM}}If there was ever any doubt it was a program sculpted to look like a persona standing at this desk, the swift pucking of the creatures eye and stuffing in the tangled knot of quantum code before popping the eye back in place removes it.\n\nThe program\'s easy smile never falters; it\'s gestures and breathing pause for the barest moment, but then it resumes its facilitating manner.{{/GM}}\n\nThank you for logging in, Sys73m Adm1n1s7ra7or."
+  text: "Silver Arrow smiles and nods \"You got it, chummer.  SysAdmin, coming up!\""
   branches {
-    responseText: "{{GM}}Walk away.{{/GM}}"
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5519dbce666538d80f0032d9"
+  }
+}
+nodes {
+  idRef {
+    id: "552019ee6631360c130026bb"
+  }
+  index: 5
+  text: "Nebel gives you a cocky smile.  \"Child\'s play, chief.  I\'ll get you administrator access.\n\n\"You gotta promise to give me a crack at the node itself.  I\'d like to tangle with the IC protecting the  Next time, give me something hard.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "5519dbd5666538d80f0032da"
+  }
+}
+nodes {
+  idRef {
+    id: "552018786631360c13002686"
+  }
+  index: 6
+  text: "The program responds with a smooth, \"Very well, $(l.sir).  Have a pleasant >>error>>$timeofday.\""
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "552015616631360c1300265f"
+  }
+  index: 7
+  text: "{{GM}}The program looks up from her desk, with a digitally painted-on smile.{{/GM}}\n\n\"Good day.  How may I assist you?\""
+  branches {
+    responseText: "{{CC}}Log Off{{/CC}} I\'m good, thanks."
     actions {
       ops {
         functionName: "Play Animation From Manifest"
@@ -1271,104 +1074,13 @@ nodes {
           call_value {
             functionName: "Get Map Item (Animation)"
             args {
-              string_value: "Seattle:General/standing_idle_calm"
+              string_value: "Seattle:General/standing_idle"
             }
           }
         }
       }
     }
     nextNodeIndex: -1
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-  actions {
-    ops {
-      functionName: "Assign Conversation to Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Conversation)"
-          args {
-            string_value: "552015206631360c13002654"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "552014006631360c1300261f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "55c152b2353733a411003407"
-  }
-  index: 5
-  text: "{{GM}}It only takes one look to convince Silver Arrow that the persona standing calmly in the bank\'s lobby is just a sculpted ESP. The vacant stare, the smooth gestures, and the perfect cheeriness with which it greets him gives away the simple coding that underlies the smiling face.{{/GM}}\n\nWelcome to Federated Banking, where we put your money to work for you.\n\nHow may we be of service today?"
-  branches {
-    responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-}
-nodes {
-  idRef {
-    id: "55c15388353733a411003430"
-  }
-  index: 6
-  text: "{{GM}}It only takes one look to convince Nebel that the persona standing calmly in the bank\'s lobby is just a sculpted ESP. The vacant stare, the smooth gestures, and the perfect cheeriness with which it greets her gives away the simple coding that underlies the smiling face.{{/GM}}\n\nWelcome to Federated Banking, where we put your money to work for you.\n\nHow may we be of service today?"
-  branches {
-    responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
-  sourceInSceneRef {
-    id: "552014006631360c1300261f"
-  }
-}
-nodes {
-  idRef {
-    id: "55c15405353733a41100345d"
-  }
-  index: 7
-  text: "{{GM}}It would only take one look to convince someone that the persona standing calmly in the bank\'s lobby is just a sculpted ESP. The vacant stare, the smooth gestures, and the perfect cheeriness with which it greets customers give away the simple coding that underlies the smiling face.{{/GM}}\n\nWelcome to Federated Banking, where we put your money to work for you.\n\nHow may we be of service today?"
-  branches {
-    responseText: ""
-    nextNodeIndex: 1
-    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -1376,73 +1088,175 @@ nodes {
   }
 }
 roots {
-  responseText: ""
   conditions {
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Actor\'s Persona"
+          functionName: "Evaluate Goal"
           args {
             call_value {
-              functionName: "Get Map Item (Player)"
+              functionName: "Get Map Item (Goal)"
+              args {
+                string_value: "Hacking Hernandez"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "GoalStatus"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Evaluate Goal"
+          args {
+            call_value {
+              functionName: "Get Map Item (Goal)"
+              args {
+                string_value: "Hacking Hernandez"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "GoalStatus"
+              }
               args {
                 int_value: 0
               }
             }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "552014006631360c1300261f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_talking"
           }
         }
       }
     }
   }
   nextNodeIndex: 0
-  comment: "Intended for PC0"
+  comment: "Hernandez Quest Active"
 }
 roots {
   responseText: ""
   conditions {
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Actor\'s Persona"
+          functionName: "Evaluate Goal"
           args {
             call_value {
-              functionName: "Get Map Item (Actor)"
+              functionName: "Get Map Item (Goal)"
               args {
-                string_value: "55204e5c6631362c10000719"
+                string_value: "Hacking Hernandez"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "GoalStatus"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Evaluate Goal"
+          args {
+            call_value {
+              functionName: "Get Map Item (Goal)"
+              args {
+                string_value: "Hacking Hernandez"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "GoalStatus"
+              }
+              args {
+                int_value: 3
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
               }
             }
           }
@@ -1450,50 +1264,27 @@ roots {
       }
     }
   }
-  nextNodeIndex: 5
-  comment: "Intended for Silver Arrow"
-}
-roots {
-  responseText: ""
-  conditions {
+  actions {
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "Play Animation From Manifest"
       args {
         call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Actor)"
           args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
+            string_value: "552014006631360c1300261f"
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Actor\'s Persona"
+          functionName: "Get Map Item (Animation)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55204e586631362c10000718"
-              }
-            }
+            string_value: "Seattle:General/standing_idle_talking"
           }
         }
       }
     }
   }
-  nextNodeIndex: 6
-  comment: "Intended for Nebel"
-}
-roots {
-  responseText: ""
   nextNodeIndex: 7
-  comment: "Failsafe"
+  comment: "Hernandez Quest Complete"
 }

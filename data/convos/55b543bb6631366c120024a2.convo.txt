@@ -55,7 +55,7 @@ nodes {
     id: "55b5469a663136ac0b002b28"
   }
   index: 3
-  text: "\"Looking for help, if you can believe it.\" She replies.  \n\n\"Our last shipment of medicines, and supplies were stolen in transit by the smugglers up-top.   We need those to get the people from Sunnyside though until this land buyout happens.\""
+  text: "\"Looking for help, if you can believe it.\" She replies.  \"Our last shipment of medicines, and supplies were stolen in transit by the smugglers up-top.   We need those to get the people from Sunnyside though until this land buyout happens.\""
   branches {
     responseText: "I dealt with the smugglers."
     conditions {
@@ -226,17 +226,6 @@ nodes {
         int_value: 1
       }
     }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eMarkCrates"
-          }
-        }
-      }
-    }
   }
 }
 nodes {
@@ -246,54 +235,12 @@ nodes {
   index: 7
   text: "{{GM}}She seems pretty deflated.{{/GM}}\n\n\"I understand.   Thanks for your time.\""
   nodeType: ConversationNodeType_Simple
-  actions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bDeclinedLucy"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-}
-nodes {
-  idRef {
-    id: "55be622a6631367815006584"
-  }
-  index: 8
-  text: "Change your mind about helping out with the crate treasure hunt?"
-  branches {
-    responseText: "{{CC}}Agree{{/CC}} Yeah.  I can help you."
-    nextNodeIndex: 6
-    auxiliaryLink: true
-  }
-  branches {
-    responseText: "{{CC}}Decline{{/CC}} Sorry, still too much on my plate."
-    nextNodeIndex: 7
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "55b54c72663136ac0b002bd1"
   }
-  index: 9
+  index: 8
   text: "\"Have you found them?\""
   branches {
     responseText: "Not yet."
@@ -324,7 +271,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 10
+    nextNodeIndex: 9
     hideIfUnavailable: true
   }
   branches {
@@ -381,7 +328,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 11
+    nextNodeIndex: 10
     hideIfUnavailable: true
   }
   branches {
@@ -513,11 +460,8 @@ nodes {
           string_value: "Crates"
         }
       }
-      ops {
-        functionName: "Clear All Waypoints"
-      }
     }
-    nextNodeIndex: 12
+    nextNodeIndex: 11
     hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
@@ -526,7 +470,7 @@ nodes {
   idRef {
     id: "55b54cef663136ac0b002bf1"
   }
-  index: 10
+  index: 9
   text: "\"Please don\'t give up... we badly need those supplies.\""
   nodeType: ConversationNodeType_Simple
 }
@@ -534,7 +478,7 @@ nodes {
   idRef {
     id: "55b54d08663136ac0b002bf3"
   }
-  index: 11
+  index: 10
   text: "\"We\'re very grateful.   If you can find the rest, that would benefit us immensely.\""
   nodeType: ConversationNodeType_Simple
 }
@@ -542,7 +486,7 @@ nodes {
   idRef {
     id: "55b54d2e663136ac0b002bf5"
   }
-  index: 12
+  index: 11
   text: "You did?   Fantastic!   I\'ll get the crews started on a plan to recover them.   Thank you so much, you have no idea how many lives you\'ve changed with this.\""
   nodeType: ConversationNodeType_Simple
 }
@@ -581,39 +525,6 @@ roots {
         }
       }
     }
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bDeclinedLucy"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   nextNodeIndex: 0
   comment: "Quest Giver"
@@ -638,39 +549,6 @@ roots {
             string_value: "GoalStatus"
           }
           args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bDeclinedLucy"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
             int_value: 1
           }
         }
@@ -679,7 +557,7 @@ roots {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "bool"
+            string_value: "IsOrIsNot"
           }
           args {
             int_value: 1
@@ -689,45 +567,6 @@ roots {
     }
   }
   nextNodeIndex: 8
-}
-roots {
-  responseText: ""
-  conditions {
-    ops {
-      functionName: "Evaluate Goal"
-      args {
-        call_value {
-          functionName: "Get Map Item (Goal)"
-          args {
-            string_value: "Find the Relief Supplies"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "GoalStatus"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  nextNodeIndex: 9
   hideIfUnavailable: true
   comment: "Quest Complete"
 }
