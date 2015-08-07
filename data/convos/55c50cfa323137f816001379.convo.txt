@@ -1,0 +1,765 @@
+idRef {
+  id: "55c50cfa323137f816001379"
+}
+ui_name: "Hotel - 2Floor - Harley"
+nodes {
+  idRef {
+    id: "55c50e9a323137f81600138c"
+  }
+  index: 0
+  text: "HELLO?  I hear someone out there. LET ME OUT, please!"
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c50e9d323137f81600138f"
+  }
+  index: 1
+  text: "Is... Is that you? $(l.name)? Can you get the door open yet?"
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c5131e323137f8160013c3"
+  }
+  index: 2
+  text: "Thanks for saving me back there!"
+  branches {
+    responseText: "What are you doing here anyway?"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "No problem. How\'d you get locked up in there?"
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "Null sweat. Anything you can tell me about these gangers?"
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c51360323137f8160013c8"
+  }
+  index: 3
+  text: "{{GM}}Harley looks sarcastically down at his attire, which seems to resemble a bicycle inner tube.{{/GM}}\n\nWhat does it look like I\'m doing here. I\'m a bunraku, and I was making a house call when the Cutters threw me in that supply closet. Didn\'t get a hold of who they were after, though... my client! He took off through the bathroom down the fire escape."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c513bc323137f8160013ca"
+  }
+  index: 4
+  text: "I got here about six or seven hours ago, to service one of my more regular clients. We had... finally!... just concluded the terms of our business information when the Cutters busted in lookin\' for him. Couldn\'t find him, though... at least as far as I know. They threw me in here."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c51452323137f8160013cc"
+  }
+  index: 5
+  text: "Well, they were REAL interested in speaking with one of my most regular clients. He\'s who I came here to see. I was still in bed, he was in the shower when the Cutters busted in. Meanwhile, the John flew out the window."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c51518323137f8160013de"
+  }
+  index: 6
+  text: ""
+  branches {
+    responseText: "Who was your client?"
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iHarveyQuestions"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 7
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c51698323137f8160013f2"
+    }
+  }
+  branches {
+    responseText: "Which room were you in?"
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iHarveyQuestions"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c519dd323137f81600149d"
+    }
+  }
+  branches {
+    responseText: "Anything else you can tell me about what the Cutters might have been up to?"
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iHarveyQuestions"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 11
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c519da323137f81600149c"
+    }
+  }
+  branches {
+    responseText: "Okay. Hey man, thanks for the intel. Get home safe."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iHarveyQuestions"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c51e8d323137f816001631"
+    }
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c515ff323137f8160013e8"
+  }
+  index: 7
+  text: "Gabriel... Gabriel {{CC}}LAST NAME{{/CC}}. Talks a big game, about how he runs this slum, about how his star is rising, how the wheel of fortune is spinning this way."
+  branches {
+    responseText: "Heh. Sounds like a guy who\'s got some sort of plan in the works."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 16
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 6
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c51695323137f8160013f1"
+    }
+    auxiliaryLink: true
+    comment: "normal convo path"
+  }
+  branches {
+    responseText: "I\'m sure he did! I\'m guessing he hires you to help himself feel even more confident, huh?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 16
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 8
+    comment: "socialite path"
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c516bb323137f8160013f5"
+  }
+  index: 8
+  text: "Of course. Almost ALL Johns do. It\'s all biz, though, you scan? He uses to think he\'d finish me off and wear me out, but I\'d only pretend to be asleep. He\'d get back up and play that new Neil The Ork Barbarian MMO on the Matrix. But little does HE know, I got his login password!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 9
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c5183c323137f8160013f8"
+  }
+  index: 9
+  text: "Tell you what... thanks for helping me back there! I\'ll give you Gabe\'s Matrix login. He only uses it to play that game. But I\'ll bet his character\'s got some SICK items from all the raids he\'s been doing after he THINKS he\'s gotten done with me!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "GabePass"
+      }
+      args {
+        string_value: "Username: Gabriel\nPassword: pWnzRRRz!"
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55c51956323137f816001488"
+  }
+  index: 10
+  text: "Room 303, on the third floor. Oh, and look for my makeup cabinet on the nightstand. Whatever\'s in it is yours!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c5198c323137f81600149b"
+  }
+  index: 11
+  text: "Sorry, $(l.guy). They didn\'t really give me much time to look around before they threw me in here."
+  branches {
+    responseText: "Yeah, I guess that would make sense."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 14
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 6
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c51a36323137f8160014a0"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Think, bro. There must be some detail you might have missed."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 14
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 12
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c51ab0323137f8160014a3"
+  }
+  index: 12
+  text: "Well... Now that you mention it, a few weeks ago, Gabriel had me up against one of the gun emplacements that monitor the roof. It was part of his whole \"powerplay\" gig... part of the employment contract, you see. The guns were turned off at the time, anyway. He kept going on and on about how he was going to blow this place skyhigh, and then he\'d be surfing a wave of nuyen all the way down to Aztlan and taking me with him. I thought it was just him in the heat of the moment... pillow talk, if you will..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 13
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c51b92323137f8160014a6"
+  }
+  index: 13
+  text: "... but then a week or two later, he was up late again playing Karl Kombatmage with some of his online buddies. He had his VR gear on, so he didn\'t know I was eavesdropping, but I overheard him a few times say something like how \"it was gonna be the BOMB\", and how he wanted to blow this whole place sky high. Not sure if he was just in some raid with his guildmates, or if it were something else.\n\nAnyway, Gabriel likes to store his accounts as gear files on his character. Here\'s his password... don\'t ask how I know. Maybe you can get some wiz paydata off of there in return for sticking your neck out for me."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "GabePass"
+      }
+      args {
+        string_value: "Username: Gabriel\nPassword: pWnzRRRz!"
+      }
+    }
+  }
+}
+roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHarveyDiscovered"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHarveyDiscovered"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+  hideIfUnavailable: true
+  onlyOnce: true
+  idRef {
+    id: "55c51021323137f8160013ad"
+  }
+  comment: "Harley Undiscovered"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHarveyDiscovered"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHarleySaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 1
+  hideIfUnavailable: true
+  comment: "Harley Discovered"
+}
+roots {
+  responseText: ""
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor is Inside Region"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55c5079b323137f816001367"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "AreOrAreNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55c51110323137f8160013b5"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHarleySaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bHarleyExits"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 2
+  hideIfUnavailable: true
+  onlyOnce: true
+  idRef {
+    id: "55c512f9323137f8160013c1"
+  }
+}
