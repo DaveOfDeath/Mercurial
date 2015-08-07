@@ -812,7 +812,82 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "{{GM}}Log Off{{/GM}}"
+    responseText: "{{GM}}Log off.{{/GM}}"
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Betrayal"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Evaluate If Actor Has Item"
+            args {
+              call_value {
+                functionName: "All Actors on Team"
+                args {
+                  call_value {
+                    functionName: "Get Preset Value (string)"
+                    args {
+                      string_value: "FactionList"
+                    }
+                    args {
+                      int_value: 0
+                    }
+                  }
+                }
+                args {
+                  call_value {
+                    functionName: "Get Preset Value (int)"
+                    args {
+                      string_value: "AllOrAny"
+                    }
+                    args {
+                      int_value: 1
+                    }
+                  }
+                }
+                args {
+                  call_value {
+                    functionName: "Get Map Item (SceneDimension)"
+                    args {
+                      string_value: "Default"
+                    }
+                  }
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "HasOrHasNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (Item)"
+                args {
+                  string_value: "item_FoleyVoiceMail"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_GM_Voice
