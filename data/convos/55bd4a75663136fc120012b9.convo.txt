@@ -284,7 +284,7 @@ nodes {
           }
         }
         args {
-          int_value: 2
+          int_value: 1
         }
       }
     }
@@ -625,6 +625,54 @@ nodes {
     hideIfUnavailable: true
   }
   branches {
+    responseText: "{{CC}}Killed Smuggler Leader{{/CC}} Splattered all over the concrete.  You wanna be next?"
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_GangLeader1"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eWalkAway"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+  }
+  branches {
     responseText: "{{CC}}Captured Smuggler Leader{{/CC}}  Crush?  Currently a resident throphy of Sunnyside\'s finest.   Hope he likes orange... that the only jumpsuit he\'ll be wearing for a while."
     conditions {
       ops {
@@ -652,7 +700,7 @@ nodes {
           }
         }
         args {
-          int_value: 2
+          int_value: 1
         }
       }
     }
@@ -675,6 +723,7 @@ nodes {
   branches {
     responseText: "Alive and well upstairs... As you can be, if you leave now."
     nextNodeIndex: 9
+    hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
 }
