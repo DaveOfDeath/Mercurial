@@ -3511,6 +3511,39 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAutosaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -4372,17 +4405,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "aFollowerTimer"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -4511,20 +4533,6 @@ triggers {
           }
           args {
             int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Wait for Triggers"
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "aFollowerTimer"
           }
         }
       }
@@ -4986,23 +4994,23 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Trigger"
+      functionName: "Set Variable (bool)"
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Variable (bool)"
           args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
+            string_value: "bAutosaved"
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Map Item (Trigger)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "55c55eb5353733a011003641"
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -8894,12 +8902,23 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Send Event"
+      functionName: "Set Variable (bool)"
       args {
         call_value {
-          functionName: "Get Map Item (Event)"
+          functionName: "Get Variable (bool)"
           args {
-            string_value: "eCombatStart"
+            string_value: "bAutosaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -8922,6 +8941,17 @@ triggers {
           functionName: "Get Map Item (Trigger)"
           args {
             string_value: "55a1c991353733201a007d18"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eCombatStart"
           }
         }
       }
@@ -8981,50 +9011,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55bd63fa3537335003003ca9"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
     ops {
       functionName: "Send Event"
       args {
@@ -10377,105 +10363,6 @@ triggers {
     id: "55b22e84353733a8150001f8"
   }
   elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "eCombatEnd.BurnedStarted.Autosave"
-  events {
-  }
-  conditions {
-    ops {
-      functionName: "Evaluate Goal"
-      args {
-        call_value {
-          functionName: "Get Map Item (Goal)"
-          args {
-            string_value: "Don\'t Get Burned!"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "GoalStatus"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Autosave Game"
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55c55eb5353733a011003641"
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55bd63fa3537335003003ca9"
-  }
-  elseActions {
-    ops {
-      functionName: "Autosave Game"
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55c55eb5353733a011003641"
-          }
-        }
-      }
-    }
   }
   is_oneshot: false
 }
@@ -22023,7 +21910,7 @@ triggers {
         }
       }
       args {
-        int_value: 8
+        int_value: 7
       }
     }
   }
@@ -35117,51 +35004,29 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "OnMove.Tag_DeleteESP.RemovePlayerESPtags"
+  name: "--===Bottom Scripts [MUST STAY!]"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55c55eb5353733a011003641"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "eCombatEnd.BurnedStarted.Autosave"
   events {
     ops {
-      functionName: "On Actor Movement Finished"
+      functionName: "On Actor Start Turn"
     }
   }
   conditions {
-    ops {
-      functionName: "Evaluate Tag for Actor"
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HasOrHasNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isMatrixESP"
-          }
-        }
-      }
-    }
     ops {
       functionName: "Comparison (bool)"
       args {
@@ -35195,31 +35060,13 @@ triggers {
         }
       }
     }
-  }
-  actions {
     ops {
-      functionName: "Kill Actor"
+      functionName: "Comparison (bool)"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "Get Variable (bool)"
           args {
-            call_value {
-              functionName: "Tag From String"
-              args {
-                string_value: "isMatrixESP"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
+            string_value: "bAutosaved"
           }
         }
       }
@@ -35227,151 +35074,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "DeathMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "Attacker"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "Assassin"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "Kamikaze"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "Shield"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "All Actors"
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
+            string_value: "IsOrIsNot"
           }
           args {
             int_value: 1
@@ -35380,9 +35083,64 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Trigger)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "55c55eb5353733a011003641"
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Turn Mode"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TurnBasedOrFreeMove"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Autosave Game"
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAutosaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "aFollowerTimer"
           }
         }
       }
@@ -35390,7 +35148,7 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "55c55eb5353733a011003641"
+    id: "55bd63fa3537335003003ca9"
   }
   elseActions {
   }
@@ -45740,6 +45498,14 @@ variables {
     scope: TsVariableScope_Scene
     name: "iMemosListened"
     typeName: "int"
+  }
+}
+variables {
+  bool_value: true
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bAutosaved"
+    typeName: "bool"
   }
 }
 mapEvents: "ePlayerDies"
