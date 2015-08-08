@@ -154,6 +154,22 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "MatrixESPSpawn"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Last Teleported Persona"
+              }
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: -1
   }
@@ -287,6 +303,22 @@ nodes {
             }
             args {
               int_value: 0
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "MatrixESPSpawn"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Last Teleported Persona"
+              }
             }
           }
         }
@@ -436,6 +468,22 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "MatrixESPSpawn"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Last Teleported Persona"
+              }
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: -1
   }
@@ -534,6 +582,22 @@ nodes {
             }
             args {
               int_value: 0
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "MatrixESPSpawn"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Last Teleported Persona"
+              }
             }
           }
         }
@@ -683,8 +747,178 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "MatrixESPSpawn"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Last Teleported Persona"
+              }
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{GM}}Bit Store{{/GM}} Seller of holographic code."
+    conditions {
+      ops {
+        functionName: "Evaluate Goal"
+        args {
+          call_value {
+            functionName: "Get Map Item (Goal)"
+            args {
+              string_value: "Find a Bit"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "GoalStatus"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Enable/Disable Team\'s Turn"
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Teleport Actor near Point"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Actor\'s Persona"
+                args {
+                  call_value {
+                    functionName: "Get Persona\'s Host"
+                    args {
+                      call_value {
+                        functionName: "Triggering Actor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+        args {
+          call_value {
+            functionName: "Get Random Point Within Region"
+            args {
+              call_value {
+                functionName: "Get Map Item (Region)"
+                args {
+                  string_value: "55c6254235373314070006f4"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "FacingDirection"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TeleportMethod"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "MatrixESPSpawn"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Last Teleported Persona"
+              }
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
   }
   branches {
     responseText: "{{GM}}Enter LTG Code{{/GM}}"
@@ -951,7 +1185,7 @@ nodes {
     id: "55a1a52a353733201a007c1e"
   }
   index: 4
-  text: "With a single flicker of thought, a persona can jump into the data steam and virtually teleport through in the Matrix, appearing almost anywhere in the world.\n\nAssuming they know where they want to go--and thatit\'s connected to the network, natch."
+  text: "With a single flicker of thought, a persona can jump into the data steam and virtually teleport through in the Matrix, appearing almost anywhere in the world.\n\nAssuming they know where they want to go--and that it\'s connected to the network, natch."
   branches {
     responseText: ""
     nextNodeIndex: 1
