@@ -17784,82 +17784,6 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "Disable.isChecked"
-  events {
-    ops {
-      functionName: "On Actor Alive"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Evaluate Tag for Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "HasOrHasNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isChecked"
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Remove Tag from Actor"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            string_value: "isChecked"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55b083fc663136fc12001830"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
   name: " "
   events {
   }
@@ -20256,6 +20180,63 @@ triggers {
   isActive: true
   idRef {
     id: "55c6c1bc663136a013004b40"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Disable.isChecked"
+  events {
+    ops {
+      functionName: "On Actor Alive"
+    }
+    ops {
+      functionName: "On New Round"
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c7d6dc663136c412001c7d"
   }
   elseActions {
   }
