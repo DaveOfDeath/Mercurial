@@ -251,6 +251,25 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c7946f6631363811004d9f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Berlin:General/standing_idle_sitting"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -340,6 +359,25 @@ triggers {
           functionName: "Get Map Item (Player)"
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c7946f6631363811004d9f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Berlin:General/standing_idle_sitting"
           }
         }
       }
@@ -1046,6 +1084,128 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "General.MariaActive"
+  events {
+    ops {
+      functionName: "On Actor Damage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HPOrAP"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Get Actor Health Percentage"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+      args {
+        float_value: 0.5
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55c79d586631363811004fa5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c7946f6631363811004d9f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "55c79cc36631363811004f60"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: " "
@@ -4747,6 +4907,7 @@ characters {
     hiring_cost_override: 1500
     hiring_tag: "Marias Manager"
     is_backer: true
+    persistent_body: true
   }
 }
 characters {
@@ -4778,7 +4939,7 @@ characters {
         magic: 0
         hp: 0
         ap: 1
-        armor: 1
+        armor: 4
         force: 0
         morale: 0
         discipline: 0
@@ -4793,8 +4954,8 @@ characters {
         is_fearless: 0
       }
       skills {
-        ranged_combat: 3
-        close_combat: -1
+        ranged_combat: 4
+        close_combat: 1
         throwing_weapons: -3
         spellcasting: 0
         decking: 0
@@ -4802,7 +4963,7 @@ characters {
         spirit_summoning: 0
         drone_control: 0
         biotech: 0
-        dodge: 0
+        dodge: 1
         etiquette_corporate: 1
         etiquette_security: 0
         etiquette_gang: 0
@@ -4813,12 +4974,12 @@ characters {
         etiquette_academic: 0
       }
       specializations {
-        pistol: 3
+        pistol: 5
         rifle: 0
         shotgun: 0
         smg: 4
         edged: -3
-        unarmed: 3
+        unarmed: 5
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
@@ -4844,8 +5005,9 @@ characters {
       filename: "geeked_maria_amazon"
     }
     portrait_code_override: "s4h7c1"
-    karma: 103
+    karma: 138
     hiring_cost_override: 1000
+    persistent_body: true
   }
 }
 characters {

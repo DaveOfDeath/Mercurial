@@ -793,6 +793,87 @@ nodes {
     responseText: " I killed all your goons, and I want to catch my breath before I kill you."
     nextNodeIndex: 8
   }
+  branches {
+    responseText: "{{CC}}Marias Gun{{/CC}}  Maria, we need your help!"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_Sewers_MariasBrowning"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 10
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c79f9d6631363811005001"
+    }
+  }
+  branches {
+    responseText: "Maria!  We need your help!"
+    actions {
+      ops {
+        functionName: "Enable/Disable Trigger"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Trigger)"
+            args {
+              string_value: "55c79cc36631363811004f60"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 13
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c79fa36631363811005002"
+    }
+  }
   nodeType: ConversationNodeType_Simple
   actions {
     ops {
@@ -882,9 +963,226 @@ nodes {
 }
 nodes {
   idRef {
-    id: "557cf6673930665401004f6e"
+    id: "55c79a476631363811004ef3"
   }
   index: 10
+  text: "She turns to look at you glassy-eyed, as you toss her the gun..."
+  branches {
+    responseText: ""
+    nextNodeIndex: 11
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55c794e16631363811004da0"
+  }
+}
+nodes {
+  idRef {
+    id: "55c79a6d6631363811004ef6"
+  }
+  index: 11
+  text: "...and catches it out of the air.\n\n\"Come Kyle.. It\'s time for you autograph.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 12
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55c7946f6631363811004d9f"
+  }
+  actions {
+    ops {
+      functionName: "Play FX on Actor"
+      args {
+        string_value: "JessicaDummyBuffHitReaction"
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55c7946f6631363811004d9f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55c7946f6631363811004d9f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Control"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55c7946f6631363811004d9f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PlayerOrAI"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55c79a9f6631363811004ef9"
+  }
+  index: 12
+  text: "He looks at her unbelievably.  \"Ten hours we\'ve had you... and completely catatonic...\"\n\n{{CC}}From above, you feel the roar of a dragon, feel the air rumble with its approach, and you hear a voice shout in your head.{{/CC}}\n\n{{CC}}Kyle, Get down! BLAST YOU, Get out of the way!{{/CC}}\n\nKyle shouts over the rain and wind noise, \"I believe that I\'ve already introduced you to Perianwyr?\" Morgan moves a half-step between you and Maria.\n\nThe roof shudders as the dragon lands on it."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "557cfed1663136e40e004cae"
+  }
+  actions {
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a210356631365809003fe6"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: 3
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonArrive"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear All Waypoints"
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55c79be46631363811004f3a"
+  }
+  index: 13
+  text: "She looks at you with glassy eyes, you\'re pretty sure she doesn\'t even see you."
+  branches {
+    responseText: ""
+    nextNodeIndex: 14
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55c794e16631363811004da0"
+  }
+}
+nodes {
+  idRef {
+    id: "55c79c156631363811004f41"
+  }
+  index: 14
+  text: "She\'ll be no help to you, $(story.str_RunnerName)..."
+  branches {
+    responseText: "Well see about that, Kyle."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Yes, I suppose we will."
+        }
+      }
+    }
+    nextNodeIndex: 7
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "557cfed1663136e40e004cae"
+  }
+}
+nodes {
+  idRef {
+    id: "557cf6673930665401004f6e"
+  }
+  index: 15
   text: "Kyle Morgan looks at you, unbelieving.\n\n\"You were this fresh kid, this $(l.man) that no one knew and that no one would trust to do anything.\"\n\n\"Max got lucky when he hired you- but he and Hotada got what they deserved, and now... I think so am I.\"\n\n\"Siwrne dda!\" Kyle shouts, and moves to attack you--"
   nodeType: ConversationNodeType_Simple
 }
@@ -1008,6 +1306,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 10
+  nextNodeIndex: 15
   comment: "Morgan Rooftop (Finale)"
 }
