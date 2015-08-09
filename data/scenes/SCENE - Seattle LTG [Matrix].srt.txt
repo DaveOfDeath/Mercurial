@@ -35242,6 +35242,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55c6cac53537331407000a23"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Goal Status"
       args {
         call_value {
@@ -35320,7 +35342,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "OnInteract.BitStore.StartConvo"
@@ -35706,46 +35728,13 @@ triggers {
         call_value {
           functionName: "Get Map Item (Region)"
           args {
-            string_value: "55c6254235373314070006f4"
+            string_value: "55c6cac53537331407000a23"
           }
         }
       }
     }
   }
   conditions {
-    ops {
-      functionName: "Evaluate Goal"
-      args {
-        call_value {
-          functionName: "Get Map Item (Goal)"
-          args {
-            string_value: "Find a Bit"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "GoalStatus"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
     ops {
       functionName: "Evaluate Tag for Actor"
       args {
@@ -35780,18 +35769,15 @@ triggers {
         }
       }
     }
+  }
+  actions {
     ops {
-      functionName: "Compare Actor Team"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
+      functionName: "Set Region Enabled"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "EnableOrDisable"
           }
           args {
             int_value: 1
@@ -35800,26 +35786,13 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (string)"
+          functionName: "Get Map Item (Region)"
           args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
+            string_value: "55c6cac53537331407000a23"
           }
         }
       }
     }
-  }
-  actions {
     ops {
       functionName: "Set Variable (int)"
       args {
@@ -35831,7 +35804,7 @@ triggers {
         }
       }
       args {
-        int_value: 0
+        int_value: -1
       }
     }
     ops {
@@ -35887,6 +35860,31 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iBitStoreState"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
   }
   actions {
     ops {
@@ -35901,6 +35899,20 @@ triggers {
     id: "55c68e6b3537331407000a02"
   }
   elseActions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iBitStoreState"
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
   }
   is_oneshot: false
 }
@@ -42143,6 +42155,52 @@ regions {
   is_camera_region: false
   idRef {
     id: "55c65c473537331407000950"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rBitResetStore"
+  position {
+    x: -84
+    y: -256
+    width: 5
+    height: 7
+  }
+  enabledAtStart: false
+  is_camera_region: false
+  idRef {
+    id: "55c6cac53537331407000a23"
   }
   highlight_color {
     r: 0
