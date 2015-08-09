@@ -15763,6 +15763,138 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "OnInteraction.PlaceStarKafBit.SetHacked_AddItem"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55c774e43537336c170013fd"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "decker"
+          }
+          args {
+            string_value: "Matrix_NodeHackSuccess"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Item to Team"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_LTG-StarKaf_Recipe"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isStarKafPuzzle"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Play FX at Point"
+      args {
+        string_value: "MatrixControlNodeHacked"
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (2D)"
+          args {
+            float_value: 34
+          }
+          args {
+            float_value: -113
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c776cd3537336c17001407"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: ""
   events {
   }
@@ -27342,7 +27474,7 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "OnInteraction.ShadowLand BBC.Convo"
+  name: "OnInteraction.Shadowland BBC.Convo"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -27360,29 +27492,12 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Set Variable (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "str_NPCIntroText"
-          }
-        }
-      }
-      args {
-        string_value: "[[PLACE HOLDER]]\n\nIncomplete Conversation"
-      }
-    }
-    ops {
       functionName: "Start Conversation Between Actors"
       args {
         call_value {
           functionName: "Get Map Item (Conversation)"
           args {
-            string_value: "551e375a663136b4060041a8"
+            string_value: "55c756c93537336c17000c75"
           }
         }
       }
@@ -44059,7 +44174,7 @@ characters {
     z: -85
   }
   orientation: ORIENTATION_E
-  displayName: "NPC"
+  displayName: "convo_actor_shadowland"
   idRef {
     id: "551e379d663136b4060041b0"
   }
@@ -44129,7 +44244,7 @@ characters {
       }
     }
     team_id: "Civilian"
-    char_name: "Shadow Land BBC"
+    char_name: "Shadowland BBS"
     pc_spawn_number: -1
     portrait {
       filename: "moregeeked_plainhack"
