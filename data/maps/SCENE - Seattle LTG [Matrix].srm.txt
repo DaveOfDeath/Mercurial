@@ -3,16 +3,6 @@ minZ: -269
 numX: 261
 numZ: 218
 props {
-  name: "matrix_baby_frame5"
-  gridPoint {
-    x: 88
-    y: 0
-    z: -87
-  }
-  orientation: ORIENTATION_W
-  lod: 0
-}
-props {
   name: "matrix_puzzle_switchTred"
   gridPoint {
     x: 29
@@ -4290,16 +4280,6 @@ props {
   idRef {
     id: "55a19ea8353733201a007bff"
   }
-  lod: 0
-}
-props {
-  name: "sleekOffice_tech_gatePeg"
-  gridPoint {
-    x: -50
-    y: 0
-    z: -258
-  }
-  orientation: ORIENTATION_S
   lod: 0
 }
 props {
@@ -48683,7 +48663,7 @@ props {
                   string_value: "AllOrAny"
                 }
                 args {
-                  int_value: 1
+                  int_value: 0
                 }
               }
             }
@@ -48801,7 +48781,7 @@ props {
                   string_value: "AllOrAny"
                 }
                 args {
-                  int_value: 1
+                  int_value: 0
                 }
               }
             }
@@ -49203,7 +49183,7 @@ props {
                   string_value: "AllOrAny"
                 }
                 args {
-                  int_value: 1
+                  int_value: 0
                 }
               }
             }
@@ -49417,7 +49397,7 @@ props {
                   string_value: "AllOrAny"
                 }
                 args {
-                  int_value: 1
+                  int_value: 0
                 }
               }
             }
@@ -51115,9 +51095,9 @@ props {
 props {
   name: "matrix_puzzle_datacore1"
   gridPoint {
-    x: 113.5
+    x: -80.5
     y: 0.5
-    z: -245.5
+    z: -225.5
   }
   orientation: ORIENTATION_S
   displayName: "obj_Bit_Store_Bit_a"
@@ -51223,7 +51203,7 @@ props {
       itemName: "item_LTG-Little_Bit"
       destroyOnPickup: true
     }
-    interaction_info_text: "Steal a Bit?"
+    interaction_info_text: "Take Bit?"
   }
   lod: 0
 }
@@ -85192,8 +85172,49 @@ props {
     z: -242
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitStore_H"
   idRef {
     id: "55c6327735373314070006fe"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Encode Server?"
   }
   lod: 0
 }
@@ -85606,8 +85627,16 @@ props {
     z: -243
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_HW"
   idRef {
     id: "55c637fb353733140700072f"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -85619,8 +85648,16 @@ props {
     z: -259
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_GW"
   idRef {
     id: "55c6380c3537331407000730"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -85762,8 +85799,74 @@ props {
     z: -250.7
   }
   orientation: ORIENTATION_E
+  displayName: "obj_BitStore_Register"
   idRef {
     id: "55c638aa353733140700073c"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_LTG-Little_Bit"
+            }
+          }
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_Matrix
+    interaction_info_text: "Buy a Bit?"
   }
   lod: 0
 }
@@ -85788,8 +85891,16 @@ props {
     z: -240
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_HE"
   idRef {
     id: "55c63916353733140700073e"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -85801,60 +85912,16 @@ props {
     z: -256
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_GE"
   idRef {
     id: "55c63918353733140700073f"
   }
-  lod: 0
-}
-props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -54
-    y: 0.3
-    z: -256
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c6391d3537331407000740"
-  }
-  lod: 0
-}
-props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -54
-    y: 0.3
-    z: -259
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c639233537331407000741"
-  }
-  lod: 0
-}
-props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -54
-    y: 0.3
-    z: -243
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c639283537331407000742"
-  }
-  lod: 0
-}
-props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -54
-    y: 0.3
-    z: -240
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c6392c3537331407000743"
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -87153,21 +87220,16 @@ props {
     z: -255
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_FW"
   idRef {
     id: "55c643c13537331407000816"
   }
-  lod: 0
-}
-props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -87
-    y: 0.3
-    z: -255
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c643c13537331407000817"
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -87185,19 +87247,6 @@ props {
   lod: 0
 }
 props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -87
-    y: 0.3
-    z: -252
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c644903537331407000819"
-  }
-  lod: 0
-}
-props {
   name: "white--matrix_wall_firewall1"
   gridPoint {
     x: -87
@@ -87205,8 +87254,16 @@ props {
     z: -252
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_FE"
   idRef {
     id: "55c64490353733140700081a"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -87250,19 +87307,6 @@ props {
   lod: 0
 }
 props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -87
-    y: 0.3
-    z: -247
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c644a9353733140700081e"
-  }
-  lod: 0
-}
-props {
   name: "white--matrix_wall_firewall1"
   gridPoint {
     x: -87
@@ -87270,8 +87314,16 @@ props {
     z: -247
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_EW"
   idRef {
     id: "55c644a9353733140700081f"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -87341,71 +87393,6 @@ props {
   lod: 0
 }
 props {
-  name: "sleekOffice_tech_gatePeg"
-  gridPoint {
-    x: -66
-    y: 0
-    z: -242
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c644f43537331407000825"
-  }
-  lod: 0
-}
-props {
-  name: "sleekOffice_tech_gatePeg"
-  gridPoint {
-    x: -66
-    y: 0
-    z: -258
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c644f53537331407000826"
-  }
-  lod: 0
-}
-props {
-  name: "sleekOffice_tech_gatePeg"
-  gridPoint {
-    x: -75
-    y: 0
-    z: -258
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c644f73537331407000827"
-  }
-  lod: 0
-}
-props {
-  name: "sleekOffice_tech_gatePeg"
-  gridPoint {
-    x: -75
-    y: 0
-    z: -242
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c644f83537331407000828"
-  }
-  lod: 0
-}
-props {
-  name: "white--matrix_floor_cover1x2"
-  gridPoint {
-    x: -87
-    y: 0.3
-    z: -244
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c645033537331407000829"
-  }
-  lod: 0
-}
-props {
   name: "white--matrix_wall_firewall1"
   gridPoint {
     x: -87
@@ -87413,21 +87400,16 @@ props {
     z: -244
   }
   orientation: ORIENTATION_S
+  displayName: "obj_BitDoor_EE"
   idRef {
     id: "55c64503353733140700082a"
   }
-  lod: 0
-}
-props {
-  name: "sleekOffice_tech_gatePeg"
-  gridPoint {
-    x: -91
-    y: 0
-    z: -246
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55c64506353733140700082b"
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
   }
   lod: 0
 }
@@ -91169,142 +91151,6 @@ props {
 props {
   name: "vfx_fx_matrixcontrolnode"
   gridPoint {
-    x: -53
-    y: 0
-    z: -246
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c657803537331407000942"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -50
-    y: 0
-    z: -258
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c657853537331407000943"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -50
-    y: 0
-    z: -242
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c6578c3537331407000944"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -66
-    y: 0
-    z: -258
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c657903537331407000945"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -66
-    y: 0
-    z: -242
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c657923537331407000946"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -75
-    y: 0
-    z: -258
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c657963537331407000947"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -75
-    y: 0
-    z: -242
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c6579a3537331407000948"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
-    x: -91
-    y: 0
-    z: -246
-  }
-  orientation: ORIENTATION_S
-  properties {
-    property_id: "fxScript"
-    string_value: "matrixcontrolnode"
-  }
-  idRef {
-    id: "55c6579c3537331407000949"
-  }
-  lod: 0
-}
-props {
-  name: "vfx_fx_matrixcontrolnode"
-  gridPoint {
     x: -91
     y: 0
     z: -254
@@ -91316,6 +91162,627 @@ props {
   }
   idRef {
     id: "55c657a1353733140700094a"
+  }
+  lod: 0
+}
+props {
+  name: "matrix_baby_frame6b"
+  gridPoint {
+    x: 86
+    y: 0
+    z: -85
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isBaby"
+  idRef {
+    id: "55c668b63537331407000954"
+  }
+  lod: 0
+}
+props {
+  name: "matrix_baby_frame2a"
+  gridPoint {
+    x: 86.5
+    y: 0.4
+    z: -85
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isBaby"
+  idRef {
+    id: "55c6689d3537331407000953"
+  }
+  lod: 0
+}
+props {
+  name: "matrix_baby_frame2a"
+  gridPoint {
+    x: 86.1
+    y: 0.4
+    z: -84.7
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isBaby"
+  idRef {
+    id: "55c6687e3537331407000952"
+  }
+  lod: 0
+}
+props {
+  name: "system_invisible_nonsolidProp"
+  gridPoint {
+    x: -51.5
+    y: 3
+    z: -250
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isNodeLabel"
+  displayName: "Workshop"
+  idRef {
+    id: "55c670a9353733140700097b"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    matrixLabel {
+      hackingObjectID: "55a1e608353733201a007df6"
+      label_text: ""
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_door01decor"
+  gridPoint {
+    x: -93
+    y: 0
+    z: -247
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c67205353733140700097d"
+  }
+  lod: 0
+}
+props {
+  name: "sleekOffice_tech_gatePeg"
+  gridPoint {
+    x: -50
+    y: 0
+    z: -258
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_G"
+  idRef {
+    id: "55c67cd735373314070009e1"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Encode Server?"
+  }
+  lod: 0
+}
+props {
+  name: "sleekOffice_tech_gatePeg"
+  gridPoint {
+    x: -66
+    y: 0
+    z: -258
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_I"
+  idRef {
+    id: "55c67cfb35373314070009e2"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Encode Server?"
+  }
+  lod: 0
+}
+props {
+  name: "sleekOffice_tech_gatePeg"
+  gridPoint {
+    x: -66
+    y: 0
+    z: -242
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_J"
+  idRef {
+    id: "55c67d1535373314070009e3"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_LTG-Little_Bit"
+            }
+          }
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Execute Code?"
+  }
+  lod: 0
+}
+props {
+  name: "sleekOffice_tech_gatePeg"
+  gridPoint {
+    x: -75
+    y: 0
+    z: -242
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_L"
+  idRef {
+    id: "55c67d2035373314070009e4"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Encode Server?"
+  }
+  lod: 0
+}
+props {
+  name: "sleekOffice_tech_gatePeg"
+  gridPoint {
+    x: -75
+    y: 0
+    z: -258
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_K"
+  idRef {
+    id: "55c67d2635373314070009e5"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Encode Server?"
+  }
+  lod: 0
+}
+props {
+  name: "sleekOffice_tech_gatePeg"
+  gridPoint {
+    x: -91
+    y: 0
+    z: -246
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_E"
+  idRef {
+    id: "55c67d2e35373314070009e6"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Encode Server?"
+  }
+  lod: 0
+}
+props {
+  name: "system_invisible_blockMove"
+  gridPoint {
+    x: -46.7
+    y: 0
+    z: -251
+  }
+  orientation: ORIENTATION_S
+  lod: 0
+}
+props {
+  name: "system_invisible_blockMove"
+  gridPoint {
+    x: -47.7
+    y: 0
+    z: -251
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c6823035373314070009eb"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -54
+    y: 0
+    z: -256
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68d6135373314070009f0"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -54
+    y: 0
+    z: -259
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68d6335373314070009f2"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -54
+    y: 0
+    z: -243
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68d8935373314070009f4"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -54
+    y: 0
+    z: -240
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68d8b35373314070009f5"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -87
+    y: 0
+    z: -255
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68da335373314070009f6"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -87
+    y: 0
+    z: -244
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68dad35373314070009f7"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -87
+    y: 0
+    z: -247
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68db335373314070009f8"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_firewall2decor"
+  gridPoint {
+    x: -87
+    y: 0
+    z: -252
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55c68dc035373314070009f9"
+  }
+  lod: 0
+}
+props {
+  name: "system_invisible_nonsolidProp"
+  gridPoint {
+    x: -90.5
+    y: 0.5
+    z: -253.5
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_BitStore_BitTarget"
+  idRef {
+    id: "55c691463537331407000a0a"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_4x4blueedgetrans"
+  gridPoint {
+    x: -88
+    y: 0
+    z: -251
+  }
+  orientation: ORIENTATION_W
+  idRef {
+    id: "55c6c30d3537331407000a1b"
   }
   lod: 0
 }

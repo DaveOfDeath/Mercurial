@@ -1,0 +1,226 @@
+idRef {
+  id: "55c66a6a3537331407000956"
+}
+ui_name: "LTG - Bit Store"
+nodes {
+  idRef {
+    id: "55c66c23353733140700095c"
+  }
+  index: 0
+  text: "{{GM}}A holographic service agent flickers to life as you approach the register. It appears cleverly designed, projected from outside the node to prevent its code from being exposed. The effect makes its voice sound distant, like the echo of a tin can{{/GM}}\n\nGreetings, program. Welcome to the Bit Store, seller of the highest quality quantum code this side of the Pacific Rim. You can purchase a prepackaged Bit, or you can use the Build-A-Bit workshop to build one."
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "53e487bd373361dc060052e3"
+  }
+}
+nodes {
+  idRef {
+    id: "55c676b135373314070009a3"
+  }
+  index: 1
+  text: ""
+  branches {
+    responseText: "{{CC}}500\302\245{{/CC}} {{GM}}Buy a Little Bit.{{/GM}}"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 500
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add Item to Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_LTG-Little_Bit"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "How much does the Workshop cost?"
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "Why can I only have one Bit on me at a time?"
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55c677f235373314070009b4"
+    }
+  }
+  branches {
+    responseText: "{{GM}}Walk away.{{/GM}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55c66ec93537331407000961"
+  }
+  index: 2
+  text: "Placing code in a server node costs one nuyen to pay for upkeep and to prevent spamming. The total cost is determined by how efficient your coding is. Most professional coders can build a bit for less than ten nuyen.\n\n{{GM}}The agent continues in hurried tones explaining the legal disclaimer that the Bit Store is not responsible for amateur coding costs racking up a heftier bill.{{/GM}}"
+  branches {
+    responseText: "{{CC}}500\302\245{{/CC}} {{GM}}Buy a Little Bit.{{/GM}}"
+    conditions {
+      ops {
+        functionName: "Evaluate Nuyen"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 500
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Add Item to Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_LTG-Little_Bit"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Remove Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{GM}}Walk away.{{/GM}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "53e487bd373361dc060052e3"
+  }
+}
+nodes {
+  idRef {
+    id: "55c676e535373314070009b2"
+  }
+  index: 3
+  text: "{{GM}}The hologram cocks its head at you.{{/GM}}\n\n$(l.sir), Bits are very fragile. If they are taken out of active memory, they degrade instantly. If two or more Bits are placed in the same optical memory space, they entangle and become an inert byte. Perhaps you would be better buying one than building it..."
+  branches {
+    responseText: "It was just a question..."
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{GM}}Walk away.{{/GM}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "53e487bd373361dc060052e3"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
