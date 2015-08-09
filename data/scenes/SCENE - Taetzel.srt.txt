@@ -14173,7 +14173,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "1/3.Awareness [Agents]"
@@ -14970,7 +14970,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "2/3.Awareness [Agents]"
@@ -15043,7 +15043,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "isDragonKnight_2/3"
+            string_value: "is2/3RND"
           }
         }
       }
@@ -15097,7 +15097,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isDragonKnight_2/3"
+                string_value: "is2/3RND"
               }
             }
           }
@@ -15208,7 +15208,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (SenseTagList)"
               args {
-                string_value: "isDragonKnight_2/3"
+                string_value: "is2/3RND"
               }
             }
           }
@@ -15829,12 +15829,34 @@ triggers {
       }
     }
     ops {
-      functionName: "Suspend Team\'s Turn"
+      functionName: "Enable/Disable Trigger"
       args {
         call_value {
-          functionName: "Get Preset Value (string)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "FactionList"
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55c6e6eb663136b815000a4e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
           }
           args {
             int_value: 1
@@ -15842,13 +15864,10 @@ triggers {
         }
       }
       args {
-        int_value: 1
-      }
-      args {
         call_value {
-          functionName: "Get Map Item (SceneDimension)"
+          functionName: "Get Map Item (Trigger)"
           args {
-            string_value: "Default"
+            string_value: "55a1fa186631365809003f0d"
           }
         }
       }
@@ -15859,6 +15878,202 @@ triggers {
     id: "55a1fa186631365809003f0d"
   }
   elseActions {
+    ops {
+      functionName: "Remove Item from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Berlin_Ex 2 ArmTech MGL-6 (Errant)"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a094c4663136fc0a000d5d"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "28Jorge.BossFight [BackUp]"
+  events {
+    ops {
+      functionName: "On New Round"
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iBossFightRounds"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Activate Actor Spawner By Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBossBackup"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Hunt And Destroy (ThreatType)"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isBossBackup"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "ThreatType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55c6e6eb663136b815000a4e"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55a09384663136fc0a000d53"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "55c6e6eb663136b815000a4e"
+  }
+  elseActions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iBossFightRounds"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
   }
   is_oneshot: false
 }
@@ -15921,6 +16136,30 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55c6e4bc66313634080024b9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55a094c4663136fc0a000d5d"
+              }
+            }
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -15929,6 +16168,115 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: "28Jorge.Search"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55c6e4bc66313634080024b9"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sMixtapePassword"
+          }
+        }
+      }
+      args {
+        string_value: "macarra"
+      }
+    }
+    ops {
+      functionName: "Display Text over Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55c6e4bc66313634080024b9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "A tattoo that reads \"macarra\" on the underside of his left arm looks relatively recent."
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 15
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Clear Persistent Dead Bodies"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55602fc46131310011002624"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55c6e4bc66313634080024b9"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c6f63e663136b815000a6e"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 triggers {
   name: "28.RoofAccess [1]"
@@ -18195,50 +18543,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Trigger: Run Alternate Trigger"
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55c27ba96631366c1500321f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Prop Visible by Tag"
       args {
         call_value {
@@ -18316,6 +18620,50 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iCombat1-3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 100
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iCombat2-3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 100
           }
         }
       }
@@ -18416,6 +18764,234 @@ triggers {
   isActive: true
   idRef {
     id: "55c6a7ca6631365415007604"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Terminal.28_Jorge"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55c6fd58663136b815000ade"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sTerminalID"
+          }
+        }
+      }
+      args {
+        string_value: "28_Jorge"
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55c6a74366313654150075f3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c6a8396631365415007606"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c6fd62663136b815000adf"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Terminal.28_MissionComputer"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54468e77373361c016005b93"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sTerminalID"
+          }
+        }
+      }
+      args {
+        string_value: "28_MC"
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55c6a74366313654150075f3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c6a8396631365415007606"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c704aa663136b815000e65"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Terminal.28_MedLabTerminal"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "544a368b3733611006002c8b"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sTerminalID"
+          }
+        }
+      }
+      args {
+        string_value: "28_ML"
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55c6a74366313654150075f3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c6a8396631365415007606"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c70f00663136b81500104e"
   }
   elseActions {
   }
@@ -20241,11 +20817,22 @@ characters {
   lod: 0
   character_instance {
     prefab_name: "Seattle:Objects/CorpTurret"
-    character_sheet_id: "Turret_Lv2"
-    equipment_sheet_id: "Turret_Lv2_Burst_Gear"
+    character_sheet_id: "Turret_Lv4"
+    equipment_sheet_id: "Turret_Lv4_Burst_Gear"
     character_mod {
       stats {
-        ap: 1
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
         morale: 0
         discipline: 0
         awareness: 0
@@ -20253,17 +20840,43 @@ characters {
         authority: 0
         protect_tether_range: 0
         move_speed: 0
-        vision_peripheral_distance: 2
+        vision_peripheral_distance: 0
         vision_cone_distance: 0
-        vision_cone_angle: 90
+        vision_cone_angle: 0
         is_fearless: 0
       }
       skills {
-        ranged_combat: 1
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
       }
       specializations {
-        rifle: 1
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
       }
+      attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
@@ -20274,7 +20887,7 @@ characters {
     portrait {
       filename: ""
     }
-    karma: 49
+    karma: 67
     has_fist: false
   }
 }
@@ -20294,10 +20907,22 @@ characters {
   lod: 0
   character_instance {
     prefab_name: "Seattle:Objects/CorpTurret"
-    character_sheet_id: "Turret_Lv2"
-    equipment_sheet_id: "Turret_Lv2_Burst_Gear"
+    character_sheet_id: "Turret_Lv4"
+    equipment_sheet_id: "Turret_Lv4_Burst_Gear"
     character_mod {
       stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
         morale: 0
         discipline: 0
         awareness: 0
@@ -20305,17 +20930,43 @@ characters {
         authority: 0
         protect_tether_range: 0
         move_speed: 0
-        vision_peripheral_distance: 2
+        vision_peripheral_distance: 0
         vision_cone_distance: 0
-        vision_cone_angle: 90
+        vision_cone_angle: 0
         is_fearless: 0
       }
       skills {
-        ranged_combat: 1
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
       }
       specializations {
-        rifle: 1
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
       }
+      attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
@@ -20326,16 +20977,16 @@ characters {
     portrait {
       filename: ""
     }
-    karma: 49
+    karma: 67
     has_fist: false
   }
 }
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 67
+    x: -251
     y: 0
-    z: -23
+    z: -20
   }
   orientation: ORIENTATION_E
   GeneralTags: "isTeamTalker"
@@ -21618,7 +22269,7 @@ characters {
       }
     }
     team_id: "Civilians"
-    char_name: "<DE Agent>"
+    char_name: "Dragon Knight"
     GeneralTags: "isDragonKnight_GF"
     pc_spawn_number: -1
     portrait {
@@ -22501,7 +23152,7 @@ characters {
         magic: 0
         hp: 75
         ap: 1
-        armor: 7
+        armor: 8
         force: 0
         morale: 0
         discipline: 0
@@ -22513,19 +23164,20 @@ characters {
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
-        is_fearless: 0
+        is_fearless: 1
+        is_strict: 1
       }
       skills {
         ranged_combat: 1
-        close_combat: 1
+        close_combat: 2
         throwing_weapons: -4
         spellcasting: 0
         decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
-        biotech: -4
-        dodge: -1
+        biotech: -2
+        dodge: 1
         etiquette_corporate: 0
         etiquette_security: 0
         etiquette_gang: 0
@@ -22541,13 +23193,14 @@ characters {
         shotgun: 0
         smg: 0
         edged: 0
-        unarmed: 2
+        unarmed: 3
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
       }
+      archetypeName: "Guard - Hunt And Destroy"
       attitude: AttitudeBoss
-      attackRandom: AttackStyle_CycleAll
+      attackRandom: AttackStyle_BestOnly
       vulnerabilities {
         bleed: VulnerabilityLevel_Less
         actionpoints: VulnerabilityLevel_Less
@@ -22558,7 +23211,7 @@ characters {
       prefab_name: "SamuraiBunnyMaskless"
     }
     equipment {
-      prefab_name: "Berlin_Ex 1 M203"
+      prefab_name: "Berlin_Ex 2 ArmTech MGL-6 (Errant)"
     }
     team_id: "MixTape"
     char_name: "Jorge Mixacopotec"
@@ -22572,9 +23225,9 @@ characters {
       filename: "GEEKED_JorgeMixacopotecINJURED"
     }
     portrait_code_override: "s2h6c11b8c11t0"
-    karma: 159
+    karma: 183
     persistent_body: true
-    has_fist: false
+    has_fist: true
   }
 }
 characters {
@@ -23459,7 +24112,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Core/HumanMale"
+    prefab_name: "Berlin:Aztechnology/HumanMaleAztechGuard"
     character_sheet_id: "Errant_Lv4_Rigger"
     character_mod {
       stats {
@@ -24273,6 +24926,368 @@ characters {
     karma: 82
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -296
+    y: 0
+    z: -25
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isBossBackup"
+  displayName: "7"
+  idRef {
+    id: "55c6e57266313634080024bb"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Aztechnology/TrollFemaleAztechGuard"
+    character_sheet_id: "Errant_Lv4_Elf_Shaman"
+    equipment_sheet_id: "Errant_Lv4_Shaman"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Dragon Knight"
+    GeneralTags: "isBossBackup"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 82
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -296
+    y: 0
+    z: -26
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isBossBackup"
+  displayName: "9"
+  idRef {
+    id: "55c6e57766313634080024bc"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Aztechnology/HumanMaleAztechBloodMage"
+    character_sheet_id: "Errant_Lv4_Human_Mage"
+    equipment_sheet_id: "Errant_Lv4_Spellcasting"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Dragon Knight"
+    GeneralTags: "isBossBackup"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 94
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -287
+    y: 0
+    z: -14
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isBossBackup"
+  displayName: "6"
+  idRef {
+    id: "55c6e58166313634080024bd"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Aztechnology/TrollMaleAztechHeavyGuard"
+    character_sheet_id: "Errant_Lv4_Heavy_Explosive"
+    equipment_sheet_id: "Errant_Lv4_Explosive"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Dragon Knight"
+    GeneralTags: "isBossBackup"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 92
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -287
+    y: 0
+    z: -15
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isBossBackup"
+  displayName: "4"
+  idRef {
+    id: "55c6e58c66313634080024be"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Berlin:Aztechnology/HumanFemaleAztechGuard"
+    character_sheet_id: "Errant_Lv4_Rigger"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    equipment {
+      prefab_name: "SMG 2 Ingram Smartgun"
+    }
+    team_id: "Gangers"
+    char_name: "Dragon Knight"
+    GeneralTags: "isBossBackup"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 90
+  }
+}
 variables {
   bool_value: false
   variableref_value {
@@ -24471,6 +25486,30 @@ variables {
     scope: TsVariableScope_Scene
     name: "iFacing"
     typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iBossFightRounds"
+    typeName: "int"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sMixtapePassword"
+    typeName: "string"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bMixTapeUnlocked"
+    typeName: "bool"
   }
 }
 mapEvents: "eRiggerBackGate"
