@@ -30,50 +30,6 @@ triggers {
     }
   }
   conditions {
-    ops {
-      functionName: "Compare Actor Specialization"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "BaseOrCurrent"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "ActorSpecializations"
-          }
-          args {
-            int_value: 6
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
   }
   actions {
     ops {
@@ -1647,34 +1603,15 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnLoad.SetAnimations"
+  name: "OnCurtainsUp.SetAnimations"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "On Curtains Up"
     }
   }
   conditions {
   }
   actions {
-    ops {
-      functionName: "Play FX at Point"
-      args {
-        string_value: "MatrixControlNodeHacked"
-      }
-      args {
-        call_value {
-          functionName: "Current Location of Prop"
-          args {
-            call_value {
-              functionName: "Get Map Item (Prop)"
-              args {
-                string_value: "55a300193537330c070041fe"
-              }
-            }
-          }
-        }
-      }
-    }
     ops {
       functionName: "Remove Item from Actor"
       args {
@@ -1893,7 +1830,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "OnLoad.SetDeckingSkillChallengeRating"
@@ -1989,6 +1926,25 @@ triggers {
   conditions {
   }
   actions {
+    ops {
+      functionName: "Play FX at Point"
+      args {
+        string_value: "MatrixControlNodeHacked"
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55a300193537330c070041fe"
+              }
+            }
+          }
+        }
+      }
+    }
     ops {
       functionName: "Enable/Disable Team\'s Turn"
       args {
@@ -2150,6 +2106,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55c7d51b353733e813006dac"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -2185,6 +2163,28 @@ triggers {
           }
           args {
             int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55c7d51b353733e813006dac"
           }
         }
       }
@@ -3892,7 +3892,12 @@ triggers {
         }
       }
       args {
-        float_value: 0.2
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fDelay"
+          }
+        }
       }
     }
   }
@@ -5502,28 +5507,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55a1c0ac353733201a007d03"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Enable/Disable Team\'s Turn"
       args {
         call_value {
@@ -5706,39 +5689,6 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55a1c0ac353733201a007d03"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "aFollowerTimer"
           }
         }
       }
@@ -31396,6 +31346,47 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Assign Conversation to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "552015206631360c13002654"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "552014006631360c1300261f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Activate Actor Spawner By Tag"
       args {
         call_value {
@@ -34786,9 +34777,6 @@ triggers {
         string_value: "Count_Down"
       }
     }
-    ops {
-      functionName: "No Effect"
-    }
   }
   isActive: false
   idRef {
@@ -35038,6 +35026,39 @@ triggers {
           functionName: "Get Map Item (SenseTagList)"
           args {
             string_value: "isMatrix_Follower"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Goal"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Escape the Bank"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -35665,10 +35686,10 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnLoad.ClearBitStoreIndicators"
+  name: "OnCurtainsUp.ClearBitStoreIndicators"
   events {
     ops {
-      functionName: "On Map Start"
+      functionName: "On Curtains Up"
     }
   }
   conditions {
@@ -38871,6 +38892,118 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "--===Heat Containment Scripts===--"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55c7d491353733e813006daa"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "OnRegion.SeattlePuyallup.SetHeatZero_CooledTrue"
+  events {
+    ops {
+      functionName: "On Camera Region Activated"
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "55a30b733537330c07004353"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Camera Region Activated"
+      args {
+        call_value {
+          functionName: "Get Map Item (CameraRegion)"
+          args {
+            string_value: "54ced67a6665386c070024b9"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCombatStart"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Modify Dimension Heat"
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+      args {
+        float_value: -50
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bCooledOff"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c7d49f353733e813006dab"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55c7d48c353733e813006da9"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "--===Bottom Scripts [MUST STAY!]"
   events {
   }
@@ -38974,10 +39107,93 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Compare Actor Team"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isMatrix_Follower"
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
-      functionName: "Autosave Game"
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
     }
     ops {
       functionName: "Set Variable (bool)"
@@ -39002,7 +39218,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
+      functionName: "Send Event After Delay"
       args {
         call_value {
           functionName: "Get Map Item (Event)"
@@ -39011,11 +39227,728 @@ triggers {
           }
         }
       }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger By Name"
+      args {
+        call_value {
+          functionName: "Append (string)"
+          args {
+            call_value {
+              functionName: "Convert (int) to (string)"
+              args {
+                call_value {
+                  functionName: "Get Variable (int)"
+                  args {
+                    string_value: "iAutosave"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            string_value: "RunTrigger.Autosave_"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
     }
   }
   isActive: true
   idRef {
     id: "55bd63fa3537335003003ca9"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnCurtainsUpReload.SetAutosavedTrueKickFollower"
+  events {
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55a1c0ac353733201a007d03"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iAutosave"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAutosaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55c7fcaf3537334c0a0012d4"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Isolated Team Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "55c7d51b353733e813006dac"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnLoadedTurn.SendeCombatEnd.Disable"
+  events {
+    ops {
+      functionName: "On Actor Start Turn"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55a1623c353733201a007be5"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fDelay"
+          }
+        }
+      }
+      args {
+        float_value: 0.4
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55c7fcaf3537334c0a0012d4"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55a1c0ac353733201a007d03"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "55c7fcaf3537334c0a0012d4"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_0"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c89e073537331c0a0056b3"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_1"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92e82353733500b002822"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_2"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92e8f353733500b002823"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_3"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92e95353733500b002824"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_4"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92e9e353733500b002825"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_5"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92ea3353733500b002826"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_6"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92ea8353733500b002827"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_7"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92ead353733500b002828"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "RunTrigger.Autosave_8"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Retain Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Autosave Game"
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c92edc353733500b002829"
   }
   elseActions {
   }
@@ -39070,8 +40003,8 @@ regions {
 regions {
   name: "cSpawnCloset"
   position {
-    x: -5
-    y: -88
+    x: -80
+    y: -120
     width: 12
     height: 12
   }
@@ -42072,8 +43005,8 @@ regions {
 regions {
   name: "tDarkNetExit"
   position {
-    x: 80
-    y: -78
+    x: 118
+    y: -174
     width: 1
     height: 2
   }
@@ -42125,10 +43058,10 @@ regions {
 regions {
   name: "cDarkNet"
   position {
-    x: 75
-    y: -93
+    x: 114
+    y: -180
     width: 20
-    height: 20
+    height: 12
   }
   enabledAtStart: true
   is_camera_region: true
@@ -43220,9 +44153,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 2
+    x: -73
     y: 0
-    z: -87
+    z: -119
   }
   orientation: ORIENTATION_E
   GeneralTags: "isToroshi"
@@ -43628,9 +44561,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -2
+    x: -77
     y: 0
-    z: -79
+    z: -111
   }
   orientation: ORIENTATION_S
   displayName: "PC0"
@@ -44362,9 +45295,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 5
+    x: -70
     y: 0
-    z: -81
+    z: -113
   }
   orientation: ORIENTATION_S
   GeneralTags: "isMatrixSpirit"
@@ -44560,9 +45493,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -1.9999969
+    x: -77
     y: 0
-    z: -85
+    z: -117
   }
   orientation: ORIENTATION_E
   GeneralTags: "isFoleyMainOffice"
@@ -44649,9 +45582,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -4
+    x: -79
     y: 0
-    z: -85
+    z: -117
   }
   orientation: ORIENTATION_E
   displayName: "convo_actor_shadowland"
@@ -44737,9 +45670,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -2
+    x: -77
     y: 0
-    z: -87
+    z: -119
   }
   orientation: ORIENTATION_E
   displayName: "convo_actor_foley_network"
@@ -45022,9 +45955,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 0
+    x: -75
     y: 0
-    z: -81
+    z: -113
   }
   orientation: ORIENTATION_S
   GeneralTags: "isMatrixNebel"
@@ -45122,9 +46055,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 0
+    x: -75
     y: 0
-    z: -79
+    z: -111
   }
   orientation: ORIENTATION_S
   GeneralTags: "isMatrixSilverArrow"
@@ -45221,9 +46154,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -2
+    x: -77
     y: 0
-    z: -81
+    z: -113
   }
   orientation: ORIENTATION_S
   idRef {
@@ -45243,9 +46176,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -4
+    x: -79
     y: 0
-    z: -81
+    z: -113
   }
   orientation: ORIENTATION_S
   idRef {
@@ -45265,9 +46198,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -4
+    x: -79
     y: 0
-    z: -79
+    z: -111
   }
   orientation: ORIENTATION_S
   idRef {
@@ -45586,9 +46519,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 5
+    x: -70
     y: 0
-    z: -87
+    z: -119
   }
   orientation: ORIENTATION_S
   displayName: "Turn_Enforcer"
@@ -45632,7 +46565,7 @@ characters {
         edged: 0
         unarmed: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Hunt And Destroy"
       vulnerabilities {
       }
     }
@@ -45746,9 +46679,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 3.0994415e-006
+    x: -75
     y: 0
-    z: -85
+    z: -117
   }
   orientation: ORIENTATION_E
   GeneralTags: "isSydney"
@@ -45835,9 +46768,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 2.0000031
+    x: -73
     y: 0
-    z: -85
+    z: -117
   }
   orientation: ORIENTATION_E
   GeneralTags: "isHotoda"
@@ -45924,9 +46857,9 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 3.0994415e-006
+    x: -75
     y: 0
-    z: -87
+    z: -119
   }
   orientation: ORIENTATION_E
   GeneralTags: "isMaxFoley"
@@ -49840,6 +50773,38 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sTempExitDetails"
+    typeName: "string"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bCooledOff"
+    typeName: "bool"
+  }
+}
+variables {
+  float_value: 0.3
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fDelay"
+    typeName: "float"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iAutosave"
+    typeName: "int"
+  }
+}
 mapEvents: "ePlayerDies"
 mapEvents: "eBitStoreUpdate"
 mapEvents: "eUpdateShutDownTimer"
@@ -49930,9 +50895,11 @@ team_affiliations {
   affiliation: 1
   affiliation: 0
   affiliation: 1
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Civilian"
+  affiliation: 0
   affiliation: 0
   affiliation: 0
   affiliation: 0
@@ -49946,9 +50913,11 @@ team_affiliations {
   affiliation: 0
   affiliation: 0
   affiliation: 0
+  affiliation: 0
 }
 team_affiliations {
   team_name: "Red_Runner"
+  affiliation: 0
   affiliation: 0
   affiliation: 0
   affiliation: 0
@@ -49961,6 +50930,16 @@ team_affiliations {
   affiliation: 0
   affiliation: 0
   affiliation: 1
+  affiliation: 0
+  affiliation: 0
+}
+team_affiliations {
+  team_name: "Limbo"
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
+  affiliation: 0
   affiliation: 0
 }
 scene_dimensions {
