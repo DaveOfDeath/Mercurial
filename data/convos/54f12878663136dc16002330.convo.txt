@@ -1,0 +1,213 @@
+idRef {
+  id: "54f12878663136dc16002330"
+}
+ui_name: "LTG - GolBauer [Store]"
+nodes {
+  idRef {
+    id: "54f1288a663136dc16002336"
+  }
+  index: 0
+  text: "{{GM}}The squat computer expert pauses in reading his digital newsfeed to look over at you.{{/GM}}\n\nHey, coder.  What can I do for you?"
+  branches {
+    responseText: "What is it that you do here?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"I\'m just the resident code salesman. I front a group of deckers known as the Hacker House. They crack the programs and add features, I sell the resulting programs to men and women of the matrix for a small fee.\""
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "You have any programs or anything for sale?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bool_DeckerStore"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The persona smiles, nods, and brings out a list of wares. \"A customer, and the best sort of introduction. I have a plethora of digital suites available for you to choose from.\""
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Nothing, thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54f0a2546131313017001962"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_TalkedtoGolbauer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "54f128de663136dc1600233b"
+  }
+  index: 1
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "{{CC}}View Wares{{/CC}}  Yeah, lets see what you\'ve got."
+    actions {
+      ops {
+        functionName: "Open Store Screen From Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "54f0a2546131313017001962"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "No, thanks.  I\'m all set."
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54f0a2546131313017001962"
+  }
+  comment: "Golbauer Loop"
+}
+nodes {
+  idRef {
+    id: "54f12982663136dc1600233f"
+  }
+  index: 2
+  text: "\"That sounds like a n00b move to me. A decker is only as good as his code, and you can always use more code. But who am I to argue with you? Clearly you\'re some sort of expert in digital warfare.\n\n\"If you change your mind, I\'ll be right here.\""
+  branches {
+    responseText: "{{GM}}Walk away.{{/GM}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "54f0a2546131313017001962"
+  }
+}
+roots {
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "b_TalkedtoGolbauer"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  nextNodeIndex: 0
+}
