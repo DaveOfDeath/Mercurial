@@ -35908,7 +35908,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "OnInteract.BitStoreBit.SetGoal_bBit_Available"
+  name: "OnItemUp.BitStoreBit.SetGoal_bBit_Available"
   events {
     ops {
       functionName: "On Item Pickup"
@@ -37966,6 +37966,22 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Add Camera Point of Interest (Point)"
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Last Created Prop"
+            }
+          }
+        }
+      }
+      args {
+        float_value: 0
+      }
+    }
   }
   isActive: true
   idRef {
@@ -38940,6 +38956,9 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "No Condition"
+    }
   }
   actions {
     ops {
@@ -38953,7 +38972,7 @@ triggers {
         }
       }
       args {
-        float_value: -50
+        float_value: -500
       }
     }
     ops {
@@ -39022,6 +39041,9 @@ triggers {
 triggers {
   name: "OnTurn.Freemove_NotSaved.Autosave"
   events {
+    ops {
+      functionName: "On Actor Movement Finished"
+    }
     ops {
       functionName: "On Actor Start Turn"
     }
@@ -47557,6 +47579,7 @@ characters {
     patrolRoute: "Doghouse Firewall"
     enabled_at_start: false
     pc_spawn_number: -1
+    unkillable: false
     spawn_type: SpawnType_Matrix
     portrait {
       filename: ""
@@ -48916,11 +48939,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -41
+    x: -97
     y: 0
-    z: -184
+    z: -252
   }
-  orientation: ORIENTATION_N
+  orientation: ORIENTATION_S
   GeneralTags: "isKilledOnStart"
   displayName: "dummy_cam_shadowrunner"
   idRef {
@@ -48987,7 +49010,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -48995,6 +49018,7 @@ characters {
     team_id: "LoneStar"
     char_name: "Mr Footage Capture Man"
     GeneralTags: "isKilledOnStart"
+    enabled_at_start: true
     pc_spawn_number: -1
     ai_ignores: true
     uninjurable: true
