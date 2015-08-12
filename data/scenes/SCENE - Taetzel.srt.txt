@@ -1178,6 +1178,57 @@ triggers {
       }
     }
     ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5580e918663136a80b005ecf"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Send Event After Delay"
       args {
         call_value {
@@ -2682,14 +2733,9 @@ triggers {
                   functionName: "Arithmetic (float)"
                   args {
                     call_value {
-                      functionName: "Absolute Value (float)"
+                      functionName: "Get Variable (float)"
                       args {
-                        call_value {
-                          functionName: "Get Variable (float)"
-                          args {
-                            string_value: "fPLayer_X"
-                          }
-                        }
+                        string_value: "fPLayer_X"
                       }
                     }
                   }
@@ -2706,14 +2752,9 @@ triggers {
                   }
                   args {
                     call_value {
-                      functionName: "Absolute Value (float)"
+                      functionName: "Get Variable (float)"
                       args {
-                        call_value {
-                          functionName: "Get Variable (float)"
-                          args {
-                            string_value: "fVanLocation_X"
-                          }
-                        }
+                        string_value: "fVanLocation_X"
                       }
                     }
                   }
@@ -2748,14 +2789,9 @@ triggers {
                   functionName: "Arithmetic (float)"
                   args {
                     call_value {
-                      functionName: "Absolute Value (float)"
+                      functionName: "Get Variable (float)"
                       args {
-                        call_value {
-                          functionName: "Get Variable (float)"
-                          args {
-                            string_value: "fPlayer_Z"
-                          }
-                        }
+                        string_value: "fPlayer_Z"
                       }
                     }
                   }
@@ -2772,14 +2808,9 @@ triggers {
                   }
                   args {
                     call_value {
-                      functionName: "Absolute Value (float)"
+                      functionName: "Get Variable (float)"
                       args {
-                        call_value {
-                          functionName: "Get Variable (float)"
-                          args {
-                            string_value: "fVanLocation_Z"
-                          }
-                        }
+                        string_value: "fVanLocation_Z"
                       }
                     }
                   }
@@ -5032,10 +5063,10 @@ triggers {
         float_value: 8
       }
       args {
-        float_value: 0
+        float_value: 5
       }
       args {
-        float_value: 5
+        float_value: 0
       }
     }
   }
@@ -14789,6 +14820,131 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "2/3.EnterRegion [Evaluate Hernandez]"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55612ca8393066c4130050da"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Random Actor on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Why can\'t they build their secret lair on the fragging ground floor?!?"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 30
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 5
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55ca926c6631362c0c006b40"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "2/3.RandomCombat"
   events {
     ops {
@@ -17536,248 +17692,6 @@ triggers {
   isActive: true
   idRef {
     id: "55905be8663136cc130040e8"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: " "
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55906a6c663136cc13004105"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "Matrix.Secured.FirewallFlicker"
-  events {
-    ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "5566559f613131a81400082d"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eMatrixFirewall"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Evaluate If Actor is Inside Region"
-      args {
-        call_value {
-          functionName: "All Actors on Team"
-          args {
-            call_value {
-              functionName: "Get Preset Value (string)"
-              args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Matrix"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "AreOrAreNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "5566559f613131a81400082d"
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "iFirewall_Visible"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Random (int)"
-          args {
-            int_value: 1
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isFirewall"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Tag From String"
-          args {
-            call_value {
-              functionName: "Append (string)"
-              args {
-                call_value {
-                  functionName: "Convert (int) to (string)"
-                  args {
-                    call_value {
-                      functionName: "Get Variable (int)"
-                      args {
-                        string_value: "iFirewall_Visible"
-                      }
-                    }
-                  }
-                }
-              }
-              args {
-                string_value: "isFirewall"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event After Delay"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eMatrixFirewall"
-          }
-        }
-      }
-      args {
-        float_value: 0.25
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "5590653b663136cc130040f7"
   }
   elseActions {
   }
