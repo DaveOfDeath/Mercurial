@@ -2331,11 +2331,11 @@ nodes {
           }
         }
         args {
-          string_value: "Test phrase, why is this ending the conversation?"
+          string_value: "\"Seems logical.   They threw an awfuly lot of assets at you back there.\"   Sam shrugs.\n\n\"It\'s just not all adding up to me.   Anyways, what next kid?\""
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2345,6 +2345,55 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Etiquette: Gang{{/CC}}  It\'s definitely connected to the Yakuza."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 15
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -2360,11 +2409,11 @@ nodes {
           }
         }
         args {
-          string_value: "Test phrase, why is this ending the conversation?"
+          string_value: "\"You make a good point kid.   That wasn\'t some knuckle dragging welcoming comitte they threw at you back there.  That was some serious firepower.  And the witch?   Someones gonna notice when she doesn\'t come back.\"\n\n\"We\'d better start planning the next step, Kid.\""
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2389,11 +2438,11 @@ nodes {
           }
         }
         args {
-          string_value: "Test phrase, why is this ending the conversation?"
+          string_value: "Sam sighs. \"Isn\'t it always.   I swear one of these days the big eight\'s gonna yank my organs for chump change...   Hope it\'s my liver... That\'d serve those greedy fraggers.\"  Sam trails off grumbling to himself.\n\n\"Whats next Kid?   You got a plan?\""
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2418,11 +2467,11 @@ nodes {
           }
         }
         args {
-          string_value: "Test phrase, why is this ending the conversation?"
+          string_value: "\"I don\'t know is the answer you\'d give the star if they ask you why you\'re waking around with an AK-98 strapped to your back.\"  Sam snaps.\n\n\"We need answers, and quick.   Backlash from this yakuza visit is going to be swift, and strong kid.   We\'d better get out ahead of this... any thoughts on where to start?\""
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -2431,7 +2480,7 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "I think the Corporations are involved."
+    responseText: "There\'s this lady named Hotoda."
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -2447,25 +2496,36 @@ nodes {
           }
         }
         args {
-          string_value: "Test phrase, why is this ending the conversation?"
+          string_value: "\"You mean the barbecued bitch witch you were telling me about in the way over here?\"\n\n\"Does that mean your problems are solved?\"\n\nSam sighs heavily.  \"Probably not... So what next kid?\""
         }
       }
     }
-    nextNodeIndex: 38
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55a9eeb5613131900500207a"
-    }
+    nextNodeIndex: 37
     auxiliaryLink: true
   }
   branches {
-    responseText: "There\'s this lady named Hotoda."
-    nextNodeIndex: 37
-  }
-  branches {
     responseText: "There was this trucker that I met earlier tonight- it seemed like a coincidence, but I think he might be involved.  Seemed shifty."
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Some random trucker?\"   Sam laughs heartily.  \n\n\"As if some random trucker would be good enough to mastermind this whole thing...\" He trails off, chuckling to himself.\n\n\"Seriously though... whats next Kid?\""
+        }
+      }
+    }
+    nextNodeIndex: 37
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   comment: "Investigation Loop"
@@ -2531,7 +2591,7 @@ nodes {
           }
         }
         args {
-          string_value: "\"Holy Frag, that\'s cold\" Sam breathes, and tips his glass over, spilling expensive liquor into the carpet, \"for friends lost.\"\n\n\"Okay, so walk me through this: How did Armando Hernandez end up in your crosshairs?\""
+          string_value: "\"Holy Frag, that\'s cold\" Sam breathes, and tips his glass over, spilling expensive liquor into the carpet, \"for friends lost.\""
         }
       }
     }
@@ -2689,6 +2749,44 @@ nodes {
   }
   branches {
     responseText: "If it was Hernandez, and he\'s dead, then we\'re in the clear."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HernandezDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -2704,16 +2802,17 @@ nodes {
           }
         }
         args {
-          string_value: "Sam takes a slug of his drink, and whistles, \"That\'s a true optimist there, thinking this could be wrapped up this easy.\"\n\n\"Kid, you make just plain old \'bad luck\' look like a career aspiration. I wouldn\'t hold out hope for your ticket to get that lucky.\""
+          string_value: "Sam takes a slug of his drink, and whistles, \"That\'s a true optimist there, thinking this could be wrapped up this easy.\"\n\n\"Kid, you make just plain old \'bad luck\' look like a career aspiration. I wouldn\'t hold out hope for your ticket to get that lucky.  In the meantime, you got a plan for what to do next?\""
         }
       }
     }
-    nextNodeIndex: -1
+    nextNodeIndex: 37
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "55b07e9b6131314c18002853"
     }
+    auxiliaryLink: true
   }
   branches {
     responseText: "I think maybe it\'s not Hernandez."
@@ -2760,7 +2859,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -3408,17 +3507,9 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55b078cb6131314c180023f8"
-  }
-  index: 37
-  text: ""
-  nodeType: ConversationNodeType_Simple
-}
-nodes {
-  idRef {
     id: "5503e9bc66313678170060d8"
   }
-  index: 38
+  index: 37
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Investigate{{/CC}} Bounty on your head"
@@ -3496,7 +3587,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
   }
   branches {
@@ -3868,7 +3959,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 40
     hideIfUnavailable: true
     comment: "Post-Betrayal"
   }
@@ -3967,7 +4058,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4158,7 +4249,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 42
+    nextNodeIndex: 41
     hideIfUnavailable: true
     comment: "Player"
   }
@@ -4344,7 +4435,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 42
+    nextNodeIndex: 41
     hideIfUnavailable: true
     auxiliaryLink: true
     comment: "Player"
@@ -4894,12 +4985,25 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 43
+    actions {
+      ops {
+        functionName: "Send Event"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "eHernandez"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 42
     hideIfUnavailable: true
     comment: "Taeztel Unknown"
   }
   branches {
-    responseText: "{{CC}}Call Maria{/CC}} to check up on her."
+    responseText: "{{CC}}Call Maria{{/CC}} to check up on her."
     conditions {
       ops {
         functionName: "Comparison (bool)"
@@ -4953,13 +5057,12 @@ nodes {
           }
         }
         args {
-          string_value: "[You dial the Telecom number of the street doc clinic where you have Maria stashed.   After three rings, it just goes to voicemail. The first call doesn\'t have you worried, but the next two unaswered calls do. After several minutes of trying to contact her or the clinic, you hang up.\n\nSomething is very clearly wrong.]"
+          string_value: "Something is very, very wrong back at the street market clinic."
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 43
     hideIfUnavailable: true
-    auxiliaryLink: true
     comment: "Tatzel Known"
   }
   branches {
@@ -4991,29 +5094,12 @@ nodes {
               string_value: "542848a8633464d816001ad5"
             }
             args {
-              string_value: "str_SpawnPoint"
-            }
-          }
-        }
-        args {
-          string_value: "[UNDEFINED]"
-        }
-      }
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
               string_value: "str_NPCIntroText"
             }
           }
         }
         args {
-          string_value: "[Sam seems to be bursting at the seams with barely restrained contempt.]\n\n\"We can\'t just sit around, kid.   Remember when a fraggin\' dragon burned down your safehouse, and you were marked for death by both a yakuza witch, and some anonymous bounty?    These are really things that we need to take care of quickly.\"\n\n[He sighs deeply]\n\n\"Get your head right, and lets get back into this.   I\'ll give you a minute.\""
+          string_value: "[Sam seems to be bursting at the seams with barely restrained contempt.]\n\n\"We can\'t just sit around, kid.   Remember when a fraggin\' dragon burned down your safehouse, and you were marked for death by both a yakuza witch, and some anonymous bounty?    These are really things that we need to take care of quickly.\"\n\n[He sighs deeply]\n\"Get your head right, and lets get back into this.   I\'ll give you a minute.\""
         }
       }
     }
@@ -5163,7 +5249,7 @@ nodes {
   idRef {
     id: "5503f1d06631367817006192"
   }
-  index: 39
+  index: 38
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "I asked YOU to look into it."
@@ -5258,7 +5344,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5394,7 +5480,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5530,7 +5616,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5666,7 +5752,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5845,7 +5931,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -5946,7 +6032,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -6043,7 +6129,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -6140,7 +6226,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -6237,7 +6323,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -6317,7 +6403,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 40
+    nextNodeIndex: 39
   }
   branches {
     responseText: "Let\'s go take care of that."
@@ -6381,7 +6467,7 @@ nodes {
   idRef {
     id: "55601cf4613131001100243b"
   }
-  index: 40
+  index: 39
   text: "Sam grimaces, \"Yeah, but you\'re not going to like it.\"\n\n\"There\'s a troll here in Sunnyside, a low-level scumbag who thinks he\'s a lot smarter than he is. He knows a couple deckers who make him look better than he deserves, but word is still out what a goon he is.\""
   branches {
     responseText: "Troll goon, got it."
@@ -6404,7 +6490,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     auxiliaryLink: true
   }
   branches {
@@ -6463,7 +6549,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 39
+    nextNodeIndex: 38
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -6472,7 +6558,7 @@ nodes {
   idRef {
     id: "5521aefd6131319c15000c58"
   }
-  index: 41
+  index: 40
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Maria gave me this number, but I never got to check up on it."
@@ -6533,7 +6619,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 40
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6600,7 +6686,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 41
+    nextNodeIndex: 40
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -6672,7 +6758,7 @@ nodes {
   idRef {
     id: "554c1554663136b00c00090e"
   }
-  index: 42
+  index: 41
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Take along {{CC}}Silver Arrow{{/CC}}"
@@ -6861,8 +6947,8 @@ nodes {
   idRef {
     id: "5562c2136631366810007901"
   }
-  index: 43
-  text: "{{CC}}The phone rings once or twice before being picked up by Maria.{{/CC}}\n\n\"$(l.name)?   That you?   Ghost it\'s good to hear from you...\"\n\n{{CC}}You chat with Maria for several minutes before disconnecting{{/CC}}"
+  index: 42
+  text: "{{CC}}The phone rings once or twice before being picked up by Maria, stashed away in the street market\'s clinic.  $(scene.sHernandezLocation){{/CC}}\n\n\"$(l.name)?   That you?   Ghost it\'s good to hear from you...\"\n\n{{CC}}You chat with Maria for several minutes before disconnecting, assured that everything is okay there.{{/CC}}"
   branches {
     responseText: ""
     actions {
@@ -6884,13 +6970,26 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "5521afe66131319c15000d0a"
   }
+}
+nodes {
+  idRef {
+    id: "55cae3276631364817008e32"
+  }
+  index: 43
+  text: "{{GM}}You dial the Telecom number of the street doc clinic where you have Maria stashed.   After three rings, it just goes to voicemail. The first call doesn\'t have you worried, but the next two unaswered calls do. After several minutes of trying unsuccessfully to contact her or the clinic, you give up.{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 37
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_GM_Voice
 }
 nodes {
   idRef {
@@ -6956,7 +7055,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 38
+    nextNodeIndex: 37
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -7367,6 +7466,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 38
+  nextNodeIndex: 37
   comment: "Sam\'s Hub"
 }
