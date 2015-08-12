@@ -1,6 +1,9 @@
 triggers {
-  name: "Map Start [ENTRY - DISABLED]"
+  name: "Map Start [ENTRY]"
   events {
+    ops {
+      functionName: "On Map Start"
+    }
   }
   conditions {
     ops {
@@ -32,68 +35,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54369aab6334643c1b002352"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
     ops {
       functionName: "Change Actor Team"
       args {
@@ -262,50 +203,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Start Conversation"
-      args {
-        call_value {
-          functionName: "Get Map Item (Conversation)"
-          args {
-            string_value: "543683796334645c11007ab5"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Wait for Rounds"
-      args {
-        int_value: 2
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Trigger: Run Alternate Trigger"
       args {
         call_value {
@@ -349,8 +246,25 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_HubSubQuest"
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "5436155f633464300900496b"
   }
@@ -1081,15 +995,7 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
+      functionName: "Display Text at Screen Position"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -1097,7 +1003,7 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -1117,13 +1023,62 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 3
-      }
-      args {
-        float_value: 0.1
+        float_value: 0
       }
       args {
         float_value: 0
+      }
+      args {
+        float_value: 6
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Are you fraggin\' kidding me?!?   Maria Mercurial\'s penthouse?!?  That\'s your new hideout?"
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        float_value: 3
       }
     }
   }
@@ -1216,15 +1171,7 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
+      functionName: "Display Text at Screen Position"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -1232,12 +1179,12 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
       args {
-        string_value: "The corridor is monitored by scurity cameras, both security and tri-vid can monitor. When I entertain, this area can be set up to hold a bar, a buffet, and so on."
+        string_value: "The corridor is monitored by scurity cameras, both security and tri-vid can monitor. Nobodys gonna be sneaking up on you with this setup."
       }
       args {
         float_value: 0
@@ -1250,15 +1197,21 @@ triggers {
       }
       args {
         float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 4
       }
       args {
         float_value: 3
       }
       args {
-        float_value: 0.1
-      }
-      args {
-        float_value: 4
+        float_value: 0
       }
     }
   }
@@ -1351,15 +1304,7 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
+      functionName: "Display Text at Screen Position"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -1367,12 +1312,12 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
       args {
-        string_value: "This room contains a closet to one side."
+        string_value: "MIL-Spec hardened doors, and a high grade MagLock system protect the entry way."
       }
       args {
         float_value: 0
@@ -1385,12 +1330,18 @@ triggers {
       }
       args {
         float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 7
       }
       args {
         float_value: 3
-      }
-      args {
-        float_value: 0.1
       }
       args {
         float_value: 0
@@ -1403,144 +1354,6 @@ triggers {
   isActive: true
   idRef {
     id: "543618056334643009004973"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "          *03 - The Spare Room"
-  events {
-    ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "543618596334643009004976"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "AND"
-      args {
-        call_value {
-          functionName: "Comparison (Actor)"
-          args {
-            call_value {
-              functionName: "Triggering Actor"
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Comparison (string)"
-          args {
-            call_value {
-              functionName: "Get Story Variable (string)"
-              args {
-                string_value: "542848a8633464d816001ad5"
-              }
-              args {
-                string_value: "str_SpawnPoint"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "IsOrIsNot"
-              }
-              args {
-                int_value: 1
-              }
-            }
-          }
-          args {
-            string_value: "PENTHOUSE-ENTRY"
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: "This room contains a closet to one side."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0.1
-      }
-      args {
-        float_value: 0
-      }
-    }
-    ops {
-      functionName: "No Effect"
-    }
-  }
-  isActive: true
-  idRef {
-    id: "556025906131310011002610"
   }
   elseActions {
   }
@@ -1648,22 +1461,22 @@ triggers {
         }
       }
       args {
-        string_value: "I need to find a damned drink!"
+        string_value: "I need to find a damned drink!   Come find me when you\'re done looking around, Kid."
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 255
       }
       args {
         float_value: 0
       }
       args {
-        float_value: 0
+        float_value: 128
       }
       args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
+        float_value: 10
       }
       args {
         float_value: 3
@@ -1673,7 +1486,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Actor In Passive Mode"
+      functionName: "Change Actor Team"
       args {
         call_value {
           functionName: "Specific Actor"
@@ -1691,41 +1504,20 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Preset Value (string)"
           args {
-            string_value: "IsOrIsNot"
+            string_value: "FactionList"
           }
           args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Actor Run Speed"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "556022236131310011002607"
-              }
-            }
-          }
-          args {
+            int_value: 3
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (SceneDimension)"
           args {
-            string_value: "RunSpeedMethod"
-          }
-          args {
-            int_value: 2
+            string_value: "Default"
           }
         }
       }
@@ -1763,6 +1555,67 @@ triggers {
           }
           args {
             int_value: 7
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "556022236131310011002607"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -1904,9 +1757,9 @@ triggers {
       functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Map Item (Player)"
           args {
-            string_value: "54369aab6334643c1b002352"
+            int_value: 0
           }
         }
       }
@@ -1922,7 +1775,7 @@ triggers {
         }
       }
       args {
-        string_value: "I\'m a strong supporter of ecological groups, so I don\'t burn anything in the fireplace."
+        string_value: "Must be one of those eco-mentalist types.   It\'s not even a real fire..."
       }
       args {
         float_value: 0
@@ -1937,13 +1790,13 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 3
+        float_value: 8
       }
       args {
         float_value: 0.1
       }
       args {
-        float_value: 2
+        float_value: 4
       }
     }
   }
@@ -2481,15 +2334,7 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
+      functionName: "Display Text at Screen Position"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -2497,7 +2342,7 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -2517,10 +2362,16 @@ triggers {
         float_value: 0
       }
       args {
-        float_value: 3
+        float_value: 0
       }
       args {
-        float_value: 0.1
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 3
       }
       args {
         float_value: 0
@@ -2789,52 +2640,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: "I have a household staff most of the time, but when I\'m on my own, my tastes are simple."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0.1
-      }
-      args {
-        float_value: 2
-      }
-    }
     ops {
       functionName: "Display Text at Screen Position"
       args {
@@ -3145,6 +2950,52 @@ triggers {
         float_value: 0
       }
     }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Dibs.   This one is mine!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 7
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
   }
   isActive: true
   idRef {
@@ -3235,15 +3086,7 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
+      functionName: "Display Text at Screen Position"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -3251,12 +3094,21 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
       args {
-        string_value: "Here are located the circuit breakers, HVAC unit, water heater, and so on. "
+        string_value: "A basic utility room.  Location of the circuit breakers, HVAC unit, water heater, and so on. "
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
       }
       args {
         float_value: 0
@@ -3272,9 +3124,6 @@ triggers {
       }
       args {
         float_value: 3
-      }
-      args {
-        float_value: 0.1
       }
       args {
         float_value: 0
@@ -3683,9 +3532,9 @@ triggers {
       functionName: "Display Text over Actor"
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Map Item (Player)"
           args {
-            string_value: "54369aab6334643c1b002352"
+            int_value: 0
           }
         }
       }
@@ -3701,22 +3550,22 @@ triggers {
         }
       }
       args {
-        string_value: "There is something like a half-million nuyen worth of gear in here. Tee-hee!"
+        string_value: "Theres got to be something like a half-million nuyen worth of gear in here!"
       }
       args {
         float_value: 0
       }
       args {
-        float_value: 0
+        float_value: 255
       }
       args {
         float_value: 0
       }
       args {
-        float_value: 0
+        float_value: 128
       }
       args {
-        float_value: 3
+        float_value: 10
       }
       args {
         float_value: 0.1
@@ -3815,15 +3664,7 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
+      functionName: "Display Text at Screen Position"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -3831,12 +3672,21 @@ triggers {
             string_value: "TextPopupStyle"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
       args {
-        string_value: "This is my getaway spot. It is laid out in Japanese style, but all the vegetation is from Central America."
+        string_value: "This peaceful garden is laid out in Japanese style, but all the vegetation is from Central America."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
       }
       args {
         float_value: 0
@@ -3852,9 +3702,6 @@ triggers {
       }
       args {
         float_value: 3
-      }
-      args {
-        float_value: 0.1
       }
       args {
         float_value: 0
@@ -3949,52 +3796,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "54369aab6334643c1b002352"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: "This is my workout room."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0.1
-      }
-      args {
-        float_value: 0
-      }
-    }
     ops {
       functionName: "Display Text at Screen Position"
       args {
@@ -5710,7 +5511,7 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "03 - The Spare Room"
+  name: "03 - The Entry Way"
   position {
     x: 75
     y: 75
@@ -7166,6 +6967,49 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 2
+    prerequisites {
+      ops {
+        functionName: "Compare Actor Team"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "556022236131310011002607"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
     conversationPoint {
       conversationID: "54cc7dc16131314c190068a4"
       turnToFace: true

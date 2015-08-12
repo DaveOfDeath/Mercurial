@@ -2061,7 +2061,7 @@ nodes {
         }
       }
       args {
-        string_value: "PENTHOUSE-RETURN"
+        string_value: "PENTHOUSE-ENTRY"
       }
     }
     ops {
@@ -2464,7 +2464,7 @@ nodes {
     nextNodeIndex: 37
   }
   branches {
-    responseText: "There was this trucker that I met earlier tonight- it seemed like a coincidence, but I think he might be involved."
+    responseText: "There was this trucker that I met earlier tonight- it seemed like a coincidence, but I think he might be involved.  Seemed shifty."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -3812,6 +3812,42 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
     }
     actions {
       ops {
@@ -3835,6 +3871,110 @@ nodes {
     nextNodeIndex: 41
     hideIfUnavailable: true
     comment: "Post-Betrayal"
+  }
+  branches {
+    responseText: "{{CC}}Investigate{{/CC}} Armando Hernandez"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_KnowsAboutTaetzel"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HarassHernandez"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Sam shakes his head.\n\n\"You don\'t watch a lot of news, do you kid.    Hernandez was suppose to show up for some ritzy banquet downtown the other night.  No show.\"\n\n\"I had a few of my boys look into it... and he\'s missing.   Just whispers, but it seems that someone nabbed him in the middle of the night.\""
+        }
+      }
+    }
+    nextNodeIndex: 38
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cace3f663136bc15000fae"
+    }
+    auxiliaryLink: true
+    comment: "Knows About Taetzel First"
   }
   branches {
     responseText: "{{CC}}Decking{{/CC}} Hack Hernandez\'s Bank Account"
