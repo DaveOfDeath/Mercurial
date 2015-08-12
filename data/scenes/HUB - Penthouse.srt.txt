@@ -401,12 +401,12 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Random Point Within Region"
+          functionName: "Current Location of Prop"
           args {
             call_value {
-              functionName: "Get Map Item (Region)"
+              functionName: "Get Map Item (Prop)"
               args {
-                string_value: "55b6e069393066bc10001045"
+                string_value: "55cad69a66313648170081da"
               }
             }
           }
@@ -550,6 +550,41 @@ triggers {
           functionName: "Get Map Item (Prop)"
           args {
             string_value: "54338c0f373361e00f007124"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55cae83666313648170091f3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "54337380373361e00f006fb6"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54337380373361e00f006fb6"
           }
         }
       }
@@ -692,12 +727,12 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Random Point Within Region"
+          functionName: "Current Location of Prop"
           args {
             call_value {
-              functionName: "Get Map Item (Region)"
+              functionName: "Get Map Item (Prop)"
               args {
-                string_value: "55b6e069393066bc10001045"
+                string_value: "55cad69a66313648170081da"
               }
             }
           }
@@ -845,6 +880,41 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55cae83666313648170091f3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "54337380373361e00f006fb6"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54337380373361e00f006fb6"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -862,8 +932,54 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "PENTHOUSE-ENTRY"
+      }
+    }
   }
   actions {
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "556022236131310011002607"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_talking"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -5421,6 +5537,76 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "Details.ExitDoor"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55cae83666313648170091f3"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "I can\'t leave now... I\'ve gotta figure this out!"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 10
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cae8bb66313648170091f5"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "Condo Cam"
   position {
@@ -6629,52 +6815,6 @@ regions {
   is_camera_region: false
   idRef {
     id: "55ab36006131312c0c007083"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
-  name: "rMaxSpawnPoint"
-  position {
-    x: 67
-    y: 55
-    width: 2
-    height: 2
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "55b6e069393066bc10001045"
   }
   highlight_color {
     r: 0

@@ -7,12 +7,220 @@ nodes {
     id: "55bd36636631363017002065"
   }
   index: 0
-  text: "Dude..."
+  text: "\"Why doesn\'t it work?   It seems like it should!\""
   branches {
-    responseText: "Yeah..."
+    responseText: "I\'m sorry?"
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cb029c6631364817009541"
+    }
+  }
+  branches {
+    responseText: "What are you doing down here?"
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cb01ce663136481700953d"
+    }
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}} Okay..."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55bd332c663136301700205a"
+  }
+}
+nodes {
+  idRef {
+    id: "55cb023a663136481700953f"
+  }
+  index: 1
+  text: "\"The kelp fertilizer.   It should work... It should be infusing my plants with astral trip properties of the deepweed.\""
+  branches {
+    responseText: "Sorry, I don\'t know much about that."
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Biotech - 2{{/CC}}  Probably because Kelp is loaded with salt... from the ocean.  Salt and plants don\'t mix.   What are you trying to do down here?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 11
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55caff2a663136481700952f"
+  }
+  index: 2
+  text: "\"Growing a hybrid cannabis plant.\"  He says, looking at you very strangely. \"What are you doing down here?\""
+  branches {
+    responseText: "Passing though.   You mentioned some kind of hybrid plant?"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "Just leaving."
+    actions {
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "55bd332c663136301700205a"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55bd332c663136301700205a"
+  }
+}
+nodes {
+  idRef {
+    id: "55caff856631364817009533"
+  }
+  index: 3
+  text: "\"Ah yes.   My creation, once I balance a few more things, will provide an ultimate trip.\" He announces proudly.\n\n\"What it is, is brilliant.   It\'s regular cannibis, grown in soil enriched with DeepWeed.   It\'s all of the usual mellowing, with an astral kick.\""
+  branches {
+    responseText: "I\'ll take some of that..."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "I don\'t get it... Why combine them?"
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55bd332c663136301700205a"
+  }
+}
+nodes {
+  idRef {
+    id: "55cb00226631364817009537"
+  }
+  index: 4
+  text: "\"Sorry, it\'s not ready yet.\"  He looks a bit downtrodden. \"But soon... very soon.\""
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55bd332c663136301700205a"
+  }
+}
+nodes {
+  idRef {
+    id: "55cb006d6631364817009539"
+  }
+  index: 5
+  text: "\"Its easy to explain, actually.   With the addition of the DeepWeed kelp fertalizer, my product offers both the conventional astral trip... just while tripping out.\" He starts. \"Its like the smoothest blend of narcotics you can imagine, mixed with an out of body experience.\"\n\n\"Let me put it to you this why... if a normal \'high\' was the size of this pastry,\" He holds up a small yellow cake, about this size of his palm, \"My new product would be like this, only it would be 10\302\275 meters long, and weigh approximately 272 kilograms.\""
+  branches {
+    responseText: "Thats a big cake."
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55bd332c663136301700205a"
+  }
+}
+nodes {
+  idRef {
+    id: "55cb0189663136481700953c"
+  }
+  index: 6
+  text: "\"Indeed it would be.\" He pauses for a moment, staring off at the wall.\n\n\"If only the old boys from New York could see me now...\" He sighs heavily.  \"That\'d really be something.\""
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55bd332c663136301700205a"
+          }
+        }
+      }
+    }
+  }
 }
 roots {
   nextNodeIndex: 0

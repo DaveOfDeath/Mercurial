@@ -1800,7 +1800,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "SceneExit.Limo [To Hub]"
+  name: "SceneExit.Limo [To-Hub]"
   events {
     ops {
       functionName: "On Item Interaction"
@@ -1851,6 +1851,27 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 4
+      }
+    }
+    ops {
       functionName: "Set Variable (string)"
       args {
         call_value {
@@ -1881,7 +1902,7 @@ triggers {
         }
       }
       args {
-        string_value: "The limo ride back to the Penthouse is intense. Armando\'s revelation about the setup casts several very important details in a new light.\n\nFoley hasn\'t been straight with you since the beginning. You saw a job, you took it, and you\'ve been running ever since. Hounded by street trash, thugs, and anyone looking to cash in on the reward, you haven\'t done anything but deal with the problems in front of you.\n\nNow you know that you\'ve been lied to, and it\'s time to deal with the liar.\n\nTime to talk to Max Foley, and get the fragging truth for once."
+        string_value: "The limo ride back to the Penthouse is intense. Armando\'s revelation about the setup casts several very important details in a new light.\n\nHernandez asks to be dropped off at the Street-Doc Clinic to keep Maria company.   Not seeing any reason not to, you ask the driver to drop him off first. \n\nIt\'s time to find some answers."
       }
     }
     ops {
@@ -2003,7 +2024,7 @@ triggers {
         }
       }
       args {
-        string_value: "The limo ride is quiet on your ride back to the penthouse. No one feels like talking. \n\nHernandez clearly needed to be dealt with... so now that he\'s dead, why is that doubt sitting in the back of your mind? \n\nYou\'ve been running on pure adrenaline so far, making the choices put in front of you. There was a lot of pressure, with the attack on Maria, and street trash hounding your every step. \n\nThings don\'t add up, and it\'s time to get answers for your questions.\n\nIt\'s past time to talk to Max Foley."
+        string_value: "The limo ride is quiet on your ride back to the penthouse. \n\nHernandez clearly needed to be dealt with... so now that he\'s dead, why is that doubt sitting in the back of your mind? \n\nYou\'ve been running on pure adrenaline so far, making the choices put in front of you. There was a lot of pressure, with the attack on Maria, and your safehouse being burned to the ground...\n\nThings aren\'t adding up, and it\'s past time to get answers for your questions."
       }
     }
     ops {
@@ -2227,6 +2248,27 @@ triggers {
       }
       args {
         int_value: 2
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 4
       }
     }
   }
@@ -4338,44 +4380,6 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Compare Actor Team"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Comparison (Actor)"
       args {
         call_value {
@@ -4427,6 +4431,92 @@ triggers {
             int_value: 1
           }
         }
+      }
+    }
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "Armando Hernandez hits the floor with a solid thud, and doesn\'t move."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 5
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_Hernandez"
+          }
+        }
+      }
+      args {
+        int_value: -1
       }
     }
   }
@@ -4561,6 +4651,69 @@ triggers {
   isActive: true
   idRef {
     id: "55c7d575663136c412001c72"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "SceneExit.Limo"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55c7d5de663136c412001c75"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Betrayal"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+  }
+  isActive: true
+  idRef {
+    id: "55caec3066313648170091f9"
   }
   elseActions {
   }
@@ -4934,6 +5087,52 @@ regions {
   loop_default_music: true
   no_fow_in_region: false
 }
+regions {
+  name: "cHoldingPen"
+  position {
+    x: 40
+    y: 20
+    width: 8
+    height: 4
+  }
+  enabledAtStart: true
+  is_camera_region: true
+  idRef {
+    id: "55caedfa66313648170091fa"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
@@ -5066,7 +5265,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Guard - Hunt And Destroy"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -5461,7 +5660,7 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 14
+    x: 15
     y: 0
     z: -17
   }
@@ -5483,7 +5682,7 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 14
+    x: 15
     y: 0
     z: -14
   }

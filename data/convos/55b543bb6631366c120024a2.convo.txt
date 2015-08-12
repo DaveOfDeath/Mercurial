@@ -423,7 +423,7 @@ nodes {
           }
         }
         args {
-          int_value: 5
+          int_value: 3
         }
       }
       ops {
@@ -512,6 +512,129 @@ nodes {
   text: "You did?   Fantastic!   I\'ll get the crews started on a plan to recover them.   Thank you so much, you have no idea how many lives you\'ve changed with this.\""
   nodeType: ConversationNodeType_Simple
 }
+nodes {
+  idRef {
+    id: "55caf759663136481700937f"
+  }
+  index: 12
+  text: "{{GM}}You commlink buzzes{{/GM}}\n\n\"My handheld just registered all five beacons going active.\"  She says excitedly boucing with every word. \"You have no idea how much this means to the people of Sunnyside.   We\'ll start the recovery immediately!   Thanks again for everything!\""
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55b541a26631366c120024a0"
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Find the Relief Supplies"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55b541a26631366c120024a0"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_SewerCrateGoal"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Crates"
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55b541a26631366c120024a0"
+          }
+        }
+      }
+    }
+  }
+}
 roots {
   conditions {
     ops {
@@ -591,4 +714,9 @@ roots {
   nextNodeIndex: 8
   hideIfUnavailable: true
   comment: "Quest Complete"
+}
+roots {
+  responseText: ""
+  nextNodeIndex: 12
+  comment: "Lucy Calls [COMPLETE]"
 }

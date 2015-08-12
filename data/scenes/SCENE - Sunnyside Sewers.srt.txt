@@ -1511,22 +1511,6 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: ""
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55c255f76631366c150031b2"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
   name: " "
   events {
   }
@@ -7336,13 +7320,18 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Waypoint on Actor"
+      functionName: "Start Conversation Between Actors"
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Map Item (Conversation)"
           args {
-            string_value: "PrimaryOrSecondary"
+            string_value: "55b543bb6631366c120024a2"
           }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
           args {
             int_value: 0
           }
@@ -7353,6 +7342,17 @@ triggers {
           functionName: "Get Map Item (Actor)"
           args {
             string_value: "55b541a26631366c120024a0"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -9367,6 +9367,27 @@ triggers {
       }
       args {
         float_value: 4
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
       }
     }
   }
@@ -13299,64 +13320,21 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
     id: "55c25c7e6631366c150031bc"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "CrazyFan.SewerReturn"
-  events {
-    ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55c25bf06631366c150031ba"
-          }
-        }
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Player)"
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  actions {
-  }
-  isActive: true
-  idRef {
-    id: "55c25cba6631366c150031bd"
   }
   elseActions {
   }
@@ -13408,6 +13386,555 @@ triggers {
     id: "55c7d6c2663136c412001c7c"
   }
   elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.HasPistol"
+  events {
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_Sewers_MariasBrowning"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caef2066313648170091fc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55caf654663136481700935c"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Crazyfan.Killed"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c0e7943733619c0e00749b"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55caef2066313648170091fc"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caef2066313648170091fc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_CrazyFanKilled"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55caf8ea663136481700943a"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.LootGun"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cafa05663136481700943d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.Respawn"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55b51a74663136c81200408e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_CrazyFanKilled"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55c0e7943733619c0e00749b"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cafaab663136481700943e"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "CrazyFan.Respawn[Lootable]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55b51a74663136c81200408e"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_CrazyFanKilled"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_Sewers_MariasBrowning"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caef2066313648170091fc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Move Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (3D)"
+          args {
+            float_value: -59.32
+          }
+          args {
+            float_value: 1
+          }
+          args {
+            float_value: -72.79
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cafb1d663136481700943f"
+  }
+  elseActions {
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caef2066313648170091fc"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55caf97c663136481700943b"
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -14488,7 +15015,7 @@ characters {
         magic: 0
         hp: 0
         ap: 0
-        armor: 1
+        armor: 4
         force: 0
         morale: 0
         discipline: 0
@@ -14503,7 +15030,7 @@ characters {
       }
       skills {
         ranged_combat: -4
-        close_combat: 4
+        close_combat: 5
         throwing_weapons: -3
         spellcasting: 0
         decking: 0
@@ -14526,7 +15053,7 @@ characters {
         rifle: -2
         shotgun: 0
         smg: 0
-        edged: 4
+        edged: 5
         unarmed: 0
         spirit_control: 0
         esp_control: 0
@@ -14543,10 +15070,13 @@ characters {
     team_id: "Civilians"
     char_name: "Kayla"
     pc_spawn_number: -1
+    cyberware_body: "Wired Reflexes"
+    cyberware_right_arm: "Obvious Cyberarm 2"
     portrait {
       filename: "pc_humanfemale_07d_darkskin"
     }
-    karma: 91
+    karma: 101
+    has_fist: false
   }
 }
 variables {
