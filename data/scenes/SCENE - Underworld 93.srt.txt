@@ -4613,7 +4613,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "547015c96665388408000b67"
+                string_value: "55cab02c663136f014004504"
               }
             }
           }
@@ -5663,6 +5663,28 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55cab3f9663136f01400454c"
           }
         }
       }
@@ -9146,6 +9168,12 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "Objective"
+      }
+    }
+    ops {
       functionName: "Detain Actor"
       args {
         call_value {
@@ -9433,12 +9461,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Remove Screen Label"
-      args {
-        string_value: "Objective"
-      }
-    }
-    ops {
       functionName: "Display Text at Screen Position"
       args {
         call_value {
@@ -9452,7 +9474,7 @@ triggers {
         }
       }
       args {
-        string_value: "It\'s her... Maria Mercurial, in the flesh. No trid or street BTL you\'ve ever glimpsed her in had done her justice. Some cool GM intro text should go here."
+        string_value: "It\'s her... Maria Mercurial, in the flesh. No trid or street BTL you\'ve ever glimpsed her in had done her justice.   Up close she\'s even more spectacular than she was downstairs on stage."
       }
       args {
         float_value: 0
@@ -11581,6 +11603,15 @@ triggers {
         int_value: -1
       }
     }
+    ops {
+      functionName: "Set Screen Label"
+      args {
+        string_value: "Objective"
+      }
+      args {
+        string_value: "Objective:   \nDefend Maria & Foley"
+      }
+    }
   }
   isActive: true
   idRef {
@@ -11716,52 +11747,6 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Order Actor to Move To (Region)"
-      args {
-        call_value {
-          functionName: "All Actors With Tag"
-          args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isBadGuy2"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "54924e666665386c04004080"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
           }
         }
       }
@@ -21764,6 +21749,52 @@ regions {
   loop_default_music: false
   no_fow_in_region: false
 }
+regions {
+  name: "cDroneDetainment"
+  position {
+    x: -40
+    y: 251
+    width: 9
+    height: 10
+  }
+  enabledAtStart: true
+  is_camera_region: true
+  idRef {
+    id: "55cab02c663136f014004504"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
@@ -22055,9 +22086,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: -93
+    x: -35
     y: 0
-    z: 147
+    z: 229
   }
   orientation: ORIENTATION_S
   displayName: "Ego"
@@ -22251,7 +22282,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_AllEqual
       vulnerabilities {
@@ -22355,7 +22386,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_AllEqual
       vulnerabilities {
@@ -22476,7 +22507,7 @@ characters {
   gridPoint {
     x: -37
     y: 0
-    z: 220
+    z: 218
   }
   orientation: ORIENTATION_N
   GeneralTags: "isMercurial"
@@ -23466,7 +23497,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_AllEqual
       vulnerabilities {
@@ -24897,7 +24928,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_AllEqual
       vulnerabilities {
@@ -25001,7 +25032,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_AllEqual
       vulnerabilities {
@@ -25105,7 +25136,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_AllEqual
       vulnerabilities {
@@ -25813,6 +25844,62 @@ characters {
     }
     karma: 6
     is_prop_character: true
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -36
+    y: 0
+    z: 253
+  }
+  orientation: ORIENTATION_E
+  displayName: "Ambient Drone"
+  idRef {
+    id: "55cab2db663136f014004546"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "DroneGuardian"
+    character_sheet_id: "DroneAttackS_Guardian"
+    equipment_sheet_id: "Class S Attack Drone Gear"
+    character_mod {
+      archetypeName: "Non-Combatant"
+    }
+    team_id: "Civilians"
+    char_name: "Guardian Drone"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -39
+    y: 0
+    z: 257
+  }
+  orientation: ORIENTATION_S
+  displayName: "Ambient Drone"
+  idRef {
+    id: "55cab2f5663136f014004547"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "DroneHoverRoto"
+    character_sheet_id: "DroneSupportA_Sundowner"
+    equipment_sheet_id: "Class A Support Drone Gear"
+    character_mod {
+      archetypeName: "Non-Combatant"
+    }
+    team_id: "Civilians"
+    char_name: "Sundowner Drone"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
   }
 }
 variables {
