@@ -14823,15 +14823,7 @@ triggers {
   name: "2/3.EnterRegion [Evaluate Hernandez]"
   events {
     ops {
-      functionName: "On Region Enter"
-      args {
-        call_value {
-          functionName: "Get Map Item (Region)"
-          args {
-            string_value: "55612ca8393066c4130050da"
-          }
-        }
-      }
+      functionName: "On Map Start"
     }
   }
   conditions {
@@ -14874,28 +14866,19 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Display Text over Actor"
+      functionName: "Kill Actor"
       args {
         call_value {
-          functionName: "Get Random Actor on Team"
+          functionName: "Specific Actor"
           args {
             call_value {
-              functionName: "Get Preset Value (string)"
+              functionName: "Get Map Item (Actor)"
               args {
-                string_value: "FactionList"
-              }
-              args {
-                int_value: 0
+                string_value: "55c719e5663136b815001274"
               }
             }
           }
           args {
-            call_value {
-              functionName: "Get Map Item (SceneDimension)"
-              args {
-                string_value: "Default"
-              }
-            }
           }
         }
       }
@@ -14903,7 +14886,18 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TextPopupStyle"
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
           }
           args {
             int_value: 0
@@ -14911,28 +14905,15 @@ triggers {
         }
       }
       args {
-        string_value: "Why can\'t they build their secret lair on the fragging ground floor?!?"
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 255
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 128
-      }
-      args {
-        float_value: 30
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 5
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
       }
     }
   }
@@ -15842,7 +15823,7 @@ triggers {
         call_value {
           functionName: "Get Map Item (Item)"
           args {
-            string_value: "Melee 3 Hand Razor (Glory)"
+            string_value: "Melee 2 Hand Razor (Glory)"
           }
         }
       }
@@ -16228,7 +16209,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Order Actor to Hunt And Destroy (ThreatType)"
+      functionName: "Order Actor to Hunt And Destroy (Team)"
       args {
         call_value {
           functionName: "All Actors With Tag"
@@ -16255,12 +16236,20 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Get Preset Value (string)"
           args {
-            string_value: "ThreatType"
+            string_value: "FactionList"
           }
           args {
             int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
           }
         }
       }
@@ -18445,7 +18434,7 @@ triggers {
             string_value: "bool"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -18850,6 +18839,42 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HernandezDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -19035,6 +19060,50 @@ triggers {
     id: "55c71eec663136b8150015df"
   }
   elseActions {
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "Armando Hernandez\' body lies on the floor of this cell.  Whom ever dumped him in here wasn\'t kind.\n\nHis body is battered, and broken.   He was dead when you left him, but now... it\'s like someone made an example out of his corpse."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 15
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
   }
   is_oneshot: false
 }
@@ -21941,9 +22010,9 @@ characters {
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
-    x: 45
+    x: -60
     y: 0
-    z: -199
+    z: -22
   }
   orientation: ORIENTATION_E
   GeneralTags: "isTeamTalker"
@@ -24094,25 +24163,25 @@ characters {
   lod: 0
   character_instance {
     prefab_name: "Seattle:Core/HumanMale"
-    character_sheet_id: "Crew_Glory_Lv5"
+    character_sheet_id: "Crew_Glory_Lv4"
     character_mod {
       stats {
         body: 2
         quickness: 0
-        strength: 1
+        strength: 0
         charisma: 0
-        intelligence: 0
-        willpower: 0
+        intelligence: -1
+        willpower: -1
         essence: 0
         magic: 0
-        hp: 75
-        ap: 1
-        armor: 8
+        hp: 20
+        ap: 0
+        armor: 7
         force: 0
         morale: 0
         discipline: 0
         awareness: 0
-        perception: 0
+        perception: 20
         authority: 0
         protect_tether_range: 0
         move_speed: 2
@@ -24120,46 +24189,47 @@ characters {
         vision_cone_distance: 0
         vision_cone_angle: 0
         is_fearless: 1
-        is_strict: 1
+        is_strict: 0
       }
       skills {
-        ranged_combat: 1
-        close_combat: 2
-        throwing_weapons: -4
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
         spellcasting: 0
         decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
-        biotech: -2
-        dodge: 1
-        etiquette_corporate: 0
+        biotech: -4
+        dodge: 0
+        etiquette_corporate: 1
         etiquette_security: 0
         etiquette_gang: 0
         etiquette_socialite: 0
         chi_casting: 0
-        etiquette_shadowrunner: 0
+        etiquette_shadowrunner: 1
         etiquette_street: 0
         etiquette_academic: 0
       }
       specializations {
-        pistol: -4
+        pistol: -3
         rifle: 0
         shotgun: 0
         smg: 0
         edged: 0
-        unarmed: 3
+        unarmed: 1
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
       }
       archetypeName: "Guard - Hunt And Destroy"
       attitude: AttitudeBoss
-      attackRandom: AttackStyle_BestOnly
+      attackRandom: AttackStyle_RandomAll
       vulnerabilities {
-        bleed: VulnerabilityLevel_Less
+        bleed: VulnerabilityLevel_More
         actionpoints: VulnerabilityLevel_Less
-        disarm: VulnerabilityLevel_Immune
+        moverange: VulnerabilityLevel_Less
+        disarm: VulnerabilityLevel_Default
       }
     }
     equipment {
@@ -24168,6 +24238,15 @@ characters {
     equipment {
       prefab_name: "Berlin_Ex 2 ArmTech MGL-6 (Errant)"
     }
+    equipment {
+      prefab_name: "Berlin_Grenade (Smoke)"
+    }
+    equipment {
+      prefab_name: "Berlin_Grenade 1 (Frag)"
+    }
+    equipment {
+      prefab_name: "Berlin_Grenade (Phosphorus)"
+    }
     team_id: "MixTape"
     char_name: "Jorge Mixacopotec"
     GeneralTags: "isMixacopotec"
@@ -24175,12 +24254,11 @@ characters {
     enabled_at_start: false
     pc_spawn_number: -1
     cyberware_eyes: "Vision Magnification Eyes 2"
-    cyberware_body: "Bone Lacing Kevlar 2"
     portrait {
       filename: "GEEKED_JorgeMixacopotecINJURED"
     }
     portrait_code_override: "s2h6c11b8c11t0"
-    karma: 183
+    karma: 119
     persistent_body: true
     has_fist: true
   }
@@ -26246,7 +26324,7 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -164
+    x: -165
     y: 0
     z: -34
   }
@@ -26334,6 +26412,7 @@ characters {
     hiring_cost_override: 1500
     hiring_tag: "Marias Manager"
     is_backer: true
+    persistent_body: true
   }
 }
 characters {
