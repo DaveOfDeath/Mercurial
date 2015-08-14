@@ -1236,7 +1236,7 @@ triggers {
             string_value: "WithOrWithout"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -11854,6 +11854,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55cd2ad13231375405002e41"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -11975,6 +11997,139 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "Floor[G].c1.Confront"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55cd2ad13231375405002e41"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Compare Actor Team"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to Face Point"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55cc9e26323137401900173a"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55cd2b0a3231375405002e93"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "c1"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cd2b983231375405002f4b"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: " "
   events {
   }
@@ -11993,12 +12148,77 @@ triggers {
 triggers {
   name: "---=== Rooftop Triggers ===---"
   events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5440a0ee3733618812005ab3"
+          }
+        }
+      }
+    }
   }
   conditions {
+    ops {
+      functionName: "Actor is Player Controlled"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
+    ops {
+      functionName: "Play Music"
+      args {
+        call_value {
+          functionName: "Get Map Item (Music)"
+          args {
+            string_value: "Berlin_Set18"
+          }
+          args {
+            string_value: "Berlin-Set18-Combat"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "557346bd663136b40c002e06"
   }
@@ -12212,6 +12432,27 @@ triggers {
       }
       args {
         float_value: 0
+      }
+    }
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55665655663136e40f00542e"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: 3
       }
     }
   }
@@ -14253,7 +14494,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "55b51f46323137901b00046a"
+                string_value: "55b51f69323137901b00046d"
               }
             }
           }
@@ -14667,7 +14908,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "55b51f46323137901b00046a"
+                string_value: "55b51f05323137901b000467"
               }
             }
           }
@@ -17999,7 +18240,7 @@ regions {
   name: "DEBUGGER"
   position {
     x: -34
-    y: -31
+    y: -16
     width: 3
     height: 3
   }
@@ -18320,8 +18561,8 @@ regions {
 regions {
   name: "rDest3Floor"
   position {
-    x: -41
-    y: -39
+    x: -40
+    y: -55
     width: 3
     height: 3
   }
@@ -18366,8 +18607,8 @@ regions {
 regions {
   name: "rDest4Floor"
   position {
-    x: -38
-    y: 33
+    x: -41
+    y: -39
     width: 3
     height: 3
   }
@@ -19010,10 +19251,10 @@ regions {
 regions {
   name: "c1.TripWire"
   position {
-    x: -26
-    y: -23
+    x: -23
+    y: -25
     width: 1
-    height: 6
+    height: 8
   }
   enabledAtStart: true
   is_camera_region: false
@@ -19205,6 +19446,52 @@ regions {
   loop_default_music: false
   no_fow_in_region: false
 }
+regions {
+  name: "c1"
+  position {
+    x: -31
+    y: -25
+    width: 2
+    height: 4
+  }
+  enabledAtStart: false
+  is_camera_region: false
+  idRef {
+    id: "55cd2ad13231375405002e41"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
 characters {
   name: "system_spawner_playerSpawner"
   gridPoint {
@@ -19314,8 +19601,8 @@ characters {
   lod: 0
   character_instance {
     prefab_name: "Seattle:Gangers/HumanFemaleGanger_Cutter"
-    character_sheet_id: "Lonestar_Lv1_Human_Mage"
-    equipment_sheet_id: "Lonestar_Lv1_Mage_Gear"
+    character_sheet_id: "Lonestar_Lv2_Human_Mage"
+    equipment_sheet_id: "Lonestar_Lv2_Mage_Gear"
     character_mod {
       stats {
         body: 0
@@ -19385,7 +19672,8 @@ characters {
     portrait {
       filename: ""
     }
-    karma: 40
+    karma: 43
+    has_fist: false
   }
 }
 characters {
@@ -19477,6 +19765,7 @@ characters {
       filename: ""
     }
     karma: 37
+    has_fist: false
   }
 }
 characters {
@@ -19555,7 +19844,7 @@ characters {
         drone_combat: 0
       }
       archetypeName: "Guard - Seek And Destroy"
-      attitude: AttitudeAggressive
+      attitude: AttitudeBoss
       vulnerabilities {
       }
     }
@@ -19568,6 +19857,7 @@ characters {
       filename: ""
     }
     karma: 68
+    has_fist: false
   }
 }
 characters {
@@ -19659,6 +19949,7 @@ characters {
       filename: ""
     }
     karma: 47
+    has_fist: false
   }
 }
 characters {
@@ -21467,9 +21758,9 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Gangers/HumanMaleGanger_Cutter"
-    character_sheet_id: "Lonestar_Lv2_Ork_Shotgun"
-    equipment_sheet_id: "Lonestar_Lv2_Shotgun_Gear"
+    prefab_name: "Berlin:Gangers/HumanMaleBerlinGanger_Magnifiker"
+    character_sheet_id: "Lvl2_Merc_Human_AllMagic"
+    equipment_sheet_id: "Errant_Lv2_Shaman"
     character_mod {
       stats {
         body: 0
@@ -21526,20 +21817,23 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Protect"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
+    equipment {
+      prefab_name: "Berlin_Bound Earth Spirit 2"
+    }
     team_id: "Civilians"
-    char_name: "Cutter Soldier"
+    char_name: "Cutter Mage"
     GeneralTags: "isCutter"
     GeneralTags: "c1"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
-    karma: 41
+    karma: 50
     has_fist: false
   }
 }
@@ -21560,8 +21854,8 @@ characters {
   lod: 0
   character_instance {
     prefab_name: "Seattle:Gangers/DwarfMaleGangerMohawk_Cutter"
-    character_sheet_id: "Lonestar_Lv2_Ork_Shotgun"
-    equipment_sheet_id: "Lonestar_Lv2_Shotgun_Gear"
+    character_sheet_id: "Lonestar_Lv2_Heavy_SMG"
+    equipment_sheet_id: "Lonestar_Lv2_SMG_Gear"
     character_mod {
       stats {
         body: 0
@@ -21618,7 +21912,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -21631,7 +21925,7 @@ characters {
     portrait {
       filename: ""
     }
-    karma: 41
+    karma: 47
     has_fist: false
   }
 }
@@ -21796,8 +22090,8 @@ characters {
         rifle: 0
         shotgun: 0
         smg: 0
-        edged: 0
-        unarmed: 0
+        edged: 3
+        unarmed: -2
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
@@ -21822,7 +22116,191 @@ characters {
       filename: ""
     }
     portrait_code_override: "s2h2b6t6"
-    karma: 69
+    karma: 72
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -42
+    y: 0
+    z: 123
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isCutter"
+  GeneralTags: "BossFight"
+  displayName: "Ganger"
+  idRef {
+    id: "55cd31c03231375405002f78"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Gangers/HumanMaleGanger_Cutter"
+    character_sheet_id: "Lonestar_Lv2_Human_Pistol"
+    equipment_sheet_id: "Lonestar_Lv2_Pistol_Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Cutter Soldier"
+    GeneralTags: "isCutter"
+    GeneralTags: "BossFight"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 37
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -20
+    y: 0
+    z: 123
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isCutter"
+  GeneralTags: "BossFight"
+  displayName: "Ganger"
+  idRef {
+    id: "55cd31df3231375405002f79"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Gangers/DwarfMaleGangerMohawk_Cutter"
+    character_sheet_id: "Lonestar_Lv2_Heavy_SMG"
+    equipment_sheet_id: "Lonestar_Lv2_SMG_Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Cutter Soldier"
+    GeneralTags: "isCutter"
+    GeneralTags: "BossFight"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 47
     has_fist: false
   }
 }
@@ -22186,9 +22664,7 @@ scene_dimensions {
   initial_alarm_state: 0
   turns_per_round: 3
 }
-character_roster {
-}
-show_hiring_screen_on_scene_load: false
+show_hiring_screen_on_scene_load: true
 scene_hiring_prerequisites {
   prereq_description: ""
   prereq_conditions {
