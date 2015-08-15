@@ -18641,6 +18641,119 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "WayPoint.SewersAccessable"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5541332f3733610410006488"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Region Exit"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5541332f3733610410006488"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateWayPoints"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_SunnySideSewersAvailable"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55981a106131316c1e005b04"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cfb3af663136c40d0014b8"
+  }
+  elseActions {
+    ops {
+      functionName: "Clear Waypoint from Prop"
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55981a106131316c1e005b04"
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
   name: "Mateo.Dead"
   events {
     ops {
