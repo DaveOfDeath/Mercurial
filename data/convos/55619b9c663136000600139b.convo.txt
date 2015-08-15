@@ -47,9 +47,92 @@ nodes {
           }
         }
       }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_MateoDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: 1
     hideIfUnavailable: true
+  }
+  branches {
+    responseText: "You\'ve got a new vacancy downstairs."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_MateoDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cf8b8d663136840b001ea1"
+    }
   }
   branches {
     responseText: "How much is a room?"
@@ -72,7 +155,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 6
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -331,9 +414,47 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55619c8866313600060013a6"
+    id: "55cf8bc2663136840b001ea3"
   }
   index: 3
+  text: "{{GM}}He sighs heavily{{/GM}}\n\nMuch damage?   I knew that fragger\'d be trouble."
+  branches {
+    responseText: "{{CC}}Let Mateo Go{{/CC}}  None.   He\'s on the run...  We\'ll settle up elsewhere."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "{{CC}}Killed Mateo{{/CC}}  Some, yeah.   Keep his deposit.  If you\'ve got his SIN, run him in for a few extras..."
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55524a00373361b403007f53"
+  }
+}
+nodes {
+  idRef {
+    id: "55cf8c6f663136840b001ea7"
+  }
+  index: 4
+  text: "He raises an eyebrow, but doesn\'t ask you to elaborate."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55524a00373361b403007f53"
+  }
+}
+nodes {
+  idRef {
+    id: "55cf8c8b663136840b001ea9"
+  }
+  index: 5
+  text: "I think he must\'ve filled his suitcases with towels... at 15\302\245 a piece..."
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55619c8866313600060013a6"
+  }
+  index: 6
   text: " $(story.str_NPCIntroText)"
   branches {
     responseText: "Yes."
