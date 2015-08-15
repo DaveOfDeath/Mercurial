@@ -23139,7 +23139,7 @@ triggers {
         }
       }
       args {
-        string_value: "That\'s going to take a while, I should find something to do in the mean time."
+        string_value: "Looking into the bounty could to take a while, I should find something to do in the mean time..."
       }
       args {
         float_value: 255
@@ -23154,7 +23154,7 @@ triggers {
         float_value: 128
       }
       args {
-        float_value: 5
+        float_value: 10
       }
       args {
         float_value: 3
@@ -27930,7 +27930,111 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Debug.WarpConversation"
+  name: "QA.GoForTod"
+  events {
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bDEBUGGERWARP_ENABLED"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "542a1c74373361140d00787c"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "Quality Assurance Debugger Warp [ENABLED]"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 15
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cea1e06631361c150056da"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "QA.WarpConversation"
   events {
     ops {
       functionName: "On Item Interaction"
