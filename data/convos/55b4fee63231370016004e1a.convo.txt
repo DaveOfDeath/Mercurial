@@ -484,9 +484,50 @@ nodes {
     id: "55b480d5323137f4070008d9"
   }
   index: 2
-  text: "Cutters Attack First"
+  text: "HEY! Who let you peoples outta yer holes?\n\n{{GM}}All four of them reach for their guns!{{/GM}}"
   nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55b4fc533231370016004e06"
+  }
   actions {
+    ops {
+      functionName: "Order Actor to Face Direction"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "a3"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+    }
     ops {
       functionName: "Change Actor Team"
       args {
@@ -634,9 +675,9 @@ nodes {
     id: "55b480e1323137f4070008db"
   }
   index: 3
-  text: "Social"
+  text: "{{GM}}Looks like you\'ve just walked in on an execution in progress. Three sneering, chipped-out gangers are deciding which hapless innocent to pick off first, while a fourth, an elf with a shotgun, seems ready to pump lead into each one of the hotel tenants\' backs. Coincidentally, you recognize one of Mercurials early hits playing from her commlink in the background.{{/GM}}"
   branches {
-    responseText: "{{CC}}Academic{{/CC}}"
+    responseText: "{{CC}}Academic{{/CC}} My team and I thought you should know that the odds of you surviving this encounter hover around minus-one in one hundred. You should also know that there\'s a margin of error of plus or minus one."
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -707,7 +748,7 @@ nodes {
     comment: "(1) Etq. Academic"
   }
   branches {
-    responseText: "{{CC}}Corporate{{/CC}}"
+    responseText: "{{CC}}Corporate{{/CC}} Hey kids! Why make pennies shooting vagrants in the back when you can work for Renraku! and take on some of the deadliest prey in the Emerald City! Renraku! You take care of us, and we take care of you! Permanently!"
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -778,7 +819,7 @@ nodes {
     comment: "(2) Etq. Corporate"
   }
   branches {
-    responseText: "{{CC}}Gang{{/CC}}"
+    responseText: "{{CC}}Gang{{/CC}} STOP! Everyone outside, now! The Ancients\'re outside, and we gotta go let\' em know that this block is Cutters turf!"
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -849,7 +890,7 @@ nodes {
     comment: "(3) Etq. Gang"
   }
   branches {
-    responseText: "{{CC}}Security{{/CC}}"
+    responseText: "{{CC}}Security{{/CC}} Are you guys a bunch of fragging idiots? Don\'t you know that there are, like, a bazillion microcameras pointed at you clowns right now?"
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -920,7 +961,7 @@ nodes {
     comment: "(4) Etq. Security"
   }
   branches {
-    responseText: "{{CC}}Shadowrunner{{/CC}}"
+    responseText: "{{CC}}Shadowrunner{{/CC}} {{GM}}Say nothing. Just look at them. Look at them look back at you, KNOWING that you\'re looking at them. KNOWING what they need to do... in order to survive.{{/GM}}"
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -991,7 +1032,7 @@ nodes {
     comment: "(5) Etq. Shadowrunner"
   }
   branches {
-    responseText: "{{CC}}Socialite{{/CC}}"
+    responseText: "{{CC}}Socialite{{/CC}} Hey, you cats\'re Mercurial fans? Well, it just so happens that I, yes I, want to add you cutesies to my VIP list for the show in a few minutes! But you won\'t be able to go if you got brains all over your clothes. Now go outside and get in my limo. I\'ll be along shortly."
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -1062,7 +1103,7 @@ nodes {
     comment: "(6) Etq. Socialite"
   }
   branches {
-    responseText: "{{CC}}Street{{/CC}}"
+    responseText: "{{CC}}Street{{/CC}} Shit! Guys, don\'t be killin\' while the others are lootin\' Don\'tcha realize there won\'t be nothin\' left by the time you get to it?"
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -1132,7 +1173,7 @@ nodes {
     hideIfUnavailable: true
     comment: "(7) Etq. Street"
   }
-  nodeType: ConversationNodeType_Simple
+  nodeType: ConversationNodeType_GM_Voice
   comment: "Cutters Attack Last"
 }
 roots {
