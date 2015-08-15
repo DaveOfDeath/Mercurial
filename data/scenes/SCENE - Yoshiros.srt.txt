@@ -5793,6 +5793,104 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "SceneExit.ToDoghouse [Karma]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5493a6dc666538100a0003ee"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Hideout"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55cf9e0a663136c013000991"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55cf9e0a663136c013000991"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "SceneExit.DogHouse"
   events {
     ops {
@@ -5995,27 +6093,6 @@ triggers {
       }
       args {
         string_value: "DOGHOUSE-RETURN"
-      }
-    }
-    ops {
-      functionName: "Add Actor Karma"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        int_value: 3
       }
     }
   }
