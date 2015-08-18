@@ -1175,11 +1175,164 @@ nodes {
       }
     }
     nextNodeIndex: -1
+    comment: "Hard Exit"
+  }
+  branches {
+    responseText: "1111111"
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors"
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SenseTagList)"
+            args {
+              string_value: "isMatrix_Follower"
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Enable/Disable Trigger"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Trigger)"
+            args {
+              string_value: "55a1c0ac353733201a007d03"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Send Event After Delay"
+        args {
+          call_value {
+            functionName: "Get Map Item (Event)"
+            args {
+              string_value: "aFollowerTimer"
+            }
+          }
+        }
+        args {
+          float_value: 1
+        }
+      }
+      ops {
+        functionName: "Set Variable (float)"
+        args {
+          call_value {
+            functionName: "Get Variable (float)"
+            args {
+              string_value: "fDelay"
+            }
+          }
+        }
+        args {
+          float_value: 0.5
+        }
+      }
+    }
+    nextNodeIndex: -1
+    comment: "Restart Follower"
   }
   branches {
     responseText: "206511082"
+    actions {
+      ops {
+        functionName: "Set Actor Body Prefab"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor Reference)"
+            args {
+              string_value: "5519fd09666538d80f00330d"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
     comment: "Drac\342\200\231s Coffins"
+  }
+  branches {
+    responseText: "206522176"
+    actions {
+      ops {
+        functionName: "Set Actor Body Prefab"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor Reference)"
+            args {
+              string_value: "55cac1a366313668000049f8"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+    comment: "Mitsuhama"
   }
   nodeType: ConversationNodeType_InputKeyboard
   inputMaxLength: 9
