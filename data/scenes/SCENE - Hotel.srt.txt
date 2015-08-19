@@ -19048,6 +19048,81 @@ triggers {
   }
   is_oneshot: false
 }
+triggers {
+  name: "Whois.UNDEFINED"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "<UNDEFINED>"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "<UNDEFINED>"
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: " <UNDEFINED>"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3ff1c6631367c0800424c"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
 regions {
   name: "c4thFloor"
   position {
@@ -24517,11 +24592,9 @@ scene_dimensions {
   initial_alarm_state: 0
   turns_per_round: 3
 }
-character_roster {
-}
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
-  prereq_description: ""
+  prereq_description: "Full Roster"
   prereq_conditions {
   }
 }
