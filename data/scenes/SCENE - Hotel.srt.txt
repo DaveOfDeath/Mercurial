@@ -211,7 +211,13 @@ triggers {
           }
           args {
             call_value {
-              functionName: "Nothing Selected"
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
             }
           }
           args {
@@ -694,31 +700,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Start Conversation"
+      functionName: "Send Event"
       args {
         call_value {
-          functionName: "Get Map Item (Conversation)"
+          functionName: "Get Map Item (Event)"
           args {
-            string_value: "55c97de2323137bc08001bbe"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Player)"
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
+            string_value: "eWhoisTeam"
           }
         }
       }
@@ -13696,15 +13683,7 @@ triggers {
       functionName: "On Actor Alive"
     }
     ops {
-      functionName: "On New Round"
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
+      functionName: "On Combat Entered"
     }
   }
   conditions {
@@ -17484,6 +17463,1586 @@ triggers {
   isActive: true
   idRef {
     id: "55ccaaae3231374019001862"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55d3b8106631369c09000ddd"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "---=== Who Is Team  Triggers ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55d3b8106631369c09000dde"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "onMapStart.EvaluateTeam [1]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eWhoisTeam"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Get Variable (int)"
+                      args {
+                        string_value: "iPC_Slot"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "isTeam"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eEvalTeamMate"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sPC1_Action"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sPC1_Comment"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3ceea6631369c09000fb4"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "onMapStart.EvaluateTeam [2]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eWhoisTeam"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Get Variable (int)"
+                      args {
+                        string_value: "iPC_Slot"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "isTeam"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 2
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eEvalTeamMate"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sPC2_Action"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sPC2_Comment"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3cfb86631369c09000fb7"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "onMapStart.EvaluateTeam [3]"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eWhoisTeam"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Get Variable (int)"
+                      args {
+                        string_value: "iPC_Slot"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "isTeam"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 3
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eEvalTeamMate"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sPC3_Action"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sPC3_Comment"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55c97de2323137bc08001bbe"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3cfba6631369c09000fb8"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Blight"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isBlight"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "Blight chuckles his hollow laugh.  It echos softly down the hallway."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"Lets just fry all the fraggers.   No questions, no qualms, no quarter, and no mercy.\" He suggests, shrugging.\n\n\"They\'d do the same to us, and you know it.  Better if we hit them first!\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3b8d66631369c09000de0"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.ElJefe"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isElJefe"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "El Jefe\'s drone buzzes around happily next to him."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"Gangs are bad news for this area.\"  He mutters\n\n\"A lot of good people are suffering under them in the vacumn left by the previous doghouse guardians.   We owe it to them to clear up this mess.\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcf56631369c09000dfb"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Gunner"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isGunner"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "While adjusting the carry strap on her gun, she looks at you."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"I\'ve had it with these fraggin\' gangers thinking this neighborhood is open season.\"  She snarls.\n\n\"Only way these fraggers get out in my opinion is in a bag.\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcf86631369c09000dfc"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Luna"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isLuna"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "She takes a practice swing with her axe... An obviously smooth and well practiced action."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"Normally I\'d say lets work out a deal, but these gangers are different.   They attacked a non crucial civilian structure without any defenses.\"\n\n\"It\'s your call, $(story.str_RunnerName).  I\'ll follow your lead.\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfb6631369c09000dfd"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Nebel"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isNebel"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "Nebel adjust her collar, and wipes an invisible speck of dust off of her shoulder."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"As long as this doesn\'t take too long, I don\'t care what happens to the gang.\" She says, shrugging.\n\n\"I just don\'t buy the timing. It\'s too convient.  This happens right after you pull in?\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfb6631369c09000dfe"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Padre"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isPadre"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "Padre looks around the deserted lobby earnestly."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"These people need our help, regardless of their ability to pay.   If nothing else, for the good of the neighborhood.  Lord knows we could use a little good will in our back pockets.   That superstar hiding in your house isn\'t exactly hard to spot.\"\n\n\"People will come looking.  Endearing ourselves to the neighborhood may buy us a bit of extra privacy.\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfb6631369c09000dff"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Shiver"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isShiver"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "Shivers head bounces around with an odd bird-like jerky quality as he surveys the lobby."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"Makes no difference to me, $(story.str_RunnerName).    Find me a target, and get out of my line of fire.\"   He whirls around at some imaginary sound.\n\n\"Although, I did stay at a bed and breakfast like this once.   Wouldn\'t recommend it though.\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfd6631369c09000e00"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.SilverArrow"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isSilverArrow"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "Arrow\'s infectious ear-to-ear grin is undampened by the slummy hotel."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"Well chummer... better get to it.\"  He says cheerfully.\n\n\"It\'s not like these people are going to free themselves from the hostile infestation.   Maybe we\'ll meet some interesting people?   Always nice to make good with the neighbors, eh Chummer?\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfd6631369c09000e01"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Sucio"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEvalTeamMate"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Nearest Tagged Actor to Actor"
+              args {
+                call_value {
+                  functionName: "Tag From String"
+                  args {
+                    call_value {
+                      functionName: "Append (string)"
+                      args {
+                        call_value {
+                          functionName: "Convert (int) to (string)"
+                          args {
+                            call_value {
+                              functionName: "Get Variable (int)"
+                              args {
+                                string_value: "iPC_Slot"
+                              }
+                            }
+                          }
+                        }
+                      }
+                      args {
+                        string_value: "isTeam"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (Player)"
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isSucio"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sAction"
+          }
+        }
+      }
+      args {
+        string_value: "The glow of whatever latest filth he\'s watching lights up his face in a ghoulish way."
+      }
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sComment"
+          }
+        }
+      }
+      args {
+        string_value: "\"Waiting on you, boss.   Lets get this done.   Some of us have social lives we\'d like to get back to.\"   He turns off, and pockets the commlink, with it\'s customary greasy smoke cloud lingering.\n\n\"Cram ain\'t gonna snort itself, chief.\""
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfd6631369c09000e02"
   }
   elseActions {
   }
@@ -22763,6 +24322,78 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sPC1_Action"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sPC1_Comment"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sPC2_Action"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sPC2_Comment"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sPC3_Action"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sPC3_Comment"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sAction"
+    typeName: "string"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sComment"
+    typeName: "string"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iPC_Slot"
+    typeName: "int"
+  }
+}
 mapEvents: "eChangeFloors"
 mapEvents: "eBoom!"
 mapEvents: "eBridgeFall"
@@ -22779,6 +24410,8 @@ mapEvents: "eKaylaExit"
 mapEvents: "b1.FirstCombatComplete"
 mapEvents: "rHarley.Random.Speech"
 mapEvents: "eSocialSuccess"
+mapEvents: "eWhoisTeam"
+mapEvents: "eEvalTeamMate"
 senseTags: "BossFight"
 senseTags: "Socialized"
 senseTags: "GFloorExit"
@@ -22786,6 +24419,7 @@ senseTags: "2FloorExit"
 senseTags: "3FloorExit"
 senseTags: "4FloorExit"
 senseTags: "isElJefe"
+senseTags: "isCurrentTeamMate"
 goals {
   name: "Save Civilians"
   type: GoalType_Primary
