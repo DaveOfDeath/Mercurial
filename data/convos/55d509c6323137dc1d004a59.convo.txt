@@ -7,12 +7,38 @@ nodes {
     id: "55d509cf323137dc1d004a5f"
   }
   index: 0
-  text: "Looks like the Cutters are busy putting together some kind of a dirty bomb. There\'s a bag of C4 with a detonator attached next to a corpse who\'s missing most of his face. The rest of the body... the clothes, the proportions, match that of Gabriel. You see a makeshift bridge cobbled together out of plasteel scrap and plywood stretching the span to the next slum. The Cutters must have used this bridge to infiltrate the Coronot Hotel."
+  text: "You spot some activity and hear raucous voices coming from across the rooftop. Looks like the Cutters are busy putting together some kind of a dirty bomb. There\'s a bag of C4 with a detonator attached next to a corpse who\'s missing most of his face. The rest of the body... the clothes, the proportions, match that of Gabriel. You see a makeshift bridge cobbled together out of plasteel scrap and plywood stretching the span to the next slum. The Cutters must have used this bridge to infiltrate the Coronot Hotel."
   branches {
     responseText: ""
     nextNodeIndex: 1
   }
   nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Clear Camera Points of Interest"
+    }
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55665655663136e40f00542e"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+    }
+  }
 }
 nodes {
   idRef {
@@ -28,10 +54,432 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55d50d38323137dc1d004ae3"
+    id: "55d5e53b3231377019002f22"
   }
   index: 2
-  text: "Your commlink comes to life. An abnormally charismatic troll "
+  text: "{{GM}}No sooner do you make this observation than from behind a piece of infrastructure, a drone makes itself known. The thing looks ramshackle and held together by stitches and a prayer. It looks like it might explode at the slightest disturbance. The thing is adorned with Cutter graffiti and the stains of what smells like spilled beer. It immediately belts out a message in a monotone, robotic voice.{{/GM}}\n\nWARNING!! WARNING!! INTRUDER ALERT!! AGGRESSIVE NEGOTIATIONS INITIATED!!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55d5106e323137dc1d004af3"
+  }
+  actions {
+    ops {
+      functionName: "Clear Camera Points of Interest"
+    }
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55d5106e323137dc1d004af3"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55d50d38323137dc1d004ae3"
+  }
+  index: 3
+  text: "{{GM}}Your commlink comes to life. An abnormally charismatic trollish face splashes across your interface.{{/GM}}\n\nGuess the welcoming party is nere... I\'m the King of this Slum now, $(l.guy)! GET THEM, boys! I want their balls, or their brains, on a plate! Whichever is bigger!"
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 10
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 5
+        }
+      }
+    }
+    nextNodeIndex: 4
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cc938832313740190014f8"
+    }
+    comment: "if PC0 has Drone Control 5+"
+  }
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "AND"
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 10
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 4
+                }
+              }
+            }
+            args {
+              int_value: 5
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Evaluate Tag for Actor"
+            args {
+              call_value {
+                functionName: "All Actors on Team"
+                args {
+                  call_value {
+                    functionName: "Get Preset Value (string)"
+                    args {
+                      string_value: "FactionList"
+                    }
+                    args {
+                      int_value: 0
+                    }
+                  }
+                }
+                args {
+                  call_value {
+                    functionName: "Get Preset Value (int)"
+                    args {
+                      string_value: "AllOrAny"
+                    }
+                    args {
+                      int_value: 1
+                    }
+                  }
+                }
+                args {
+                  call_value {
+                    functionName: "Get Map Item (SceneDimension)"
+                    args {
+                      string_value: "Default"
+                    }
+                  }
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "HasOrHasNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SenseTagList)"
+                args {
+                  string_value: "isElJefe"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cc94e83231374019001565"
+    }
+    comment: "if El Jefe is in the party"
+  }
+  branches {
+    responseText: ""
+    conditions {
+      ops {
+        functionName: "AND"
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 10
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 4
+                }
+              }
+            }
+            args {
+              int_value: 5
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Evaluate Tag for Actor"
+            args {
+              call_value {
+                functionName: "All Actors on Team"
+                args {
+                  call_value {
+                    functionName: "Get Preset Value (string)"
+                    args {
+                      string_value: "FactionList"
+                    }
+                    args {
+                      int_value: 0
+                    }
+                  }
+                }
+                args {
+                  call_value {
+                    functionName: "Get Preset Value (int)"
+                    args {
+                      string_value: "AllOrAny"
+                    }
+                    args {
+                      int_value: 0
+                    }
+                  }
+                }
+                args {
+                  call_value {
+                    functionName: "Get Map Item (SceneDimension)"
+                    args {
+                      string_value: "Default"
+                    }
+                  }
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "HasOrHasNot"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SenseTagList)"
+                args {
+                  string_value: "isElJefe"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 6
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55cc94eb3231374019001566"
+    }
+    comment: "if PC0 does not have Drone Control 5+"
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55665655663136e40f00542e"
+  }
+  actions {
+    ops {
+      functionName: "Clear Camera Points of Interest"
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55cc9677323137401900163d"
+  }
+  index: 4
+  text: "Fortunately, though, you\'ve been around the \'plex enough to know how these models tick. You send a mental command to your control rig to perform a hostile takeover of the drone\'s neural net. It\'s going to take a few seconds for your \'ware to sling the proper code, though. It might be better to stay out of each until your rig works its magic.\n\n{{GM}}You flip down your rigger goggles and start gesturing, manipulating an AR interface only you can see.{{/GM}}"
+  branches {
+    responseText: "Cover me team, while I take this contraption over."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bPC0Rigs"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55cc96b6323137401900163f"
+  }
+  index: 5
+  text: "Scan this, $(l.name). I used to freelance for the Cutters. I know these models. Sloppy engineering and questionable power sources basically make things into flying bombs. You don\'t wanna be near that thing when it blows up. Do yourselves a solid and stay away from it while I work my magic.\n\n{{GM}}El Jefe flips down his rigger goggles and starts gesturing, manipulating an AR interface only he can see.{{/GM}}"
+  nodeType: ConversationNodeType_Simple
+  sourceWithTagInScene: "isElJefe"
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bElJefeRigs"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55cc97173231374019001641"
+  }
+  index: 6
+  text: "As the hulking mass of metal lurches towards you, guns popping out of its chassis, you glimpse a bit of its exposed innards. Looks like it\'s already catching fire, and it hasn\'t even taken a hit yet. You might want to be out of its way whenever it decides to blow."
   nodeType: ConversationNodeType_GM_Voice
 }
 roots {
