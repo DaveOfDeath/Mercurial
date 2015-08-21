@@ -732,17 +732,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eTurretMatrixPos"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -12288,8 +12277,103 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Evaluate If Actor Has Item"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "Berlin_BuMoNABasic"
+          }
+        }
+      }
+    }
   }
   actions {
+    ops {
+      functionName: "Detain Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "BossFight"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DetainMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
     ops {
       functionName: "Order Actor to Face Point"
       args {
@@ -12440,6 +12524,52 @@ triggers {
       }
     }
     ops {
+      functionName: "Order Actor to Hunt And Destroy (Team)"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isMook"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Order Actor to Protect (Prop)"
       args {
         call_value {
@@ -12497,52 +12627,6 @@ triggers {
             string_value: "Default"
           }
         }
-      }
-    }
-    ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55d5106e323137dc1d004af3"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: "WARNING!! WARNING!! INTRUDER ALERT!! AGGRESSIVE NEGOTIATIONS INITIATED!!"
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0
       }
     }
     ops {
@@ -13184,7 +13268,7 @@ triggers {
         string_value: "Hack"
       }
       args {
-        string_value: "Hack Sequence Initiated"
+        string_value: "Drone Takeover Initiated"
       }
       args {
         call_value {
@@ -15016,370 +15100,6 @@ triggers {
   elseActions {
   }
   is_oneshot: false
-}
-triggers {
-  name: "Matrix.Turret.Control.Pos.01"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eTurretMatrixPos"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "iRandom"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c32323137e40e00114b"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -80
-          }
-          args {
-            float_value: 253
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c38323137e40e00114c"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -79
-          }
-          args {
-            float_value: 254
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55d63b64323137e40e001146"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "Matrix.Turret.Control.Pos.02"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eTurretMatrixPos"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "iRandom"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 2
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c32323137e40e00114b"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -68
-          }
-          args {
-            float_value: 241
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c38323137e40e00114c"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -67
-          }
-          args {
-            float_value: 242
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55d63c8c323137e40e00114f"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "Matrix.Turret.Control.Pos.03"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eTurretMatrixPos"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "iRandom"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c32323137e40e00114b"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -80
-          }
-          args {
-            float_value: 229
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c38323137e40e00114c"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -79
-          }
-          args {
-            float_value: 230
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55d63c8e323137e40e001150"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: "Matrix.Turret.Control.Pos.04"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eTurretMatrixPos"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Variable (int)"
-          args {
-            string_value: "iRandom"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 4
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c32323137e40e00114b"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -92
-          }
-          args {
-            float_value: 241
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "55d63c38323137e40e00114c"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: -91
-          }
-          args {
-            float_value: 242
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55d63c8f323137e40e001151"
-  }
-  elseActions {
-  }
-  is_oneshot: true
 }
 triggers {
   name: " "
@@ -20881,7 +20601,12 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Get Actor\'s Persona"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
         }
       }
       args {
@@ -21005,6 +20730,73 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "IC.01.DED"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "IC01"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "DeadIC01"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d663e532313798240039d5"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: "Turret.Power.Hacked"
@@ -21213,6 +21005,73 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "IC.02.DED"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "IC02"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "DeadIC02"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d6645e32313798240039d6"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "Turret.CPU.Hacked"
   events {
     ops {
@@ -21286,6 +21145,38 @@ triggers {
     }
   }
   actions {
+    ops {
+      functionName: "Detain Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isRoofTurret"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Nothing Selected"
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DetainMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
     ops {
       functionName: "Set Hack Status On Matrix Node Object"
       args {
@@ -21409,34 +21300,6 @@ triggers {
         float_value: 0
       }
     }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "decker"
-          }
-          args {
-            string_value: "Matrix_NodeHackSuccess"
-          }
-        }
-      }
-      args {
-        float_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -21445,6 +21308,73 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "IC.03.DED"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Target Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "IC03"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add To Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "DeadIC03"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d6648432313798240039d7"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: "Turret.Target.Hacked"
@@ -21689,7 +21619,7 @@ triggers {
         }
       }
       args {
-        string_value: "FIRE THE LASER!!... erm... TURRETS!!"
+        string_value: "Ha! This is gonna be awesome."
       }
       args {
         float_value: 0
@@ -21754,34 +21684,6 @@ triggers {
       }
       args {
         float_value: 3
-      }
-    }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "decker"
-          }
-          args {
-            string_value: "Matrix_NodeHackSuccess"
-          }
-        }
-      }
-      args {
-        float_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
       }
     }
   }
@@ -28491,7 +28393,7 @@ characters {
     interactionRadius: 1
     dummyInteraciton {
     }
-    interaction_info_text: ""
+    interaction_info_text: "Security Turret"
   }
   lod: 0
   character_instance {
@@ -28500,6 +28402,7 @@ characters {
     equipment_sheet_id: "Turret_Lv1_Burst_Gear"
     character_mod {
       stats {
+        ap: 1
         morale: 0
         discipline: 0
         awareness: 0
@@ -28510,7 +28413,7 @@ characters {
         vision_peripheral_distance: 2
         vision_cone_distance: 18
         vision_cone_angle: 90
-        is_fearless: 0
+        is_fearless: 1
       }
       skills {
       }
@@ -28548,15 +28451,16 @@ characters {
     interactionRadius: 1
     dummyInteraciton {
     }
-    interaction_info_text: ""
+    interaction_info_text: "Security Turret"
   }
   lod: 0
   character_instance {
-    prefab_name: "Objects/AutoTurret"
+    prefab_name: "Seattle:Objects/AutoTurret"
     character_sheet_id: "Turret_Lv1"
     equipment_sheet_id: "Turret_Lv1_Burst_Gear"
     character_mod {
       stats {
+        ap: 1
         morale: 0
         discipline: 0
         awareness: 0
@@ -28567,13 +28471,15 @@ characters {
         vision_peripheral_distance: 2
         vision_cone_distance: 18
         vision_cone_angle: 90
-        is_fearless: 0
+        is_fearless: 1
       }
       skills {
       }
       specializations {
       }
       archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
     }
     team_id: "Civilians"
     char_name: "Auto Turret 03"
@@ -28582,12 +28488,13 @@ characters {
     portrait {
       filename: ""
     }
+    karma: 41
   }
 }
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -31
+    x: -26
     y: 0
     z: 131
   }
@@ -28602,15 +28509,16 @@ characters {
     interactionRadius: 1
     dummyInteraciton {
     }
-    interaction_info_text: ""
+    interaction_info_text: "Security Turret"
   }
   lod: 0
   character_instance {
-    prefab_name: "Objects/AutoTurret"
+    prefab_name: "Seattle:Objects/AutoTurret"
     character_sheet_id: "Turret_Lv1"
     equipment_sheet_id: "Turret_Lv1_Burst_Gear"
     character_mod {
       stats {
+        ap: 1
         morale: 0
         discipline: 0
         awareness: 0
@@ -28621,7 +28529,7 @@ characters {
         vision_peripheral_distance: 2
         vision_cone_distance: 18
         vision_cone_angle: 90
-        is_fearless: 0
+        is_fearless: 1
       }
       skills {
       }
@@ -28632,12 +28540,13 @@ characters {
       }
     }
     team_id: "Civilians"
-    char_name: "Auto Turret 02"
+    char_name: "Auto Turret 04"
     GeneralTags: "isRoofTurret"
     pc_spawn_number: -1
     portrait {
       filename: ""
     }
+    karma: 41
   }
 }
 characters {
@@ -28670,7 +28579,7 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
   }
 }
 characters {
@@ -28688,12 +28597,27 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Matrix/MatrixICE_white_range"
+    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
     character_sheet_id: "IC_Lv1_White_Ranged"
     equipment_sheet_id: "IC White Ranged Lv1 Gear"
     character_mod {
+      stats {
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+      }
+      skills {
+      }
+      specializations {
+      }
       archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
+      vulnerabilities {
+      }
     }
     team_id: "Civilians"
     char_name: "White IC"
@@ -28704,15 +28628,16 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
+    karma: 29
   }
 }
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -80
+    x: -83
     y: 0
-    z: 172
+    z: 170
   }
   orientation: ORIENTATION_S
   GeneralTags: "isIC"
@@ -28738,41 +28663,7 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
-  }
-}
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: -81
-    y: 0
-    z: 175
-  }
-  orientation: ORIENTATION_S
-  GeneralTags: "isIC"
-  GeneralTags: "IC02"
-  idRef {
-    id: "55d641c3323137e40e001169"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Matrix/SpiritESPShield"
-    character_sheet_id: "IC_Lv1_White_Ranged"
-    equipment_sheet_id: "IC White Support Lv1 Gear"
-    character_mod {
-      archetypeName: "Non-Combatant"
-      attitude: AttitudeAggressive
-    }
-    team_id: "Civilians"
-    char_name: "White Sentry IC"
-    GeneralTags: "isIC"
-    GeneralTags: "IC02"
-    pc_spawn_number: -1
-    spawn_type: SpawnType_Matrix
-    portrait {
-      filename: ""
-    }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
   }
 }
 characters {
@@ -28820,7 +28711,7 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
   }
 }
 characters {
@@ -28854,13 +28745,13 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
   }
 }
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -70
+    x: -71
     y: 0
     z: 242
   }
@@ -28888,7 +28779,7 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
   }
 }
 characters {
@@ -28896,7 +28787,7 @@ characters {
   gridPoint {
     x: -79
     y: 0
-    z: 251
+    z: 250
   }
   orientation: ORIENTATION_W
   GeneralTags: "isIC"
@@ -28922,15 +28813,15 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
   }
 }
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: -87
+    x: -86
     y: 0
-    z: 242
+    z: 243
   }
   orientation: ORIENTATION_S
   GeneralTags: "isIC"
@@ -28956,7 +28847,475 @@ characters {
     portrait {
       filename: ""
     }
-    dimension_name: "Matrix"
+    dimension_name: "Default"
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -36
+    y: 0
+    z: 131
+  }
+  orientation: ORIENTATION_E
+  GeneralTags: "isRoofTurret"
+  displayName: "4"
+  idRef {
+    id: "55d6600932313798240039cd"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: "Security Turret"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Objects/AutoTurret"
+    character_sheet_id: "Turret_Lv1"
+    equipment_sheet_id: "Turret_Lv1_Burst_Gear"
+    character_mod {
+      stats {
+        ap: 1
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 2
+        vision_cone_distance: 18
+        vision_cone_angle: 90
+        is_fearless: 1
+      }
+      skills {
+      }
+      specializations {
+      }
+      archetypeName: "Non-Combatant"
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Auto Turret 02"
+    GeneralTags: "isRoofTurret"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 41
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -24
+    y: 0
+    z: 135
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isCutter"
+  GeneralTags: "BossFight"
+  GeneralTags: "isMook"
+  displayName: "Ganger"
+  idRef {
+    id: "55d6602532313798240039ce"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Gangers/HumanFemaleGanger_Cutter"
+    character_sheet_id: "Lonestar_Lv2_Human_Mage"
+    equipment_sheet_id: "Lonestar_Lv2_Mage_Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Cutter Mage"
+    GeneralTags: "isCutter"
+    GeneralTags: "BossFight"
+    GeneralTags: "isMook"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 43
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -21
+    y: 0
+    z: 138
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isCutter"
+  GeneralTags: "BossFight"
+  GeneralTags: "isMook"
+  displayName: "Ganger"
+  idRef {
+    id: "55d6603732313798240039cf"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Gangers/HumanMaleGanger_Cutter"
+    character_sheet_id: "Lonestar_Lv2_Human_Pistol"
+    equipment_sheet_id: "Lonestar_Lv2_Pistol_Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Cutter Soldier"
+    GeneralTags: "isCutter"
+    GeneralTags: "BossFight"
+    GeneralTags: "isMook"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 37
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -37
+    y: 0
+    z: 135
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isCutter"
+  GeneralTags: "BossFight"
+  GeneralTags: "isMook"
+  displayName: "Ganger"
+  idRef {
+    id: "55d6604c32313798240039d0"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Gangers/TrollMaleGanger_Halloweener"
+    character_sheet_id: "Errant_Lv2_Elf_Shaman"
+    equipment_sheet_id: "Errant_Lv2_Shaman"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Cutter Shaman"
+    GeneralTags: "isCutter"
+    GeneralTags: "BossFight"
+    GeneralTags: "isMook"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 58
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -39
+    y: 0
+    z: 137
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isCutter"
+  GeneralTags: "BossFight"
+  GeneralTags: "isMook"
+  displayName: "Ganger"
+  idRef {
+    id: "55d6604c32313798240039d1"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Gangers/HumanMaleGanger_Cutter"
+    character_sheet_id: "Lonestar_Lv2_Human_Pistol"
+    equipment_sheet_id: "Lonestar_Lv2_Pistol_Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Hunt And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Civilians"
+    char_name: "Cutter Soldier"
+    GeneralTags: "isCutter"
+    GeneralTags: "BossFight"
+    GeneralTags: "isMook"
+    pc_spawn_number: -1
+    portrait {
+      filename: ""
+    }
+    karma: 37
+    has_fist: false
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -85
+    y: 0
+    z: 175
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isIC"
+  GeneralTags: "IC02"
+  idRef {
+    id: "55d6696f32313798240039e0"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Matrix/MatrixICE_white_range"
+    character_sheet_id: "IC_Lv1_White_Ranged"
+    equipment_sheet_id: "IC White Ranged Lv1 Gear"
+    character_mod {
+      archetypeName: "Non-Combatant"
+      attitude: AttitudeAggressive
+    }
+    team_id: "Civilians"
+    char_name: "White IC"
+    GeneralTags: "isIC"
+    GeneralTags: "IC02"
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: ""
+    }
+    dimension_name: "Default"
   }
 }
 variables {
@@ -29324,6 +29683,30 @@ variables {
   variableref_value {
     scope: TsVariableScope_Scene
     name: "HackSequence"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "DeadIC01"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "DeadIC02"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "DeadIC03"
     typeName: "int"
   }
 }
