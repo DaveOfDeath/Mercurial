@@ -1,0 +1,205 @@
+idRef {
+  id: "55e506da323137282000512a"
+}
+ui_name: "Hotel - 4Floor - Gabe Deck"
+nodes {
+  idRef {
+    id: "55e506ee3231372820005130"
+  }
+  index: 0
+  text: "This looks like a fairly average gaming deck. There\'s a name scrawled on the back corner with what looks like crayon.\n\nGABRIEL\n\nIt looks like the E is backwards."
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55e5074f3231372820005133"
+  }
+  index: 1
+  text: "The deck\'s Matrix connection was severed, and tamper marks around the casing match those of some crude tools nearby. The damage would probably render it useless for resale. You surmise that the Cutters were attempting to make off with it but got spooked before they could finish the job.\n\nThe vidscreen displays the login screen for Gabriel\'s Neil the Ork Barbarian accounts page."
+  branches {
+    responseText: ""
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55e507e7323137282000514b"
+  }
+  index: 2
+  text: "{{GM}}ENTER USERNAME{{/GM}}"
+  branches {
+    responseText: "Gabriel"
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_InputKeyboard
+  inputMaxLength: 12
+}
+nodes {
+  idRef {
+    id: "55e5082c323137282000518d"
+  }
+  index: 3
+  text: "{{GM}}ENTER PASSWORD{{/GM}}"
+  branches {
+    responseText: "pWnzRRRz!"
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55e508703231372820005190"
+  }
+  index: 4
+  text: "You\'re logged into Gabriel\'s account page. Looks like he\'s playing a female Elf Hunter. Figures.\n\nSince there\'s no Matrix connection, there\'s not much you can do here except reconfigure his character\'s outfit and hairstyle."
+  branches {
+    responseText: "{{CC}}Decking - 4{{/CC}} Take a closer look at the account settings."
+    conditions {
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 5
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{GM}}Log Out{{/GM}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Remove Screen Label"
+      args {
+        string_value: "GabePass"
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55e5097e3231372820005194"
+  }
+  index: 5
+  text: "Hmmm... it seems the items in the character\'s inventory have been spoofed. They appear to be poorly encrypted Matrix files. You run a quick cleaning app, and the encryption falls away. You find yourself looking at detailed floor plans of the Coronot Hotel, a plasteel explosives recipe, chat logs with Cutters node timestamps, and a forged accident insurance policy with the manager\'s digital signature, presumably faked."
+  branches {
+    responseText: ""
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55e50a4b3231372820005197"
+  }
+  index: 6
+  text: "Looking more closely at the chat logs, it seems that Gabriel was meeting Cutters agents on one of the MMO\'s game servers. There seem to be detailed discussions relating to hiring the Cutters to blow up the building in exchange for a lump sum of certified cred. It seems towards the end of the exchange, the Cutters demanded more... a lot more. Gabriel refused. The chat cuts off with the Cutter characters vowing \"aggressive recoups\" of their losses... at the expense of the Coronot and its residents."
+  branches {
+    responseText: ""
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55e50c5c323137282000529a"
+  }
+  index: 7
+  text: "Seems this Gabriel character\'s been busy. Real busy."
+  nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bMysterySolved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55e50da932313728200052d9"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  nextNodeIndex: 0
+}

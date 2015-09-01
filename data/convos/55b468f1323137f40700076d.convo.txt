@@ -7,7 +7,7 @@ nodes {
     id: "55b50d413231370016004e9a"
   }
   index: 0
-  text: "You have the suture kit!"
+  text: "You have the suture kit!\n\n{{GM}}Tammy lunges forward, grabbing the kit from your hand. She begins mumbling to herself out loud; something vaguely resembling training procedures. Her fingers deftly thread a large needle, and she begins closing the unconscious elf\'s wound.{{/GM}}"
   branches {
     responseText: ""
     nextNodeIndex: 1
@@ -19,7 +19,7 @@ nodes {
     id: "55b47019323137f4070007bb"
   }
   index: 1
-  text: "We saved him!"
+  text: "We saved him! Thank you so much! Nathaniel, can you hear me? We gotta get out of here now, before the Cutters use whatever device they\'re assembling up on the roof. Can you walk?\n\n{{GM}}Nathaniel says nothing, though a moan escapes his lips. he slowly rises to a sitting position, and then weakly to his feet with the help of his comrade.{{/GM}}"
   nodeType: ConversationNodeType_Simple
   actions {
     ops {
@@ -65,7 +65,7 @@ nodes {
     id: "55b468f8323137f407000773"
   }
   index: 2
-  text: "Help! Need a suture kit!"
+  text: "{{GM}}The woman\'s got a DocWagon trainee uniform on. Her name tag confirms it - a local student, probably doing her clinicals. You can just make out her name through the blood spatter: \"TAMMY\". Before her on the ground lies an elf - likely her supervisor. His tag is an AR tag; the hologram displays clearly outside of his armor in digital text. \"NATHANIEL\".\n\nHe\'s taken a couple of bullets. No organs hit, but he\'s bleeding heavily from a torn leg artery. Tammy looks up at you with fear in her eyes.{{/GM}}\n\nHelp! Need a suture kit! He\'s bleeding out!"
   branches {
     responseText: ""
     nextNodeIndex: 3
@@ -93,9 +93,9 @@ nodes {
     id: "55b55787323137901b000783"
   }
   index: 3
-  text: "I sent your commlink a handshake request so you\'ll know if Nathaniel... if he... if he doesn\'t make it. You\'ll be able to tell how I\'m doing, too, in case those Cutters come back...\n\nHurry! He\'s only got about a minute to live, tops!"
+  text: "{{GM}}Tammy looks down at Nathaniel in terror. Clearly you can see that there\'s something more to these two than a simple student-teacher relationship.{{/GM}}\n\nI sent your commlink a handshake request so you\'ll know if Nathaniel... if he... if he doesn\'t make it. You\'ll be able to tell how I\'m doing, too, in case those Cutters come back...\n\nHurry! He\'s only got about a minute to live, tops!"
   branches {
-    responseText: "I know Biotech!"
+    responseText: "{{CC}}Biotech{{/CC} I did some time with CrashCart for a while. I think I can save him."
     conditions {
       ops {
         functionName: "AND"
@@ -218,7 +218,76 @@ nodes {
     comment: "Biotech"
   }
   branches {
-    responseText: "Okay, I\'ll be right back."
+    responseText: "Here\'s the suture kit. Hurry up and get out of here before those Cutters come back."
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_Hotel_Suture_Kit"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55b47000323137f4070007b9"
+    }
+    comment: "Has Suture Kit"
+  }
+  branches {
+    responseText: "I\'m on it. Try to staunch the bleeding until I get back."
     conditions {
       ops {
         functionName: "AND"
@@ -361,75 +430,6 @@ nodes {
     }
     comment: "Non-Biotech"
   }
-  branches {
-    responseText: "Here\'s the suture kit."
-    conditions {
-      ops {
-        functionName: "Evaluate If Actor Has Item"
-        args {
-          call_value {
-            functionName: "All Actors on Team"
-            args {
-              call_value {
-                functionName: "Get Preset Value (string)"
-                args {
-                  string_value: "FactionList"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "AllOrAny"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SceneDimension)"
-                args {
-                  string_value: "Default"
-                }
-              }
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "HasOrHasNot"
-            }
-            args {
-              int_value: 1
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (Item)"
-            args {
-              string_value: "item_Hotel_Suture_Kit"
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 5
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55b47000323137f4070007b9"
-    }
-    comment: "Has Suture Kit"
-  }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
@@ -437,7 +437,7 @@ nodes {
     id: "55b48395323137f407000933"
   }
   index: 4
-  text: "Use Biotech"
+  text: "{{GM}}Reaching into the emergency pocket of your jacket, you produce a small packet of powdered chemical. You rip it open with your teeth, dousing the wound with the white substance. Next to Tammy is a water canteen. You grab it and sprinkle water on the substance. The bleeding abruptly stops as the substance begins to harden into a kind of tough polymer. A painful hissing sound ensues, waking the elf up with a short scream of agony.{{/GM}}"
   branches {
     responseText: ""
     nextNodeIndex: 1
@@ -537,7 +537,7 @@ nodes {
     id: "55b50cfe3231370016004e75"
   }
   index: 5
-  text: "You have the suture kit!"
+  text: "You have the suture kit!\n\n{{GM}}Tammy lunges forward, grabbing the kit from your hand. She begins mumbling to herself out loud; something vaguely resembling training procedures. Her fingers deftly thread a large needle, and she begins closing the unconscious elf\'s wound.{{/GM}}"
   branches {
     responseText: ""
     nextNodeIndex: 1
