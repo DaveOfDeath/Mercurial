@@ -8859,6 +8859,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55cb09a7663136980b0041b0"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Add Actor Karma"
       args {
         call_value {
@@ -8880,26 +8902,7 @@ triggers {
       }
     }
     ops {
-      functionName: "Enable/Disable Trigger"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "EnableOrDisable"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Trigger)"
-          args {
-            string_value: "55cb09a7663136980b0041b0"
-          }
-        }
-      }
+      functionName: "Autosave Game"
     }
   }
   isActive: true
@@ -8950,9 +8953,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Autosave Game"
-    }
   }
   isActive: true
   idRef {
@@ -8960,7 +8960,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "Backstage.OccupiedRoom"
@@ -11838,12 +11838,12 @@ triggers {
             string_value: "FactionList"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
       args {
-        int_value: 1
+        int_value: 2
       }
       args {
         call_value {
@@ -11863,12 +11863,12 @@ triggers {
             string_value: "FactionList"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
       args {
-        int_value: 2
+        int_value: 1
       }
       args {
         call_value {
@@ -12725,6 +12725,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55787c4f323137040b005130"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Teleport Actor"
       args {
         call_value {
@@ -12796,7 +12818,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Backstage.Interventions"
+  name: "*****Backstage.Interventions*****"
   events {
   }
   conditions {
@@ -14492,68 +14514,6 @@ triggers {
       }
       args {
         float_value: 0
-      }
-    }
-    ops {
-      functionName: "Teleport Actor"
-      args {
-        call_value {
-          functionName: "All Actors With Tag"
-          args {
-            call_value {
-              functionName: "Get Map Item (SenseTagList)"
-              args {
-                string_value: "isBadGuy2"
-              }
-            }
-          }
-          args {
-            call_value {
-              functionName: "Get Preset Value (int)"
-              args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Center of Region"
-          args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "5470264a6665384809001364"
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "FacingDirection"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TeleportMethod"
-          }
-          args {
-            int_value: 0
-          }
-        }
       }
     }
   }
@@ -16904,9 +16864,6 @@ triggers {
   events {
     ops {
       functionName: "On Actor Death"
-    }
-    ops {
-      functionName: "On Actor Downed"
     }
   }
   conditions {
@@ -20095,6 +20052,498 @@ triggers {
   isActive: true
   idRef {
     id: "55891ee53231375c16004e7a"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnItem.ESP_Attacker.TagTriggeringActor"
+  events {
+    ops {
+      functionName: "On Item Used"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "Berlin_ESP Attacker"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "ESP Attacker"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "Attacker"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a2a5423537330c070040e1"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnItem.ESP_Assassin.TagTriggeringActor"
+  events {
+    ops {
+      functionName: "On Item Used"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "Berlin_ESP Assassin"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "ESP Assassin"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "Assassin"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a2a5ed3537330c070040e2"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnItem.ESP_Kamikaze.TagTriggeringActor"
+  events {
+    ops {
+      functionName: "On Item Used"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "Berlin_ESP Kamikaze"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "ESP Kamikaze"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "Kamikaze"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a2a6183537330c070040e3"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "OnItem.ESP_Shield.TagTriggeringActor"
+  events {
+    ops {
+      functionName: "On Item Used"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "Berlin_ESP Shield"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Triggering Item"
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Item ID"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Item)"
+                  args {
+                    string_value: "ESP Shield"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "Shield"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Triggering Actor"
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a2a64d3537330c070040e4"
   }
   elseActions {
   }
@@ -25986,7 +26435,7 @@ characters {
       }
     }
     team_id: "Civilians"
-    char_name: "Sleaze IC"
+    char_name: "IC"
     GeneralTags: "isIC"
     pc_spawn_number: -1
     spawn_type: SpawnType_Normal
@@ -26077,7 +26526,7 @@ characters {
       }
     }
     team_id: "Civilians"
-    char_name: "Blast IC"
+    char_name: "IC"
     GeneralTags: "isIC"
     pc_spawn_number: -1
     spawn_type: SpawnType_Normal
