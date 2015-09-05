@@ -798,6 +798,50 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Region Enabled"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "55a20a1b6631365809003f34"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55a20e546631365809003f3d"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -4128,24 +4172,10 @@ triggers {
   name: "Kyle.AutoDodge"
   events {
     ops {
-      functionName: "On Actor Start Turn"
+      functionName: "On Actor End Turn"
     }
   }
   conditions {
-    ops {
-      functionName: "Evaluate Turn Mode"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TurnBasedOrFreeMove"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
     ops {
       functionName: "Comparison (Actor)"
       args {
@@ -4175,52 +4205,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Apply Condition Status Effect to Actor"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "557cfed1663136e40e004cae"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "StatusCondition"
-          }
-          args {
-            int_value: 30
-          }
-        }
-      }
-      args {
-        string_value: "Delta-Ware Wired Reflexes"
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "BuffDebuffType"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: -1
-      }
-    }
   }
   isActive: true
   idRef {
@@ -4729,7 +4713,7 @@ characters {
         charisma: 2
         intelligence: 0
         willpower: 0
-        essence: 0
+        essence: 1
         magic: -6
         hp: 0
         ap: 0
@@ -4756,16 +4740,16 @@ characters {
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
-        biotech: 0
+        biotech: 2
         dodge: 1
-        etiquette_corporate: 0
+        etiquette_corporate: 1
         etiquette_security: 0
-        etiquette_gang: 0
+        etiquette_gang: 1
         etiquette_socialite: 0
         chi_casting: 0
         etiquette_shadowrunner: 0
         etiquette_street: 0
-        etiquette_academic: 0
+        etiquette_academic: 1
       }
       specializations {
         pistol: 3
@@ -4778,7 +4762,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "gumbo_Soldier"
+      archetypeName: "gumbo_MeleeSoldier"
       attitude: AttitudeBoss
       attackRandom: AttackStyle_RandomAll
       vulnerabilities {
@@ -4791,7 +4775,7 @@ characters {
       }
     }
     equipment {
-      prefab_name: "Berlin_Pi 2 Ares Predator (Errant)"
+      prefab_name: "Kyles Cannon"
     }
     team_id: "Civilians"
     char_name: "Kyle Morgan"
@@ -4800,12 +4784,16 @@ characters {
     hiring_type: HiringType_None
     cyberware_eyes: "Vision Magnification Eyes 2"
     cyberware_jack: "Cerebral Booster"
-    cyberware_body: "Berlin_Suprathyroid (Bioware)"
+    cyberware_body: "Morgan Wired Reflexes"
+    cyberware_left_arm: "Obvious Cyberarm 2"
+    cyberware_right_arm: "Obvious Cyberarm 2"
+    cyberware_left_leg: "Berlin_Hydraulic Jack Mk 2"
+    cyberware_right_leg: "Enhanced Articulation"
     portrait {
       filename: "backer_humanmale_winterhawk_dralastairstone"
     }
     description_bio: "Kyle is one of the world\'s premier assassins. Never heard of him? That\'s just proof of how good he is."
-    karma: 156
+    karma: 159
     hiring_cost_override: 1000
   }
 }
