@@ -981,7 +981,7 @@ nodes {
     id: "55c79a6d6631363811004ef6"
   }
   index: 11
-  text: "...and catches it out of the air.\n\n\"Come Kyle.. It\'s time for you autograph.\""
+  text: "...and catches it out of the air.\n\n\"Kyle, dear. Come a little closer, I want to give you an autograph.\""
   branches {
     responseText: ""
     nextNodeIndex: 12
@@ -1133,7 +1133,7 @@ nodes {
     id: "55c79be46631363811004f3a"
   }
   index: 13
-  text: "She looks at you with glassy eyes, you\'re pretty sure she doesn\'t even see you."
+  text: "She looks at you with glassy eyes, crying in the rain, and you\'re pretty sure she doesn\'t even see you."
   branches {
     responseText: ""
     nextNodeIndex: 14
@@ -1148,7 +1148,7 @@ nodes {
     id: "55c79c156631363811004f41"
   }
   index: 14
-  text: "She\'ll be no help to you, $(story.str_RunnerName)..."
+  text: "\"I\'m sorry to tell you, she\'s been catatonic for the last ten hours. She won\'t be any help to you, $(story.str_RunnerName)...\""
   branches {
     responseText: "Well see about that, Kyle."
     actions {
@@ -1183,7 +1183,61 @@ nodes {
     id: "557cf6673930665401004f6e"
   }
   index: 15
-  text: "Kyle Morgan looks at you, unbelieving.\n\n\"You were this fresh kid, this $(l.man) that no one knew and that no one would trust to do anything.\"\n\n\"Max got lucky when he hired you- but he and Hotada got what they deserved, and now... I think so am I.\"\n\n\"Siwrne dda!\" Kyle shouts, and moves to attack you--"
+  text: "Kyle Morgan looks at you, unbelieving.\n\n\"You were this fresh kid, this $(l.man) that no one knew and that no one would trust to do anything.\""
+  branches {
+    responseText: "I\'m a quick learner."
+    nextNodeIndex: 16
+  }
+  branches {
+    responseText: "I got lucky."
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I brought along the right friends. "
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "I\'ve killed a lot of people to get to you."
+    nextNodeIndex: 16
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55eb3827613131f410006e76"
+  }
+  index: 16
+  text: "\"Max got lucky when he hired you- but he and Hotoda got what they deserved, and now... I think so am I.\""
+  branches {
+    responseText: "It doesn\'t have to be this way."
+    nextNodeIndex: 17
+  }
+  branches {
+    responseText: "No more threats or promises?"
+    nextNodeIndex: 17
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "You could always save me the effort, and kill yourself."
+    nextNodeIndex: 17
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Got any last words?"
+    nextNodeIndex: 17
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55eb385e613131f410006e7d"
+  }
+  index: 17
+  text: "\"I think we both know how this ends, don\'t we.\"\n\nMorgan pauses for a moment, and then grabs a grenade from his bandoleer and shouts \"Siwrne dda!\" as he moves to attack you--"
   nodeType: ConversationNodeType_Simple
 }
 roots {
@@ -1270,6 +1324,23 @@ roots {
         string_value: "Kyle Morgan stands on the edge of the helipad, near the edge of the building. The wind whips his coat and hair around, even soaked as they are with rain. Maria lies on the plascrete nearby, sobbing with her arms wrapped around her. \n\n\"I don\'t suppose\" Kyle shouts into the darkness, apparently seeing you approach, \"that you\'ll consider letting me leave with Maria? The people I work for really REALLY want to get their hands on her and the information in her head.\""
       }
     }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_KyleMorgan"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
   }
   nextNodeIndex: 7
   comment: "Morgan Rooftop (Start Combat)"
@@ -1309,4 +1380,3 @@ roots {
   nextNodeIndex: 15
   comment: "Morgan Rooftop (Finale)"
 }
-

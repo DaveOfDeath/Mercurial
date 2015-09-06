@@ -9,6 +9,71 @@ nodes {
   index: 0
   text: "$(story.str_NPCIntroText)"
   branches {
+    responseText: "I need to know something."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bTalkedToSnout"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout shrugs.  \"You\'ve hit the bottom of the box with me, pal.\" \n\n\"My info is only good new, and I don\'t have anything new to share. \n\n\"Check back with me in a few hours, once things have a chance to develop. Unless, you want to hear about how Maureen slept with her old boyfriend\'s best friend, I could catch you up on all the local gossip.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "551f2dd5663136f413005f51"
+    }
+    auxiliaryLink: true
+    comment: "Snout 1"
+  }
+  branches {
     responseText: "I\'m looking for the Doghouse."
     conditions {
       ops {
@@ -90,36 +155,13 @@ nodes {
           string_value: "Snout peers up at you, as if trying to decide something. \"The Doghouse? You mean Ronnie and Razor\'s place? Sure, for 150\302\245, I can scope you in on the details.\""
         }
       }
-    }
-    nextNodeIndex: 1
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "551f2dd0663136f413005f50"
-    }
-    comment: "Snout Intro (0)"
-  }
-  branches {
-    responseText: "I need to know something."
-    conditions {
       ops {
-        functionName: "Comparison (bool)"
+        functionName: "Set Variable (bool)"
         args {
           call_value {
             functionName: "Get Variable (bool)"
             args {
               string_value: "bool_talkedtoSnout"
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 1
             }
           }
         }
@@ -136,33 +178,13 @@ nodes {
         }
       }
     }
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Snout shrugs.  \"You\'ve hit the bottom of the box with me. My info is only good new, and I don\'t have anything new to share. Check back with me in a few hours, once things have a chance to develop.\n\n\"Unless, you want to hear about how Maureen slept with her old boyfriend\'s best friend, I could catch you up on all that.\""
-        }
-      }
-    }
-    nextNodeIndex: 0
+    nextNodeIndex: 1
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
-      id: "551f2dd5663136f413005f51"
+      id: "551f2dd0663136f413005f50"
     }
-    auxiliaryLink: true
-    comment: "Snout 1"
+    comment: "Snout Intro (0)"
   }
   branches {
     responseText: "What\'s the word on the street, Snout?"
@@ -3449,7 +3471,35 @@ nodes {
     id: "551830db61313194130041b3"
   }
   index: 20
-  text: "Snout sighs, staring into his soybeer. \"Frag it, $(l.name), I was really hoping that those fraggers killed you.  I came to my favorite brothel to buy a few rounds and drown my guilty conscience.\n\n\"I was going to skip town and take my Granny somewhere nice.\""
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Care to tell me about the Dragon Knights?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout looks depressed, and resigned to his coming fate.\n\n\"Dragon knights, huh? That\'s a catchy title. I didn\'t hear none of them mention the dragon, but right after that dragon set fire to the street market, they were there like flies on shit.\"\n\n\"I\'d have called them \'assholes with Aztechnology armor and weapons,\' myself, but I can\'t really be picky.\""
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb7241613131f410007f70"
+    }
+  }
   branches {
     responseText: "Not so lucky. Care to sell me any last secrets?"
     actions {
@@ -3471,7 +3521,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 21
+    nextNodeIndex: 23
   }
   branches {
     responseText: "{{CC}}Start combat{{/CC}}  It ends now."
@@ -3656,16 +3706,425 @@ nodes {
     }
     nextNodeIndex: -1
   }
+  branches {
+    responseText: "{{CC}}Let Snout Go{{/CC}} Your lucky day, Snout. Get lost somewhere."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Beertender_Is_Alive"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "By Lowfyr\'s Golden ASS I WILL!"
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 0
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb8391613131f41000809e"
+    }
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "54bb20f73231371c20002feb"
   }
+  comment: "Death Circuit"
+}
+nodes {
+  idRef {
+    id: "55eb7248613131f410007f72"
+  }
+  index: 21
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "Aztechnology?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout nods eagerly, \"Oh yeah, definitely- they all had the Zorro armor, which is an Aztechnology design, theirs was just blacked out and had the emblems taken off. They were carrying Inciendo assault rifles, which are also Aztechnology exclusive. Their ride: Milspec Tortugas, which... you guessed it.\"\n\n\"If they weren\'t Aztechnology, whoever is outfitting them has a serious fetish.\""
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb7346613131f410007f83"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Tell me about what happened."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\342\200\234I wanted to check on my friends, but everything was on fire, and there was so much smoke. Jim and some others were trying to get water, but there wasn\342\200\231t nearly enough water, and dragon fire don\342\200\231t put out easy.\342\200\235\n\n\342\200\234Suddenly, through all the smoke, there was a scary Aztech fragger grabbing people and asking questions. Somebody pointed me out, and I ran for it, but he grabbed me and slapped me around a little. \n\n\342\200\234You know that I don\342\200\231t like being threatened, but I don\342\200\231t like being dead neither, so I spilled. I told him about you and Maria Mercurial, and how you had split for some better digs. I didn\342\200\231t know that he\342\200\231d drag me along, I thought I was going to die. I didn\342\200\231t have a choice.\342\200\235"
+        }
+      }
+    }
+    nextNodeIndex: 22
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb7e61613131f41000806d"
+    }
+  }
+  branches {
+    responseText: "Tell me about the dragon."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout shrugs, \"What can I tell you about the fragging beast that burned up all of my friends? Not much. It was dark, I wasn\'t expecting to be on DragonWatch2050, and it happened so quick that I didn\'t know anything had happened until it was all over and the dragon circled around a second time.\n\n\"Dark color, maybe blue or purple? Light colored belly. I don\'t know anything more than that, just that it flew off north.\""
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb7346613131f410007f83"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What else can you tell me about them?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Whoever was running the group was off-site. I only heard his voice twice. Once when we pulled into the parking garage, giving the go-ahead on another operation, and when the scary fragger was chasing me down.\""
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb734a613131f410007f84"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "What can you tell me about the big fragger, the one with the tattoos?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout sighs, and says \"His name is Jorge Mixacopotec. Which I know because that British guy called him it when he wouldn\'t call off the search for me.\"\n\nSnout imitates a lilting sing-song accent that sounds vaguely British, \"Mixacopotec, this is your direct superior, giving you an order to stand down and return to base. The runners are damage done, let them go.\""
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb734d613131f410007f85"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Why\'d they spare you?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout lets out a sigh, \"I couldn\'t tell you. I thought it was luck at the time, but with the fire, the attacks, and everything, I think my luck is just all bad.\"\n\n\"That scary fragger was hunting me, sniffing the goddamn air and following my trail with these big hand razors coming out of the ends of his fingers. If it wasn\'t for Morgan calling him off, Big Scary Aztech would probably have my testicles for his collection.\""
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Beertender_Is_Alive"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb73ac613131f410007f89"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Morgan?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Beertender_Is_Alive"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout nods, quiet, \"Yeah, the guy in charge referred to himself as \'Morgan\'. I couldn\'t tell you if that was a last name or first name.\"\n\n\"Whoever he was, he was defintely calling the shots, because Mister Mixtape had to stand down on his orders.\"\n\nSnout breathes out a sigh of relief at the memory, \"I was close enough to see his face, and Mixacopotec wasn\'t happy about the order.\""
+        }
+      }
+    }
+    nextNodeIndex: 21
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb738b613131f410007f88"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Okay, so tell me why this lets you off the hook?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout sighs, looking to the dusty ceiling above him as if searching for God.\n\n\"I don\'t know that it does. Morgan and Mixacopotec, they\'re sharks. I\'m just a little fish. If I\'m lucky, no one else in my entire life will ever pay attention to me.\n\n\"If I\'m unlucky, more fragging drek like this will happen.\""
+        }
+      }
+    }
+    nextNodeIndex: 20
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb7e45613131f41000805c"
+    }
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Dragon Knight"
+}
+nodes {
+  idRef {
+    id: "55eb7fb9613131f41000806f"
+  }
+  index: 22
+  text: "Snout sighs, \"I was sleeping at my grandma\'s place, just off the street market, when the shooting started. Not your average pop-pop of a disagreeing couple, or even the rat-a-tat-tat of a gang dustup, but an Honest to Ghost war.\"\n\n\"I don\'t know who it was over, but it was loud and woke up everyone for a damn klick in every direction.\"\n\n\"I grabbed my vest and got my Granny to the bus stop, when that fragging Dragon flew overhead, burning the entire street market. Can you imagine how crispy I\'d be if I was sitting in my usual spot?\"\n"
+  branches {
+    responseText: ""
+    nextNodeIndex: 21
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
     id: "5518312461313194130041b7"
   }
-  index: 21
+  index: 23
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Probably not."
@@ -3688,7 +4147,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 24
   }
   branches {
     responseText: "Any last words?"
@@ -3707,11 +4166,11 @@ nodes {
           }
         }
         args {
-          string_value: "\"Hold it, man!\" Snout cries, knocking over some glasses on the bar. He glances at the Matron, Elle Would, as if she might back him up, but there\'s no help there.  \"Hold it!  If I get you a lead the fragger who wants you dead, is that worth my life?\n\n\"Maybe about that dragon attack?\""
+          string_value: "\"Hold it, man!\" Snout cries, knocking over some glasses on the bar. He glances at the Matron, Ellie Would, as if she might back him up, but there\'s no help there.  \n\n\"Hold it!  If I get you a lead the fragger who wants you dead, is that worth my life? Definitely worth knowing, and I\'ll stay clear of you from here on out.\""
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 24
     auxiliaryLink: true
   }
   branches {
@@ -3897,6 +4356,55 @@ nodes {
     }
     nextNodeIndex: -1
   }
+  branches {
+    responseText: "{{CC}}Let Snout Go{{/CC}} Your lucky day, Snout. Get lost somewhere."
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "By Lowfyr\'s Golden ASS I WILL!"
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 0
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
   nodeType: ConversationNodeType_Simple
   comment: "Last Talk Loop"
 }
@@ -3904,7 +4412,7 @@ nodes {
   idRef {
     id: "5518321761313194130041bc"
   }
-  index: 22
+  index: 24
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Tell me about the guys who want me dead."
@@ -3927,7 +4435,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 24
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -3952,11 +4460,11 @@ nodes {
           }
         }
         args {
-          string_value: "Snout pales and swallows, clearly very nervous.  \"I don\'t exactly how the dragon figures into it, but when the dragon attacked, I went to check the place out, and the area was swarming with those guys and their soldiers in SUVs.  The big armored ones that are painted that weird black to be invisible to radar.\n\n\"The guys working the scene took orders from the same guy who came to geek you. That\'s why I rolled when they came to see me.  They were serious business, and I\'m just a snitch.\""
+          string_value: "Snout pales and swallows, clearly very nervous.  \"After the dragon attacked, I waited for things to calm down, and then I went to check the place out. The whole fragging are was swarming with those corp soldiers in SUVs.  The big armored ones that are painted that weird black to be invisible to radar.\n\n\"The guys working the scene took orders from the same guy who came to geek you. That\'s why I rolled when they came to see me.  They were serious business, and I\'m just a snitch.\""
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 24
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -3981,11 +4489,11 @@ nodes {
           }
         }
         args {
-          string_value: "Snout clears his throat, unhappy about giving up secrets this valuable. \"I don\'t know much about him.  Scary fragger, covered in scars. Looked at me like he could see right through me, and it wasn\'t until after I swore that I could tell him where you were that he decided that I didn\'t need to die.\n\n\"They dragged me off the street right there, didn\'t give me a chance to call you and warn you.\"  Snout swallows, and you wonder if he\'s telling the truth or not.\n\n\"I was still afraid that they\'d kill me, so I booked it as soon as they were distracted by you.\""
+          string_value: "Snout clears his throat, \"I don\'t know much about him.  Scary fragger, covered in scars. Looked at me like he could see right through me, and it wasn\'t until after I swore that I could tell him where you were that he decided that I didn\'t need to die.\n\n\"They dragged me off the street right there, didn\'t give me a chance to call you and warn you.\"  Snout swallows, and you wonder if he\'s telling the truth or not.\n\n\"I was still afraid that they\'d kill me, or that you would, so I booked it as soon as they were distracted by you.\""
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 24
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -4010,15 +4518,107 @@ nodes {
           }
         }
         args {
-          string_value: "Snout swallows, but you can tell he\'s thinking hard.  \"Most valuable thing I know? Uh, you probably want to know about the Aztechnology soldiers, but the most valuable thing...\" Snout swallows, clearly about to share something he considers a death sentence.\n\n\"New Horizons is owned and operated by the Yakuza. I found out on accident, when one of my buddies was looking into it and got geeked. A couple days later, some greasy yak in a suit showed up, asking questions about him and who his friends were. I sent them to Billy the Chip, just to get them off my back.\n\n\"New Horizons is buying up all of this neighborhood and the Sunnyside area, for some big construction project.\""
+          string_value: "Snout swallows, but you can tell he\'s thinking hard.  \"Most valuable thing I know? Uh, you probably want to know about the Aztechnology soldiers, but the most valuable thing...\" Snout swallows, clearly about to share something he considers a death sentence.\n\n\"New Horizons is owned and operated by the Yakuza. I found out on accident, when one of my buddies was looking into it and got geeked. A couple days later, some greasy yak in a suit showed up, asking questions about him and who his friends were. I sent them to Billy the Chip, just to get them off my back.\n\nSnout stutters, trying to think of anything else. \"Mixacopotec and his goons answer to some fragger named Morgan!\""
+        }
+      }
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Beertender_Is_Alive"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
         }
       }
     }
-    nextNodeIndex: 22
+    nextNodeIndex: 24
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "556194086631360006000f71"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Morgan?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Beertender_Is_Alive"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Snout nods, quiet, \"Yeah, the guy in charge referred to himself as \'Morgan\'. I couldn\'t tell you if that was a last name or first name.\"\n\n\"Whoever he was, he was defintely calling the shots, because Mister Mixtape had to stand down on his orders.\"\n\nSnout breathes out a sigh of relief at the memory, \"I was close enough to see his face, and Mixacopotec wasn\'t happy about the order.\""
+        }
+      }
+    }
+    nextNodeIndex: 24
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb738b613131f410007f88"
     }
     auxiliaryLink: true
   }
@@ -4205,6 +4805,60 @@ nodes {
     }
     nextNodeIndex: -1
   }
+  branches {
+    responseText: "{{CC}}Let Snout Go{{/CC}} Your lucky day, Snout. Get lost somewhere."
+    actions {
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "By Lowfyr\'s Golden ASS I WILL!"
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 5
+        }
+        args {
+          float_value: 0
+        }
+      }
+    }
+    nextNodeIndex: -1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55eb835c613131f41000809a"
+    }
+  }
   nodeType: ConversationNodeType_Simple
   comment: "Info Loop"
 }
@@ -4258,95 +4912,80 @@ roots {
         string_value: "The dirty ork sitting on the plascrete of the sidewalk scratches his nose as you walk up.  When you move to address him, he says, \"Hoi, there.  Whatcha lookin\' for? I can help you score, find anyone or anything.\"\n\nHe pauses for a moment, and then adds, \"I\'m Snout, and I got info for sale.\""
       }
     }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bTalkedToSnout"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
   }
   nextNodeIndex: 0
-  comment: "Snout 1-3"
+  comment: "Snout 0-3"
 }
 roots {
   responseText: ""
   conditions {
     ops {
-      functionName: "Comparison (int)"
+      functionName: "AND"
       args {
         call_value {
-          functionName: "Get Story Variable (int)"
+          functionName: "Comparison (int)"
           args {
-            string_value: "542848a8633464d816001ad5"
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_NPC_Status_Snout"
+              }
+            }
           }
           args {
-            string_value: "int_NPC_Status_Snout"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            int_value: 4
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Comparison (bool)"
           args {
-            string_value: "Comparison Ops"
+            call_value {
+              functionName: "Get Story Variable (bool)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "bool_KnowsAboutMateo"
+              }
+            }
           }
           args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 4
-      }
-    }
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
           }
           args {
-            string_value: "bool_KnowsAboutMateo"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "bool"
+              }
+              args {
+                int_value: 1
+              }
+            }
           }
         }
       }
@@ -4375,8 +5014,50 @@ roots {
         }
       }
     }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_NPCIntroText"
+          }
+        }
+      }
+      args {
+        string_value: "Snout sighs, staring into his soybeer. \"Frag it, $(l.name), I was really hoping that those fraggers killed you.  I came to my favorite brothel to buy a few rounds and drown my guilty conscience.\n\n\"I was going to skip town and take my Granny somewhere nice.\""
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Beertender_Is_Alive"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   nextNodeIndex: 20
+  hideIfUnavailable: true
   comment: "Snout 4 - SunnySide Confrontation"
 }
-
