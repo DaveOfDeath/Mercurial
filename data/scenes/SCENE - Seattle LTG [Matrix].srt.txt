@@ -4949,9 +4949,6 @@ triggers {
 triggers {
   name: "OnTurnEnforcer.NoMatrixFollower.DisableTimer"
   events {
-    ops {
-      functionName: "On Actor Start Turn"
-    }
   }
   conditions {
     ops {
@@ -5110,15 +5107,6 @@ triggers {
 triggers {
   name: "OnJackOut.isLeaderOrFollower.ClearTags"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eCombatEnd"
-      }
-    }
-    ops {
-      functionName: "On Host Jacked Out"
-    }
   }
   conditions {
     ops {
@@ -5292,77 +5280,8 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "eCombatStart.SetbCombatTrue"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eCombatStart"
-      }
-    }
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bInCombat"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bAutosaved"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55a1c622353733201a007d0a"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
   name: "OnTurnStart.FollowerTag.EnableTimer"
   events {
-    ops {
-      functionName: "On Actor Start Turn"
-    }
   }
   conditions {
     ops {
@@ -6246,6 +6165,72 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "eCombatStart.SetbCombatTrue"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCombatStart"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bInCombat"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bAutosaved"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55a1c622353733201a007d0a"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 triggers {
   name: "OnDeath.PC0.ReviveDisable"
@@ -11022,6 +11007,28 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "55a5c4da353733d016004227"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Hack Status On Dummy Matrix Label"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55ec5c46353733f80f001965"
           }
         }
       }
@@ -38100,10 +38107,18 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "OnTurnEnforcer.NoMatrixPC.EnableExit"
+  name: "OnNewCombatRound.NoMatrixPC.EnableExit"
   events {
     ops {
-      functionName: "On Actor Start Turn"
+      functionName: "On New Round"
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Matrix"
+          }
+        }
+      }
     }
   }
   conditions {
@@ -38188,10 +38203,13 @@ triggers {
       }
     }
     ops {
-      functionName: "Comparison (Actor)"
+      functionName: "Comparison (bool)"
       args {
         call_value {
-          functionName: "Triggering Actor"
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bInCombat"
+          }
         }
       }
       args {
@@ -38207,9 +38225,12 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Actor)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "55a1623c353733201a007be5"
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
           }
         }
       }
@@ -50382,6 +50403,7 @@ characters {
   }
   orientation: ORIENTATION_S
   GeneralTags: "isFoleyITIC"
+  GeneralTags: "isDelayed"
   displayName: "white_tarbaby_it_ic"
   idRef {
     id: "55b55deb3537332811005ae1"
@@ -50456,6 +50478,7 @@ characters {
     team_id: "Hostile"
     char_name: "Tarbaby IC"
     GeneralTags: "isFoleyITIC"
+    GeneralTags: "isDelayed"
     patrolRoute: "Doghouse Firewall"
     enabled_at_start: false
     pc_spawn_number: -1
@@ -50480,6 +50503,7 @@ characters {
   orientation: ORIENTATION_S
   GeneralTags: "isRooted"
   GeneralTags: "isFoleyITIC"
+  GeneralTags: "isDelayed"
   displayName: "white_ranged_it_ic1"
   idRef {
     id: "55b55ee53537332811005ae3"
@@ -50554,6 +50578,7 @@ characters {
     char_name: "White IC"
     GeneralTags: "isRooted"
     GeneralTags: "isFoleyITIC"
+    GeneralTags: "isDelayed"
     enabled_at_start: false
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
