@@ -16837,7 +16837,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Region)"
               args {
-                string_value: "55b51f69323137901b00046d"
+                string_value: "55b51f46323137901b00046a"
               }
             }
           }
@@ -28199,6 +28199,28 @@ triggers {
       }
     }
     ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55ecefee353733cc07003ee7"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Activate Actor Spawner By Tag"
       args {
         call_value {
@@ -28256,31 +28278,6 @@ triggers {
             int_value: 0
           }
         }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: 1
       }
       args {
         call_value {
@@ -28596,31 +28593,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -28628,7 +28600,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "Roof.Matrix.02.Exit [OFF]"
@@ -28987,31 +28959,6 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Suspend Team\'s Turn"
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
@@ -29019,7 +28966,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "Roof.Matrix.03.Exit [OFF]"
@@ -29811,6 +29758,9 @@ triggers {
     ops {
       functionName: "On Actor Alive"
     }
+    ops {
+      functionName: "On Actor Start Turn"
+    }
   }
   conditions {
     ops {
@@ -30027,6 +29977,148 @@ triggers {
   elseActions {
   }
   is_oneshot: true
+}
+triggers {
+  name: "OnDeath.100MeatGangersDead.KillMatrix"
+  events {
+    ops {
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "All Actors Within Area"
+          args {
+            call_value {
+              functionName: "Area: Region"
+              args {
+                call_value {
+                  functionName: "Get Map Item (Region)"
+                  args {
+                    string_value: "55d64029323137e40e001165"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55d637f0323137e40e001045"
+          }
+        }
+      }
+    }
+  }
+  isActive: false
+  idRef {
+    id: "55ecefee353733cc07003ee7"
+  }
+  elseActions {
+  }
+  is_oneshot: false
 }
 regions {
   name: "c4thFloor"
@@ -35416,66 +35508,14 @@ characters {
   orientation: ORIENTATION_S
   GeneralTags: "isIC"
   GeneralTags: "IC01"
-  GeneralTags: "isRooted"
   idRef {
     id: "55d64196323137e40e001166"
   }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Matrix/MatrixICE_white_melee"
-    character_sheet_id: "IC_Lv1_White_Ranged"
-    equipment_sheet_id: "IC White Melee Lv1 Gear"
-    character_mod {
-      stats {
-        morale: 0
-        discipline: 0
-        awareness: 0
-        perception: 0
-        authority: 0
-        protect_tether_range: 0
-        move_speed: 0
-      }
-      skills {
-      }
-      specializations {
-      }
-      archetypeName: "Guard - Hunt And Destroy"
-      vulnerabilities {
-      }
-    }
-    team_id: "Gangers"
-    char_name: "White IC"
-    GeneralTags: "isIC"
-    GeneralTags: "IC01"
-    GeneralTags: "isRooted"
-    enabled_at_start: false
-    pc_spawn_number: -1
-    spawn_type: SpawnType_Matrix
-    portrait {
-      filename: ""
-    }
-    dimension_name: "Matrix"
-    karma: 29
-  }
-}
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: -53
-    y: 0
-    z: 221
-  }
-  orientation: ORIENTATION_S
-  GeneralTags: "isIC"
-  GeneralTags: "IC01"
-  idRef {
-    id: "55d6419a323137e40e001167"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
     character_sheet_id: "IC_Lv1_White_Melee"
-    equipment_sheet_id: "IC White Melee Low"
+    equipment_sheet_id: "IC White Melee Lv1 Gear"
     character_mod {
       stats {
         body: 0
@@ -35532,7 +35572,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Hunt And Destroy"
+      archetypeName: "Guard - Seek And Destroy"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -35541,6 +35581,101 @@ characters {
     char_name: "White IC"
     GeneralTags: "isIC"
     GeneralTags: "IC01"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    spawn_type: SpawnType_Matrix
+    portrait {
+      filename: ""
+    }
+    dimension_name: "Matrix"
+    karma: 29
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: -53
+    y: 0
+    z: 221
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isIC"
+  GeneralTags: "IC01"
+  GeneralTags: "isRooted"
+  idRef {
+    id: "55d6419a323137e40e001167"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
+    character_sheet_id: "IC_Lv1_White_Ranged"
+    equipment_sheet_id: "IC White Ranged Lv1 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 0
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: 0
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      vulnerabilities {
+      }
+    }
+    team_id: "Gangers"
+    char_name: "White IC"
+    GeneralTags: "isIC"
+    GeneralTags: "IC01"
+    GeneralTags: "isRooted"
     enabled_at_start: false
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
@@ -35620,9 +35755,9 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Matrix/MatrixICE_white_melee"
+    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
     character_sheet_id: "IC_Lv1_White_Ranged"
-    equipment_sheet_id: "IC White Melee Lv1 Gear"
+    equipment_sheet_id: "IC White Ranged Lv1 Gear"
     character_mod {
       stats {
         morale: 0
@@ -35678,7 +35813,7 @@ characters {
     equipment_sheet_id: "IC White ChargeLaser Lv2 Gear"
     character_mod {
       stats {
-        hp: -125
+        hp: -100
         morale: 0
         discipline: 0
         awareness: 0
@@ -35733,7 +35868,7 @@ characters {
     equipment_sheet_id: "IC White ChargeLaser Lv2 Gear"
     character_mod {
       stats {
-        hp: -125
+        hp: -100
         morale: 0
         discipline: 0
         awareness: 0
@@ -35788,7 +35923,7 @@ characters {
     equipment_sheet_id: "IC White ChargeLaser Lv2 Gear"
     character_mod {
       stats {
-        hp: -125
+        hp: -100
         morale: 0
         discipline: 0
         awareness: 0
@@ -35843,7 +35978,7 @@ characters {
     equipment_sheet_id: "IC White ChargeLaser Lv2 Gear"
     character_mod {
       stats {
-        hp: -125
+        hp: -100
         morale: 0
         discipline: 0
         awareness: 0
@@ -36325,7 +36460,7 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Matrix/MatrixICE_white_range"
+    prefab_name: "Seattle:Matrix/MatrixICE_white_melee"
     character_sheet_id: "IC_Lv1_White_Melee"
     equipment_sheet_id: "IC White Melee Low"
     character_mod {
@@ -36384,15 +36519,16 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Guard - Hunt And Destroy"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
     }
-    team_id: "Civilians"
+    team_id: "Gangers"
     char_name: "White IC"
     GeneralTags: "isIC"
     GeneralTags: "IC02"
+    enabled_at_start: false
     pc_spawn_number: -1
     spawn_type: SpawnType_Matrix
     portrait {
@@ -37673,9 +37809,7 @@ scene_dimensions {
   initial_alarm_state: 0
   turns_per_round: 3
 }
-character_roster {
-}
-show_hiring_screen_on_scene_load: false
+show_hiring_screen_on_scene_load: true
 scene_hiring_prerequisites {
   prereq_description: "Full Roster"
   prereq_conditions {
