@@ -25638,7 +25638,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "SilverAro.BackToWork"
+  name: "SilverAro.BackToWork [OnTeam]"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -25934,16 +25934,33 @@ triggers {
     id: "552daceb663136700c00155c"
   }
   elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "SilverAro.BackToWork [TeamMate]"
+  events {
     ops {
-      functionName: "Change Actor Team"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eve_RunnerRespawn"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "All Actors on Team"
           args {
             call_value {
-              functionName: "Get Map Item (SenseTagList)"
+              functionName: "Get Preset Value (string)"
               args {
-                string_value: "isSilverArrow"
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
               }
             }
           }
@@ -25954,7 +25971,15 @@ triggers {
                 string_value: "AllOrAny"
               }
               args {
-                int_value: 0
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
               }
             }
           }
@@ -25962,34 +25987,87 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Preset Value (string)"
+          functionName: "Get Preset Value (int)"
           args {
-            string_value: "FactionList"
+            string_value: "HasOrHasNot"
           }
           args {
-            int_value: 3
+            int_value: 1
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Map Item (SceneDimension)"
+          functionName: "Get Map Item (SenseTagList)"
           args {
-            string_value: "Default"
+            string_value: "isSilverArrow"
           }
         }
       }
     }
+  }
+  actions {
     ops {
-      functionName: "Teleport Actor"
+      functionName: "Kill Actor"
       args {
         call_value {
-          functionName: "All Actors With Tag"
+          functionName: "All Actors Which Overlap"
           args {
             call_value {
-              functionName: "Get Map Item (SenseTagList)"
+              functionName: "All Actors With Tag"
               args {
-                string_value: "isSilverArrow"
+                call_value {
+                  functionName: "Get Map Item (SenseTagList)"
+                  args {
+                    string_value: "isSilverArrow"
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "AllOrAny"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "All Actors on Team"
+              args {
+                call_value {
+                  functionName: "Get Preset Value (string)"
+                  args {
+                    string_value: "FactionList"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "AllOrAny"
+                  }
+                  args {
+                    int_value: 1
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Map Item (SceneDimension)"
+                  args {
+                    string_value: "Default"
+                  }
+                }
               }
             }
           }
@@ -26008,14 +26086,12 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Current Location of Actor"
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
           }
         }
       }
@@ -26034,7 +26110,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TeleportMethod"
+            string_value: "WithOrWithout"
           }
           args {
             int_value: 0
@@ -26178,43 +26254,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Change Actor Team"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "54b289eb6131317007006115"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Set Animation State Of Actor To Animation Modifier"
       args {
         call_value {
@@ -26261,6 +26300,58 @@ triggers {
         float_value: 5
       }
     }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "54b289eb6131317007006115"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Well, it\'s been fun Chummers.  I\'ll get back to work."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 4
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55edd04c66313650110029c7"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
@@ -29778,10 +29869,10 @@ regions {
 regions {
   name: "Runner_Entrance"
   position {
-    x: 80
-    y: -3
-    width: 3
-    height: 3
+    x: 78
+    y: -6
+    width: 5
+    height: 7
   }
   enabledAtStart: true
   is_camera_region: false
@@ -37834,6 +37925,20 @@ roster_overrides {
   }
   roster_entries {
     reference_id: "MERCURIAL_Crew_Shiver_Lv1"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_SilverArrow_Lv1"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Sucio_Lv1"
     hiring_conditions {
     }
     hiring_cost: -1
