@@ -150,7 +150,7 @@ nodes {
           }
         }
         args {
-          string_value: "You don\'t hear anything from the other side of the door, and then you hear the latino dwarf\'s voice.\n\n\"Don\'t let me tell you how to do your job, but aren\'t you supposed to kill all the bad guys and rescue the dwarf prisoner?\"\n\n\"I kept this locked because: First, I hate those pendejos, and second because I didn\'t want you to confuse me for them; I don\'t know if you have a shoot first and ask questions later policy.\""
+          string_value: "You don\'t hear anything from the other side of the door, and then you hear the latino dwarf\'s voice.\n\"Don\'t let me tell you how to do your job, but aren\'t you supposed to kill all the bad guys and rescue the dwarf prisoner?\"\n\n\"I kept this locked because: First, I hate those pendejos, and second because I didn\'t want you to confuse me for them; I don\'t know if you have a shoot first and ask questions later policy.\""
         }
       }
     }
@@ -208,7 +208,7 @@ nodes {
           }
         }
         args {
-          string_value: "The snort from the other side of the door is muffled, but definite.\n\n\"I don\'t got any friends here, Cabron. I got a boss, Morgan, and I got enemies aplenty, but I don\'t have friends.\""
+          string_value: "The snort from the other side of the door is muffled, but definite.\n\n\"I don\'t got any friends here, Cabron. I got a boss: Morgan, and I got enemies aplenty, but I don\'t have friends.\""
         }
       }
     }
@@ -453,7 +453,7 @@ nodes {
           }
         }
         args {
-          string_value: "Blackstone squares his shoulders, \"Defensive measures, building security, node maintenance, and information control.\"\n\n\"I lock up the base, and keep us out of the news. The rumors I can\'t squash, Morgan or Mixacopotec lead a team against. Everything else, from tracking down interlopers and newshounds, and giving the leads to Morgan.\""
+          string_value: "Blackstone squares his shoulders, \"Defensive measures, building security, node maintenance, and information control.\"\n\n\"I lock up the base, and keep us out of the news. The rumors I can\'t squash, Morgan or Mixacopotec lead a team against. Everything else, from tracking down interlopers and newshounds, and giving those leads to Morgan, that\'s all me.\""
         }
       }
     }
@@ -569,6 +569,7 @@ nodes {
           }
         }
         args {
+          string_value: "Blackstone arches an eyebrow, \"Morgan? Decent enough guy, if you get over the whole \'paid to kill people constantly,\' thing.\"\n\n\"He doesn\'t really have friends, other than Perianwyr, and he doesn\'t spend a lot of time with the troops. He would shoot me an odd request every once in a while, but nothing sordid.\"\n\n\"He had me forge him some passes to a Maria Mercurial show a couple nights ago, that was a challenge.\""
         }
       }
     }
@@ -597,6 +598,7 @@ nodes {
           }
         }
         args {
+          string_value: "Blackstone shudders at the name, \"I don\'t want to talk about that guy. I\'m almost afraid he\'ll come back from the dead and do what he said that he\'d do if I ever turned on the corporation.\"\n\n\"Since that\'s exactly what I\'m planning on doing, I think he would probably think it was justified. You did make sure he was dead this time, right?\""
         }
       }
     }
@@ -610,6 +612,14 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Leave{{/CC}} Talk to you later, Blackstone."
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Kill him{{/CC}} Goodbye, Blackstone."
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Let him go{{/CC}} Get out of here, Blackstone, good luck out there."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -820,7 +830,29 @@ roots {
   responseText: ""
   conditions {
     ops {
-      functionName: "No Condition"
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iBlackstone_Progress"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
     }
   }
   actions {
@@ -838,10 +870,12 @@ roots {
         }
       }
       args {
+        string_value: "Blackstone opens the door at your approach, careful to show that his hands are empty and he\'s not carrying any weapons.\n\n\"Thanks for taking care of them, especially Mixacopotec. That pendejo gave me nightmares.\""
       }
     }
   }
-  nextNodeIndex: -1
+  nextNodeIndex: 1
+  auxiliaryLink: true
   comment: "Blackstone Semi-Trusted"
 }
 roots {
