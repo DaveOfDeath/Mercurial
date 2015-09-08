@@ -164,11 +164,60 @@ nodes {
   }
   branches {
     responseText: "Didn\'t you drop me down an elevator shaft?"
-    nextNodeIndex: -1
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The voice through the door doesn\'t sound apologetic, but says \"Sorry about that. I set that up to deal with the fragging arseholes who were making my life difficult.\" \n\n\"Drop them down an elevator shaft once, and the pranks suddenly stop.\""
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ee280d396630c01a00638c"
+    }
+    auxiliaryLink: true
   }
   branches {
     responseText: "You don\'t mind that I\'ve been killing your friends?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The snort from the other side of the door is muffled, but definite.\n\n\"I don\'t got any friends here, Cabron. I got a boss, Morgan, and I got enemies aplenty, but I don\'t have friends.\""
+        }
+      }
+    }
     nextNodeIndex: 1
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55ee284a396630c01a00638d"
+    }
     auxiliaryLink: true
   }
   branches {
@@ -285,8 +334,65 @@ nodes {
     comment: "Slightly more trusted"
   }
   branches {
-    responseText: ""
-    nextNodeIndex: -1
+    responseText: "They\'re all dead. Open the door, and let\'s talk."
+    conditions {
+      ops {
+        functionName: "Evaluate Team Survival Percentage"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 100
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (string)"
+            args {
+              string_value: "FactionList"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SceneDimension)"
+            args {
+              string_value: "Default"
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The voice on the other side of the door sounds incredulous, \"Seriously? Fraggers got what they deserved.\"\n\n\"You really got all of them? That\'s impressive, those were not green recruits.\""
+        }
+      }
+    }
+    nextNodeIndex: 3
   }
   branches {
     responseText: "{{CC}}Leave{{/CC}}"
@@ -347,7 +453,7 @@ nodes {
           }
         }
         args {
-          string_value: "Blackstone squares his shoulders, \"Defensive measures, building security, node maintenance, and information control.\"\n\n\"I lock up the base, and keep us out of the news. The rumors I can\'t squash, Morgan or Mixacopotec lead a team against."
+          string_value: "Blackstone squares his shoulders, \"Defensive measures, building security, node maintenance, and information control.\"\n\n\"I lock up the base, and keep us out of the news. The rumors I can\'t squash, Morgan or Mixacopotec lead a team against. Everything else, from tracking down interlopers and newshounds, and giving the leads to Morgan.\""
         }
       }
     }
@@ -405,7 +511,7 @@ nodes {
           }
         }
         args {
-          string_value: "Blackstone coughs politely into his hand. You can\'t decide if he was covering a laugh or not.\n\n\"Sorry about that, but I couldn\'t disable the protocols without someone noticing. Even if you kill all the chingos here, the ones back in Aztlan will be watching.\"\n\nBlackstone cracks his knuckles, proudly, \"Of course-- one of you is a hot-drek decker who disabled all the cameras as soon as you could, so all they see now is static.\""
+          string_value: "Blackstone coughs politely into his hand. You can\'t decide if he was covering a laugh or not. \"Sorry about that, but I couldn\'t disable the protocols without someone noticing. Even if you kill all the chingos here, the ones back in Aztlan will be watching.\"\n\nBlackstone cracks his knuckles, proudly, \"Of course-- one of you is a hot-drek decker who disabled all the cameras as soon as you could, so all they see now is static.\""
         }
       }
     }
@@ -448,6 +554,24 @@ nodes {
   }
   branches {
     responseText: "Tell me about Kyle Morgan."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
     nextNodeIndex: 2
     hideIfUnavailable: true
     onlyOnce: true
@@ -458,6 +582,24 @@ nodes {
   }
   branches {
     responseText: "Tell me about Mixacopotec."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+        }
+      }
+    }
     nextNodeIndex: 2
     hideIfUnavailable: true
     onlyOnce: true
@@ -475,9 +617,21 @@ nodes {
 }
 nodes {
   idRef {
-    id: "55ede7cf396630d02c004b6c"
+    id: "55ee2960396630c01a00638f"
   }
   index: 3
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: ""
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55ede7cf396630d02c004b6c"
+  }
+  index: 4
   text: "The dwarf is lying facedown, drooling."
   branches {
     responseText: "Leave the dwarf alone."
@@ -489,30 +643,6 @@ nodes {
   }
   branches {
     responseText: "Kill the dwarf."
-    actions {
-      ops {
-        functionName: "Enable/Disable Interactable Object"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "EnableOrDisable"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Map Item (InteractableObject)"
-            args {
-              string_value: "558f27a0663136900d002aff"
-            }
-          }
-        }
-      }
-    }
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -743,6 +873,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 3
+  nextNodeIndex: 4
   comment: "Blackstone Unconscious"
 }
