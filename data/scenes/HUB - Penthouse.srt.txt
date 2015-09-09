@@ -6534,6 +6534,9 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Clear All Waypoints"
+    }
+    ops {
       functionName: "Set Variable (bool)"
       args {
         call_value {
@@ -6937,6 +6940,105 @@ triggers {
       }
     }
     ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55eb2b67613131f410006d21"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55f0b0a5663136900a005d2b"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Apply Condition Status Effect to Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55eb2b67613131f410006d21"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "StatusCondition"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "Waiting"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "BuffDebuffType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
+    ops {
       functionName: "Start Conversation Between Actors"
       args {
         call_value {
@@ -6974,33 +7076,59 @@ triggers {
         }
       }
     }
+  }
+  isActive: true
+  idRef {
+    id: "55ee06e7663136ec05005f47"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "DK.PlayerKilled"
+  events {
     ops {
-      functionName: "Teleport Actor"
+      functionName: "On Actor Death"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
       args {
         call_value {
-          functionName: "Specific Actor"
+          functionName: "Triggering Target Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
           args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "55eb2b67613131f410006d21"
-              }
-            }
+            string_value: "IsOrIsNot"
           }
           args {
+            int_value: 1
           }
         }
       }
       args {
         call_value {
-          functionName: "Center of Region"
+          functionName: "Get Map Item (Player)"
           args {
-            call_value {
-              functionName: "Get Map Item (Region)"
-              args {
-                string_value: "543618596334643009004976"
-              }
-            }
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive The Ambush"
           }
         }
       }
@@ -7008,7 +7136,7 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "FacingDirection"
+            string_value: "GoalStatus"
           }
           args {
             int_value: 3
@@ -7019,10 +7147,10 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "TeleportMethod"
+            string_value: "WithOrWithout"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -7030,11 +7158,11 @@ triggers {
   }
   isActive: true
   idRef {
-    id: "55ee06e7663136ec05005f47"
+    id: "55f0adc3663136900a005d23"
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "DK.RandomKnight"
@@ -7454,6 +7582,39 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Goal Status"
+      args {
+        call_value {
+          functionName: "Get Map Item (Goal)"
+          args {
+            string_value: "Survive The Ambush"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "GoalStatus"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -7701,6 +7862,61 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Actor"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55eb2b67613131f410006d21"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "54338c0f373361e00f007124"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -7711,20 +7927,146 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "DK.SamMove"
+  name: "DK.Debugger"
   events {
+    ops {
+      functionName: "On Actor Clicked"
+    }
   }
   conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "DEBUGGERMODE"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   actions {
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isDragonKnight"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
-    id: "55ee60e56131316c0a006034"
+    id: "55f0b656663136900a005d2d"
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: ""
@@ -8034,7 +8376,7 @@ triggers {
             string_value: "DeathMethod"
           }
           args {
-            int_value: 2
+            int_value: 3
           }
         }
       }
@@ -9776,6 +10118,13 @@ characters {
   idRef {
     id: "543378b6373361e00f00702a"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
   lod: 0
   character_instance {
     character_mod {
@@ -10180,7 +10529,7 @@ characters {
         esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Guard - Protect"
+      archetypeName: "Non-Combatant"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
@@ -10193,200 +10542,6 @@ characters {
       filename: "npc_humanmale_samwattspresent"
     }
     karma: 43
-  }
-}
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: 149
-    y: 0
-    z: 1
-  }
-  orientation: ORIENTATION_S
-  displayName: "2"
-  idRef {
-    id: "55ab36006131312c0c007070"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Seattle:Scientist/HumanFemaleScientistCoatMask"
-    character_sheet_id: "CG Human None"
-    character_mod {
-      stats {
-        body: 0
-        quickness: 0
-        strength: 0
-        charisma: 0
-        intelligence: 0
-        willpower: 0
-        essence: 0
-        magic: 0
-        hp: 0
-        ap: 0
-        armor: 0
-        force: 0
-        morale: 0
-        discipline: 0
-        awareness: 0
-        perception: 0
-        authority: 0
-        protect_tether_range: 0
-        move_speed: 0
-        vision_peripheral_distance: 0
-        vision_cone_distance: 0
-        vision_cone_angle: 0
-      }
-      skills {
-        ranged_combat: 0
-        close_combat: 0
-        throwing_weapons: 0
-        spellcasting: 0
-        decking: 0
-        conjuring: 0
-        spirit_summoning: 0
-        drone_control: 0
-        biotech: 0
-        dodge: 0
-        etiquette_corporate: 0
-        etiquette_security: 0
-        etiquette_gang: 0
-        etiquette_socialite: 0
-        chi_casting: 0
-        etiquette_shadowrunner: 0
-        etiquette_street: 0
-        etiquette_academic: 0
-      }
-      specializations {
-        pistol: 0
-        rifle: 0
-        shotgun: 0
-        smg: 0
-        edged: 0
-        unarmed: 0
-        spirit_control: 0
-        esp_control: 0
-        drone_combat: 0
-      }
-      archetypeName: "Non-Combatant"
-      attitude: AttitudeAggressive
-      vulnerabilities {
-      }
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack"
-    }
-    team_id: "Civilians"
-    char_name: "Street Doc"
-    enabled_at_start: true
-    pc_spawn_number: -1
-    portrait {
-      filename: "pc_humanfemale_09_camo"
-    }
-    karma: 6
-    is_prop_character: true
-  }
-}
-characters {
-  name: "chars_icon_playerIcon"
-  gridPoint {
-    x: 137.3
-    y: 0
-    z: 3.3
-  }
-  orientation: ORIENTATION_W
-  displayName: "1"
-  idRef {
-    id: "55ab36006131312c0c00709c"
-  }
-  lod: 0
-  character_instance {
-    prefab_name: "Seattle:Scientist/OrkMaleScientistMask"
-    character_sheet_id: "CG Ork None"
-    character_mod {
-      stats {
-        body: 0
-        quickness: 0
-        strength: 0
-        charisma: 0
-        intelligence: 0
-        willpower: 0
-        essence: 0
-        magic: 0
-        hp: 0
-        ap: 0
-        armor: 0
-        force: 0
-        morale: 0
-        discipline: 0
-        awareness: 0
-        perception: 0
-        authority: 0
-        protect_tether_range: 0
-        move_speed: 0
-        vision_peripheral_distance: 0
-        vision_cone_distance: 0
-        vision_cone_angle: 0
-      }
-      skills {
-        ranged_combat: 0
-        close_combat: 0
-        throwing_weapons: 0
-        spellcasting: 0
-        decking: 0
-        conjuring: 0
-        spirit_summoning: 0
-        drone_control: 0
-        biotech: 0
-        dodge: 0
-        etiquette_corporate: 0
-        etiquette_security: 0
-        etiquette_gang: 0
-        etiquette_socialite: 0
-        chi_casting: 0
-        etiquette_shadowrunner: 0
-        etiquette_street: 0
-        etiquette_academic: 0
-      }
-      specializations {
-        pistol: 0
-        rifle: 0
-        shotgun: 0
-        smg: 0
-        edged: 0
-        unarmed: 0
-        spirit_control: 0
-        esp_control: 0
-        drone_combat: 0
-      }
-      archetypeName: "Non-Combatant"
-      attitude: AttitudeAggressive
-      vulnerabilities {
-      }
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack"
-    }
-    equipment {
-      prefab_name: "Berlin_HealthPack"
-    }
-    team_id: "Civilians"
-    char_name: "Street Doc"
-    enabled_at_start: true
-    pc_spawn_number: -1
-    portrait {
-      filename: "pc_orkmale_02_biker"
-    }
-    karma: 8
-    is_prop_character: true
   }
 }
 characters {
@@ -12865,6 +13020,12 @@ mapEvents: "eMutters"
 mapEvents: "eSamMutter"
 mapEvents: "eHernandez"
 mapEvents: "eRandomKnight"
+goals {
+  name: "Survive The Ambush"
+  type: GoalType_Primary
+  status: GoalStatus_Hidden
+  description: ""
+}
 worldMapLocation {
   filename: ""
   location {
