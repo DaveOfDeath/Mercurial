@@ -8794,6 +8794,51 @@ nodes {
     idRef {
       id: "55ee14a2396630b015002a78"
     }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}EXIT HUB{{/CC}}"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 61
+    hideIfUnavailable: true
+    comment: "TEST"
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -8804,7 +8849,7 @@ nodes {
   index: 61
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: "{{CC}}Return to Sunnyside Slums{{/CC}}"
+    responseText: "{{CC}}Return to Sunnyside Slums{{/CC}}  I need to go back to work."
     conditions {
       ops {
         functionName: "Comparison (bool)"
@@ -8875,16 +8920,16 @@ nodes {
           }
         }
         args {
-          string_value: "Sam nods, \"I don\'t know what you were in the middle of there, but I can understand wanting to get back to it.\"\n\n\"You need permission from me? Get to it?\""
+          string_value: "\"Okay, Kid. Ain\'t no percentage in revenge, but I can understand the sentiment.  You don\'t need my permission.\"\n\n\"You\'ve got a lot of heart, but I\'m not dying for this broad. I\'ll be on the next plane out of town, headed for the sweet life in...\" Sam pauses to read his ticket \"Hong Kong.\"\n\n\"Best of luck to you, though. Have fun storming the castle.\""
         }
       }
     }
-    nextNodeIndex: 65
+    nextNodeIndex: 63
     hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
-    responseText: "{{CC}}Head to the Taetzel Building{{/CC}}"
+    responseText: "{{CC}}Head to the Taetzel Building{{/CC}}  I\'ve got work to do."
     conditions {
       ops {
         functionName: "Comparison (bool)"
@@ -9125,7 +9170,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 64
+    nextNodeIndex: 65
     hideIfUnavailable: true
     comment: "Tatzel Known"
   }
@@ -9169,7 +9214,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 65
+    nextNodeIndex: 66
     hideIfUnavailable: true
     comment: "DEBUGGER-Confirm Leaving"
   }
@@ -9192,25 +9237,8 @@ nodes {
         int_value: 0
       }
     }
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_Story_OldSam"
-          }
-        }
-      }
-      args {
-        int_value: 5
-      }
-    }
   }
-  comment: "General Loop"
+  comment: "Hub Mini Loop"
 }
 nodes {
   idRef {
@@ -9239,7 +9267,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 62
+    nextNodeIndex: 63
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -9268,7 +9296,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 62
+    nextNodeIndex: 63
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -9293,11 +9321,11 @@ nodes {
           }
         }
         args {
-          string_value: "\"Okay, Kid. Ain\'t no percentage in revenge, but I can understand the sentiment.\n\n\"You\'ve got a lot of heart, but I\'m not dying for this broad. I\'ll be on the next plane out of town, headed for the sweet life in...\" Sam pauses to read his ticket \"Hong Kong.\"\n\n\"Best of luck to you, though. Have fun storming the castle.\""
+          string_value: "\"Okay, Kid. Ain\'t no percentage in revenge, but I can understand the sentiment.\"\n\n\"You\'ve got a lot of heart, but I\'m not dying for this broad. I\'ll be on the next plane out of town, headed for the sweet life in...\" Sam pauses to read his ticket \"Hong Kong.\"\n\n\"Best of luck to you, though. Have fun storming the castle.\""
         }
       }
     }
-    nextNodeIndex: 62
+    nextNodeIndex: 63
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -9326,7 +9354,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 62
+    nextNodeIndex: 63
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -9336,6 +9364,25 @@ nodes {
   }
   branches {
     responseText: "Goodby, Sam."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Always were the damnedest kid.\"  He trails off.\n\n\"Look... You\'ve got a lot of heart, but I\'m not dying for this broad. I\'ll be on the next plane out of town, headed for the sweet life in...\" Sam pauses to read his ticket \"Hong Kong.\"\n\n\"Best of luck to you, though. Have fun storming the castle.\""
+        }
+      }
+    }
     nextNodeIndex: 63
     hideIfUnavailable: true
     onlyOnce: true
@@ -9351,7 +9398,11 @@ nodes {
     id: "55ee2428396630c01a005e8f"
   }
   index: 63
-  text: "Sam sighs, \"Goodbye Kid. No offense, but lose my number.\" \n\nSam pauses for a moment, \"Better yet,\" he says, pulling the telecom out of his pocket, and drops it in his half-empty glass.\n\nRaising the bag to his shoulder, Sam nods to you. \"Good luck out there, $+(l.man). You\'re going to fragging need it.\""
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: ""
+    nextNodeIndex: 64
+  }
   nodeType: ConversationNodeType_Simple
   actions {
     ops {
@@ -9372,12 +9423,192 @@ nodes {
       }
     }
   }
+  comment: "Sam GoodByes"
+}
+nodes {
+  idRef {
+    id: "55f0bd44663136900a0063c6"
+  }
+  index: 64
+  text: "Sam sighs, \"Goodbye Kid. No offense, but lose my number.\" \n\nSam pauses for a moment, \"Better yet,\" he says, pulling the telecom out of his pocket, and drops it in his half-empty glass.\n\nRaising the bag to his shoulder, Sam nods to you. \"Good luck out there, $+(l.man). You\'re going to fragging need it.\""
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Remove Status Effect from Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55eb2b67613131f410006d21"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        string_value: "Waiting"
+      }
+    }
+    ops {
+      functionName: "Set Actor Run Speed"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55eb2b67613131f410006d21"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "RunSpeedMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Prop)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55eb2b67613131f410006d21"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55cae83666313648170091f3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Suspend Team\'s Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait for Rounds"
+      args {
+        int_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Take care, Kid."
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 15
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 2
+      }
+    }
+  }
 }
 nodes {
   idRef {
     id: "55cae3276631364817008e32"
   }
-  index: 64
+  index: 65
   text: "{{GM}}You dial the LTG number of Maria\'s personal telecom.   After three rings, it just goes to voicemail. The first call doesn\'t have you worried, but the next two unanswered calls do. After several minutes of trying unsuccessfully to contact her or the clinic, you have no choice but to give up.{{/GM}}"
   branches {
     responseText: ""
@@ -9390,7 +9621,7 @@ nodes {
   idRef {
     id: "5503ecd86631367817006109"
   }
-  index: 65
+  index: 66
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Confirm{{/CC}}"
