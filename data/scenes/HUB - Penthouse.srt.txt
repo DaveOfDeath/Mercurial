@@ -5031,17 +5031,20 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Open Hiring Screen and Open Scene"
+      functionName: "Set Variable (string)"
       args {
         call_value {
-          functionName: "Get Map Item (Scene)"
+          functionName: "Get Story Variable (string)"
           args {
-            string_value: "SCENE - Sunnyside"
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
           }
         }
       }
       args {
-        string_value: "Travel to the Sunnyside Slums?"
+        string_value: "SUNNYSIDE-STATION"
       }
     }
     ops {
@@ -5059,6 +5062,20 @@ triggers {
       }
       args {
         string_value: "Sunnyside neighborhood has seen better days- its fate is sadly connected to Perfekto Polymers. The townhouses and apartments were built to house the factory workers office staff. Five years ago, a corporate VP from Aztechnology showed up to look over the books and check out the operation for acquisition. Then, just as suddenly the headhunter was gone. Every executive started trying to find work at other companies before the tale of their failure got out. \n\nThis was bad news for all the employees who showed up for work Monday morning. Instead of a job, they were handed a termination notice. No company would touch these toxic assets, so none of the employees could sell their homes, or find new jobs at anything approaching what they had earned at Perfekto. \n\nOvernight, the neighborhood became a wasteland. The last five years have not been kind to it."
+      }
+    }
+    ops {
+      functionName: "Open Hiring Screen and Open Scene"
+      args {
+        call_value {
+          functionName: "Get Map Item (Scene)"
+          args {
+            string_value: "SCENE - Sunnyside"
+          }
+        }
+      }
+      args {
+        string_value: "Travel to the Sunnyside Slums?"
       }
     }
   }
@@ -5126,12 +5143,29 @@ triggers {
       }
     }
     ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        string_value: "TAETZEL-SLUMS"
+      }
+    }
+    ops {
       functionName: "Open Hiring Screen and Open Scene"
       args {
         call_value {
           functionName: "Get Map Item (Scene)"
           args {
-            string_value: "SCENE - Taetzel"
+            string_value: "SCENE - Taetzel Exterior"
           }
         }
       }
@@ -6342,6 +6376,34 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_OldSam"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
   }
   actions {
     ops {
@@ -6393,6 +6455,33 @@ triggers {
     id: "55cae8bb66313648170091f5"
   }
   elseActions {
+    ops {
+      functionName: "Start Conversation"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55f0d0d8663136c4070022d0"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -6807,6 +6896,28 @@ triggers {
           functionName: "Get Map Item (Animation)"
           args {
             string_value: "Seattle:General/standing_idle_straightJacket"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55cc96be353733680e006e68"
           }
         }
       }
@@ -8063,6 +8174,183 @@ triggers {
   isActive: true
   idRef {
     id: "55f0b656663136900a005d2d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "DK.SamExit"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "543617da6334643009004972"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55eb2b67613131f410006d21"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_OldSam"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        int_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55eb2b67613131f410006d21"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Waypoint on Prop"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PrimaryOrSecondary"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Prop)"
+          args {
+            string_value: "55cae83666313648170091f3"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "5562b6706631366810006c6a"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f0d3d1663136c407002303"
   }
   elseActions {
   }
@@ -13013,6 +13301,14 @@ variables {
     scope: TsVariableScope_Scene
     name: "bMixTapeOrders"
     typeName: "bool"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "SDest"
+    typeName: "string"
   }
 }
 mapEvents: "eSendDirections"
