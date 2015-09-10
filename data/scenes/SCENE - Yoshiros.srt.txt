@@ -5159,30 +5159,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Move Prop"
-      args {
-        call_value {
-          functionName: "Get Map Item (Prop)"
-          args {
-            string_value: "5493ad4a666538100a0003f8"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Current Location of Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "5493a72b666538100a0003ef"
-              }
-            }
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
@@ -5396,6 +5372,42 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Evaluate Team Survival Percentage"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 100
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -5451,6 +5463,28 @@ triggers {
                 string_value: "5493a72b666538100a0003ef"
               }
             }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "5493ad4a666538100a0003f8"
           }
         }
       }
@@ -7184,7 +7218,7 @@ regions {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 60
+    x: 61
     y: 0
     z: -24
   }
