@@ -8744,6 +8744,18 @@ nodes {
   index: 60
   text: "Sam stops short when he sees you at the door, his packet bag in hand and a digital print out in his other hand. \n\n\"What the FRAG are you doing here? I called you to warn you off, Kid? Take a hint, head for the hills!\""
   branches {
+    responseText: ""
+    nextNodeIndex: 61
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55f0c6a0663136d804005b6c"
+  }
+  index: 61
+  text: ""
+  branches {
     responseText: "Where are you going?"
     actions {
       ops {
@@ -8760,12 +8772,15 @@ nodes {
           }
         }
         args {
-          string_value: "Sam laughingly shrugs, \"I\'m taking my own advice. I spent the last of my credsticks getting a ticket far away from this town.\"\n\n\"I figure I go there, I start over, nobody knows me. Who knows, maybe once the heat dies down, I\'ll come back.\""
+          string_value: "Sam laughingly shrugs, \"I\'m taking my own advice. I spent the last of my credsticks getting a ticket far away from this town.\"\n\n\"I figure I go there, I start over, nobody knows me. Who knows, maybe once the heat dies down, I\'ll come back.\"\n\n\"Need anything before I go?\""
         }
       }
     }
-    nextNodeIndex: 61
-    auxiliaryLink: true
+    nextNodeIndex: 62
+    onlyOnce: true
+    idRef {
+      id: "55f0c6a6663136d804005b91"
+    }
   }
   branches {
     responseText: "I still need your help, Sam."
@@ -8788,65 +8803,34 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 61
+    nextNodeIndex: 63
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "55ee14a2396630b015002a78"
     }
-    auxiliaryLink: true
   }
+  nodeType: ConversationNodeType_Simple
+  comment: "Sam Done"
+}
+nodes {
+  idRef {
+    id: "55f0cc86663136d804006581"
+  }
+  index: 62
+  text: "Sam laughingly shrugs, \"I\'m taking my own advice. I spent the last of my credsticks getting a ticket far away from this town.\"\n\n\"I figure I go there, I start over, nobody knows me. Who knows, maybe once the heat dies down, I\'ll come back.\""
   branches {
-    responseText: "{{CC}}EXIT HUB{{/CC}}"
-    conditions {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
+    responseText: ""
     nextNodeIndex: 61
-    hideIfUnavailable: true
-    comment: "TEST"
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
 }
 nodes {
   idRef {
-    id: "5503e9bc66313678170060d8"
+    id: "55f0c58f663136d804005b29"
   }
-  index: 61
+  index: 63
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}Return to Sunnyside Slums{{/CC}}  I need to go back to work."
@@ -8924,8 +8908,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 63
-    hideIfUnavailable: true
+    nextNodeIndex: 65
     auxiliaryLink: true
   }
   branches {
@@ -8970,23 +8953,6 @@ nodes {
     }
     actions {
       ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "\"Guess there\'s no stopping you now?\" Sam adjusts his bag so it hangs over his shoulder. \n\n\"I know I talk a good game about loyalty, but what\'s making you want to see this through? No amount of a paycheck is worth dying for. This fight is going to be a damned battle for the ages, with you or them surviving. We\'re talking no compromises, no survivors, no one can walk away and live to tell the tale. \n\n\"What I\'m asking is: Are you really ready for this, Kid? What is motivating you to do this?\""
-        }
-      }
-      ops {
         functionName: "Set Variable (int)"
         args {
           call_value {
@@ -9003,9 +8969,25 @@ nodes {
           int_value: 6
         }
       }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Guess there\'s no stopping you now?\" Sam adjusts his bag so it hangs over his shoulder. \n\n\"I know I talk a good game about loyalty, but what\'s making you want to see this through? No amount of a paycheck is worth dying for. This fight is going to be a damned battle for the ages, with you or them surviving. We\'re talking no compromises, no survivors, no one can walk away and live to tell the tale. \n\n\"What I\'m asking is: Are you really ready for this, Kid? What is motivating you to do this?\""
+        }
+      }
     }
-    nextNodeIndex: 62
-    hideIfUnavailable: true
+    nextNodeIndex: 64
   }
   branches {
     responseText: "{{CC}}Investigate{{/CC}} Armando Hernandez"
@@ -9102,14 +9084,8 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 61
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55cace3f663136bc15000fae"
-    }
+    nextNodeIndex: 63
     auxiliaryLink: true
-    comment: "Knows About Taetzel First"
   }
   branches {
     responseText: "{{CC}}Call Maria{{/CC}} to check up on her."
@@ -9170,81 +9146,16 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 65
-    hideIfUnavailable: true
-    comment: "Tatzel Known"
-  }
-  branches {
-    responseText: "DEBUGGER - Confirm Mission"
-    conditions {
-      ops {
-        functionName: "Comparison (bool)"
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "IsOrIsNot"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Get Preset Value (int)"
-            args {
-              string_value: "bool"
-            }
-            args {
-              int_value: 0
-            }
-          }
-        }
-      }
-    }
-    nextNodeIndex: 66
-    hideIfUnavailable: true
-    comment: "DEBUGGER-Confirm Leaving"
+    nextNodeIndex: 67
   }
   nodeType: ConversationNodeType_Simple
-  actions {
-    ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_HubSubQuest"
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-  }
-  comment: "Hub Mini Loop"
+  comment: "Sam Exit Hub Convo"
 }
 nodes {
   idRef {
-    id: "55cc431c6131316018004ac3"
+    id: "55f0c769663136d804005bc1"
   }
-  index: 62
+  index: 64
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "I always fulfill my contracts."
@@ -9267,12 +9178,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 63
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55e77442613131e80d00742e"
-    }
+    nextNodeIndex: 65
     auxiliaryLink: true
   }
   branches {
@@ -9296,12 +9202,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 63
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55e77445613131e80d00742f"
-    }
+    nextNodeIndex: 65
     auxiliaryLink: true
   }
   branches {
@@ -9325,12 +9226,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 63
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55e77448613131e80d007430"
-    }
+    nextNodeIndex: 65
     auxiliaryLink: true
   }
   branches {
@@ -9354,16 +9250,11 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 63
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55e7744c613131e80d007431"
-    }
+    nextNodeIndex: 65
     auxiliaryLink: true
   }
   branches {
-    responseText: "Goodby, Sam."
+    responseText: "Goodbye, Sam."
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -9383,25 +9274,20 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 63
-    hideIfUnavailable: true
-    onlyOnce: true
-    idRef {
-      id: "55e77450613131e80d007432"
-    }
+    nextNodeIndex: 65
   }
   nodeType: ConversationNodeType_Simple
-  comment: "Sam Exit"
+  comment: "Sam GoodByes"
 }
 nodes {
   idRef {
-    id: "55ee2428396630c01a005e8f"
+    id: "55f0c7e4663136d804005bc8"
   }
-  index: 63
+  index: 65
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: ""
-    nextNodeIndex: 64
+    nextNodeIndex: 66
   }
   nodeType: ConversationNodeType_Simple
   actions {
@@ -9423,16 +9309,33 @@ nodes {
       }
     }
   }
-  comment: "Sam GoodByes"
+  comment: "GoodBye"
 }
 nodes {
   idRef {
-    id: "55f0bd44663136900a0063c6"
+    id: "55f0c7e7663136d804005bcb"
   }
-  index: 64
-  text: "Sam sighs, \"Goodbye Kid. No offense, but lose my number.\" \n\nSam pauses for a moment, \"Better yet,\" he says, pulling the telecom out of his pocket, and drops it in his half-empty glass.\n\nRaising the bag to his shoulder, Sam nods to you. \"Good luck out there, $+(l.man). You\'re going to fragging need it.\""
+  index: 66
+  text: "Sam sighs, \"Goodbye Kid. No offense, but lose my number.\" \n\nSam pauses for a moment, \"Better yet,\" he says, pulling the telecom out of his pocket, and drops it in his half-empty glass.\n\nRaising the bag to his shoulder, Sam nods to you. \"Good luck out there Kid... You\'re going to fragging need it.\""
   nodeType: ConversationNodeType_Simple
   actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_Story_OldSam"
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
     ops {
       functionName: "Remove Status Effect from Actor"
       args {
@@ -9593,83 +9496,40 @@ nodes {
         float_value: 128
       }
       args {
-        float_value: 15
+        float_value: 20
       }
       args {
         float_value: 3
       }
       args {
-        float_value: 2
+        float_value: 8
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55eb2b67613131f410006d21"
+          }
+        }
       }
     }
   }
 }
 nodes {
   idRef {
-    id: "55cae3276631364817008e32"
+    id: "55f0c5dc663136d804005b2f"
   }
-  index: 65
+  index: 67
   text: "{{GM}}You dial the LTG number of Maria\'s personal telecom.   After three rings, it just goes to voicemail. The first call doesn\'t have you worried, but the next two unanswered calls do. After several minutes of trying unsuccessfully to contact her or the clinic, you have no choice but to give up.{{/GM}}"
   branches {
     responseText: ""
-    nextNodeIndex: 61
-    auxiliaryLink: true
-  }
-  nodeType: ConversationNodeType_GM_Voice
-}
-nodes {
-  idRef {
-    id: "5503ecd86631367817006109"
-  }
-  index: 66
-  text: "$(story.str_NPCIntroText)"
-  branches {
-    responseText: "{{CC}}Confirm{{/CC}}"
-    nextNodeIndex: -1
-  }
-  branches {
-    responseText: "{{CC}}Cancel{{/CC}}"
-    actions {
-      ops {
-        functionName: "Set Variable (string)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (string)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "str_NPCIntroText"
-            }
-          }
-        }
-        args {
-          string_value: "Sam shrugs. \"I\'ll be honest, we have good booze, so I don\'t much care what we do. \n\n\"Catch me up on what was happening, though, because I feel like I\'m walking in at intermission, and I have no idea what\'s going on.\""
-        }
-      }
-      ops {
-        functionName: "Set Variable (int)"
-        args {
-          call_value {
-            functionName: "Get Story Variable (int)"
-            args {
-              string_value: "542848a8633464d816001ad5"
-            }
-            args {
-              string_value: "int_HubSubQuest"
-            }
-          }
-        }
-        args {
-          int_value: 0
-        }
-      }
-    }
-    nextNodeIndex: 61
+    nextNodeIndex: 63
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
-  comment: "Exit Confirmation"
 }
 roots {
   conditions {
@@ -10126,7 +9986,7 @@ roots {
         }
       }
       args {
-        string_value: "\"Guess there\'s no stopping you now?\" Sam shrugs and takes a deep drink before setting the glass down on the expensive wood of the bar.\n\n\"I know I talk a good game about loyalty, but what\'s making you want to see this through? No amount of a paycheck is worth dying for.\"\n\n\"This fight is going to be a damned battle for the ages, with you or them surviving. We\'re talking no compromises, no survivors, no one can walk away and live to tell the tale.\" \n\n\"What I\'m asking is: Are you really ready for this, Kid? What is motivating you to do this?\""
+        string_value: "[Your telecom starts buzzing softly in your pocket.   Pulling it out you\'re surprised to see Sam\'s number on the caller ID.]\n\n\n\nSam?    What could he want?"
       }
     }
     ops {
