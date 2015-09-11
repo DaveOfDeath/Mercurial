@@ -145,6 +145,47 @@ triggers {
         string_value: "Loop; Bounce:3:FFFF00; Cubic:1:FFFF00;"
       }
     }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isPoweredDown"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -152,7 +193,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: false
+  is_oneshot: true
 }
 triggers {
   name: "General.MapLoad [YakuzaSpawn]"
@@ -3706,6 +3747,39 @@ triggers {
     }
   }
   conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bFeedback_Power"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   actions {
     ops {
@@ -3743,12 +3817,88 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bFeedback_Power"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play FX at Point"
+      args {
+        string_value: "matrixcontrolnode"
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Prop"
+          args {
+            call_value {
+              functionName: "Get Map Item (Prop)"
+              args {
+                string_value: "55f2350d353733e00c005dcb"
+              }
+            }
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
     id: "5563a0506631363003007fe8"
   }
   elseActions {
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "5563a0656631363003007fe9"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5563a1086631363003007ff0"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -3842,6 +3992,12 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Camera Post Process Effect"
+      args {
+        int_value: 4
+      }
+    }
   }
   isActive: true
   idRef {
@@ -3872,7 +4028,7 @@ triggers {
     ops {
       functionName: "Display Text In Popup"
       args {
-        string_value: "The stark whiteness of the matrix indicates that something is very wrong here.  As if all of the color was drained, and you\'re left with a dormant node.\n\nTheres nothing as mundane as dust laying around, or an \'under construction\' banner... But this place has an oppressive feel of being stagnant for quite some time.\n\nNobody has been in this system in who knows how long..."
+        string_value: "No one has been in this system in who knows how long...\n\nThe oppressive feel of stagnation, of time slushing down the drain, hangs in the flickering, holographic air. The light itself has grown tried of echoing in the sepulchre chamber."
       }
       args {
         call_value {
@@ -3886,11 +4042,11 @@ triggers {
         }
       }
       args {
-        string_value: " Long Dormant Matrix"
+        string_value: " Long Dormant Node"
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "55f0d4443537332c2b0048da"
   }
@@ -3909,20 +4065,20 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Set Environmental Effect Amount"
+      functionName: "Set Camera Post Process Effect"
+      args {
+        int_value: 0
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
       args {
         call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "EnvironmentalEffects"
-          }
+          functionName: "Get Map Item (Player)"
           args {
             int_value: 0
           }
         }
-      }
-      args {
-        int_value: 999
       }
     }
     ops {
@@ -3980,6 +4136,23 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Set Environmental Effect Amount"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "EnvironmentalEffects"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 999
+      }
+    }
   }
   isActive: true
   idRef {
@@ -4006,18 +4179,177 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Matrix.Unsecured.UnusedWarning"
+  name: "Matrix.Interact.Feedback.PoweredDownUp"
   events {
     ops {
-      functionName: "Get Map Item (Event)"
+      functionName: "On Item Interaction"
       args {
-        string_value: "eUnusedMatrix"
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55f0e4013537332c2b004983"
+          }
+        }
       }
     }
   }
   conditions {
   }
   actions {
+    ops {
+      functionName: "Set Hack Status On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HackIndicatorStatus"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55f0e4013537332c2b004983"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "decker"
+          }
+          args {
+            string_value: "Matrix_NodeHackSuccess"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55f0e4013537332c2b004983"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isPoweredUp"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isPoweredDown"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -4025,7 +4357,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: " "
@@ -4906,6 +5238,28 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Enable/Disable Hack Indicator On Matrix Node Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55f0e4013537332c2b004983"
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -4914,6 +5268,83 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: "OnCurtainsUp.Debugger.EnableQuickMatrix"
+  events {
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "DEBUGGERMODE"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "54447e083733610807000c87"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f23bc2353733f415002f16"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 regions {
   name: "rDeliveryAuthorization"
@@ -4964,10 +5395,10 @@ regions {
 regions {
   name: "cMatrixRuins"
   position {
-    x: 33
-    y: -25
-    width: -122
-    height: 51
+    x: 40
+    y: -22
+    width: -116
+    height: 47
   }
   enabledAtStart: true
   is_camera_region: true
@@ -5031,10 +5462,10 @@ regions {
   is_teleporter_region: true
   linked_teleporter_region: "55651d056131314c140060eb"
   teleport_facing: 4
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
+  teleport_sound_fx: "Matrix_TeleportDoor"
+  teleport_sound_volume: 1
+  teleport_source_fx: "EnvironmentExplodeDirtEast"
+  teleport_destination_fx: "EnvironmentExplodeDirtEast"
   teleport_pc_only: true
   directional_light_dir {
     x: -0.5
@@ -5084,10 +5515,10 @@ regions {
   is_teleporter_region: true
   linked_teleporter_region: "55651ccb6131314c140060ea"
   teleport_facing: 2
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
+  teleport_sound_fx: "Matrix_TeleportDoor"
+  teleport_sound_volume: 1
+  teleport_source_fx: "EnvironmentExplodeDirtEast"
+  teleport_destination_fx: "EnvironmentExplodeDirtEast"
   teleport_pc_only: true
   directional_light_dir {
     x: -0.5
@@ -5136,11 +5567,11 @@ regions {
   is_closet: false
   is_teleporter_region: true
   linked_teleporter_region: "55651d7d6131314c140060ee"
-  teleport_facing: -1
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
+  teleport_facing: 4
+  teleport_sound_fx: "Matrix_TeleportDoor"
+  teleport_sound_volume: 1
+  teleport_source_fx: "EnvironmentExplodeDirtEast"
+  teleport_destination_fx: "EnvironmentExplodeDirtEast"
   teleport_pc_only: true
   directional_light_dir {
     x: -0.5
@@ -5169,10 +5600,10 @@ regions {
 regions {
   name: "Datastore-SPU"
   position {
-    x: -72
-    y: 11
-    width: 1
-    height: 2
+    x: -61
+    y: 16
+    width: 2
+    height: 1
   }
   enabledAtStart: true
   is_camera_region: false
@@ -5189,64 +5620,11 @@ regions {
   is_closet: false
   is_teleporter_region: true
   linked_teleporter_region: "55651d526131314c140060ec"
-  teleport_facing: -1
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
-  teleport_pc_only: true
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
-  name: "Abandoned-28th"
-  position {
-    x: -81
-    y: 5
-    width: 1
-    height: 2
-  }
-  enabledAtStart: false
-  is_camera_region: false
-  idRef {
-    id: "55651eaf6131314c140060fa"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
-  is_teleporter_region: true
-  linked_teleporter_region: "55651efe6131314c140060fb"
-  teleport_facing: -1
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
+  teleport_facing: 0
+  teleport_sound_fx: "Matrix_TeleportDoor"
+  teleport_sound_volume: 1
+  teleport_source_fx: "EnvironmentExplodeDirtEast"
+  teleport_destination_fx: "EnvironmentExplodeDirtEast"
   teleport_pc_only: true
   directional_light_dir {
     x: -0.5
@@ -5434,10 +5812,10 @@ regions {
   is_teleporter_region: true
   linked_teleporter_region: "55f0d0cb3537332c2b0048d5"
   teleport_facing: 2
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
+  teleport_sound_fx: "Matrix_TeleportDoor"
+  teleport_sound_volume: 1
+  teleport_source_fx: "EnvironmentExplodeDirtEast"
+  teleport_destination_fx: "EnvironmentExplodeDirtEast"
   teleport_pc_only: true
   directional_light_dir {
     x: -0.5
@@ -5487,10 +5865,10 @@ regions {
   is_teleporter_region: true
   linked_teleporter_region: "55f0d0ae3537332c2b0048d4"
   teleport_facing: 2
-  teleport_sound_fx: ""
-  teleport_sound_volume: 0
-  teleport_source_fx: ""
-  teleport_destination_fx: ""
+  teleport_sound_fx: "Matrix_TeleportDoor"
+  teleport_sound_volume: 1
+  teleport_source_fx: "EnvironmentExplodeDirtEast"
+  teleport_destination_fx: "EnvironmentExplodeDirtEast"
   teleport_pc_only: true
   directional_light_dir {
     x: -0.5
@@ -6877,7 +7255,7 @@ variables {
   bool_value: false
   variableref_value {
     scope: TsVariableScope_Scene
-    name: "bLobbyScannerDisabled"
+    name: "bFeedback_Power"
     typeName: "bool"
   }
 }
