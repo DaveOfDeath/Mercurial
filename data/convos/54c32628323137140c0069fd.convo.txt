@@ -85,6 +85,30 @@ nodes {
   }
   branches {
     responseText: "{{GM}}Leave him alone.{{/GM}}"
+    actions {
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "54bb20063231371c20002fe5"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
     comment: "// End Convo"
   }
@@ -168,6 +192,28 @@ nodes {
       ops {
         functionName: "Clear Camera Points of Interest"
       }
+      ops {
+        functionName: "Enable/Disable Interactable Object"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "EnableOrDisable"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (InteractableObject)"
+            args {
+              string_value: "54bb20063231371c20002fe5"
+            }
+          }
+        }
+      }
     }
     nextNodeIndex: -1
     comment: "// End Convo"
@@ -241,26 +287,17 @@ nodes {
     }
   }
 }
-nodes {
-  idRef {
-    id: "54c32759323137140c006a12"
-  }
-  index: 5
-  text: "Billy Convo"
-  nodeType: ConversationNodeType_Simple
-}
 roots {
   conditions {
     ops {
-      functionName: "Comparison (bool)"
+      functionName: "Comparison (string)"
       args {
         call_value {
-          functionName: "Get Story Variable (bool)"
+          functionName: "Get Story Variable (string)"
           args {
-            string_value: "542848a8633464d816001ad5"
           }
           args {
-            string_value: "bool_Met_Billy_the_Chip"
+            string_value: "str_SpawnPoint"
           }
         }
       }
@@ -276,63 +313,11 @@ roots {
         }
       }
       args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
+        string_value: "DOGHOUSE-FRESH"
       }
     }
   }
   nextNodeIndex: 0
   hideIfUnavailable: true
   comment: "// Billy The Chip Intro"
-}
-roots {
-  responseText: ""
-  conditions {
-    ops {
-      functionName: "Comparison (bool)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (bool)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "bool_Met_Billy_the_Chip"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  nextNodeIndex: 5
-  hideIfUnavailable: true
-  comment: "// Met Billy the Chip"
 }
