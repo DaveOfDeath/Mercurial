@@ -44412,6 +44412,20 @@ props {
           }
         }
       }
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
     }
     interactionIcon: InteractionIcon_Matrix
     interaction_info_text: "Jack into the Automation System?"
@@ -44999,6 +45013,20 @@ props {
           }
         }
       }
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
     }
     matrixNode {
       prerequisites_control_state: true
@@ -45016,7 +45044,7 @@ props {
       state_change_hacked_sound: ""
       state_change_hacked_sound_volume: 1
     }
-    interaction_info_text: ""
+    interaction_info_text: "Channel Feedback?"
   }
   lod: 0
 }
@@ -45166,7 +45194,7 @@ props {
 props {
   name: "white--matrix_tech_1x1cover"
   gridPoint {
-    x: -59.999989
+    x: -60.999989
     y: 0
     z: -1
   }
@@ -45367,8 +45395,46 @@ props {
     z: -14
   }
   orientation: ORIENTATION_S
+  displayName: "Datastore"
   idRef {
     id: "556511706131314c14006070"
+  }
+  interactionRoot {
+    isEnabled: false
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    matrixNode {
+      prerequisites_control_state: true
+      constant_matrix_fx: ""
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Download Data?"
   }
   lod: 0
 }
@@ -45438,9 +45504,30 @@ props {
     z: 10
   }
   orientation: ORIENTATION_E
-  displayName: "SecretDoor_Unlock"
+  displayName: "Datastore CPU"
   idRef {
     id: "55651d9d6131314c140060ef"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    matrixNode {
+      prerequisites_control_state: false
+      constant_matrix_fx: "matrixcontrolnode"
+      state_change_offline_fx: ""
+      state_change_offline_sound: ""
+      state_change_offline_sound_volume: 1
+      state_change_hackable_fx: ""
+      state_change_hackable_sound: "MatrixNodeHackReady"
+      state_change_hackable_sound_volume: 1
+      state_change_locked_fx: ""
+      state_change_locked_sound: ""
+      state_change_locked_sound_volume: 1
+      state_change_hacked_fx: "MatrixControlNodeHacked"
+      state_change_hacked_sound: ""
+      state_change_hacked_sound_volume: 1
+    }
+    interaction_info_text: "Power Node?"
   }
   lod: 0
 }
@@ -59207,32 +59294,6 @@ props {
   lod: 0
 }
 props {
-  name: "white--matrix_tech_controlbase"
-  gridPoint {
-    x: -53
-    y: 0
-    z: -6
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55f0ea5f3537332c2b0049a1"
-  }
-  lod: 0
-}
-props {
-  name: "white--matrix_tech_controlbase"
-  gridPoint {
-    x: -53
-    y: 0
-    z: -14
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55f0ea633537332c2b0049a2"
-  }
-  lod: 0
-}
-props {
   name: "white--matrix_floor_4x4var3b"
   gridPoint {
     x: -50
@@ -59446,19 +59507,6 @@ props {
   lod: 0
 }
 props {
-  name: "white--matrix_tech_controlbase"
-  gridPoint {
-    x: -61
-    y: 0
-    z: 2
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55f0eb2a3537332c2b0049b3"
-  }
-  lod: 0
-}
-props {
   name: "white--matrix_tech_datacontrol"
   gridPoint {
     x: -61
@@ -59494,19 +59542,6 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "55f0eb2a3537332c2b0049b6"
-  }
-  lod: 0
-}
-props {
-  name: "white--matrix_tech_controlbase"
-  gridPoint {
-    x: -61
-    y: 0
-    z: -14
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55f0eb2a3537332c2b0049b7"
   }
   lod: 0
 }
@@ -59664,19 +59699,6 @@ props {
   }
 }
 props {
-  name: "white--matrix_tech_controlbase"
-  gridPoint {
-    x: -69
-    y: 0
-    z: -6
-  }
-  orientation: ORIENTATION_S
-  idRef {
-    id: "55f0ebe93537332c2b0049c3"
-  }
-  lod: 0
-}
-props {
   name: "white--matrix_floor_genericontrol"
   gridPoint {
     x: -70
@@ -59811,7 +59833,7 @@ props {
   gridPoint {
     x: -66
     y: 0
-    z: -7
+    z: -11
   }
   orientation: ORIENTATION_E
   idRef {
@@ -59941,7 +59963,7 @@ props {
   gridPoint {
     x: -66
     y: 0
-    z: -11
+    z: -7
   }
   orientation: ORIENTATION_S
   idRef {
@@ -60318,7 +60340,7 @@ props {
   gridPoint {
     x: -66
     y: 0
-    z: -3
+    z: -7
   }
   orientation: ORIENTATION_E
   idRef {
@@ -60916,7 +60938,7 @@ props {
   gridPoint {
     x: -66
     y: 0
-    z: -11
+    z: -7
   }
   orientation: ORIENTATION_N
   idRef {
@@ -60942,7 +60964,7 @@ props {
   gridPoint {
     x: -66
     y: 0
-    z: -11
+    z: -15
   }
   orientation: ORIENTATION_W
   idRef {
@@ -61070,7 +61092,7 @@ props {
 props {
   name: "white--matrix_floor_cover1x1"
   gridPoint {
-    x: -60.1
+    x: -61.1
     y: 0.2
     z: -1
   }
@@ -61083,7 +61105,7 @@ props {
 props {
   name: "white--matrix_floor_cover1x1"
   gridPoint {
-    x: -61.1
+    x: -60.1
     y: 0.2
     z: -9
   }
@@ -61096,7 +61118,7 @@ props {
 props {
   name: "white--matrix_tech_1x1cover"
   gridPoint {
-    x: -60.999989
+    x: -59.999989
     y: 0
     z: -9
   }
@@ -63135,7 +63157,7 @@ props {
   name: "hive_wallDecoration_web02"
   gridPoint {
     x: -59.8
-    y: -0.2
+    y: -0.9
     z: -13
   }
   orientation: ORIENTATION_S
@@ -64501,6 +64523,556 @@ props {
   orientation: ORIENTATION_S
   idRef {
     id: "55f23a97353733e00c005dcf"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_controlbase"
+  gridPoint {
+    x: -69
+    y: 0
+    z: -14
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36326353733a816004650"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_controlbase"
+  gridPoint {
+    x: -69
+    y: 0
+    z: 2
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36329353733a816004651"
+  }
+  lod: 0
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -48
+    y: 1
+    z: -19
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363a6353733a816004652"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -53
+    y: 0
+    z: -14
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363bb353733a816004653"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -53
+    y: 0
+    z: -6
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363c1353733a816004654"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -61
+    y: 0
+    z: -14
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363c4353733a816004655"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -69
+    y: 0
+    z: -14
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363c7353733a816004656"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -69
+    y: 0
+    z: -6
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363cd353733a816004657"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -69
+    y: 0
+    z: 2
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363d1353733a816004658"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -73
+    y: 0
+    z: 10
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363d5353733a816004659"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -61
+    y: 0
+    z: 2
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363d8353733a81600465a"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -61
+    y: 0
+    z: -6
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363db353733a81600465b"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -53
+    y: 0
+    z: 2
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363e0353733a81600465c"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: -37
+    y: 0
+    z: 20
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363e8353733a81600465d"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: 3
+    y: 0
+    z: -8
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363f0353733a81600465e"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "system_gizmo_lightbulb"
+  gridPoint {
+    x: 33
+    y: 0
+    z: 17
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f363f4353733a81600465f"
+  }
+  lod: 0
+  light {
+    range: 5
+    color {
+      r: 0.33333334
+      g: 0.33333334
+      b: 0.33333334
+    }
+    intensity: 2
+  }
+}
+props {
+  name: "white--matrix_floor_cover1x1"
+  gridPoint {
+    x: 12.900002
+    y: 0.2
+    z: 4
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36afb353733a816004663"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_1x1cover"
+  gridPoint {
+    x: 13
+    y: 0
+    z: 4
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36afb353733a816004664"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_cover1x2"
+  gridPoint {
+    x: -25.099998
+    y: 0.2
+    z: -7.1000004
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36b74353733a816004666"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_1x2cover"
+  gridPoint {
+    x: -25
+    y: 0
+    z: -7
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36b74353733a816004667"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_cover1x2"
+  gridPoint {
+    x: -41.1
+    y: 0.2
+    z: 19.9
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d5d353733a81600466b"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_wall_firewall1"
+  gridPoint {
+    x: -41
+    y: 0
+    z: 20
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d5d353733a81600466c"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_cover1x2"
+  gridPoint {
+    x: -41.1
+    y: 0.2
+    z: 20.9
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d68353733a81600466d"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_1x2cover"
+  gridPoint {
+    x: -41
+    y: 0
+    z: 21
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d68353733a81600466e"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_cover1x2"
+  gridPoint {
+    x: -1.0999985
+    y: 0.2
+    z: -8
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d72353733a81600466f"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_wall_firewall2"
+  gridPoint {
+    x: -0.9999876
+    y: 0
+    z: -8
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d72353733a816004670"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_1x1cover"
+  gridPoint {
+    x: 0
+    y: 0
+    z: -7
+  }
+  orientation: ORIENTATION_E
+  idRef {
+    id: "55f36d7d353733a816004671"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_cover1x1"
+  gridPoint {
+    x: -0.099998474
+    y: 0.2
+    z: -7
+  }
+  orientation: ORIENTATION_S
+  idRef {
+    id: "55f36d80353733a816004672"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_cover1x2"
+  gridPoint {
+    x: -14.099998
+    y: 0.2
+    z: -8.1
+  }
+  orientation: ORIENTATION_E
+  idRef {
+    id: "55f36d8a353733a816004673"
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_tech_1x2cover"
+  gridPoint {
+    x: -14
+    y: 0
+    z: -8
+  }
+  orientation: ORIENTATION_E
+  idRef {
+    id: "55f36d8a353733a816004674"
+  }
+  lod: 0
+}
+props {
+  name: "system_invisible_nonsolidProp"
+  gridPoint {
+    x: -52.5
+    y: 0
+    z: -13.5
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_matrixcontrolnode_target2"
+  idRef {
+    id: "55f3766e353733a81600467f"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    dummyInteraciton {
+    }
+    interaction_info_text: ""
+  }
+  lod: 0
+}
+props {
+  name: "white--matrix_floor_4x4blueedgetrans"
+  gridPoint {
+    x: -38
+    y: 0
+    z: -5
+  }
+  orientation: ORIENTATION_N
+  idRef {
+    id: "55f39daa353733e41a006a39"
   }
   lod: 0
 }
