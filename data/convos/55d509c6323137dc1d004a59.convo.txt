@@ -120,13 +120,16 @@ nodes {
   index: 3
   text: "{{GM}}Your commlink comes to life. An abnormally charismatic trollish face splashes across your interface.{{/GM}}\n\nGuess the welcoming party is here... I\'m the King of this Slum now, $(l.guy)! GET \'EM, boys! I want their balls, or their brains, on a plate! Whichever is bigger!"
   branches {
-    responseText: ""
+    responseText: "{{CC}}Drone Control - 5{{/CC}}  Remote hack the drone."
     conditions {
       ops {
         functionName: "Compare Actor Skill"
         args {
           call_value {
-            functionName: "Triggering Actor"
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
           }
         }
         args {
@@ -168,7 +171,6 @@ nodes {
       }
     }
     nextNodeIndex: 4
-    hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "55cc938832313740190014f8"
@@ -176,23 +178,29 @@ nodes {
     comment: "if PC0 has Drone Control 5+"
   }
   branches {
-    responseText: ""
+    responseText: "Have {{CC}}El Jefe{{/CC}} hack the drone"
     conditions {
       ops {
-        functionName: "AND"
+        functionName: "Evaluate Tag for Actor"
         args {
           call_value {
-            functionName: "Compare Actor Skill"
+            functionName: "All Actors on Team"
             args {
               call_value {
-                functionName: "Triggering Actor"
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
               }
             }
             args {
               call_value {
                 functionName: "Get Preset Value (int)"
                 args {
-                  string_value: "BaseOrCurrent"
+                  string_value: "AllOrAny"
                 }
                 args {
                   int_value: 1
@@ -201,87 +209,30 @@ nodes {
             }
             args {
               call_value {
-                functionName: "Get Preset Value (int)"
+                functionName: "Get Map Item (SceneDimension)"
                 args {
-                  string_value: "ActorSkills"
-                }
-                args {
-                  int_value: 10
+                  string_value: "Default"
                 }
               }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "Comparison Ops"
-                }
-                args {
-                  int_value: 4
-                }
-              }
-            }
-            args {
-              int_value: 5
             }
           }
         }
         args {
           call_value {
-            functionName: "Evaluate Tag for Actor"
+            functionName: "Get Preset Value (int)"
             args {
-              call_value {
-                functionName: "All Actors on Team"
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (string)"
-                    args {
-                      string_value: "FactionList"
-                    }
-                    args {
-                      int_value: 0
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (int)"
-                    args {
-                      string_value: "AllOrAny"
-                    }
-                    args {
-                      int_value: 1
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Map Item (SceneDimension)"
-                    args {
-                      string_value: "Default"
-                    }
-                  }
-                }
-              }
+              string_value: "HasOrHasNot"
             }
             args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "HasOrHasNot"
-                }
-                args {
-                  int_value: 1
-                }
-              }
+              int_value: 1
             }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Tag From String"
             args {
-              call_value {
-                functionName: "Get Map Item (SenseTagList)"
-                args {
-                  string_value: "isElJefe"
-                }
-              }
+              string_value: "isElJefe"
             }
           }
         }
@@ -296,119 +247,8 @@ nodes {
     comment: "if El Jefe is in the party"
   }
   branches {
-    responseText: ""
-    conditions {
-      ops {
-        functionName: "AND"
-        args {
-          call_value {
-            functionName: "Compare Actor Skill"
-            args {
-              call_value {
-                functionName: "Triggering Actor"
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "BaseOrCurrent"
-                }
-                args {
-                  int_value: 1
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "ActorSkills"
-                }
-                args {
-                  int_value: 10
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "Comparison Ops"
-                }
-                args {
-                  int_value: 4
-                }
-              }
-            }
-            args {
-              int_value: 5
-            }
-          }
-        }
-        args {
-          call_value {
-            functionName: "Evaluate Tag for Actor"
-            args {
-              call_value {
-                functionName: "All Actors on Team"
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (string)"
-                    args {
-                      string_value: "FactionList"
-                    }
-                    args {
-                      int_value: 0
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Preset Value (int)"
-                    args {
-                      string_value: "AllOrAny"
-                    }
-                    args {
-                      int_value: 0
-                    }
-                  }
-                }
-                args {
-                  call_value {
-                    functionName: "Get Map Item (SceneDimension)"
-                    args {
-                      string_value: "Default"
-                    }
-                  }
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Preset Value (int)"
-                args {
-                  string_value: "HasOrHasNot"
-                }
-                args {
-                  int_value: 0
-                }
-              }
-            }
-            args {
-              call_value {
-                functionName: "Get Map Item (SenseTagList)"
-                args {
-                  string_value: "isElJefe"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    responseText: "{{CC}}Leave it alone{{/CC}}"
     nextNodeIndex: 6
-    hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "55cc94eb3231374019001566"

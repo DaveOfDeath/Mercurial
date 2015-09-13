@@ -35667,16 +35667,6 @@ props {
   lod: 0
 }
 props {
-  name: "tenements_clutter_woodenCrate"
-  gridPoint {
-    x: -40
-    y: 0
-    z: 54
-  }
-  orientation: ORIENTATION_S
-  lod: 0
-}
-props {
   name: "bremerton_ship_crate03"
   gridPoint {
     x: -38
@@ -60974,17 +60964,30 @@ props {
     z: -25
   }
   orientation: ORIENTATION_S
-  displayName: "Matrix.01.LogOn"
+  displayName: "Matrix.01.LogOn [FreeMove]"
   idRef {
     id: "55cca25b323137401900177b"
   }
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    jackPoint {
-      LANIdentifier: "55cca1ff3231374019001778"
-      LANEquipment: ""
+    prerequisites {
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
     }
+    interactionIcon: InteractionIcon_Matrix
     interaction_info_text: "Jack Point"
   }
   lod: 0
@@ -69653,6 +69656,117 @@ props {
   orientation: ORIENTATION_E
   idRef {
     id: "55ecf1ec353733cc07003ef0"
+  }
+  lod: 0
+}
+props {
+  name: "system_invisible_nonsolidProp"
+  gridPoint {
+    x: -21
+    y: 1
+    z: -25
+  }
+  orientation: ORIENTATION_S
+  displayName: "Matrix.01.LogOn [TurnBased]"
+  idRef {
+    id: "55f5039566313674030058de"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    jackPoint {
+      LANIdentifier: "55cca1ff3231374019001778"
+      LANEquipment: ""
+    }
+    interaction_info_text: "Jack Point"
+  }
+  lod: 0
+}
+props {
+  name: "docks_clutter_salvageCrate03"
+  gridPoint {
+    x: -37
+    y: 0
+    z: 62
+  }
+  orientation: ORIENTATION_S
+  displayName: "obj_Parts"
+  idRef {
+    id: "55f517d46631367403005d58"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Evaluate Turn Mode"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TurnBasedOrFreeMove"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Variable (bool)"
+            args {
+              string_value: "bNeedsLockParts"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    pickupItem {
+      itemName: "item_Hotel_LockParts"
+      destroyOnPickup: false
+    }
+    interaction_info_text: "Rummage through bin?"
   }
   lod: 0
 }
