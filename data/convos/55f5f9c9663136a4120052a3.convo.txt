@@ -1,0 +1,455 @@
+idRef {
+  id: "55f5f9c9663136a4120052a3"
+}
+ui_name: "Sewers - Rigger"
+nodes {
+  idRef {
+    id: "55f5f9d1663136a4120052a9"
+  }
+  index: 0
+  text: "{{GM}}A badly malfunctioning drone hovers hear by... Hand painted numbers on it\'s chassis identify it as \'Zooba 2431\'.  Sparks rain from acing electricity, clearly this drone is in bad shape.  It looks like this drone has been used for target practice.{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_GM_Voice
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Sewer_Rigger"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f5fb9b663136a01600466d"
+  }
+  index: 1
+  text: "{{GM}}A series of clicks, whirring mechanical noises, and beeps emitt from the drone, almost as if it could talk...{{/GM}}\n\nHelp me...."
+  branches {
+    responseText: "Have {{CC}}El Jefe{{/CC}} take a look"
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SenseTagList)"
+            args {
+              string_value: "isElJefe"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+  }
+  branches {
+    responseText: "{{CC}}Drone Control - 4{{/CC}} Hang on little fella..."
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "{{CC}}Intelligence - 5{{/CC}} I don\'t know much about drones, but lets take a look."
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "{{CC}}Attack Drone.{{/CC}}  Lets see if we can\'t get any more sparks outta this thing!"
+    actions {
+      ops {
+        functionName: "Delete Props by Tag"
+        args {
+          call_value {
+            functionName: "Get Map Item (SenseTagList)"
+            args {
+              string_value: "isRigger"
+            }
+          }
+        }
+        args {
+          float_value: -1
+        }
+        args {
+          call_value {
+            functionName: "Everywhere"
+          }
+        }
+      }
+      ops {
+        functionName: "Attack Actor With Weapon"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Triggering Actor"
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "55f5f96a663136a412005286"
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Play FX at Point"
+        args {
+          string_value: "CriticalSquibSparks"
+        }
+        args {
+          call_value {
+            functionName: "Current Location of Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "55f5f96a663136a412005286"
+                }
+              }
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Kill Actor"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Actor)"
+                args {
+                  string_value: "55f5f96a663136a412005286"
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "DeathMethod"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "FacingDirection"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Display Text over Actor"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "TextPopupStyle"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          string_value: "Now that\'s a firework show!"
+        }
+        args {
+          float_value: 255
+        }
+        args {
+          float_value: 255
+        }
+        args {
+          float_value: 0
+        }
+        args {
+          float_value: 128
+        }
+        args {
+          float_value: 15
+        }
+        args {
+          float_value: 3
+        }
+        args {
+          float_value: 3
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Ain\342\200\231t worth the time."
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5f96a663136a412005286"
+  }
+}
+nodes {
+  idRef {
+    id: "55f5fc15663136a016004670"
+  }
+  index: 2
+  text: "10-4 Boss.  \n\n{{GM}}A few minutes of tinkering, and he has it humming along like it was never used as target practice.{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceWithTagInScene: "isElJefe"
+}
+nodes {
+  idRef {
+    id: "55f5fcc0663136a016004677"
+  }
+  index: 3
+  text: "{{GM}}A few quick tweaks later, bypassing a ruined solenoid... and the little drone is good(ish) as new.{{/GM}}\n\nThere you go little fella."
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55f5fd03663136a01600467a"
+  }
+  index: 4
+  text: "{{GM}}Several happy sounding chirps and whirring noises later, the drone disappears into one of the vents{{/GM}}"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5f96a663136a412005286"
+  }
+  actions {
+    ops {
+      functionName: "Order Actor to Face Direction"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55f5f96a663136a412005286"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isRigger"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55f5f96a663136a412005286"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f5fd78663136a01600468f"
+  }
+  index: 5
+  text: "{{GM}}You build a quick makeshift bypass for a damaged circuit, and the drone perks right up.{{/GM}}\n\nGood as new little fella!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55f5fc92663136a016004675"
+  }
+  index: 6
+  text: "{{GM}}The slow beeps and whirring noises can only be interpreted as disappointment{{/GM}}"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5f96a663136a412005286"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}

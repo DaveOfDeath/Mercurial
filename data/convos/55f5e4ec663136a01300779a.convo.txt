@@ -1,0 +1,414 @@
+idRef {
+  id: "55f5e4ec663136a01300779a"
+}
+ui_name: "Sewers - StreetSam"
+nodes {
+  idRef {
+    id: "55f5e5f3663136a0130077a0"
+  }
+  index: 0
+  text: "{{GM}}A Mage is surrounded by a summoning circle.  There is a loud thumping noise as you gets closer.{{/GM}}\n\nZeddicus, startled, turns around barking assorted magical-sounding words."
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Sewer_StreetSam"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f5e783663136a0130077a9"
+  }
+  index: 1
+  text: ""
+  branches {
+    responseText: "Look to {{CC}}Padre{{/CC}}"
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (SenseTagList)"
+            args {
+              string_value: "isPadre"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55f5e780663136a0130077a4"
+    }
+  }
+  branches {
+    responseText: "What was that?"
+    nextNodeIndex: 3
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Start"
+}
+nodes {
+  idRef {
+    id: "55f5e79f663136a0130077ad"
+  }
+  index: 2
+  text: "{{GM}}He listens for a moment, then shakes his head.{{/GM}}\n\n\"No magical phrasing I\'ve ever heard.   Sounds like gibberish to me.\" he whispers."
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceWithTagInScene: "isPadre"
+}
+nodes {
+  idRef {
+    id: "55f5e7f8663136a0130077b7"
+  }
+  index: 3
+  text: "Mystical words of power.   They keep it at bay."
+  branches {
+    responseText: "it?"
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+}
+nodes {
+  idRef {
+    id: "55f5e870663136a0130077c7"
+  }
+  index: 4
+  text: "I found the magic, and used it.   Now we can barely keep it at bay.   Are you here to help me?  Or it?"
+  branches {
+    responseText: "What kinda help?"
+    nextNodeIndex: 5
+  }
+  branches {
+    responseText: "Neither? Goodbye! "
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+}
+nodes {
+  idRef {
+    id: "55f5e8ca663136a0130077cb"
+  }
+  index: 5
+  text: "It\'s trying to get me.  I summoned it and it was all friendly like saying, \342\200\234Come on let me out.\342\200\235\n\nSo... I let it out."
+  branches {
+    responseText: "What did you summon?"
+    nextNodeIndex: 6
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+}
+nodes {
+  idRef {
+    id: "55f5e923663136a0130077ce"
+  }
+  index: 6
+  text: "I thought it was a simple fire spirit... but it turns out that it wasn\'t.   It\'s something... more.  \n\n{{GM}}He shrugs apologetically{{/GM}}\n\nYeah, I went over my head. I tried to expand my world. Plus I thought it would be fun!\n"
+  branches {
+    responseText: "Enough.  You want me to get rid of the creature you summoned?"
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55f5e9e4663136a0130077d1"
+  }
+  index: 7
+  text: "Yes, I\'ll lower my barrier. Then all you got to do is toss this under the creature and poof it will go back where it came from."
+  branches {
+    responseText: "{{CC}}Accept{{/CC}} Give it to me. I\'ll do it."
+    nextNodeIndex: 8
+  }
+  branches {
+    responseText: "{{CC}}Decline{{/CC}} You\342\200\231re nuts, take care of your own problem.  I\342\200\231m out of here."
+    actions {
+      ops {
+        functionName: "Set Variable (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_Sewer_StreetSam"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 9
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+}
+nodes {
+  idRef {
+    id: "55f5f258663136a4120051b5"
+  }
+  index: 8
+  text: "Thanks!   I can\'t hold this barrier much longer..."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+  actions {
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isBarrier"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f5ecfb663136a412005138"
+  }
+  index: 9
+  text: "Iiiittsss... breaking free!"
+  branches {
+    responseText: ""
+    nextNodeIndex: 10
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e211663136a01300778b"
+  }
+}
+nodes {
+  idRef {
+    id: "55f5ed0e663136a41200513b"
+  }
+  index: 10
+  text: "Foolish mortal... Now join me for eternity!"
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f5e216663136a01300778c"
+  }
+  actions {
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isStreetSam"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Isolated Team Turn"
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Order Actor to Move To (Actor)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55f5e216663136a01300778c"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55f5e211663136a01300778b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "55f5e216663136a01300778c"
+          }
+        }
+      }
+    }
+  }
+}
+roots {
+  nextNodeIndex: 0
+}

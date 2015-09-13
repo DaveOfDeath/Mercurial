@@ -1,0 +1,333 @@
+idRef {
+  id: "55f60553663136a0160047b0"
+}
+ui_name: "Sewers - Mage"
+nodes {
+  idRef {
+    id: "55f6055b663136a0160047b6"
+  }
+  index: 0
+  text: "{{GM}} You come across a rat-faced man wearing some colorful clothes and has a boom box near him.  Piper is busy chatting to his pet dog.{{/GM}}\n\n\nPiperi, I think we have a new friend."
+  branches {
+    responseText: ""
+    nextNodeIndex: 1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_Sewer_Mage"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f605b1663136a0160047ba"
+  }
+  index: 1
+  text: "{{GM}}Gnawing sound{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 2
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f603d7663136a0160047af"
+  }
+}
+nodes {
+  idRef {
+    id: "55f605d8663136a0160047be"
+  }
+  index: 2
+  text: "You\'re right Piperi. Not everyone is a friend. Who are you?"
+  branches {
+    responseText: "$(story.str_RunnerName).  And you are?"
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "Not interested, thanks."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+}
+nodes {
+  idRef {
+    id: "55f60628663136a0160047c3"
+  }
+  index: 3
+  text: "Names Piper, friend. \n\nDogs are my game.  I just love them. This extinguished, I mean distinguished,  dog is Piperi."
+  branches {
+    responseText: ""
+    nextNodeIndex: 4
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+}
+nodes {
+  idRef {
+    id: "55f60651663136a0160047c6"
+  }
+  index: 4
+  text: "{{GM}}Barks loudy.{{/GM}}"
+  branches {
+    responseText: "What do you do with the dog?"
+    nextNodeIndex: 5
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "creatures"
+          }
+          args {
+            string_value: "Dog_Attack"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f606a9663136a0160047c9"
+  }
+  index: 5
+  text: "All sorts of interesting things.  Piperi here helps me find stuff. He also helps protect me."
+  branches {
+    responseText: "{{CC}}Intelligence - 3{{/CC}}  What you got there boy?"
+    conditions {
+      ops {
+        functionName: "Compare Actor Attribute"
+        args {
+          call_value {
+            functionName: "Triggering Actor"
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorAttributes"
+            }
+            args {
+              int_value: 4
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 3
+        }
+      }
+    }
+    nextNodeIndex: 6
+  }
+  branches {
+    responseText: "Good boy!"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+}
+nodes {
+  idRef {
+    id: "55f60736663136a0160047cd"
+  }
+  index: 6
+  text: "{{GM}}The dog drops what it was chewing on in a slobbery pile in front of it.{{/GM}}"
+  branches {
+    responseText: "Is that an passkey?"
+    nextNodeIndex: 7
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f603d7663136a0160047af"
+  }
+}
+nodes {
+  idRef {
+    id: "55f608a1663136a0160047d1"
+  }
+  index: 7
+  text: "No, it\'s Piperi\'s chew toy.  Why?"
+  branches {
+    responseText: "That\'s a MagLock passkey... You think I could have that?"
+    nextNodeIndex: 8
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+}
+nodes {
+  idRef {
+    id: "55f6092a663136a0160047d4"
+  }
+  index: 8
+  text: "Why should I give it to you?"
+  branches {
+    responseText: "{{CC}}Willpower - 3{{/CC}} Because we\'re such good friends?  And love dogs?"
+    nextNodeIndex: 9
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "{{CC}}Charisma - 4{{/CC}} because we\'re such friendly people?"
+    nextNodeIndex: 9
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Because I can use it?"
+    nextNodeIndex: 11
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+}
+nodes {
+  idRef {
+    id: "55f60a21663136a0160047d8"
+  }
+  index: 9
+  text: "Alright... You can have it. \n\n{{GM}}He grabs the key from the dog, and hands it to you.{{/GM}}"
+  branches {
+    responseText: ""
+    nextNodeIndex: 10
+  }
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+  actions {
+    ops {
+      functionName: "Add Item to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_TaetzelInterior_MagLockPassKey"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55f60a3f663136a0160047db"
+  }
+  index: 10
+  text: "{{GM}}You scan it over quickly, and pocket the key.{{/GM}}\n\nThanks!"
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55f60b8e663136a0160047e4"
+  }
+  index: 11
+  text: "So can Piperi... So he can keep it."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "55f6029f663136a0160047ab"
+  }
+}
+roots {
+  nextNodeIndex: 0
+}
