@@ -1,4 +1,101 @@
 triggers {
+  name: "onCurtain.MarkPCs"
+  events {
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isPC1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isPC2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 2
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Tag to Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isPC3"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 3
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4da0f663136d40c0037b3"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
   name: "OnMapLoad.GenderDeragatoryTerm"
   events {
     ops {
@@ -5181,17 +5278,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eDragonFire"
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Play FX at Point"
       args {
         string_value: "Berlin:DragonFireAttackAction"
@@ -5217,6 +5303,31 @@ triggers {
       }
       args {
         float_value: 5.5
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonFire"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonDone"
+          }
+        }
+      }
+      args {
+        float_value: 7
       }
     }
   }
@@ -5468,102 +5579,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eDragonDone"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Delete Props by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isTrivid"
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Specified Point (2D)"
-          args {
-            float_value: 179
-          }
-          args {
-            float_value: 104
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Delete Props by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "trash"
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "scorched"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Kill Actor"
       args {
         call_value {
@@ -5630,6 +5645,20 @@ triggers {
       }
       args {
         float_value: 0
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonCharReacts"
+          }
+        }
+      }
+      args {
+        float_value: 5
       }
     }
   }
@@ -5761,6 +5790,113 @@ triggers {
         int_value: 1
       }
     }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "     DragonAttack.Done"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eDragonDone"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "scorched"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "isTrivid"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Specified Point (2D)"
+          args {
+            float_value: 179
+          }
+          args {
+            float_value: 104
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "trash"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ecb9663136d40c0037ba"
+  }
+  elseActions {
   }
   is_oneshot: false
 }
@@ -6715,6 +6851,59 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e856131313023007215"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55059c4d61313130230071e8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -6763,6 +6952,59 @@ triggers {
           functionName: "Get Map Item (Prop)"
           args {
             string_value: "559a21b3613131001b001d1d"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e856131313023007215"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55059c4d61313130230071e8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -7051,6 +7293,59 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e936131313023007217"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55059c4d61313130230071e8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   isActive: true
   idRef {
@@ -7143,6 +7438,59 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55059e936131313023007217"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55059c4d61313130230071e8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
   }
   is_oneshot: false
 }
@@ -7226,7 +7574,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "DogHouse.InvestigateHotoda"
@@ -7308,7 +7656,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "DogHouse.SetExit"
@@ -7405,26 +7753,6 @@ triggers {
     }
   }
   actions {
-    ops {
-      functionName: "Display Text In Popup"
-      args {
-        string_value: "Covering your faces from the smoke and ash of the street market, you make a break for the Stret Doc- where you hope to find some respite. The street doc is as burned as the rest of the market, but Maria is conscious enough to give you the number of a clinic she knows.\n\nWith the  van burned to slag, you\'re forced to hoof it to the clinic- luckily there are a thousand people also fleeing the site of the dragon attack, so you\'re just more soot-covered refugees looking for a safe place to go.\n\nYou are burned, your lungs are full of smoke, your vision is blurry, Maria is safe-ish. Hotoda is dead, whoever she was. Max is dead, good riddance. You send a message to Sam with a location to meet up with you.\n\nAlso, Holy FRAGGING drek, where did that dragon come from?"
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "PopupType"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        string_value: " Escaping the Doghouse"
-      }
-    }
     ops {
       functionName: "Fade Camera Out"
       args {
@@ -8240,6 +8568,1931 @@ triggers {
   elseActions {
   }
   is_oneshot: false
+}
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55f4a543663136d40c00378a"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "---=== Dragon Reaction ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55d3b8106631369c09000dde"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "React.SelectAnActor"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eDragonCharReacts"
+      }
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "Was that a fragging dragon?"
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonCharReacts"
+          }
+        }
+      }
+      args {
+        float_value: 8
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcf56631369c09000dfb"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isPC1"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "$(scene.sReaction)"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonCharReacts"
+          }
+        }
+      }
+      args {
+        float_value: 8
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcf56631369c09000dfb"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isPC2"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "$(scene.sReaction)"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eDragonCharReacts"
+          }
+        }
+      }
+      args {
+        float_value: 8
+      }
+    }
+    ops {
+      functionName: "Trigger: Wait Until Triggered Again"
+    }
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iPC_Slot"
+          }
+        }
+      }
+      args {
+        int_value: 3
+      }
+    }
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcf56631369c09000dfb"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Nearest Tagged Actor to Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isPC3"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "$(scene.sReaction)"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 255
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 128
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3ceea6631369c09000fb4"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.ElJefe"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isElJefe"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "Lonestar\'s magic divisions going to have a field day trying to make heads or tails out of this one."
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcf56631369c09000dfb"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcf86631369c09000dfc"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Gunner"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isGunner"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "Stay in cover!   Dragons can sense heat, and the fires may confuse it."
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcf86631369c09000dfc"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcfb6631369c09000dfd"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Luna"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isLuna"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "It\'s not circling around.   Why isn\'t it coming back to finish us?"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfb6631369c09000dfd"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcfb6631369c09000dfe"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Nebel"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isNebel"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "Fuck this shit... Let\'s get the hell out of here!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfb6631369c09000dfe"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcfb6631369c09000dff"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Padre"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isPadre"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "By the grace of God... Stay away from the fire!  It can\'t be extinguished with water!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfb6631369c09000dff"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcfd6631369c09000e00"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Shiver"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isShiver"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "That\'s a young dragon.   I\'ve seen bigger."
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfd6631369c09000e00"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcfd6631369c09000e01"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.SilverArrow"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isSilverArrow"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "Holy frag, Chummer!   Should\'ve installed sprinklers on the roof!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfd6631369c09000e01"
+  }
+  elseActions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55d3bcfd6631369c09000e02"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "Whois.Sucio"
+  events {
+  }
+  conditions {
+    ops {
+      functionName: "Evaluate Tag for Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Tag From String"
+              args {
+                call_value {
+                  functionName: "Append (string)"
+                  args {
+                    call_value {
+                      functionName: "Convert (int) to (string)"
+                      args {
+                        call_value {
+                          functionName: "Get Variable (int)"
+                          args {
+                            string_value: "iPC_Slot"
+                          }
+                        }
+                      }
+                    }
+                  }
+                  args {
+                    string_value: "isPC"
+                  }
+                }
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "HasOrHasNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isSucio"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (string)"
+      args {
+        call_value {
+          functionName: "Get Variable (string)"
+          args {
+            string_value: "sReaction"
+          }
+        }
+      }
+      args {
+        string_value: "Did you see the size of the dick on that thing!"
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55d3bcfd6631369c09000e02"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55f4ef12663136d40c0037c0"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "---=== Dragon Reaction ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55f4ef12663136d40c0037c1"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Clinic.Notice"
+  events {
+    ops {
+      functionName: "On Region Enter"
+      args {
+        call_value {
+          functionName: "Get Map Item (Region)"
+          args {
+            string_value: "5556e68e393066d003000645"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (Actor)"
+      args {
+        call_value {
+          functionName: "Triggering Actor"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text In Popup"
+      args {
+        string_value: "Covering your faces from the smoke and ash of the street market, you make a break for the Street Doc- where you hope to find some respite. Unfortunately, the street doc is as burned as the rest of the market. Maria is conscious enough to give you the number of a high grade clinic she knows.\n\nWith the  van burned to slag, you\'re forced to hoof it to the clinic- luckily there are a thousand people also fleeing the site of the dragon attack, so you\'re just more soot-covered refugees looking for a safe place to go.\n\nYou are burned, your lungs are full of smoke, your vision is blurry, Maria is safe-ish. Hotoda is dead, whoever she was. Max is dead, good riddance. You send a message to Sam with a location to meet up with you.\n\nAlso, Holy FRAGGING drek, where did that dragon come from?"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "-- Escaping the Street Market -- "
+      }
+    }
+    ops {
+      functionName: "Delete Props by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "scorched"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+    }
+    ops {
+      functionName: "Play Animation From Manifest"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "5556e9a0393066d003000648"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Animation)"
+          args {
+            string_value: "Seattle:General/standing_idle_repairing"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5532ef7f663136200f000bee"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5532ef7f663136200f000bee"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55059c4d61313130230071e8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Change Actor Team"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5532f1186631360007001367"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "5532f1186631360007001367"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "55059c4d61313130230071e8"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ef15663136d40c0037c2"
+  }
+  elseActions {
+  }
+  is_oneshot: true
 }
 regions {
   name: "rDogHouseStreetEnter"
@@ -9074,7 +11327,7 @@ regions {
   position {
     x: 67
     y: -12
-    width: 8
+    width: 9
     height: 3
   }
   enabledAtStart: true
@@ -9116,7 +11369,7 @@ regions {
   no_fow_in_region: false
 }
 regions {
-  name: "StreetDoc"
+  name: "cDeltaClinic"
   position {
     x: 66
     y: -13
@@ -9149,9 +11402,9 @@ regions {
     a: 1
   }
   ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
+    r: 0.66666669
+    g: 0.66666669
+    b: 0.66666669
     a: 1
   }
   ambience_template: ""
@@ -11473,11 +13726,11 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 78
+    x: 68
     y: 0
-    z: 0
+    z: 2.6
   }
-  orientation: ORIENTATION_S
+  orientation: ORIENTATION_N
   displayName: "2"
   idRef {
     id: "5556e9a0393066d003000648"
@@ -11557,7 +13810,7 @@ characters {
       prefab_name: "Berlin_HealthPack"
     }
     team_id: "Civilians"
-    char_name: "Street Doc"
+    char_name: "DeltaWare Clinic Doctor"
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
@@ -11570,14 +13823,23 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 66.3
+    x: 77
     y: 0
-    z: 2.3
+    z: 0
   }
-  orientation: ORIENTATION_W
+  orientation: ORIENTATION_S
   displayName: "1"
   idRef {
     id: "5556e9a0393066d003000649"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 4
+    conversationPoint {
+      conversationID: "5556ef6b393066d003000653"
+      turnToFace: true
+    }
+    interaction_info_text: "Talk to Doctor?"
   }
   lod: 0
   character_instance {
@@ -11654,14 +13916,15 @@ characters {
       prefab_name: "Berlin_HealthPack"
     }
     team_id: "Civilians"
-    char_name: "Street Doc"
+    char_name: "DeltaWare Doc"
     enabled_at_start: true
     pc_spawn_number: -1
     portrait {
       filename: "pc_orkmale_02_biker"
     }
     karma: 8
-    is_prop_character: true
+    is_prop_character: false
+    has_fist: false
   }
 }
 characters {
@@ -12076,6 +14339,38 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  float_value: 30
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fComment_Len"
+    typeName: "float"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iPC_Slot"
+    typeName: "int"
+  }
+}
+variables {
+  string_value: ""
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "sReaction"
+    typeName: "string"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "intTableDestination"
+    typeName: "int"
+  }
+}
 mapEvents: "eStartCombat"
 mapEvents: "eEndCombat"
 mapEvents: "eMariaChips"
@@ -12088,6 +14383,14 @@ mapEvents: "eBlightTurn"
 mapEvents: "eHotadaExit"
 mapEvents: "eMaxExit"
 mapEvents: "eCheckForDragonFlyOver"
+mapEvents: "eDragonReaction1"
+mapEvents: "eDragonCharReacts"
+mapEvents: "eDragonReaction2"
+mapEvents: "eDragonReaction3"
+mapEvents: "eNewSpot"
+senseTags: "isPC1"
+senseTags: "isPC2"
+senseTags: "isPC3"
 goals {
   name: "Survive the Betrayal"
   type: GoalType_Primary
@@ -12170,16 +14473,79 @@ scene_dimensions {
 }
 character_roster {
 }
-show_hiring_screen_on_scene_load: false
+show_hiring_screen_on_scene_load: true
 scene_hiring_prerequisites {
   prereq_description: ""
   prereq_conditions {
   }
 }
-hiring_slot_count: 0
+hiring_slot_count: 3
 hiring_minimum_karma: 0
-hiring_maximum_karma: 0
+hiring_maximum_karma: 8
 roster_overrides {
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Blight_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_ElJefe_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Gunner_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Luna_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Nebel_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Padre_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Shiver_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_SilverArrow_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
+  roster_entries {
+    reference_id: "MERCURIAL_Crew_Sucio_Lv2"
+    hiring_conditions {
+    }
+    hiring_cost: -1
+    content_pack_source: "542848a8633464d816001ad5"
+  }
 }
 use_hiring_cost_warning: false
 hiring_average_cost: 0
