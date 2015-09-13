@@ -1,4 +1,88 @@
 triggers {
+  name: "---=== Global Triggers ===---"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55f4d935353733781800150f"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "Disable.isChecked"
+  events {
+    ops {
+      functionName: "On Actor Alive"
+    }
+    ops {
+      functionName: "On Combat Entered"
+    }
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Remove Tag from Actor"
+      args {
+        call_value {
+          functionName: "Tag From String"
+          args {
+            string_value: "isChecked"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "All Actors"
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55c7d6c2663136c412001c7c"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55f4d930353733781800150e"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "--== General Triggers ==--"
   events {
   }
@@ -457,17 +541,6 @@ triggers {
           functionName: "Get Map Item (Animation)"
           args {
             string_value: "Seattle:General/standing_idle_rocking"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eUpdateFlashlights"
           }
         }
       }
@@ -1128,7 +1201,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "onMapStart.CrateEval [3]"
@@ -1249,7 +1322,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "onMapStart.CrateEval [4]"
@@ -1370,7 +1443,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "onMapStart.CrateEval [5]"
@@ -1491,7 +1564,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: "onMapStart.CrateEval [Update]"
@@ -1549,7 +1622,7 @@ triggers {
   }
   elseActions {
   }
-  is_oneshot: true
+  is_oneshot: false
 }
 triggers {
   name: " "
@@ -6342,42 +6415,6 @@ triggers {
   isActive: true
   idRef {
     id: "55adf2926631362008006d3f"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "FlashLight.Update"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "eUpdateFlashlights"
-      }
-    }
-  }
-  conditions {
-  }
-  actions {
-    ops {
-      functionName: "Send Event After Delay"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eUpdateFlashlights"
-          }
-        }
-      }
-      args {
-        float_value: 0.06
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55adf2926631362008006d40"
   }
   elseActions {
   }
@@ -14375,49 +14412,977 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "Disable.isChecked"
+  name: "FlashLight.Update1"
   events {
     ops {
-      functionName: "On Actor Alive"
-    }
-    ops {
-      functionName: "On Combat Entered"
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
     }
   }
   conditions {
-  }
-  actions {
     ops {
-      functionName: "Remove Tag from Actor"
+      functionName: "Comparison (float)"
       args {
         call_value {
-          functionName: "Tag From String"
+          functionName: "Absolute Value (float)"
           args {
-            string_value: "isChecked"
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
           }
         }
       }
       args {
         call_value {
-          functionName: "All Actors"
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
           args {
             call_value {
-              functionName: "Get Preset Value (int)"
+              functionName: "Get Variable (float)"
               args {
-                string_value: "AllOrAny"
-              }
-              args {
-                int_value: 0
+                string_value: "fUpdateFlashlightLoop"
               }
             }
           }
         }
       }
     }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
   }
   isActive: true
   idRef {
-    id: "55c7d6c2663136c412001c7c"
+    id: "55adf2926631362008006d40"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update2"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4e3cd3537337404000635"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update3"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4e6783537337404000638"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update4"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 4
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ece53537336016002abd"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update5"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 5
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ecf23537336016002abe"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update6"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 6
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ed103537336016002abf"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update7"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 7
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ed233537336016002ac0"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update8"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: 8
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ed3a3537336016002ac1"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "FlashLight.Update9"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eUpdateFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        float_value: 8
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Absolute Value (float)"
+          args {
+            call_value {
+              functionName: "Get Variable (float)"
+              args {
+                string_value: "fUpdateFlashlightLoop"
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 0.06
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4ed453537336016002ac2"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: ""
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "55f4dd223537337818001512"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "OnCurtainsUp.InvertFloat.SendeCheckFlashlight"
+  events {
+    ops {
+      functionName: "On Curtains Up"
+    }
+  }
+  conditions {
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Arithmetic (float)"
+          args {
+            float_value: -1
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Arithmetic Ops"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Arithmetic (float)"
+              args {
+                call_value {
+                  functionName: "Get Variable (float)"
+                  args {
+                    string_value: "fUpdateFlashlightLoop"
+                  }
+                }
+              }
+              args {
+                call_value {
+                  functionName: "Get Preset Value (int)"
+                  args {
+                    string_value: "Arithmetic Ops"
+                  }
+                  args {
+                    int_value: 0
+                  }
+                }
+              }
+              args {
+                float_value: 1
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eCheckFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4d92d353733781800150d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eCheckFlashlights.FloatNegative.RestartLights"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eCheckFlashlights"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fUpdateFlashlightLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eUpdateFlashlights"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4da363537337818001511"
   }
   elseActions {
   }
@@ -15708,6 +16673,14 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  float_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "fUpdateFlashlightLoop"
+    typeName: "float"
+  }
+}
 mapEvents: "eUpdateFlashlights"
 mapEvents: "eUpdateCrateCount"
 mapEvents: "eLightDisplayUpdate"
@@ -15716,6 +16689,7 @@ mapEvents: "eMarkCrates"
 mapEvents: "eWalkAway"
 mapEvents: "eFight"
 mapEvents: "eCrateWaypints"
+mapEvents: "eCheckFlashlights"
 goals {
   name: "Survive"
   type: GoalType_Primary
@@ -15797,8 +16771,8 @@ scene_hiring_prerequisites {
   }
 }
 hiring_slot_count: 3
-hiring_minimum_karma: 0
-hiring_maximum_karma: 0
+hiring_minimum_karma: 2
+hiring_maximum_karma: 2
 roster_overrides {
   roster_entries {
     reference_id: "MERCURIAL_Crew_Blight_Lv1"
