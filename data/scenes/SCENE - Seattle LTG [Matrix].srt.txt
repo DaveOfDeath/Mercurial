@@ -317,114 +317,8 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "General.PersonaKilled [Player]"
-  events {
-    ops {
-      functionName: "On Actor Death"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Compare Actor Team"
-      args {
-        call_value {
-          functionName: "Triggering Target Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (string)"
-          args {
-            string_value: "FactionList"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Matrix"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Comparison (Actor)"
-      args {
-        call_value {
-          functionName: "Triggering Target Actor"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Actor\'s Persona"
-          args {
-            call_value {
-              functionName: "Get Map Item (Player)"
-              args {
-                int_value: 0
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "ePlayerDies"
-          }
-        }
-      }
-    }
-  }
-  isActive: false
-  idRef {
-    id: "552011a96631360c1300261d"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
   name: "Exit.DumpShock [DOGHOUSE]"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "ePlayerDies"
-      }
-    }
   }
   conditions {
     ops {
@@ -658,12 +552,6 @@ triggers {
 triggers {
   name: "Exit.DumpShock [PENTHOUSE]"
   events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "ePlayerDies"
-      }
-    }
   }
   conditions {
     ops {
@@ -5107,6 +4995,9 @@ triggers {
 triggers {
   name: "OnJackOut.isLeaderOrFollower.ClearTags"
   events {
+    ops {
+      functionName: "On Host Jacked Out"
+    }
   }
   conditions {
     ops {
@@ -38802,6 +38693,20 @@ triggers {
       }
     }
     ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSafeJackOut"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
       functionName: "Trigger: Run Alternate Trigger"
       args {
         call_value {
@@ -38829,7 +38734,7 @@ triggers {
             string_value: "WaitOrNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -38841,17 +38746,6 @@ triggers {
           }
           args {
             int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eSafeJackOut"
           }
         }
       }
@@ -39122,6 +39016,20 @@ triggers {
       }
     }
     ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSafeJackOut"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
       functionName: "Trigger: Run Alternate Trigger"
       args {
         call_value {
@@ -39149,7 +39057,7 @@ triggers {
             string_value: "WaitOrNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -39161,17 +39069,6 @@ triggers {
           }
           args {
             int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eSafeJackOut"
           }
         }
       }
@@ -39442,6 +39339,20 @@ triggers {
       }
     }
     ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eSafeJackOut"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
       functionName: "Trigger: Run Alternate Trigger"
       args {
         call_value {
@@ -39469,7 +39380,7 @@ triggers {
             string_value: "WaitOrNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -39481,17 +39392,6 @@ triggers {
           }
           args {
             int_value: 0
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Send Event"
-      args {
-        call_value {
-          functionName: "Get Map Item (Event)"
-          args {
-            string_value: "eSafeJackOut"
           }
         }
       }
@@ -39782,30 +39682,66 @@ triggers {
       }
     }
     ops {
-      functionName: "Comparison (string)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Comparison (int)"
           args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
           }
           args {
-            string_value: "str_SpawnPoint"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            int_value: 2
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Comparison (string)"
           args {
-            string_value: "IsOrIsNot"
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
           }
           args {
-            int_value: 1
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-PENTHOUSE"
           }
         }
-      }
-      args {
-        string_value: "MATRIX-PENTHOUSE"
       }
     }
   }
@@ -39887,22 +39823,31 @@ triggers {
       }
     }
     ops {
-      functionName: "Comparison (string)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Comparison (int)"
           args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
           }
           args {
-            string_value: "str_SpawnPoint"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
           }
           args {
             int_value: 1
@@ -39910,7 +39855,34 @@ triggers {
         }
       }
       args {
-        string_value: "MATRIX-DOGHOUSE"
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-DOGHOUSE"
+          }
+        }
       }
     }
   }
@@ -39992,30 +39964,66 @@ triggers {
       }
     }
     ops {
-      functionName: "Comparison (string)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Comparison (int)"
           args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
           }
           args {
-            string_value: "str_SpawnPoint"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            int_value: 2
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Comparison (string)"
           args {
-            string_value: "IsOrIsNot"
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
           }
           args {
-            int_value: 1
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-PENTHOUSE"
           }
         }
-      }
-      args {
-        string_value: "MATRIX-PENTHOUSE"
       }
     }
   }
@@ -40097,22 +40105,31 @@ triggers {
       }
     }
     ops {
-      functionName: "Comparison (string)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Comparison (int)"
           args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
           }
           args {
-            string_value: "str_SpawnPoint"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
           }
           args {
             int_value: 1
@@ -40120,7 +40137,34 @@ triggers {
         }
       }
       args {
-        string_value: "MATRIX-DOGHOUSE"
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-DOGHOUSE"
+          }
+        }
       }
     }
   }
@@ -40174,30 +40218,66 @@ triggers {
   }
   conditions {
     ops {
-      functionName: "Comparison (string)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Comparison (int)"
           args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
           }
           args {
-            string_value: "str_SpawnPoint"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            int_value: 2
           }
         }
       }
       args {
         call_value {
-          functionName: "Get Preset Value (int)"
+          functionName: "Comparison (string)"
           args {
-            string_value: "IsOrIsNot"
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
           }
           args {
-            int_value: 1
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-PENTHOUSE"
           }
         }
-      }
-      args {
-        string_value: "MATRIX-PENTHOUSE"
       }
     }
   }
@@ -40283,33 +40363,6 @@ triggers {
     }
   }
   conditions {
-    ops {
-      functionName: "Comparison (string)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (string)"
-          args {
-          }
-          args {
-            string_value: "str_SpawnPoint"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        string_value: "MATRIX-DOGHOUSE"
-      }
-    }
     ops {
       functionName: "OR"
       args {
@@ -40422,6 +40475,69 @@ triggers {
           }
           args {
             string_value: "bool_Betrayal"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (int)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-DOGHOUSE"
           }
         }
       }
@@ -40588,22 +40704,31 @@ triggers {
       }
     }
     ops {
-      functionName: "Comparison (string)"
+      functionName: "OR"
       args {
         call_value {
-          functionName: "Get Story Variable (string)"
+          functionName: "Comparison (int)"
           args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_Hideout"
+              }
+            }
           }
           args {
-            string_value: "str_SpawnPoint"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "IsOrIsNot"
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Comparison Ops"
+              }
+              args {
+                int_value: 0
+              }
+            }
           }
           args {
             int_value: 1
@@ -40611,7 +40736,34 @@ triggers {
         }
       }
       args {
-        string_value: "MATRIX-DOGHOUSE"
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "MATRIX-DOGHOUSE"
+          }
+        }
       }
     }
   }
@@ -41285,6 +41437,20 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fLeaderProximity"
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+    }
+    ops {
       functionName: "Change Actor Team"
       args {
         call_value {
@@ -41832,10 +41998,82 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eReloadProxCheck"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
   }
   isActive: false
   idRef {
     id: "55c7fcaf3537334c0a0012d4"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eReloadProxCheck.ProxNegetive.RestartTimer"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eReloadProxCheck"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fLeaderProximity"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "aFollowerTimer"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f4b3aa3537333019005ba6"
   }
   elseActions {
   }
@@ -42158,6 +42396,9 @@ triggers {
       args {
         int_value: 0
       }
+    }
+    ops {
+      functionName: "Autosave Game"
     }
   }
   isActive: true
@@ -53131,7 +53372,7 @@ variables {
     typeName: "int"
   }
 }
-mapEvents: "ePlayerDies"
+mapEvents: "eReloadProxCheck"
 mapEvents: "eBitStoreUpdate"
 mapEvents: "eUpdateShutDownTimer"
 mapEvents: "eRemoveMatrixTeam"
