@@ -1,7 +1,7 @@
 idRef {
   id: "5556ef6b393066d003000653"
 }
-ui_name: "Betrayal - StreetDoc"
+ui_name: "DeltaClinic - Doc"
 nodes {
   idRef {
     id: "5556f017393066d00300065f"
@@ -34,7 +34,7 @@ nodes {
           }
         }
         args {
-          string_value: "The young ork doctor shrugs \"I took the bus,\" he says from behind the cyber filter. \n\n\"I came up in a neighborhood not far from here, in the Ork Underground. That place is long gone, but if I can help people here, I can imagine that I\'m helping some poor kid like me out there, ya know?\""
+          string_value: "The young ork doctor smiles easily, \"Private car. The corporate medicine lifestyle has been very good to me.\n\n\"I came up in a neighborhood not far from here, in the Ork Underground. Scholarships and decades of training later, here I am again, living the high life.\""
         }
       }
     }
@@ -63,7 +63,7 @@ nodes {
           }
         }
         args {
-          string_value: "The ork shrugs, \"Osteopathy,\" he says, with a smile. "
+          string_value: "The ork shrugs, \"Dual medical degrees,\" he says, with a smile \"cybertechnology and prosthetic insertion, and neurology.\"\n\n\"Take that,\" the ork says, mostly to himself \"every dumb Humanis hick who complains about \'dumb orks gunna take our jobs, dammit\'!\" "
         }
       }
     }
@@ -129,7 +129,111 @@ nodes {
     }
   }
   branches {
+    responseText: "Should we contact anyone?"
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HarassHernandez"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"If you contact him, let him know that she\'s being treated at the usual place. He\'s very nervous about her getting the best possible care.\""
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5556f2ef393066d00300066e"
+    }
+  }
+  branches {
     responseText: "How is Maria?"
+    nextNodeIndex: 6
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "5556f342393066d00300067d"
+    }
+  }
+  branches {
+    responseText: "Other runner team?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The doctor nods, \"Yeah, I just assumed you were the new regulars. Maria doesn\'t have a regular crew, but she runs with others from time to time.\"\n\n\"I was impressed when Kid Stealth brought her in. I wish I\'d designed those legs for him- even though they creep me the hell out.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55f78d65396630601e002103"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "How is Armando?"
     conditions {
       ops {
         functionName: "Comparison (bool)"
@@ -137,7 +241,43 @@ nodes {
           call_value {
             functionName: "Get Variable (bool)"
             args {
-              string_value: "bMercurialDead"
+              string_value: "bHernandezDead"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (bool)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "bool_HarassHernandez"
             }
           }
         }
@@ -165,12 +305,66 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 5
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The doctor shrugs, \"You have to love the fire in him, though. He just wants enough treatment to stay by Maria\'s side.\"\n\n\"If I didn\'t know better, I\'d think they were one of those married runner couples.\""
+        }
+      }
+    }
+    nextNodeIndex: 8
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
-      id: "5556f342393066d00300067d"
+      id: "5556f2ef393066d00300066e"
     }
+  }
+  branches {
+    responseText: "Is there any way I can get an upgrade while we\'re here?"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "\"Sure, let\'s scan you to see what implants you have already...\""
+        }
+      }
+      ops {
+        functionName: "Open Cyberware Screen From Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Actor)"
+            args {
+              string_value: "55f5a4f96131312c210040bb"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 0
+    auxiliaryLink: true
   }
   branches {
     responseText: "Is there any Ork Underground in this area?"
@@ -189,7 +383,7 @@ nodes {
           }
         }
         args {
-          string_value: "The Doctor shakes his head, \"No, and for a couple of reasons. Puyallup is too close to the volcano, and the aftershocks of the eruption make the ground here a little unstable for building extensive underground structures.\"\n\nHe holds up a hand, forestalling any questions, and adds \"the same would technically be true of the Ork Underground tunnels in Downtown, but those were designed and reinforced by dwarves... before the orks kicked them out.\""
+          string_value: "The Doctor shakes his head, \"No, Puyallup is too close to the volcano, and the aftershocks of the eruption make the ground here a little unstable for building extensive underground structures.\"\n\nHe holds up a hand, forestalling any questions, and adds \"the same would technically be true of the Ork Underground tunnels in Downtown, but those were designed and reinforced by dwarves  before the orks kicked them out.\""
         }
       }
     }
@@ -202,18 +396,186 @@ nodes {
     auxiliaryLink: true
   }
   branches {
-    responseText: "Why did you come here?"
-    nextNodeIndex: 0
+    responseText: "I don\'t know much about cybersurgery, but even I\'ve heard of Sorayama. That guy is Frankenstein or Einstein, depending on who you ask."
+    conditions {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 17
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 2
+                }
+              }
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Compare Actor Skill"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "BaseOrCurrent"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "ActorSkills"
+                }
+                args {
+                  int_value: 19
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "Comparison Ops"
+                }
+                args {
+                  int_value: 2
+                }
+              }
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Compare Actor Skill"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSkills"
+            }
+            args {
+              int_value: 11
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 2
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The ork doctor stares off into the distance, tapping a finger against his lips. On the screen behind him, the image flashes as he does a matrix search for the elusive Sorayama."
+        }
+      }
+    }
+    nextNodeIndex: 9
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
       id: "5556f351393066d003000681"
     }
-    auxiliaryLink: true
   }
   branches {
     responseText: "{{CC}}Walk away{{/CC}}"
-    nextNodeIndex: -1
+    nextNodeIndex: 10
   }
   nodeType: ConversationNodeType_Simple
   comment: "Ork Doc Loop"
@@ -223,7 +585,7 @@ nodes {
     id: "5556f37f393066d003000685"
   }
   index: 1
-  text: "The Ork doctor laughs, \"I guess you could, I\'ve certainly been called worse. My mom called me Clarence, but most people call me Cutter.\""
+  text: "The Ork doctor laughs, \"I guess you could, I\'ve certainly been called worse. Much worse.\"\n\nThe doctor pauses in thought, then says \"My mom calls me Clarence, but most runners call me Doctor Cutter.\""
   branches {
     responseText: ""
     actions {
@@ -241,7 +603,7 @@ nodes {
           }
         }
         args {
-          string_value: "Doctor Cutter looks over the technical data from the display, nodding and mumbling to himself. He seems to be accessing several different feeds at once, testing the current simulation against the human baseline and some other recording."
+          string_value: "Doctor Cutter looks over the technical data from the display, nodding and mumbling to himself. He seems to be accessing several different feeds at once, testing the current simulation against the human baseline and some other recording.\n\n\"Maria has been here before, and I assume that you\'re her new team?\""
         }
       }
     }
@@ -278,7 +640,7 @@ nodes {
     id: "5556f446393066d00300068b"
   }
   index: 2
-  text: "The ork nods in the direction of the cyber surgery suite next door, \"Samantha, er- I mean Doctor Adams, she installed most of my cyber, just as I treat most of her injuries.\""
+  text: "The ork nods in the direction of the cyber surgery suite next door, \"I programmed the cybersuites here myself, and  Doctor Adams oversaw the installation and most of the other procedures.\"\n\n\"At first, it was just to allow me to be as eloquent as I was in my head, and then it was headware memory, and a DNI. After that, it was just to repair damage from runners, runner extractions, and general accidents.\""
   branches {
     responseText: ""
     actions {
@@ -296,7 +658,7 @@ nodes {
           }
         }
         args {
-          string_value: "The ork continues to read over technical readouts, but you sense that he\'s still paying attention to you. \"You really couldn\'t be in better hands- we have extensive medical libraries, and access to professional clinics in the area, as well as shamanic or hermetical magical healing, depending on your preference.\"\n\nAfter a short pause, the doctor adds \"Be careful not to use your implants for two to five days after they\'ve been inserted, to allow your body to adjust and heal.\""
+          string_value: "The ork continues to read over technical readouts, but you sense that he\'s still paying attention to you. \"You couldn\'t possibly be in better hands- we have extensive medical libraries, access to professional clinics in the area, and shamanic or hermetical magical healing, depending on your preference. The resources of a megacorporation make us formidible indeed.\"\n\nAfter a short pause, the doctor adds \"Be careful not to use your implants for two to five days after they\'ve been inserted, to allow your body to adjust and heal.\""
         }
       }
     }
@@ -310,7 +672,7 @@ nodes {
     id: "5556f556393066d003000695"
   }
   index: 3
-  text: "The ork looks concerned, \"I\'m not going to lie, he\'s well beyond my help. Samantha is better with extensive cybernetics, and he\'s going to need some really good work done if he\'s going to survive this.\""
+  text: "The doctor looks concerned, \"We pulled him in when his monitor said that he\'d flatlined. We were hoping for a drug overdose or something when we scrambled DocWagon to pick him up, but he\'d been attacked and killed in his apartment.\"\n\nThe doctor takes a deep breath, shaking his head, \"I\'m not going to lie, he\'s well beyond my help. Samantha is better with extensive cybernetics, and he\'s going to need some really good work done if he\'s going to survive this.\""
   branches {
     responseText: ""
     nextNodeIndex: 4
@@ -322,7 +684,7 @@ nodes {
     id: "5556f55b393066d00300069d"
   }
   index: 4
-  text: "\"I will say this, though,\" The ork doctor looks thoughtful, tapping his fingers against the datapad, \"I\'ve seen guys die with much less serious injuries, so whatever his reason, he\'s a fighter.\""
+  text: "\"I will say this, though,\" The ork doctor looks thoughtful, tapping his fingers against the datapad, \"I\'ve seen guys die with much less serious injuries, so whatever his reason, he\'s a fighter.\"\n\n\"He\'s going to need extensive surgeries over the next several years, and will probably not survive the night. I don\'t want to give you any false hope.\""
   branches {
     responseText: ""
     actions {
@@ -340,7 +702,7 @@ nodes {
           }
         }
         args {
-          string_value: "\"Once he\'s out of surgery, and has regained consciousness, we\'ll be able to do a neural workup and figure out how extensive the damage is. Then we can use a combination of drug therapies and magic to help him rehabilitate.\"\n\n\"I don\'t know who this guy is, but the rule is, if you find someone with a platinum credstick, you treat them for whatever ails them- you know they\'re good for the payment.\""
+          string_value: "\"Once he\'s out of surgery, and if he\'s regained consciousness, we\'ll be able to do a neural workup and figure out how extensive the damage is. Then we can use a combination of drug therapies, implants, and magic to help him rehabilitate.\""
         }
       }
     }
@@ -351,13 +713,26 @@ nodes {
 }
 nodes {
   idRef {
-    id: "5556f55f393066d0030006a1"
+    id: "5556f556393066d003000695"
   }
   index: 5
-  text: "The ork seems surprised, looking over the technical readouts and swapping back and forth between several panes of information. \"Maria? Wait, like-- no, let\'s get her better first.\"\n\n\"Maria is quite damaged. In addition to the cyberlimbs, Maria has had extensive neural restructuring. If her cyberware wasn\'t such high grade, my guess is that she would have experienced full rejection and cyberpsychosis by now. But the fact that you\'re friends with her means that she still functions, right?\""
+  text: "The doctor thinks it over for a moment, and then offers, \"I know Maria is close with her manager, so he should probably know, if he doesn\'t already.\"\n\nThe doctor looks around, \"I wonder where he is, he\'s usually around when Maria mixes it up.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5556f55f393066d0030006a1"
+  }
+  index: 6
+  text: "The ork seems surprised, looking over the technical readouts and swapping back and forth between several panes of information. \"Maria is quite damaged. This isn\'t the first time a team of runners has brought her in.\" \n\n\"In addition to the cyberlimbs and extensive body restructuring, Maria has had experimental neural restructuring. If her cyberware wasn\'t such high grade, my guess is that she would have experienced full rejection and cyberpsychosis by now. But the fact that you\'re friends with her means that she still functions normally, right?\""
   branches {
     responseText: "Well..."
-    nextNodeIndex: 6
+    nextNodeIndex: 7
   }
   nodeType: ConversationNodeType_Simple
 }
@@ -365,7 +740,7 @@ nodes {
   idRef {
     id: "5556f562393066d0030006a9"
   }
-  index: 6
+  index: 7
   text: "The ork forestalls you with a hand wave, continuing his thought while looking at Maria and the readouts. \"The methods for cyberware installation are pretty standard- but these... they were designed by a madman or a genius. They routed all of her neural circuits for her datajack right through the pain/pleasure centers of her brain. They built her neural implants out of silicon so they wouldn\'t show up on scanners, and this big lump here-\" the ork points to a blob the size of your pinkie in Maria\'s brain,\"I have no idea what that is there for.\""
   branches {
     responseText: ""
@@ -384,13 +759,130 @@ nodes {
           }
         }
         args {
-          string_value: "The ork shakes his head, and shrugs, \"I would ask that you made sure to put the evil bastard who did this down, but he signed his work-\" The doctor moves to Maria, lifting her hospital gown to show you where \"Sorayama 84\' is carved into Maria\'s cyberleg near her hip.\n\n\"I don\'t know much about illegal cyber surgery, but even I\'ve heard of Sorayama. That guy is Frankenstein or Einstein, depending on who you ask.\""
+          string_value: "The ork shakes his head, and shrugs, \"Maybe you can settle a bet for us- we can\'t figure out if Sorayama is an ex-boyfriend or the madman who designed her cyberlimbs.\"\n\n\"I vote ex-boyfriend, but I\'m a romantic like that. I\'ve gotten a girls\' name tattooed before, but I\'ve had them all burned off.\"\n\nAt seeing your confusion, the doctor moves to Maria, lifting her hospital gown enough to show you where \'Sorayama 84\' is carved into Maria\'s cyberleg near her hip.\n\n"
         }
       }
     }
     nextNodeIndex: 0
     auxiliaryLink: true
   }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "5556f556393066d003000695"
+  }
+  index: 8
+  text: "The doctor shrugs, \"Just like normal, he refuses to leave Maria\'s side, even when he\'s injured himself.\"\n\n\"He\'s lucky that he  came in with her tonight, though. He has a smoke inhalation, combat-related injuries, and alcohol poisoning. If he hadn\'t come in here tonight to get treatment, he likely wouldn\'t have survived the night.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 0
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55f78145396630601e001f92"
+  }
+  index: 9
+  text: "$(story.str_NPCIntroText)"
+  branches {
+    responseText: "He does some scary cyberware."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The orc doctor whistles, \"Scary brilliant. I honestly don\'t hold a candle to this guy, and we\'re looking at his five-year old stuff.\"\n\n\"I mean, from the scars and deposits, Maria had her surgery five years ago. Not only did she survive all four limbs being replaced, and all the internal armor, and the neurosurgery, but she\'s fucntional as a person. You have no idea how amazing that is!\""
+        }
+      }
+    }
+    nextNodeIndex: 9
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55f78d6b396630601e002104"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "He signs all of his creations, so that means Maria Mercurial is his 84th creation. I wonder who she was before he got ahold of her."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "The orc doctor shudders \"It\'s a little terrifying to think that there are at least 83 other creations out there just like this.\"\n\n\"I can\'t imagine what would inspire someone to take a perfectly good woman, and cut her up like this. A butcher- a brilliant butcher, but still a butcher.\""
+        }
+      }
+    }
+    nextNodeIndex: 9
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55f78d6f396630601e002105"
+    }
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "Enough about the madman, I think it\'s time to go."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Yeah,\" the doctor says \"Fear to speak the Devil\'s name, for he shall appear.\"\n\n\"It\'s not unlike Faustus, who was so full of knowledge about this world that he turned to darker things to satisfy his curiosity.\""
+        }
+      }
+    }
+    nextNodeIndex: 0
+    hideIfUnavailable: true
+    onlyOnce: true
+    idRef {
+      id: "55f78d73396630601e002106"
+    }
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+  comment: "Sorayama Loop"
+}
+nodes {
+  idRef {
+    id: "55f78156396630601e001f94"
+  }
+  index: 10
+  text: "\"Before you go, Maria wants you to have this,\" the doctor offers you a keycard to the Penthouse, and pauses at seeing you with an identical one. \n\n\"Apparently she already told you- Maria insists that her friends stay in her Penthouse while she recovers.\""
   nodeType: ConversationNodeType_Simple
 }
 roots {
@@ -409,7 +901,7 @@ roots {
         }
       }
       args {
-        string_value: "The thick orkish doctor has clearly had a lot of work done- he may be more machine now than man, but you can trust his programs to be 99% efficient, and that\'s something on the streets.\n\n\"Hoi, omae. You look beat,\" the ork doctor says easily, \"Let\'s get you patched up, and take care of your friends.\""
+        string_value: "The polished doctor has had plenty of work done. When he speaks, you hear barely any of the traditional orkish accent caused by thick tusks.\n\n\"Good... I guess it\'s morning now?\" The orkish doctor gives a polite laugh, \"Good morning, and welcome to the Black Clinic. For obvious reasons, we ask that you refrain from sharing this location with anyone except in the most life threatening circumstances.\"\n\n\"Please, make sure that your insurance information is up to date, and that your current accounts are linked and you have possession of any credsticks required to cover your account.\""
       }
     }
   }
