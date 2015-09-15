@@ -217,8 +217,38 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Play FX at Point"
+      args {
+        string_value: "MatrixESPSpawn"
+      }
+      args {
+        call_value {
+          functionName: "Current Location of Actor"
+          args {
+            call_value {
+              functionName: "Last Teleported Persona"
+            }
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "aFollowerTimer"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+    }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "552059a46631362c10000762"
   }
@@ -25502,6 +25532,424 @@ triggers {
   is_oneshot: false
 }
 triggers {
+  name: "eFollowerTimer.fFeed1.OnFeed_2"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFollowerTimer"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+    }
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bFeedSwitch"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "FeedOn_1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "FeedOn_2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f771d2353733001300592c"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eFollowerTimer.SetfFeedSwitch.Zero"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFollowerTimer"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Convert (int) to (float)"
+          args {
+            call_value {
+              functionName: "Floor (Math)"
+              args {
+                call_value {
+                  functionName: "Get Variable (float)"
+                  args {
+                    string_value: "fFeedLoop"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 3
+          }
+        }
+      }
+      args {
+        float_value: 3
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        float_value: -0.1
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f77202353733001300592d"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "eFollowerTimer.fFeed1.OnFeed_1"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "aFollowerTimer"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 5
+          }
+        }
+      }
+      args {
+        float_value: 0
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        float_value: 0.1
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "FeedOn_1"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Prop Visible by Tag"
+      args {
+        call_value {
+          functionName: "Get Map Item (SenseTagList)"
+          args {
+            string_value: "FeedOn_2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        float_value: -1
+      }
+      args {
+        call_value {
+          functionName: "Everywhere"
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DoesOrDoesNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55f76f403537330013005911"
+  }
+  elseActions {
+    ops {
+      functionName: "Add To Variable (float)"
+      args {
+        call_value {
+          functionName: "Get Variable (float)"
+          args {
+            string_value: "fFeedLoop"
+          }
+        }
+      }
+      args {
+        float_value: 0.4
+      }
+    }
+  }
+  is_oneshot: false
+}
+triggers {
   name: ""
   events {
   }
@@ -41157,424 +41605,6 @@ triggers {
   }
   is_oneshot: false
 }
-triggers {
-  name: "eFollowerTimer.fFeed1.OnFeed_2"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "aFollowerTimer"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        float_value: 1
-      }
-    }
-    ops {
-      functionName: "Comparison (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 4
-          }
-        }
-      }
-      args {
-        float_value: 2
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (bool)"
-      args {
-        call_value {
-          functionName: "Get Variable (bool)"
-          args {
-            string_value: "bFeedSwitch"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Variable (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        float_value: 2
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "FeedOn_1"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "FeedOn_2"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55f771d2353733001300592c"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "eFollowerTimer.SetfFeedSwitch.Zero"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "aFollowerTimer"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (float)"
-      args {
-        call_value {
-          functionName: "Convert (int) to (float)"
-          args {
-            call_value {
-              functionName: "Floor (Math)"
-              args {
-                call_value {
-                  functionName: "Get Variable (float)"
-                  args {
-                    string_value: "fFeedLoop"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 3
-          }
-        }
-      }
-      args {
-        float_value: 3
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        float_value: -0.1
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55f77202353733001300592d"
-  }
-  elseActions {
-  }
-  is_oneshot: false
-}
-triggers {
-  name: "eFollowerTimer.fFeed1.OnFeed_1"
-  events {
-    ops {
-      functionName: "Get Map Item (Event)"
-      args {
-        string_value: "aFollowerTimer"
-      }
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 5
-          }
-        }
-      }
-      args {
-        float_value: 0
-      }
-    }
-  }
-  actions {
-    ops {
-      functionName: "Set Variable (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        float_value: 0.1
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "FeedOn_1"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "FeedOn_2"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-  }
-  isActive: true
-  idRef {
-    id: "55f76f403537330013005911"
-  }
-  elseActions {
-    ops {
-      functionName: "Add To Variable (float)"
-      args {
-        call_value {
-          functionName: "Get Variable (float)"
-          args {
-            string_value: "fFeedLoop"
-          }
-        }
-      }
-      args {
-        float_value: 0.4
-      }
-    }
-  }
-  is_oneshot: false
-}
 regions {
   name: "cLowballRecords"
   position {
@@ -44710,9 +44740,9 @@ regions {
     a: 1
   }
   ambient_light_color {
-    r: 0.54509807
-    g: 0.023529412
-    b: 0.25882354
+    r: 0.019607844
+    g: 0.43921569
+    b: 0.6156863
     a: 1
   }
   ambience_template: "asylum-busy"
@@ -46928,10 +46958,9 @@ characters {
   }
   lod: 0
   character_instance {
-    prefab_name: "Seattle:Creature/CreatureGhoulHumanFemale"
-    character_sheet_id: "Lvl2_Merc_Dwarf_CombatDecker"
-    equipment_sheet_id: "IC White ChargeLaser Low"
-    equipment_sheet_id: "IC White Melee Low"
+    prefab_name: "Berlin:Story/HumanFemaleGlory"
+    character_sheet_id: "MERCURIAL_LTG_SilverArrow_Lv1"
+    equipment_sheet_id: "MERCURIAL_LTG_SilverArrowGear_Lv1"
     character_mod {
       stats {
         body: 0
@@ -46942,7 +46971,7 @@ characters {
         willpower: 0
         essence: 0
         magic: 0
-        hp: 85
+        hp: 0
         ap: 0
         armor: 0
         force: 0
@@ -46952,17 +46981,17 @@ characters {
         perception: 0
         authority: 0
         protect_tether_range: 0
-        move_speed: 6
+        move_speed: 0
         vision_peripheral_distance: 0
         vision_cone_distance: 0
         vision_cone_angle: 0
       }
       skills {
         ranged_combat: 0
-        close_combat: 2
+        close_combat: 0
         throwing_weapons: 0
         spellcasting: 0
-        decking: -1
+        decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
@@ -46985,19 +47014,13 @@ characters {
         edged: 0
         unarmed: 0
         spirit_control: 0
-        esp_control: -1
+        esp_control: 0
         drone_combat: 0
       }
-      archetypeName: "Non-Combatant"
+      archetypeName: "Guard - Protect"
       attitude: AttitudeAggressive
       vulnerabilities {
       }
-    }
-    equipment {
-      prefab_name: "CyberdeckSony"
-    }
-    equipment {
-      prefab_name: "GhoulFist"
     }
     team_id: "Civilian"
     char_name: "Matrix Spirit"
@@ -47009,7 +47032,7 @@ characters {
       filename: "matrix_humanfemale_01a_shavedhead"
     }
     dimension_name: "Matrix"
-    karma: 71
+    karma: 43
   }
 }
 characters {
@@ -47281,7 +47304,7 @@ characters {
     char_name: "Shadowland BBS"
     pc_spawn_number: -1
     portrait {
-      filename: "moregeeked_plainhack"
+      filename: "shadowland1"
     }
     dimension_name: "Default"
     karma: 6
