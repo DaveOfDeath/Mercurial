@@ -36,6 +36,21 @@ nodes {
     responseText: "Gabriel"
     nextNodeIndex: 3
   }
+  branches {
+    responseText: "gabriel"
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "GABRIEL"
+    nextNodeIndex: 3
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{GM}}Walk away.{{/GM}}"
+    nextNodeIndex: -1
+    inputBypass: true
+  }
   nodeType: ConversationNodeType_InputKeyboard
   inputMaxLength: 12
 }
@@ -58,7 +73,7 @@ nodes {
   index: 4
   text: "You\'re logged into Gabriel\'s account page. Looks like he\'s playing a female Elf Hunter. Figures.\n\nSince there\'s no Matrix connection, there\'s not much you can do here except reconfigure his character\'s outfit and hairstyle."
   branches {
-    responseText: "{{CC}}Decking - 4{{/CC}} Take a closer look at the account settings."
+    responseText: "{{CC}}Decking: 3{{/CC}} Take a closer look at the account settings."
     conditions {
       ops {
         functionName: "Compare Actor Skill"
@@ -106,7 +121,136 @@ nodes {
       }
     }
     nextNodeIndex: 5
+  }
+  branches {
+    responseText: "{{CC}}Silver Arrow{{/CC}} Have Silver take a closer look."
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Tag From String"
+            args {
+              string_value: "isSilverArrow"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 5
     hideIfUnavailable: true
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Nebel{{/CC}} Have Nebel take a closer look."
+    conditions {
+      ops {
+        functionName: "Evaluate Tag for Actor"
+        args {
+          call_value {
+            functionName: "All Actors on Team"
+            args {
+              call_value {
+                functionName: "Get Preset Value (string)"
+                args {
+                  string_value: "FactionList"
+                }
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "AllOrAny"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (SceneDimension)"
+                args {
+                  string_value: "Default"
+                }
+              }
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Tag From String"
+            args {
+              string_value: "isNebel"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 5
+    hideIfUnavailable: true
+    auxiliaryLink: true
   }
   branches {
     responseText: "{{GM}}Log Out{{/GM}}"
