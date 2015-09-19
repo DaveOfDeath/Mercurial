@@ -191,7 +191,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 12
+    nextNodeIndex: 14
     hideIfUnavailable: true
   }
   branches {
@@ -591,8 +591,96 @@ nodes {
     hideIfUnavailable: true
   }
   branches {
-    responseText: "Nothing, I guess."
+    responseText: "I found this Strange Bauble."
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Strange Bauble"
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: 11
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "What about these plans to rob Big Jim\'s?"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_Hotel_Robbery_Plans"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 12
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Nothing, I guess."
+    nextNodeIndex: 13
   }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
@@ -700,7 +788,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} I can do better than that."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -808,7 +896,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} Nah, I can do better than that."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -916,7 +1004,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} Seems a bit low.  Let me shop around."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1024,7 +1112,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} I think I can do better."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1107,7 +1195,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} I think I\'ll hang onto it a bit longer."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1190,7 +1278,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} "
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1270,7 +1358,7 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} I think I\'ll hang onto it for a bit."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1375,7 +1463,167 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Decline{{/CC}} I think they\'re too hot.  Let me hold off."
-    nextNodeIndex: 11
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55fcca7b35373314140042ad"
+  }
+  index: 11
+  text: "{{GM}}The ork takes a step back as you pull out the strange orb. It seems slightly warm and somehow sticky and slick in your hand.{{/GM}}\n\nWhat the frag. I hoped to never see that thing again. Stupid wiz-wannabe bought that cursed thing a week ago. Ah, well, I sold it once, I can sell it again. Hundred nuyen, and you won\'t get more from nobody. {{GM}}He pulls a pair of tongs from his boot. Clearly he doesn\'t intend to touch the bauble, even with gloved hands.{{/GM}}"
+  branches {
+    responseText: "{{CC}}Agree{{/CC}} It\'ll be our little secret."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "Thanks. What else ya got?"
+        }
+      }
+      ops {
+        functionName: "Add Nuyen"
+        args {
+          int_value: 500
+        }
+      }
+      ops {
+        functionName: "Remove Item from Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_Hotel_Robbery_Plans"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Decline{{/CC}} Maybe I\'ll find a better place for it."
+    nextNodeIndex: 13
+    auxiliaryLink: true
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55fcca7b35373314140042ad"
+  }
+  index: 12
+  text: "A $(l.man) after mine own heart. {{GM}}He gives a short bark of laughter, but then abruptly stops as if a thought occurred to him.{{/GM}}\n\nYou ain\'t gonna sell to both sides here, and snitch to that fat bastard, are you? {{GM}}He peers into your eyes as if trying to divine your soul.{{/GM}}\n\nI\'ll give ya 500\302\245, but only because I have to move this item real fast."
+  branches {
+    responseText: "{{CC}}Agree{{/CC}} Please, just take it."
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_NPCIntroText"
+            }
+          }
+        }
+        args {
+          string_value: "He grunts and places the orb inside some rags before bundling it up. \"Anything else?\""
+        }
+      }
+      ops {
+        functionName: "Add Nuyen"
+        args {
+          int_value: 100
+        }
+      }
+      ops {
+        functionName: "Remove Item from Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Strange Bauble"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Decline{{/CC}} Maybe I\'ll put them to better use."
+    nextNodeIndex: 13
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1384,7 +1632,7 @@ nodes {
   idRef {
     id: "550ee8496631364c07006670"
   }
-  index: 11
+  index: 13
   text: "Then why you wasting my time, $(l.man)!"
   branches {
     responseText: ""
@@ -1400,7 +1648,7 @@ nodes {
   idRef {
     id: "55d40cf96631367c080042b0"
   }
-  index: 12
+  index: 14
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "Triple \"S\"?"
@@ -1423,7 +1671,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 12
+    nextNodeIndex: 14
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1452,7 +1700,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 12
+    nextNodeIndex: 14
     hideIfUnavailable: true
     onlyOnce: true
     idRef {
@@ -1481,7 +1729,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 13
+    nextNodeIndex: 15
   }
   nodeType: ConversationNodeType_Simple
   actions {
@@ -1509,7 +1757,7 @@ nodes {
   idRef {
     id: "55d40f486631367c0800433f"
   }
-  index: 13
+  index: 15
   text: "$(story.str_NPCIntroText)"
   branches {
     responseText: "{{CC}}500\302\245{{/CC}}   How about a little cash?"
@@ -1540,7 +1788,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 16
   }
   branches {
     responseText: "{{CC}}Strength - 5{{/CC}}  There are 206 bones in the body... how many can you afford to lose?"
@@ -1590,7 +1838,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 16
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -1642,7 +1890,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 16
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -1706,7 +1954,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 16
     hideIfUnavailable: true
     auxiliaryLink: true
   }
@@ -1770,13 +2018,13 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 14
+    nextNodeIndex: 16
     hideIfUnavailable: true
     auxiliaryLink: true
   }
   branches {
     responseText: "What if I just ask nicely?"
-    nextNodeIndex: 15
+    nextNodeIndex: 17
   }
   nodeType: ConversationNodeType_Simple
   comment: "Location"
@@ -1785,8 +2033,8 @@ nodes {
   idRef {
     id: "55d411b86631367c08004347"
   }
-  index: 14
-  text: "\"Alright, He\'s holed up down at the Sunnyside hotel.\"   He pauses briefly, \"Careful though.   That boy has got eyes and ears everywhere.   Probably already knows you\'re coming.\"\n\n{{GM}}He points down the street{{/GM}}\n\n\"Down there... Southeast corner of Sunnyside.  By the Mercer Mansion ruins, and the old StarKaf store.\""
+  index: 16
+  text: "\"Alright, He\'s holed up down at the Sunnyside hotel.\" He pauses briefly, \"Careful though. That boy has got eyes and ears everywhere. Probably already knows you\'re coming.\"\n\n{{GM}}He points down the street{{/GM}}\n\n\"Down there... Southeast corner of Sunnyside. By the Mercer Mansion ruins, and the old StarKaf.\""
   nodeType: ConversationNodeType_Simple
   actions {
     ops {
@@ -1831,7 +2079,7 @@ nodes {
   idRef {
     id: "55d412bb6631367c0800434e"
   }
-  index: 15
+  index: 17
   text: "The ork stares at you, and says \"I\'ll politely tell you to frag off, and quit wasting my time!\""
   nodeType: ConversationNodeType_Simple
 }

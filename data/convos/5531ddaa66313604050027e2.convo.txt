@@ -137,6 +137,50 @@ nodes {
     responseText: "{{CC}}Leave{{/CC}}"
     nextNodeIndex: -1
   }
+  branches {
+    responseText: "{{CC}}Robbery Plans{{/CC}} How\'s your security these days, Jim?"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "item_Hotel_Robbery_Plans"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 3
+    hideIfUnavailable: true
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "5436cf3e633464b40800302c"
@@ -165,7 +209,7 @@ nodes {
   index: 2
   text: "Anything else?  Or can I get back to work?"
   branches {
-    responseText: "{{CC}}Leave{{/CC}}  Thanks."
+    responseText: "{{CC}}Leave{{/CC}} Thanks."
     nextNodeIndex: -1
   }
   nodeType: ConversationNodeType_Simple
@@ -182,6 +226,115 @@ nodes {
             string_value: "5531cc60663136040500271b"
           }
         }
+      }
+    }
+  }
+}
+nodes {
+  idRef {
+    id: "55fccedf35373314140044ca"
+  }
+  index: 3
+  text: "{{GM}}The troll straightens up and shoots you a dangerous look.{{/GM}}\n\nIs this some kind of shakedown? \'Cause all I gotta do is blink and a couple\'a turrets\'ll pop outta the walls here and make swiss cheese outta anybody coming in here."
+  branches {
+    responseText: "{{GM}}Show plans.{{/GM}} I found these plans in the Hotel. They show some pretty serious holes in your security."
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "Just wondering. No harm meant."
+    actions {
+      ops {
+        functionName: "Add To Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "int_Big_Jim_Anger_Level"
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55fcd01535373314140044d0"
+  }
+  index: 4
+  text: "{{GM}}Big Jim scans the information quickly, his eyes growing wide.{{/GM}}\n\nMotherfragger. These punks know way too much about my operation. I bet it was that sneaky cheat bastard Snout. Should\'a killed that rat years ago.\n\nLook. It\'s gonna cost me a fortune to fix all the holes in my security, but I\'ll fix up your vehicle whenever you need it."
+  branches {
+    responseText: "Whatcha got for sale, Jim?"
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{GM}}Leave{{/GM}} I just make take you up on that."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+  actions {
+    ops {
+      functionName: "Remove Item from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_Hotel_Robbery_Plans"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
       }
     }
   }
@@ -404,7 +557,7 @@ roots {
             string_value: "Comparison Ops"
           }
           args {
-            int_value: 0
+            int_value: 3
           }
         }
       }

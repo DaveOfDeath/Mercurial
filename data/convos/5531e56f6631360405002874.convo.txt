@@ -13,6 +13,50 @@ nodes {
     nextNodeIndex: 1
   }
   branches {
+    responseText: "{{CC}}Strange Bauble{{/CC}} Can you tell me what this is?"
+    conditions {
+      ops {
+        functionName: "Evaluate If Actor Has Item"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "HasOrHasNot"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Strange Bauble"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+  }
+  branches {
     responseText: "{{CC}}Leave{{/CC}}"
     nextNodeIndex: -1
   }
@@ -44,6 +88,229 @@ nodes {
       }
     }
   }
+}
+nodes {
+  idRef {
+    id: "55fcd2fb3537331414004521"
+  }
+  index: 2
+  text: "{{GM}}The shaman stares aghast as you pull the orb out. It feels slightly warm and somehow both sticky and slick in your hand. She makes a strange series of gestures before speaking.{{/GM}}\n\nSnake protect us. Where did you find this evil? No, do not tell me, for speaking of it only makes its manifestation stronger. Please, I beseech you, for the sake of your sanity and the safety of the Astral and Physical worlds I ask that you allow me to destroy this vessel and banish the forsaken within."
+  branches {
+    responseText: "{{CC}}Spirit Control - 4{{/CC}} If you know that it is evil, I can take care of it."
+    conditions {
+      ops {
+        functionName: "Compare Actor Specialization"
+        args {
+          call_value {
+            functionName: "Get Map Item (Player)"
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "BaseOrCurrent"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "ActorSpecializations"
+            }
+            args {
+              int_value: 7
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 3
+            }
+          }
+        }
+        args {
+          int_value: 4
+        }
+      }
+    }
+    actions {
+      ops {
+        functionName: "Remove Item from Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Strange Bauble"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Actor Karma"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 3
+  }
+  branches {
+    responseText: "That sounds like a great idea, actually."
+    actions {
+      ops {
+        functionName: "Remove Item from Actor"
+        args {
+          call_value {
+            functionName: "Get Map Item (Item)"
+            args {
+              string_value: "Strange Bauble"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "WithOrWithout"
+            }
+            args {
+              int_value: 1
+            }
+          }
+        }
+      }
+      ops {
+        functionName: "Add Actor Karma"
+        args {
+          call_value {
+            functionName: "Specific Actor"
+            args {
+              call_value {
+                functionName: "Get Map Item (Player)"
+                args {
+                  int_value: 0
+                }
+              }
+            }
+            args {
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    nextNodeIndex: 4
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}} It is precious to me..."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55fcd6913537331414004525"
+  }
+  index: 3
+  text: "{{GM}}You summon the strength and pull the spirit hiding in the orb forward. It\'s misshapen form, a grotesque collection of appendages and eyes, writhes under your gaze. You command it to return to whatever terrible place it calls home, once, twice, and then a third time. The bauble cracks, a bell sounds both far and near.\n\nThe shaman wipes her hands.{{/GM}}\n\nIt is done."
+  branches {
+    responseText: "{{CC}}Browse{{/CC}} Let\'s have a look at your stock."
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}} Thank you, fellow walker."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55fcd6913537331414004525"
+  }
+  index: 4
+  text: "{{GM}}Summoning the strength and pull the spirit hiding in the orb forward, the shaman begins to chant softly. Her voice grows louder and louder. A misshapen form, some unspeakable collection of appendages and eyes, appears inside the bauble. It writhes and squirms under her gaze. She commands it to return to whatever terrible place it calls home, once, twice, and then a third time. The bauble cracks, a bell sounds both far and near.\n\nThe shaman wipes her hands.{{/GM}}\n\nIt is done."
+  branches {
+    responseText: "{{CC}}Browse{{/CC}} Let\'s have a look at your stock."
+    nextNodeIndex: 1
+    auxiliaryLink: true
+  }
+  branches {
+    responseText: "{{CC}}Leave{{/CC}} Thanks. I feel both better and worse somehow."
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
 }
 roots {
   actions {
