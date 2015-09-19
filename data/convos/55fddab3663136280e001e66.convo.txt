@@ -1,0 +1,190 @@
+idRef {
+  id: "55fddab3663136280e001e66"
+}
+ui_name: "Taetzel - LimoExit"
+nodes {
+  idRef {
+    id: "55fddabf663136280e001e6c"
+  }
+  index: 0
+  text: "{{CC}}What do you want to do?{{/CC}}"
+  branches {
+    responseText: "{{CC}}Stash{{/CC}}  Rummage through your gear?"
+    actions {
+      ops {
+        functionName: "Open Equip Screen"
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "Return to the {{CC}}Penthouse{{/CC}}."
+    conditions {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_Story_OldSam"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 2
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    nextNodeIndex: 1
+    hideIfUnavailable: true
+  }
+  branches {
+    responseText: "Return to {{CC}}Sunnyside Slums{{/CC}}."
+    nextNodeIndex: 2
+    hideIfUnavailable: true
+  }
+  nodeType: ConversationNodeType_GM_Voice
+}
+nodes {
+  idRef {
+    id: "55fddb62663136280e001e7e"
+  }
+  index: 1
+  text: "Are you sure you want to return to the Penthouse?"
+  branches {
+    responseText: "{{CC}}Confirm{{/CC}}"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SceneDetails"
+            }
+          }
+        }
+        args {
+          string_value: "You leave the shadow of the Taetzel building behind, and try to forget the Sunnyside slums, heading back to luxurious residence and the relative safety of Maria\342\200\231s Penthouse.\n\nLingering doubts remain in the back of your mind, questions that need answers. Eventually you\342\200\231ll have to return to that dark plascrete spire. Somewhere in that building are the answers that you seek.\n\nYou try not to think about Sam\342\200\231s call while you drive, and as you pull into the parking garage, your heart hammers in your throat. If you were in over your head in the Taetzel neighborhood, you can\342\200\231t imagine what awaits you here.\n"
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          string_value: "PENTHOUSE-RETURN"
+        }
+      }
+      ops {
+        functionName: "Open Scene"
+        args {
+          call_value {
+            functionName: "Get Map Item (Scene)"
+            args {
+              string_value: "HUB - Penthouse"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Cancel{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+nodes {
+  idRef {
+    id: "55fddb87663136280e001e82"
+  }
+  index: 2
+  text: "Are you sure you want to return to Sunnyside Slums?"
+  branches {
+    responseText: "{{CC}}Confirm{{/CC}}"
+    actions {
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SceneDetails"
+            }
+          }
+        }
+        args {
+          string_value: "You leave the shadow of the Taetzel building behind, and try to forget about it. Lingering doubts remain in the back of your mind, questions that need answers. Eventually you\342\200\231ll have to return to that dark plascrete spire. Somewhere in that building are the answers that you seek. \n\nWith Maria\342\200\231s penthouse compromised, you have to head back to the only area you\342\200\231re even reasonably sure is safe, the Sunnyside slums. If nothing else, it has weapon vendors so you can upgrade your armaments and equipment.\n\nEventually you\342\200\231ll have to return to Taetzel, but not yet. You have a few things to take care of first.\n"
+        }
+      }
+      ops {
+        functionName: "Set Variable (string)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (string)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "str_SpawnPoint"
+            }
+          }
+        }
+        args {
+          string_value: "SUNNYSIDE-START"
+        }
+      }
+      ops {
+        functionName: "Open Scene"
+        args {
+          call_value {
+            functionName: "Get Map Item (Scene)"
+            args {
+              string_value: "SCENE - Sunnyside"
+            }
+          }
+        }
+      }
+    }
+    nextNodeIndex: -1
+  }
+  branches {
+    responseText: "{{CC}}Cancel{{/CC}}"
+    nextNodeIndex: -1
+  }
+  nodeType: ConversationNodeType_Simple
+}
+roots {
+  nextNodeIndex: 0
+}
