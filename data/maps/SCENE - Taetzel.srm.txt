@@ -5383,7 +5383,7 @@ props {
 props {
   name: "hive_storage_weaponCabinet"
   gridPoint {
-    x: -308
+    x: -306
     y: 0.3
     z: -34.5
   }
@@ -5514,11 +5514,48 @@ props {
 props {
   name: "hive_clutter_grenadeBoxes"
   gridPoint {
-    x: -305.8
+    x: -304.8
     y: 0
-    z: -34.2
+    z: -33.600002
   }
   orientation: ORIENTATION_S
+  displayName: "obj_StockGrenades"
+  idRef {
+    id: "55fe242d6631367403004ee5"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iGrenadeCount"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_ItemPickup
+    interaction_info_text: "Take Grenades?"
+  }
   lod: 0
 }
 props {
@@ -5529,6 +5566,43 @@ props {
     z: -31.900002
   }
   orientation: ORIENTATION_N
+  displayName: "obj_StockDrugs"
+  idRef {
+    id: "55fe23c16631367403004ede"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iDrugCount"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 0
+        }
+      }
+    }
+    interactionIcon: InteractionIcon_ItemPickup
+    interaction_info_text: ""
+  }
   lod: 0
 }
 props {
@@ -5574,7 +5648,7 @@ props {
 props {
   name: "gunshop_decor_katanas"
   gridPoint {
-    x: -307.8
+    x: -305.8
     y: 2.8
     z: -34.6
   }
@@ -82062,6 +82136,77 @@ props {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
+    prerequisites {
+      ops {
+        functionName: "OR"
+        args {
+          call_value {
+            functionName: "Comparison (string)"
+            args {
+              call_value {
+                functionName: "Get Variable (string)"
+                args {
+                  string_value: "sMixtapePassword"
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "IsOrIsNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              string_value: "macarra"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Evaluate If Actor Has Item"
+            args {
+              call_value {
+                functionName: "Specific Actor"
+                args {
+                  call_value {
+                    functionName: "Get Map Item (Player)"
+                    args {
+                      int_value: 0
+                    }
+                  }
+                }
+                args {
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Preset Value (int)"
+                args {
+                  string_value: "HasOrHasNot"
+                }
+                args {
+                  int_value: 1
+                }
+              }
+            }
+            args {
+              call_value {
+                functionName: "Get Map Item (Item)"
+                args {
+                  string_value: "item_TaetzelInterior_MagLockPassKey"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     doorPoint {
       doorState: false
       aiOnlyDoor: false
@@ -87825,6 +87970,26 @@ props {
     }
     interactionIcon: InteractionIcon_ItemPickup
     interaction_info_text: "Access Stash?"
+  }
+  lod: 0
+}
+props {
+  name: "asylum_storage_medicineCabinet"
+  gridPoint {
+    x: -308
+    y: 0
+    z: -35
+  }
+  orientation: ORIENTATION_E
+  displayName: "obj_StockMeds"
+  idRef {
+    id: "55fe258c6631367403004eea"
+  }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 1
+    interactionIcon: InteractionIcon_ItemPickup
+    interaction_info_text: "Raid Meds Cabinet?"
   }
   lod: 0
 }

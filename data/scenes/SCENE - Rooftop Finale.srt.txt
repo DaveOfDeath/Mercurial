@@ -1245,6 +1245,52 @@ triggers {
         string_value: "Maria Mercurial"
       }
     }
+    ops {
+      functionName: "Apply Condition Status Effect to Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "55c7946f6631363811004d9f"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "StatusCondition"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "Stationary"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "BuffDebuffType"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: -1
+      }
+    }
   }
   isActive: true
   idRef {
@@ -3925,7 +3971,7 @@ triggers {
         }
       }
       args {
-        float_value: 3
+        float_value: 7
       }
     }
   }
@@ -4050,53 +4096,6 @@ triggers {
   elseActions {
   }
   is_oneshot: false
-}
-triggers {
-  name: "Debugger.LevelNPC"
-  events {
-    ops {
-      functionName: "On Curtains Up"
-    }
-  }
-  conditions {
-    ops {
-      functionName: "Comparison (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_CrewProgression"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "Comparison Ops"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        int_value: 3
-      }
-    }
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55eca1da66313624010038e9"
-  }
-  elseActions {
-  }
-  is_oneshot: true
 }
 triggers {
   name: " "
@@ -4657,6 +4656,52 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iDodge"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Actor Skill"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "557cfed1663136e40e004cae"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "BaseOrCurrent"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "ActorSkills"
+              }
+              args {
+                int_value: 12
+              }
+            }
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Apply Skill Status Effect to Actor"
       args {
         call_value {
@@ -4703,6 +4748,52 @@ triggers {
       }
       args {
         int_value: 0
+      }
+    }
+    ops {
+      functionName: "Display Text over Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 2
+          }
+        }
+      }
+      args {
+        string_value: "DODGE: $(scene.iDodge)"
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
       }
     }
   }
@@ -4850,6 +4941,61 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (int)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "int_NPC_Status_KyleMorgan"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "557cb852393066e00a00090b"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Kill Actor"
       args {
         call_value {
@@ -4898,50 +5044,6 @@ triggers {
             int_value: 0
           }
         }
-      }
-    }
-    ops {
-      functionName: "Display Text at Screen Position"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        string_value: "The scream from the dragon in almost unbearable... Even though you feel as you\'ve done the world a great service, the dragon\'s anguish assures you that you\'ve just made a cataclysmic mistake."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 5
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0
       }
     }
     ops {
@@ -6063,7 +6165,7 @@ characters {
         spirit_summoning: 0
         drone_control: 0
         biotech: 2
-        dodge: 2
+        dodge: 4
         etiquette_corporate: 1
         etiquette_security: 0
         etiquette_gang: 1
@@ -6121,7 +6223,7 @@ characters {
       filename: "backer_humanmale_winterhawk_dralastairstone"
     }
     description_bio: "Kyle is one of the world\'s premier assassins. Never heard of him? That\'s just proof of how good he is."
-    karma: 193
+    karma: 204
     hiring_cost_override: 1000
     persistent_body: true
   }
@@ -7031,6 +7133,14 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iDodge"
+    typeName: "int"
+  }
+}
 mapEvents: "eBreathWeapon"
 mapEvents: "eClawSwipe"
 mapEvents: "eFightTheDragon"
@@ -7108,8 +7218,6 @@ team_affiliations {
 scene_dimensions {
   dimension_name: "Default"
 }
-character_roster {
-}
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
   prereq_description: ""
@@ -7118,7 +7226,7 @@ scene_hiring_prerequisites {
 }
 hiring_slot_count: 3
 hiring_minimum_karma: 0
-hiring_maximum_karma: 0
+hiring_maximum_karma: 8
 roster_overrides {
   roster_entries {
     reference_id: "MERCURIAL_Crew_Blight_Lv3"
