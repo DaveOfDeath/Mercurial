@@ -744,65 +744,6 @@ triggers {
   }
   actions {
     ops {
-      functionName: "Add Camera Point of Interest (Actors)"
-      args {
-        call_value {
-          functionName: "Specific Actor"
-          args {
-            call_value {
-              functionName: "Get Map Item (Actor)"
-              args {
-                string_value: "557cfed1663136e40e004cae"
-              }
-            }
-          }
-          args {
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-    }
-    ops {
-      functionName: "Start Conversation Between Actors"
-      args {
-        call_value {
-          functionName: "Get Map Item (Conversation)"
-          args {
-            string_value: "557cb852393066e00a00090b"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Player)"
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "557cfed1663136e40e004cae"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Change Actor Team"
       args {
         call_value {
@@ -837,6 +778,27 @@ triggers {
             string_value: "Default"
           }
         }
+      }
+    }
+    ops {
+      functionName: "Add Camera Point of Interest (Actors)"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "557cfed1663136e40e004cae"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        float_value: -1
       }
     }
     ops {
@@ -879,6 +841,25 @@ triggers {
           functionName: "Get Map Item (Trigger)"
           args {
             string_value: "55a20e546631365809003f3d"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Force-Use Interactable Object (with Actor)"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
           }
         }
       }
@@ -3710,6 +3691,28 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bDragonDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Enable/Disable Trigger"
       args {
         call_value {
@@ -3793,6 +3796,28 @@ triggers {
           functionName: "Get Map Item (Trigger)"
           args {
             string_value: "55eca9c26631362401003900"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Trigger"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "55eca4d166313624010038ea"
           }
         }
       }
@@ -4068,7 +4093,7 @@ triggers {
             call_value {
               functionName: "Get Map Item (Actor)"
               args {
-                string_value: "557bdeac663136ac0900500f"
+                string_value: "557cfed1663136e40e004cae"
               }
             }
           }
@@ -4106,6 +4131,66 @@ triggers {
           }
           args {
             int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Kill Actor"
+      args {
+        call_value {
+          functionName: "All Actors With Tag"
+          args {
+            call_value {
+              functionName: "Get Map Item (SenseTagList)"
+              args {
+                string_value: "isSpirit"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "DeathMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
           }
         }
       }
@@ -4152,7 +4237,7 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "EndGame.Eval [Happy Ending]"
+  name: "EndGame.FightOver?"
   events {
     ops {
       functionName: "Get Map Item (Event)"
@@ -4160,6 +4245,138 @@ triggers {
         string_value: "eEndGame"
       }
     }
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eEndGameStepper"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bDragonDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bKyleDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Trigger: Run Alternate Trigger"
+      args {
+        call_value {
+          functionName: "Get Map Item (Trigger)"
+          args {
+            string_value: "557d02d6663136e40e004cb2"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WaitOrNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5602ef48663136b40b00736f"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "EndGame.Eval [Happy Ending]"
+  events {
   }
   conditions {
     ops {
@@ -4772,52 +4989,6 @@ triggers {
         int_value: 0
       }
     }
-    ops {
-      functionName: "Display Text over Actor"
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "557cfed1663136e40e004cae"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 2
-          }
-        }
-      }
-      args {
-        string_value: "DODGE: $(scene.iDodge)"
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0
-      }
-    }
   }
   isActive: true
   idRef {
@@ -4963,6 +5134,39 @@ triggers {
   }
   actions {
     ops {
+      functionName: "Set Variable (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bKyleDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eNewSpirits"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Variable (int)"
       args {
         call_value {
@@ -5069,6 +5273,183 @@ triggers {
       }
     }
     ops {
+      functionName: "Apply Camera Shake"
+      args {
+        float_value: 4
+      }
+      args {
+        float_value: 1.25
+      }
+    }
+    ops {
+      functionName: "Play Sound"
+      args {
+        call_value {
+          functionName: "Get Map Item (Sound)"
+          args {
+            string_value: "Berlin:creatures"
+          }
+          args {
+            string_value: "Dragon_RoarFree"
+          }
+        }
+      }
+      args {
+        float_value: 1
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Start Conversation Between Actors"
+      args {
+        call_value {
+          functionName: "Get Map Item (Conversation)"
+          args {
+            string_value: "55c79d586631363811004fa5"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "55c7946f6631363811004d9f"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eEndGame"
+          }
+        }
+      }
+      args {
+        float_value: 7
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "55ec9972663136240100385e"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "     SpiritSummoning"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eSummonSpirits"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bDragonDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bKyleDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
       functionName: "Set Prop Visible by Tag"
       args {
         call_value {
@@ -5178,43 +5559,6 @@ triggers {
       }
     }
     ops {
-      functionName: "Apply Camera Shake"
-      args {
-        float_value: 4
-      }
-      args {
-        float_value: 1.25
-      }
-    }
-    ops {
-      functionName: "Play Sound"
-      args {
-        call_value {
-          functionName: "Get Map Item (Sound)"
-          args {
-            string_value: "Berlin:creatures"
-          }
-          args {
-            string_value: "Dragon_RoarFree"
-          }
-        }
-      }
-      args {
-        float_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-    }
-    ops {
       functionName: "Trigger: Wait for Rounds"
       args {
         int_value: 1
@@ -5269,48 +5613,10 @@ triggers {
         }
       }
     }
-    ops {
-      functionName: "Start Conversation Between Actors"
-      args {
-        call_value {
-          functionName: "Get Map Item (Conversation)"
-          args {
-            string_value: "55c79d586631363811004fa5"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Player)"
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (Actor)"
-          args {
-            string_value: "55c7946f6631363811004d9f"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-    }
   }
   isActive: true
   idRef {
-    id: "55ec9972663136240100385e"
+    id: "5602fd82663136b40b00755f"
   }
   elseActions {
   }
@@ -5375,45 +5681,12 @@ triggers {
       }
     }
     ops {
-      functionName: "Trigger: Run Alternate Trigger"
+      functionName: "Send Event"
       args {
         call_value {
-          functionName: "Get Map Item (Trigger)"
+          functionName: "Get Map Item (Event)"
           args {
-            string_value: "55eca9c26631362401003900"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WaitOrNot"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "WithOrWithout"
-          }
-          args {
-            int_value: 0
+            string_value: "eNewSpirits"
           }
         }
       }
@@ -5428,8 +5701,14 @@ triggers {
   is_oneshot: false
 }
 triggers {
-  name: "     Respawn"
+  name: "     Setup"
   events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eNewSpirits"
+      }
+    }
   }
   conditions {
     ops {
@@ -5455,6 +5734,163 @@ triggers {
       }
       args {
         int_value: 2
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bDragonDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSummonA"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 1
+          }
+          args {
+            int_value: 7
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSummonB"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Random (int)"
+          args {
+            int_value: 8
+          }
+          args {
+            int_value: 14
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "5602ff2c663136b40b00756f"
+  }
+  elseActions {
+  }
+  is_oneshot: false
+}
+triggers {
+  name: "     Respawn"
+  events {
+    ops {
+      functionName: "Get Map Item (Event)"
+      args {
+        string_value: "eNewSpirits"
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSpiritsKilled"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "Comparison Ops"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Variable (bool)"
+          args {
+            string_value: "bDragonDead"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 0
+          }
+        }
       }
     }
   }
@@ -5488,12 +5924,30 @@ triggers {
       }
     }
     ops {
-      functionName: "Set Prop Visible by Tag"
+      functionName: "Activate Actor Spawner By Tag"
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Tag From String"
           args {
-            string_value: "isCircle"
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Get Variable (int)"
+                      args {
+                        string_value: "iSummonA"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "isSpirit"
+              }
+            }
           }
         }
       }
@@ -5501,29 +5955,10 @@ triggers {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "bool"
+            string_value: "WithOrWithout"
           }
           args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -5532,9 +5967,27 @@ triggers {
       functionName: "Activate Actor Spawner By Tag"
       args {
         call_value {
-          functionName: "Get Map Item (SenseTagList)"
+          functionName: "Tag From String"
           args {
-            string_value: "isSpirit"
+            call_value {
+              functionName: "Append (string)"
+              args {
+                call_value {
+                  functionName: "Convert (int) to (string)"
+                  args {
+                    call_value {
+                      functionName: "Get Variable (int)"
+                      args {
+                        string_value: "iSummonB"
+                      }
+                    }
+                  }
+                }
+              }
+              args {
+                string_value: "isSpirit"
+              }
+            }
           }
         }
       }
@@ -5592,61 +6045,6 @@ triggers {
           functionName: "Get Map Item (SceneDimension)"
           args {
             string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Trigger: Wait for Rounds"
-      args {
-        int_value: 1
-      }
-      args {
-        call_value {
-          functionName: "Get Map Item (SceneDimension)"
-          args {
-            string_value: "Default"
-          }
-        }
-      }
-    }
-    ops {
-      functionName: "Set Prop Visible by Tag"
-      args {
-        call_value {
-          functionName: "Get Map Item (SenseTagList)"
-          args {
-            string_value: "isCircle"
-          }
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "bool"
-          }
-          args {
-            int_value: 0
-          }
-        }
-      }
-      args {
-        float_value: -1
-      }
-      args {
-        call_value {
-          functionName: "Everywhere"
-        }
-      }
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "DoesOrDoesNot"
-          }
-          args {
-            int_value: 1
           }
         }
       }
@@ -6147,6 +6545,45 @@ characters {
   idRef {
     id: "557cfed1663136e40e004cae"
   }
+  interactionRoot {
+    isEnabled: true
+    interactionRadius: 6
+    prerequisites {
+      ops {
+        functionName: "Comparison (int)"
+        args {
+          call_value {
+            functionName: "Get Story Variable (int)"
+            args {
+              string_value: "542848a8633464d816001ad5"
+            }
+            args {
+              string_value: "int_NPC_Status_KyleMorgan"
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "Comparison Ops"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          int_value: 1
+        }
+      }
+    }
+    conversationPoint {
+      conversationID: "557cb852393066e00a00090b"
+      turnToFace: true
+    }
+    interaction_info_text: "Talk to Kyle Morgan?"
+  }
   lod: 0
   character_instance {
     prefab_name: "Seattle:Security/HumanMaleExecSecurity"
@@ -6317,7 +6754,7 @@ characters {
   name: "chars_icon_playerIcon"
   gridPoint {
     x: 32
-    y: 0
+    y: 1
     z: -6
   }
   orientation: ORIENTATION_S
@@ -6393,10 +6830,12 @@ characters {
     team_id: "Civilians"
     char_name: "Camera"
     pc_spawn_number: -1
+    ai_ignores: true
     portrait {
       filename: ""
     }
     karma: 6
+    is_prop_character: true
   }
 }
 characters {
@@ -6917,13 +7356,14 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 41
+    x: 28
     y: 0
     z: -17
   }
   orientation: ORIENTATION_E
   GeneralTags: "isSpirit"
-  displayName: "Spirit"
+  GeneralTags: "isSpirit1"
+  displayName: "Spirit_A"
   idRef {
     id: "55ec9898663136240100385c"
   }
@@ -7003,6 +7443,7 @@ characters {
     team_id: "Gangers"
     char_name: "Infernus"
     GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit1"
     enabled_at_start: false
     pc_spawn_number: -1
     portrait {
@@ -7014,13 +7455,14 @@ characters {
 characters {
   name: "chars_icon_playerIcon"
   gridPoint {
-    x: 28
+    x: 41
     y: 0
     z: -17
   }
   orientation: ORIENTATION_E
   GeneralTags: "isSpirit"
-  displayName: "Spirit"
+  GeneralTags: "isSpirit8"
+  displayName: "Spirit_B"
   idRef {
     id: "55ec98e8663136240100385d"
   }
@@ -7099,6 +7541,7 @@ characters {
     team_id: "Gangers"
     char_name: "Riptide"
     GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit8"
     enabled_at_start: false
     pc_spawn_number: -1
     portrait {
@@ -7194,6 +7637,1188 @@ characters {
     is_prop_character: true
   }
 }
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 30
+    y: 0
+    z: -4
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit12"
+  displayName: "Spirit_B"
+  idRef {
+    id: "56030782663136b40b007687"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritWater"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Water F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_More
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Riptide"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit12"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_water"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 28
+    y: 0
+    z: -8
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit2"
+  displayName: "Spirit_A"
+  idRef {
+    id: "56030782663136b40b007688"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritFire"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Fire F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        normal: VulnerabilityLevel_Normal
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_Immune
+        actionpoints: VulnerabilityLevel_Less
+        shock: VulnerabilityLevel_More
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Infernus"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit2"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_fire"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 43
+    y: 0
+    z: -5
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit9"
+  displayName: "Spirit_B"
+  idRef {
+    id: "56030784663136b40b007689"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritWater"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Water F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_More
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Riptide"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit9"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_water"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 42
+    y: 0
+    z: 2
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit3"
+  displayName: "Spirit_A"
+  idRef {
+    id: "56030784663136b40b00768a"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritFire"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Fire F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        normal: VulnerabilityLevel_Normal
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_Immune
+        actionpoints: VulnerabilityLevel_Less
+        shock: VulnerabilityLevel_More
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Infernus"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit3"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_fire"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 36
+    y: 0
+    z: -7
+  }
+  orientation: ORIENTATION_E
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit13"
+  displayName: "Spirit_B"
+  idRef {
+    id: "56030785663136b40b00768b"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritWater"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Water F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_More
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Riptide"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit13"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_water"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 27
+    y: 0
+    z: -14
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit4"
+  displayName: "Spirit_A"
+  idRef {
+    id: "56030785663136b40b00768c"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritFire"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Fire F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        normal: VulnerabilityLevel_Normal
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_Immune
+        actionpoints: VulnerabilityLevel_Less
+        shock: VulnerabilityLevel_More
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Infernus"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit4"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_fire"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 30
+    y: 0
+    z: -13
+  }
+  orientation: ORIENTATION_E
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit14"
+  displayName: "Spirit_B"
+  idRef {
+    id: "56030787663136b40b00768d"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritWater"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Water F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_More
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Riptide"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit14"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_water"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 43
+    y: 0
+    z: -17
+  }
+  orientation: ORIENTATION_N
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit5"
+  displayName: "Spirit_A"
+  idRef {
+    id: "56030787663136b40b00768e"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritFire"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Fire F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        normal: VulnerabilityLevel_Normal
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_Immune
+        actionpoints: VulnerabilityLevel_Less
+        shock: VulnerabilityLevel_More
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Infernus"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit5"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_fire"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 33
+    y: 0
+    z: 0
+  }
+  orientation: ORIENTATION_E
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit10"
+  displayName: "Spirit_B"
+  idRef {
+    id: "5603078e663136b40b00768f"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritWater"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Water F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_More
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Riptide"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit10"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_water"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 40
+    y: 0
+    z: 6
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit6"
+  displayName: "Spirit_A"
+  idRef {
+    id: "5603078e663136b40b007690"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritFire"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Fire F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        normal: VulnerabilityLevel_Normal
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_Immune
+        actionpoints: VulnerabilityLevel_Less
+        shock: VulnerabilityLevel_More
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Infernus"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit6"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_fire"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 29
+    y: 0
+    z: -1
+  }
+  orientation: ORIENTATION_S
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit11"
+  displayName: "Spirit_B"
+  idRef {
+    id: "560307b7663136b40b007691"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritWater"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Water F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeBoss
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_More
+        stun: VulnerabilityLevel_Less
+        actionpoints: VulnerabilityLevel_Less
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Riptide"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit11"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_water"
+    }
+    karma: 102
+  }
+}
+characters {
+  name: "chars_icon_playerIcon"
+  gridPoint {
+    x: 30
+    y: 0
+    z: 3
+  }
+  orientation: ORIENTATION_W
+  GeneralTags: "isSpirit"
+  GeneralTags: "isSpirit7"
+  displayName: "Spirit_A"
+  idRef {
+    id: "560307b7663136b40b007692"
+  }
+  lod: 0
+  character_instance {
+    prefab_name: "Seattle:Spirit/SpiritFire"
+    character_sheet_id: "ShrineSpirit_Lv4"
+    equipment_sheet_id: "Spirit Fire F4 Gear"
+    character_mod {
+      stats {
+        body: 0
+        quickness: 0
+        strength: 0
+        charisma: 0
+        intelligence: 0
+        willpower: 0
+        essence: 0
+        magic: 0
+        hp: 0
+        ap: 0
+        armor: 0
+        force: 0
+        morale: 0
+        discipline: 0
+        awareness: 0
+        perception: 20
+        authority: 0
+        protect_tether_range: 0
+        move_speed: 0
+        vision_peripheral_distance: 0
+        vision_cone_distance: 0
+        vision_cone_angle: 0
+        is_fearless: 1
+      }
+      skills {
+        ranged_combat: 0
+        close_combat: 0
+        throwing_weapons: 0
+        spellcasting: 0
+        decking: 0
+        conjuring: 0
+        spirit_summoning: 0
+        drone_control: 0
+        biotech: 0
+        dodge: -2
+        etiquette_corporate: 0
+        etiquette_security: 0
+        etiquette_gang: 0
+        etiquette_socialite: 0
+        chi_casting: 0
+        etiquette_shadowrunner: 0
+        etiquette_street: 0
+        etiquette_academic: 0
+      }
+      specializations {
+        pistol: 0
+        rifle: 0
+        shotgun: 0
+        smg: 0
+        edged: 0
+        unarmed: 0
+        spirit_control: 0
+        esp_control: 0
+        drone_combat: 0
+      }
+      archetypeName: "Guard - Seek And Destroy"
+      attitude: AttitudeAggressive
+      attackRandom: AttackStyle_BestOnly
+      vulnerabilities {
+        normal: VulnerabilityLevel_Normal
+        magic: VulnerabilityLevel_Less
+        fire: VulnerabilityLevel_Immune
+        actionpoints: VulnerabilityLevel_Less
+        shock: VulnerabilityLevel_More
+      }
+    }
+    team_id: "Gangers"
+    char_name: "Infernus"
+    GeneralTags: "isSpirit"
+    GeneralTags: "isSpirit7"
+    enabled_at_start: false
+    pc_spawn_number: -1
+    portrait {
+      filename: "generic_spirit_fire"
+    }
+    karma: 102
+  }
+}
 variables {
   int_value: 1
   variableref_value {
@@ -7250,6 +8875,38 @@ variables {
     typeName: "int"
   }
 }
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bKyleDead"
+    typeName: "bool"
+  }
+}
+variables {
+  bool_value: false
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "bDragonDead"
+    typeName: "bool"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iSummonA"
+    typeName: "int"
+  }
+}
+variables {
+  int_value: 0
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "iSummonB"
+    typeName: "int"
+  }
+}
 mapEvents: "eBreathWeapon"
 mapEvents: "eClawSwipe"
 mapEvents: "eFightTheDragon"
@@ -7258,6 +8915,9 @@ mapEvents: "eDragonArrive"
 mapEvents: "eDragonUpdate"
 mapEvents: "eClawedReaction"
 mapEvents: "eEndGame"
+mapEvents: "eEndGameStepper"
+mapEvents: "eNewSpirits"
+mapEvents: "eSummonSpirits"
 senseTags: "isTarget"
 goals {
   name: "Survive"

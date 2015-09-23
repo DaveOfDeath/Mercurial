@@ -909,7 +909,7 @@ nodes {
     id: "557cee4b3930665401004eaa"
   }
   index: 8
-  text: "Kyle Morgan pulls a sleek pistol out of his coat, holding it at his side.\n\n\"No,\" Kyle shouts, \"not all of my associates.\""
+  text: "Kyle Morgan pulls a sleek pistol out of his coat, holding it at his side.\n\n\"No,\" Kyle shouts, \"not all of my friends.\""
   branches {
     responseText: ""
     nextNodeIndex: 9
@@ -1192,7 +1192,12 @@ nodes {
     id: "55c79a9f6631363811004ef9"
   }
   index: 14
-  text: "He looks at her unbelievably.  \"Ten hours we\'ve had you... and completely catatonic...\"\n\n{{CC}}From above, you feel the roar of a dragon, feel the air rumble with its approach, and you hear a voice shout in your head.{{/CC}}\n\n{{CC}}Kyle, Get down! BLAST YOU, Get out of the way!{{/CC}}\n\nKyle shouts over the rain and wind noise, \"I believe that I\'ve already introduced you to Perianwyr?\" Morgan moves a half-step between you and Maria.\n\nThe roof shudders as the dragon lands on it."
+  text: "He looks at her unbelievably.  \"Ten hours we\'ve had you, and completely catatonic.  Unbelievable.  Awake this whole time.\""
+  branches {
+    responseText: ""
+    nextNodeIndex: 9
+    auxiliaryLink: true
+  }
   nodeType: ConversationNodeType_Simple
   sourceInSceneRef {
     id: "557cfed1663136e40e004cae"
@@ -1257,7 +1262,7 @@ nodes {
   index: 16
   text: "\"I\'m sorry to tell you, she\'s been catatonic for the last ten hours. She won\'t be any help to you, $(story.str_RunnerName)...\""
   branches {
-    responseText: "Well see about that, Kyle."
+    responseText: "I don\'t need the help, Morgan... I\'ve fought my way through all your friends to get here, haven\'t I?"
     actions {
       ops {
         functionName: "Set Variable (string)"
@@ -1277,7 +1282,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 7
+    nextNodeIndex: 8
     auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
@@ -1417,6 +1422,34 @@ nodes {
         float_value: 6
       }
     }
+    ops {
+      functionName: "Set Variable (int)"
+      args {
+        call_value {
+          functionName: "Get Variable (int)"
+          args {
+            string_value: "iSpiritsKilled"
+          }
+        }
+      }
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Send Event After Delay"
+      args {
+        call_value {
+          functionName: "Get Map Item (Event)"
+          args {
+            string_value: "eNewSpirits"
+          }
+        }
+      }
+      args {
+        float_value: 2
+      }
+    }
   }
 }
 roots {
@@ -1518,6 +1551,39 @@ roots {
       }
       args {
         int_value: 2
+      }
+    }
+    ops {
+      functionName: "Clear Waypoint from Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Actor)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "557cfed1663136e40e004cae"
+          }
+        }
       }
     }
   }

@@ -14540,38 +14540,6 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: " "
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55906a50663136cc13004104"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
-  name: " "
-  events {
-  }
-  conditions {
-  }
-  actions {
-  }
-  isActive: false
-  idRef {
-    id: "55c668d5663136f80e004e27"
-  }
-  elseActions {
-  }
-  is_oneshot: true
-}
-triggers {
   name: "--=== Setup  Triggers  ===--"
   events {
   }
@@ -15381,7 +15349,7 @@ triggers {
             string_value: "WithOrWithout"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -15520,7 +15488,7 @@ triggers {
             string_value: "WithOrWithout"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
@@ -16233,56 +16201,33 @@ triggers {
         }
       }
     }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
+      }
+    }
   }
   isActive: true
   idRef {
     id: "55c71eec663136b8150015df"
   }
   elseActions {
-    ops {
-      functionName: "Display Text at Screen Position"
-      args {
-        call_value {
-          functionName: "Get Preset Value (int)"
-          args {
-            string_value: "TextPopupStyle"
-          }
-          args {
-            int_value: 1
-          }
-        }
-      }
-      args {
-        string_value: "Armando Hernandez\' body lies on the floor of this cell.  Whom ever dumped him in here wasn\'t kind.\n\nHis body is battered, and broken.   He was dead when you left him, but now... it\'s like someone made an example out of his corpse."
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 0
-      }
-      args {
-        float_value: 15
-      }
-      args {
-        float_value: 3
-      }
-      args {
-        float_value: 0
-      }
-    }
     ops {
       functionName: "Start Conversation Between Actors"
       args {
@@ -16319,6 +16264,27 @@ triggers {
             int_value: 1
           }
         }
+      }
+    }
+    ops {
+      functionName: "Add Actor Karma"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        int_value: 1
       }
     }
   }
@@ -19159,7 +19125,7 @@ triggers {
             string_value: "IsOrIsNot"
           }
           args {
-            int_value: 1
+            int_value: 0
           }
         }
       }
@@ -19328,7 +19294,57 @@ triggers {
   }
   actions {
     ops {
-      functionName: "No Effect"
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Actor)"
+              args {
+                string_value: "558e10fb663136a40d000390"
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "5580e1ec663136a80b005e91"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
     }
   }
   isActive: false
@@ -20023,12 +20039,12 @@ triggers {
   name: "Stock.EquipGear"
   events {
     ops {
-      functionName: "On Region Exit"
+      functionName: "On Item Interaction"
       args {
         call_value {
-          functionName: "Get Map Item (Region)"
+          functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "55fe261c6631367403004eed"
+            string_value: "5602e9de663136b40b007214"
           }
         }
       }
@@ -21223,52 +21239,6 @@ regions {
   }
   visible_at_start: false
   is_closet: true
-  is_teleporter_region: false
-  directional_light_dir {
-    x: -0.5
-    y: -1
-    z: -0.75
-  }
-  directional_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambient_light_color {
-    r: 0.50196081
-    g: 0.50196081
-    b: 0.50196081
-    a: 1
-  }
-  ambience_template: ""
-  combat_music: ""
-  default_music: ""
-  loop_combat_music: true
-  loop_default_music: false
-  no_fow_in_region: false
-}
-regions {
-  name: "rEquipGear"
-  position {
-    x: -309
-    y: -35
-    width: 13
-    height: 6
-  }
-  enabledAtStart: true
-  is_camera_region: false
-  idRef {
-    id: "55fe261c6631367403004eed"
-  }
-  highlight_color {
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  }
-  visible_at_start: false
-  is_closet: false
   is_teleporter_region: false
   directional_light_dir {
     x: -0.5
@@ -22656,7 +22626,7 @@ characters {
         magic: 0
         hp: 20
         ap: 0
-        armor: 7
+        armor: 8
         force: 0
         morale: 0
         discipline: 0
@@ -22672,16 +22642,16 @@ characters {
         is_strict: 0
       }
       skills {
-        ranged_combat: 0
-        close_combat: 0
-        throwing_weapons: 0
+        ranged_combat: 1
+        close_combat: 2
+        throwing_weapons: 2
         spellcasting: 0
         decking: 0
         conjuring: 0
         spirit_summoning: 0
         drone_control: 0
-        biotech: -2
-        dodge: 0
+        biotech: -3
+        dodge: 2
         etiquette_corporate: 1
         etiquette_security: 0
         etiquette_gang: 0
@@ -22697,7 +22667,7 @@ characters {
         shotgun: 0
         smg: 0
         edged: 0
-        unarmed: 1
+        unarmed: 3
         spirit_control: 0
         esp_control: 0
         drone_combat: 0
@@ -22728,10 +22698,10 @@ characters {
       prefab_name: "Berlin_Grenade (Phosphorus)"
     }
     equipment {
-      prefab_name: "Berlin_BuMoNAGold"
+      prefab_name: "Berlin_Grenade (Smoke)"
     }
     equipment {
-      prefab_name: "Berlin_Grenade (Smoke)"
+      prefab_name: "Berlin_HealthPack_hi"
     }
     team_id: "MixTape"
     char_name: "Jorge Mixacopotec"
@@ -22744,7 +22714,7 @@ characters {
       filename: "GEEKED_JorgeMixacopotecINJURED"
     }
     portrait_code_override: "s2h6c11b8c11t0"
-    karma: 122
+    karma: 163
     persistent_body: true
     has_fist: true
   }
@@ -24761,9 +24731,7 @@ characters {
   interactionRoot {
     isEnabled: true
     interactionRadius: 1
-    conversationPoint {
-      conversationID: "55ee72de6131316c0a0060ef"
-      turnToFace: false
+    dummyInteraciton {
     }
     interaction_info_text: "Armando Hernandez"
   }
@@ -25004,7 +24972,7 @@ characters {
     char_name: "Blight"
     GeneralTags: "isUnhired"
     GeneralTags: "isBlight"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true
@@ -25071,7 +25039,7 @@ characters {
     char_name: "El Jefe"
     GeneralTags: "isUnhired"
     GeneralTags: "isElJefe"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     cyberware_eyes: "Vision Magnification Eyes"
@@ -25142,7 +25110,7 @@ characters {
     char_name: "Gunner"
     GeneralTags: "isUnhired"
     GeneralTags: "isGunner"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true
@@ -25240,7 +25208,7 @@ characters {
     char_name: "Luna"
     GeneralTags: "isUnhired"
     GeneralTags: "isLuna"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true
@@ -25310,7 +25278,7 @@ characters {
     char_name: "Nebel"
     GeneralTags: "isUnhired"
     GeneralTags: "isNebel"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     cyberware_jack: "Datajack"
@@ -25376,7 +25344,7 @@ characters {
     char_name: "Padre"
     GeneralTags: "isUnhired"
     GeneralTags: "isPadre"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true
@@ -25471,7 +25439,7 @@ characters {
     char_name: "Shiver"
     GeneralTags: "isUnhired"
     GeneralTags: "isShiver"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true
@@ -25544,6 +25512,7 @@ characters {
     char_name: "Silver Arrow"
     GeneralTags: "isUnhired"
     GeneralTags: "isSilverArrow"
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true
@@ -25640,7 +25609,7 @@ characters {
     char_name: "Sucio"
     GeneralTags: "isUnhired"
     GeneralTags: "isSucio"
-    enabled_at_start: true
+    enabled_at_start: false
     pc_spawn_number: -1
     hiring_type: HiringType_Hireable
     revivable_value: true

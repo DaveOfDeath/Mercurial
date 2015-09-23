@@ -392,7 +392,7 @@ nodes {
         }
       }
     }
-    nextNodeIndex: 3
+    nextNodeIndex: 4
   }
   branches {
     responseText: "{{CC}}Leave{{/CC}}"
@@ -616,24 +616,76 @@ nodes {
   }
   branches {
     responseText: "{{CC}}Kill him{{/CC}} Goodbye, Blackstone."
+    conditions {
+      ops {
+        functionName: "Comparison (bool)"
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "IsOrIsNot"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+        args {
+          call_value {
+            functionName: "Get Preset Value (int)"
+            args {
+              string_value: "bool"
+            }
+            args {
+              int_value: 0
+            }
+          }
+        }
+      }
+    }
     nextNodeIndex: -1
+    hideIfUnavailable: true
   }
   branches {
     responseText: "{{CC}}Let him go{{/CC}} Get out of here, Blackstone, good luck out there."
-    nextNodeIndex: -1
+    nextNodeIndex: 3
+    hideIfUnavailable: true
   }
   nodeType: ConversationNodeType_Simple
   comment: "Blackstone History"
 }
 nodes {
   idRef {
-    id: "55ee2960396630c01a00638f"
+    id: "5602ebab663136b40b00724b"
   }
   index: 3
+  text: "If it\'s all the same to you, I think I\'ll wait until it\'s been quiet for a while."
+  nodeType: ConversationNodeType_Simple
+  sourceInSceneRef {
+    id: "558e10fb663136a40d000390"
+  }
+}
+nodes {
+  idRef {
+    id: "55ee2960396630c01a00638f"
+  }
+  index: 4
   text: "$(story.str_NPCIntroText)"
   branches {
-    responseText: ""
-    nextNodeIndex: -1
+    responseText: "And the door?"
+    nextNodeIndex: 3
+    auxiliaryLink: true
   }
   nodeType: ConversationNodeType_Simple
   actions {
@@ -662,7 +714,7 @@ nodes {
   idRef {
     id: "55ede7cf396630d02c004b6c"
   }
-  index: 4
+  index: 5
   text: "The dwarf is lying facedown, drooling."
   branches {
     responseText: "Leave the dwarf alone."
@@ -928,6 +980,6 @@ roots {
       }
     }
   }
-  nextNodeIndex: 4
+  nextNodeIndex: 5
   comment: "Blackstone Unconscious"
 }
