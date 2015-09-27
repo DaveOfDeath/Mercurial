@@ -851,6 +851,22 @@ nodes {
   text: "{{GM}}Nebel rolls her eyes.{{/GM}}\n\nMore than the twenty five percent you\'ll have splitting Foley\'s money among the team."
   branches {
     responseText: "Go for it."
+    actions {
+      ops {
+        functionName: "Set Variable (int)"
+        args {
+          call_value {
+            functionName: "Get Variable (int)"
+            args {
+              string_value: "iSystemShutDownTimer"
+            }
+          }
+        }
+        args {
+          int_value: 10
+        }
+      }
+    }
     nextNodeIndex: 8
     auxiliaryLink: true
   }
@@ -5342,23 +5358,6 @@ nodes {
       }
     }
     ops {
-      functionName: "Set Variable (int)"
-      args {
-        call_value {
-          functionName: "Get Story Variable (int)"
-          args {
-            string_value: "542848a8633464d816001ad5"
-          }
-          args {
-            string_value: "int_AccountHernandez"
-          }
-        }
-      }
-      args {
-        int_value: 0
-      }
-    }
-    ops {
       functionName: "Set Goal Status"
       args {
         call_value {
@@ -5375,7 +5374,7 @@ nodes {
             string_value: "GoalStatus"
           }
           args {
-            int_value: 3
+            int_value: 2
           }
         }
       }
@@ -5392,6 +5391,53 @@ nodes {
       }
     }
     ops {
+      functionName: "Set Camera Post Process Effect"
+      args {
+        int_value: 2
+      }
+    }
+    ops {
+      functionName: "Add Item to Team"
+      args {
+        call_value {
+          functionName: "Get Map Item (Item)"
+          args {
+            string_value: "item_LTG-HERNANDEZ_WAD"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (string)"
+          args {
+            string_value: "FactionList"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "WithOrWithout"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (SceneDimension)"
+          args {
+            string_value: "Default"
+          }
+        }
+      }
+    }
+    ops {
       functionName: "Set Variable (int)"
       args {
         call_value {
@@ -5400,18 +5446,39 @@ nodes {
             string_value: "542848a8633464d816001ad5"
           }
           args {
-            string_value: "int_NPC_Status_Nebel"
+            string_value: "int_AccountHernandez"
           }
         }
       }
       args {
-        int_value: -1
-      }
-    }
-    ops {
-      functionName: "Set Camera Post Process Effect"
-      args {
-        int_value: 2
+        call_value {
+          functionName: "Arithmetic (int)"
+          args {
+            int_value: -1
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "Arithmetic Ops"
+              }
+              args {
+                int_value: 2
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Story Variable (int)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "int_AccountHernandez"
+              }
+            }
+          }
+        }
       }
     }
   }
