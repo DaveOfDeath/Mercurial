@@ -17271,7 +17271,7 @@ triggers {
         }
       }
       args {
-        string_value: "Oh God! Why did I turn the lights?"
+        string_value: "Oh God! Why did I turn on the lights?"
       }
       args {
         float_value: 0
@@ -28473,34 +28473,96 @@ triggers {
   is_oneshot: true
 }
 triggers {
-  name: "FRESH.News"
+  name: "News [FRESH]"
   events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "569a6f7661313110130003b8"
+          }
+        }
+      }
+    }
   }
   conditions {
-  }
-  actions {
     ops {
-      functionName: "Display Image In Popup"
+      functionName: "Comparison (string)"
       args {
-        string_value: "portraits/newsMGMT"
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
       }
       args {
         call_value {
           functionName: "Get Preset Value (int)"
           args {
-            string_value: "PopupType"
+            string_value: "IsOrIsNot"
           }
           args {
-            int_value: 0
+            int_value: 1
           }
         }
       }
       args {
-        string_value: " News Stream on TV"
+        string_value: "FRESH"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "Jenna Kyte\'s media feed channel \"Cut the Bullshit, with Jenna Kyte\", which showcases talent, gossip, and speculation that she feels is important for the whole world to know."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
       }
     }
     ops {
-      functionName: "Enable/Disable Trigger"
+      functionName: "Enable/Disable Interactable Object"
       args {
         call_value {
           functionName: "Get Preset Value (int)"
@@ -28514,17 +28576,349 @@ triggers {
       }
       args {
         call_value {
-          functionName: "Get Map Item (Trigger)"
+          functionName: "Get Map Item (InteractableObject)"
           args {
-            string_value: "56116cd0663136940e004642"
+            string_value: "569a6f7661313110130003b8"
           }
         }
       }
     }
   }
-  isActive: false
+  isActive: true
   idRef {
     id: "56116cd0663136940e004642"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "News [POST U93]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "569a6f7661313110130003b8"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "AND"
+      args {
+        call_value {
+          functionName: "Comparison (bool)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (bool)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "bool_HotelSubQuestCleared"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "bool"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "DOGHOUSE-RETURN"
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Image In Popup"
+      args {
+        string_value: "portraits/newsMGMTPopUp"
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "PopupType"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: " News Stream on TV"
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "569a6f7661313110130003b8"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "56bfb4766631360413006a62"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "News [POST HOTEL]"
+  events {
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "569a6f7661313110130003b8"
+          }
+        }
+      }
+    }
+  }
+  conditions {
+    ops {
+      functionName: "OR"
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "DOGHOUSE-RETURN"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Comparison (string)"
+          args {
+            call_value {
+              functionName: "Get Story Variable (string)"
+              args {
+                string_value: "542848a8633464d816001ad5"
+              }
+              args {
+                string_value: "str_SpawnPoint"
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "IsOrIsNot"
+              }
+              args {
+                int_value: 1
+              }
+            }
+          }
+          args {
+            string_value: "DOGHOUSE-MATRIXRETURN"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Comparison (bool)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (bool)"
+          args {
+            string_value: "542848a8633464d816001ad5"
+          }
+          args {
+            string_value: "bool_HotelSubQuestCleared"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "bool"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Display Text at Screen Position"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TextPopupStyle"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        string_value: "You settle in, wondering if or when Jenna will get to something interesting.\nAfter a minute or two, you decide it\'s a lost cause."
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 0
+      }
+      args {
+        float_value: 20
+      }
+      args {
+        float_value: 3
+      }
+      args {
+        float_value: 0
+      }
+    }
+    ops {
+      functionName: "Enable/Disable Interactable Object"
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "EnableOrDisable"
+          }
+          args {
+            int_value: 1
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "569a6f7661313110130003b8"
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "56bfb4b06631360413006a63"
   }
   elseActions {
   }
