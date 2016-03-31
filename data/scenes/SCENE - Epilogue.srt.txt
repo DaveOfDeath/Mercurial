@@ -246,6 +246,189 @@ triggers {
   is_oneshot: true
 }
 triggers {
+  name: "OnMapStart.Shithouse"
+  events {
+    ops {
+      functionName: "On Map Start"
+    }
+  }
+  conditions {
+    ops {
+      functionName: "Comparison (string)"
+      args {
+        call_value {
+          functionName: "Get Story Variable (string)"
+          args {
+          }
+          args {
+            string_value: "str_SpawnPoint"
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "IsOrIsNot"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        string_value: "EPILOGUE-HAPPY"
+      }
+    }
+  }
+  actions {
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "All Actors on Team"
+          args {
+            call_value {
+              functionName: "Get Preset Value (string)"
+              args {
+                string_value: "FactionList"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Preset Value (int)"
+              args {
+                string_value: "AllOrAny"
+              }
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+            call_value {
+              functionName: "Get Map Item (SceneDimension)"
+              args {
+                string_value: "Default"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Random Point Within Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "56fcb7d4396630d01d0074b0"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Actor"
+      args {
+        call_value {
+          functionName: "Specific Actor"
+          args {
+            call_value {
+              functionName: "Get Map Item (Player)"
+              args {
+                int_value: 0
+              }
+            }
+          }
+          args {
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Center of Region"
+          args {
+            call_value {
+              functionName: "Get Map Item (Region)"
+              args {
+                string_value: "56ad795f3966305c0b0060c2"
+              }
+            }
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "FacingDirection"
+          }
+          args {
+            int_value: 4
+          }
+        }
+      }
+      args {
+        call_value {
+          functionName: "Get Preset Value (int)"
+          args {
+            string_value: "TeleportMethod"
+          }
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "Teleport Camera To Actor"
+      args {
+        call_value {
+          functionName: "Get Map Item (Player)"
+          args {
+            int_value: 0
+          }
+        }
+      }
+    }
+  }
+  isActive: true
+  idRef {
+    id: "56fcb79b396630d01d0074af"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
   name: "NewTrigger"
   events {
   }
@@ -460,6 +643,17 @@ triggers {
           functionName: "Get Map Item (InteractableObject)"
           args {
             string_value: "56ada8f6613131e0110038e4"
+          }
+        }
+      }
+    }
+    ops {
+      functionName: "On Item Interaction"
+      args {
+        call_value {
+          functionName: "Get Map Item (InteractableObject)"
+          args {
+            string_value: "56ad7a8e3966305c0b006267"
           }
         }
       }
@@ -713,6 +907,54 @@ triggers {
   isActive: false
   idRef {
     id: "56bfe26e6631360413006bb4"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: "<SHITHOUSE>"
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "56fcb9c8396630d01d0074ba"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "56fcb9bf396630d01d0074b9"
+  }
+  elseActions {
+  }
+  is_oneshot: true
+}
+triggers {
+  name: " "
+  events {
+  }
+  conditions {
+  }
+  actions {
+  }
+  isActive: false
+  idRef {
+    id: "56fcb9da396630d01d0074bb"
   }
   elseActions {
   }
@@ -1703,7 +1945,7 @@ triggers {
   is_oneshot: true
 }
 regions {
-  name: "Player Start"
+  name: "r_Shithouse_Playerstart"
   position {
     x: 10
     y: 2
@@ -2018,6 +2260,52 @@ regions {
     a: 1
   }
   ambience_template: "bar-quiet"
+  combat_music: ""
+  default_music: ""
+  loop_combat_music: true
+  loop_default_music: false
+  no_fow_in_region: false
+}
+regions {
+  name: "rShithouse_Start"
+  position {
+    x: 10
+    y: -7
+    width: 4
+    height: 5
+  }
+  enabledAtStart: true
+  is_camera_region: false
+  idRef {
+    id: "56fcb7d4396630d01d0074b0"
+  }
+  highlight_color {
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  }
+  visible_at_start: false
+  is_closet: false
+  is_teleporter_region: false
+  directional_light_dir {
+    x: -0.5
+    y: -1
+    z: -0.75
+  }
+  directional_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambient_light_color {
+    r: 0.50196081
+    g: 0.50196081
+    b: 0.50196081
+    a: 1
+  }
+  ambience_template: ""
   combat_music: ""
   default_music: ""
   loop_combat_music: true
@@ -2993,6 +3281,14 @@ variables {
     typeName: "bool"
   }
 }
+variables {
+  bool_value: true
+  variableref_value {
+    scope: TsVariableScope_Scene
+    name: "b_Endgame"
+    typeName: "bool"
+  }
+}
 mapEvents: "eSelectTeam"
 mapEvents: "eYoshirosTransition"
 senseTags: "isUnhired"
@@ -3007,7 +3303,7 @@ worldMapLocation {
 mapName: "SCENE - Epilogue"
 parentStory: ""
 scene_title: "Postlude..."
-scene_subtitle: ""
+scene_subtitle: "Epilogue for Thomas"
 scene_synopsis: "$(story.str_SceneDetails)"
 scene_image: "marialoading"
 scene_continue_button_skip: false
@@ -3058,8 +3354,6 @@ team_affiliations {
 }
 scene_dimensions {
   dimension_name: "Default"
-}
-character_roster {
 }
 show_hiring_screen_on_scene_load: false
 scene_hiring_prerequisites {
